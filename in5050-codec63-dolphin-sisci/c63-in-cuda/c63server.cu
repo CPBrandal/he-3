@@ -11,6 +11,9 @@
 #include <sisci_error.h>
 #include <sisci_api.h>
 
+
+#define NO_FLAGS 0
+
 static uint32_t remote_node = 0;
 
 /* getopt */
@@ -50,7 +53,7 @@ int main(int argc, char **argv)
     }
 
     /* Initialize the SISCI library */
-    SCIInitialize(0, &error);
+    SCIInitialize(NO_FLAGS, &error);
     if (error != SCI_ERR_OK) {
         fprintf(stderr,"SCIInitialize failed: %s\n", SCIGetErrorString(error));
         exit(EXIT_FAILURE);
