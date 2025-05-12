@@ -28,57 +28,47 @@ extern int optind;
 extern char *optarg;
 
 /* Read planar YUV frames with 4:2:0 chroma sub-sampling */
-static yuv_t *
-read_yuv( FILE *file, struct c63_common *cm )
+static yuv_t *read_yuv(FILE *file, struct c63_common *cm)
 {
     size_t len = 0;
-    yuv_t *image = ( yuv_t * ) malloc( sizeof( *image ) );
+    yuv_t *image = (yuv_t *)malloc(sizeof(*image));
 
-    /* Read Y. The size of Y is the same as the size of the image. The indices
-       represents the color component (0 is Y, 1 is U, and 2 is V) */
-    image->Y =
-        ( uint8_t * ) calloc( 1,
-                              cm->padw[Y_COMPONENT] * cm->padh[Y_COMPONENT] );
-    len += fread( image->Y, 1, width * height, file );
+    /* Read Y. The size of Y is the same as the size of the image */
+    cudaMallocManaged((void**)&image->Y, cm->padw[Y_COMPONENT] * cm->padh[Y_COMPONENT] * sizeof(uint8_t));
+    len += fread(image->Y, 1, width * height, file);
 
-    /* Read U. Given 4:2:0 chroma sub-sampling, the size is 1/4 of Y
-       because (height/2)*(width/2) = (height*width)/4. */
-    image->U =
-        ( uint8_t * ) calloc( 1,
-                              cm->padw[U_COMPONENT] * cm->padh[U_COMPONENT] );
-    len += fread( image->U, 1, ( width * height ) / 4, file );
+    /* Read U. Given 4:2:0 chroma sub-sampling, the size is 1/4 of Y */
+    cudaMallocManaged((void**)&image->U, cm->padw[U_COMPONENT] * cm->padh[U_COMPONENT] * sizeof(uint8_t));
+    len += fread(image->U, 1, (width * height) / 4, file);
 
     /* Read V. Given 4:2:0 chroma sub-sampling, the size is 1/4 of Y. */
-    image->V =
-        ( uint8_t * ) calloc( 1,
-                              cm->padw[V_COMPONENT] * cm->padh[V_COMPONENT] );
-    len += fread( image->V, 1, ( width * height ) / 4, file );
+    cudaMallocManaged((void**)&image->V, cm->padw[V_COMPONENT] * cm->padh[V_COMPONENT] * sizeof(uint8_t));
+    len += fread(image->V, 1, (width * height) / 4, file);
 
-    if ( ferror( file ) )
+    if (ferror(file))
     {
-        perror( "ferror" );
-        exit( EXIT_FAILURE );
+        perror("ferror");
+        exit(EXIT_FAILURE);
     }
 
-    if ( feof( file ) )
+    if (feof(file))
     {
-        free( image->Y );
-        free( image->U );
-        free( image->V );
-        free( image );
+        cudaFree(image->Y);
+        cudaFree(image->U);
+        cudaFree(image->V);
+        free(image);
 
         return NULL;
     }
-    else if ( len != width * height * 1.5 )
+    else if (len != width * height * 1.5)
     {
-        fprintf( stderr, "Reached end of file, but incorrect bytes read.\n" );
-        fprintf( stderr, "Wrong input? (height: %d width: %d)\n", height,
-                 width );
+        fprintf(stderr, "Reached end of file, but incorrect bytes read.\n");
+        fprintf(stderr, "Wrong input? (height: %d width: %d)\n", height, width);
 
-        free( image->Y );
-        free( image->U );
-        free( image->V );
-        free( image );
+        cudaFree(image->Y);
+        cudaFree(image->U);
+        cudaFree(image->V);
+        free(image);
 
         return NULL;
     }
@@ -285,6 +275,10 @@ main( int argc, char **argv )
         exit( EXIT_FAILURE );
     }
 
+    thread_pool_init(); // Initialize the threads once
+    uint32_t max_height = cm->padh[Y_COMPONENT];
+    task_pool_init(max_height); // Initialize the tasks once
+
     /* Encode input frames */
     int numframes = 0;
 
@@ -300,9 +294,9 @@ main( int argc, char **argv )
         printf( "Encoding frame %d, ", numframes );
         c63_encode_image( cm, image );
 
-        free( image->Y );
-        free( image->U );
-        free( image->V );
+        cudaFree( image->Y );
+        cudaFree( image->U );
+        cudaFree( image->V );
         free( image );
 
         printf( "Done!\n" );
@@ -315,6 +309,8 @@ main( int argc, char **argv )
         }
     }
 
+    task_pool_destroy();
+    thread_pool_destroy(); // Clean-up of the threads
     free_c63_enc( cm );
     fclose( outfile );
     fclose( infile );

@@ -11,7 +11,7 @@ TEGRA_CMD="c63server"
 TEGRA_ARGS=""
 
 # Set this to use either the c variant or the CUDA variant
-SUBDIR="PLEASE-SET-ME"
+SUBDIR="c63-in-cuda"
 
 if [ ! -d $SRC_DIR/$SUBDIR ]; then
     echo "Please set SUBDIR variable to c63-in-c or c63-in-cuda in $(realpath $0)"

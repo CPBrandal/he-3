@@ -476,37 +476,42 @@ print_help( int argc, char **argv )
     exit( EXIT_FAILURE );
 }
 
-int
-main( int argc, char **argv )
+int main(int argc, char **argv)
 {
-    if ( argc < 3 || argc > 3 )
-    {
-        print_help( argc, argv );
+  if(argc < 3 || argc > 3) { print_help(argc, argv); }
+
+  FILE *fin = fopen(argv[1], "rb");
+  FILE *fout = fopen(argv[2], "wb");
+
+  if (!fin || !fout)
+  {
+    perror("fopen");
+    exit(EXIT_FAILURE);
+  }
+
+  c63_common *cm = (c63_common*)calloc(1, sizeof(*cm));
+  cm->e_ctx.fp = fin;
+  
+    thread_pool_init(); // Initialize the threads once
+
+
+  int framenum = 0;
+  while(!feof(fin))
+  {
+    printf("Decoding frame %d\n", framenum++);
+
+    parse_c63_frame(cm);
+    if(cm->padh[Y_COMPONENT] != 0){
+      uint32_t max_height = cm->padh[Y_COMPONENT];
+      task_pool_init(max_height); // Initialize the tasks once
     }
+    decode_c63_frame(cm, fout);
+  }
+  task_pool_destroy();
+  thread_pool_destroy(); // Clean-up of the threads
 
-    FILE *fin = fopen( argv[1], "rb" );
-    FILE *fout = fopen( argv[2], "wb" );
+  fclose(fin);
+  fclose(fout);
 
-    if ( !fin || !fout )
-    {
-        perror( "fopen" );
-        exit( EXIT_FAILURE );
-    }
-
-    c63_common *cm = ( c63_common * ) calloc( 1, sizeof( *cm ) );
-    cm->e_ctx.fp = fin;
-
-    int framenum = 0;
-    while ( !feof( fin ) )
-    {
-        printf( "Decoding frame %d\n", framenum++ );
-
-        parse_c63_frame( cm );
-        decode_c63_frame( cm, fout );
-    }
-
-    fclose( fin );
-    fclose( fout );
-
-    return 0;
+  return 0;
 }
