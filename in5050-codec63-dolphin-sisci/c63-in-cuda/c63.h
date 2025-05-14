@@ -11,8 +11,27 @@
 #error Fill in group number
 #endif
 
+#define NO_FLAGS 0
+#define NO_CALLBACK NULL
+#define NO_ARG NULL
+
 /* GET_SEGMENTID(2) gives you segmentid 2 at your groups offset */
 #define GET_SEGMENTID(id) ( GROUP << 16 | id )
+#define SEGMENT_CLIENT GET_SEGMENTID(1)
+#define SEGMENT_SERVER GET_SEGMENTID(2)
+
+// Message sizes
+#define MESSAGE_SIZE 256   // Size for hello message
+
+// Command definitions for signaling
+enum cmd
+{
+    CMD_INVALID = 0,   // No command/initial state
+    CMD_HELLO,         // Client sending hello
+    CMD_HELLO_ACK,     // Server acknowledging hello
+    CMD_QUIT,          // Signal to terminate
+    CMD_DATA_READY     // Signal that data is ready to be read
+};
 
 #define MAX_FILELENGTH 200
 #define DEFAULT_OUTPUT_FILE "a.mjpg"
@@ -118,6 +137,31 @@ struct c63_common
     int frames_since_keyframe;
 
     struct entropy_ctx e_ctx;
+};
+
+struct packet
+{
+    union {
+        struct {
+            uint32_t cmd;          // Command type
+            uint32_t data_size;    // Size of data in buffer
+        };
+        uint8_t padding[64];       // Align to cache line
+    } __attribute__((aligned(64)));
+};
+
+// Server segment structure
+struct server_segment
+{
+    struct packet packet __attribute__((aligned(64)));
+    char message_buffer[MESSAGE_SIZE] __attribute__((aligned(64))); // Buffer for messages
+};
+
+// Client segment structure
+struct client_segment
+{
+    struct packet packet __attribute__((aligned(64)));
+    char message_buffer[MESSAGE_SIZE] __attribute__((aligned(64))); // Buffer for messages
 };
 
 #endif /* C63_C63_H_ */

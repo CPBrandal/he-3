@@ -31,6 +31,11 @@ static uint32_t height;
 extern int optind;
 extern char *optarg;
 
+#define SERVER_SEG_ID 1
+#define SEGMENT_SIZE 1024
+#define ADAPTER_NO 0
+#define NO_FLAGS 0
+
 /* Read planar YUV frames with 4:2:0 chroma sub-sampling */
 static yuv_t *
 read_yuv( FILE *file, struct c63_common *cm )
@@ -224,8 +229,7 @@ print_help(  )
 
     exit( EXIT_FAILURE );
 }
-
-int
+/* int
 main( int argc, char **argv )
 {
     int c;
@@ -268,7 +272,6 @@ main( int argc, char **argv )
         exit( EXIT_FAILURE );
     }
 
-    /* Initialize the SISCI library */
     SCIInitialize(0, &error);
     if (error != SCI_ERR_OK) {
         fprintf(stderr,"SCIInitialize failed: %s\n", SCIGetErrorString(error));
@@ -301,7 +304,6 @@ main( int argc, char **argv )
         exit( EXIT_FAILURE );
     }
 
-    /* Encode input frames */
     int numframes = 0;
 
     
@@ -340,4 +342,245 @@ main( int argc, char **argv )
     SCITerminate();
 
     return EXIT_SUCCESS;
+} */
+
+int main_loop(sci_desc_t sd,
+    volatile struct client_segment *local_seg,
+    volatile struct server_segment *remote_seg,
+    sci_dma_queue_t dma_queue,
+    sci_local_segment_t local_segment,
+    sci_remote_segment_t remote_segment)
+{
+    sci_error_t error;
+
+    printf("Client: Starting communication\n");
+
+    // Prepare hello message
+    strcpy((char*)local_seg->message_buffer, "hello from client");
+    local_seg->packet.data_size = strlen("hello from client") + 1;
+
+    // Use DMA to transfer the message
+    SCIStartDmaTransfer(dma_queue, 
+                local_segment, 
+                remote_segment,
+                offsetof(struct client_segment, message_buffer), 
+                local_seg->packet.data_size,
+                offsetof(struct server_segment, message_buffer), 
+                NO_CALLBACK, 
+                NULL, 
+                NO_FLAGS, 
+                &error);
+    if (error != SCI_ERR_OK) {
+    fprintf(stderr, "Client: SCIStartDmaTransfer failed - Error code 0x%x\n", error);
+    return -1;
+    }
+
+    // Wait for DMA transfer to complete
+    SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+    fprintf(stderr, "Client: SCIWaitForDMAQueue failed - Error code 0x%x\n", error);
+    return -1;
+    }
+
+    // Signal that data is ready
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_HELLO;
+    SCIFlush(NULL, NO_FLAGS);
+
+    printf("Client: Sent hello message\n");
+
+    // Wait for server acknowledgment
+    while (local_seg->packet.cmd != CMD_HELLO_ACK) {
+    // Just wait
+    }
+
+    // Print the response
+    printf("Client: Received response: \"%s\"\n", local_seg->message_buffer);
+
+    // Reset command
+    local_seg->packet.cmd = CMD_INVALID;
+
+    // Tell server we're quitting
+    remote_seg->packet.cmd = CMD_QUIT;
+    SCIFlush(NULL, NO_FLAGS);
+
+    return 0;
+}
+
+int main(int argc, char **argv)
+{
+    unsigned int localAdapterNo = 0;
+    unsigned int remoteNodeId = 0;
+    
+    sci_error_t error;
+    sci_desc_t sd;
+    sci_remote_segment_t remoteSegment;
+    sci_local_segment_t localSegment;
+    sci_dma_queue_t dmaQueue;
+    sci_map_t localMap, remoteMap;
+    
+    volatile struct client_segment *client_segment;
+    volatile struct server_segment *server_segment;
+    
+    int c;
+    
+    while ((c = getopt(argc, argv, "r:")) != -1)
+    {
+        switch (c)
+        {
+            case 'r':
+                remoteNodeId = atoi(optarg);
+                break;
+            default:
+                break;
+        }
+    }
+    
+    if (remoteNodeId == 0) {
+        fprintf(stderr, "Remote node-id is not specified. Use -r <remote node-id>\n");
+        exit(EXIT_FAILURE);
+    }
+    
+    // Initialize SISCI
+    SCIInitialize(NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "SCIInitialize failed - Error code: 0x%x\n", error);
+        exit(EXIT_FAILURE);
+    }
+    
+    // Open virtual device
+    SCIOpen(&sd, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "SCIOpen failed - Error code 0x%x\n", error);
+        SCITerminate();
+        exit(EXIT_FAILURE);
+    }
+    
+    // Create local segment
+    SCICreateSegment(sd,
+                     &localSegment,
+                     SEGMENT_CLIENT,
+                     sizeof(struct client_segment),
+                     NO_CALLBACK,
+                     NULL,
+                     NO_FLAGS,
+                     &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "SCICreateSegment failed - Error code 0x%x\n", error);
+        SCIClose(sd, NO_FLAGS, &error);
+        SCITerminate();
+        exit(EXIT_FAILURE);
+    }
+    
+    // Prepare segment
+    SCIPrepareSegment(localSegment, localAdapterNo, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "SCIPrepareSegment failed - Error code 0x%x\n", error);
+        SCIRemoveSegment(localSegment, NO_FLAGS, &error);
+        SCIClose(sd, NO_FLAGS, &error);
+        SCITerminate();
+        exit(EXIT_FAILURE);
+    }
+    
+    // Create DMA queue
+    SCICreateDMAQueue(sd, &dmaQueue, localAdapterNo, 1, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "SCICreateDMAQueue failed - Error code 0x%x\n", error);
+        SCIRemoveSegment(localSegment, NO_FLAGS, &error);
+        SCIClose(sd, NO_FLAGS, &error);
+        SCITerminate();
+        exit(EXIT_FAILURE);
+    }
+    
+    // Map local segment
+// Map remote segment
+client_segment = (volatile struct client_segment *)SCIMapLocalSegment(
+    localSegment, 
+    &localMap, 
+    0, 
+    sizeof(struct client_segment), 
+    NULL, 
+    NO_FLAGS, 
+    &error);
+    
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "SCIMapLocalSegment failed - Error code 0x%x\n", error);
+        SCIRemoveDMAQueue(dmaQueue, NO_FLAGS, &error);
+        SCIRemoveSegment(localSegment, NO_FLAGS, &error);
+        SCIClose(sd, NO_FLAGS, &error);
+        SCITerminate();
+        exit(EXIT_FAILURE);
+    }
+    
+    // Initialize control packet
+    client_segment->packet.cmd = CMD_INVALID;
+    
+    // Make segment available
+    SCISetSegmentAvailable(localSegment, localAdapterNo, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "SCISetSegmentAvailable failed - Error code 0x%x\n", error);
+        SCIUnmapSegment(localMap, NO_FLAGS, &error);
+        SCIRemoveDMAQueue(dmaQueue, NO_FLAGS, &error);
+        SCIRemoveSegment(localSegment, NO_FLAGS, &error);
+        SCIClose(sd, NO_FLAGS, &error);
+        SCITerminate();
+        exit(EXIT_FAILURE);
+    }
+    
+    printf("Client: Connecting to server segment...\n");
+    
+    // Connect to server segment
+    do {
+        SCIConnectSegment(sd,
+                          &remoteSegment,
+                          remoteNodeId,
+                          SEGMENT_SERVER,
+                          localAdapterNo,
+                          NO_CALLBACK,
+                          NULL,
+                          SCI_INFINITE_TIMEOUT,
+                          NO_FLAGS,
+                          &error);
+    } while (error != SCI_ERR_OK);
+    
+    printf("Client: Connected to server segment\n");
+    
+    // Map remote segment
+    server_segment = (volatile struct server_segment *)SCIMapRemoteSegment(
+        remoteSegment, 
+        &remoteMap, 
+        0,
+        sizeof(struct server_segment),
+        NULL, 
+        NO_FLAGS, 
+        &error);
+    
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "SCIMapRemoteSegment failed - Error code 0x%x\n", error);
+        SCIDisconnectSegment(remoteSegment, NO_FLAGS, &error);
+        SCISetSegmentUnavailable(localSegment, localAdapterNo, NO_FLAGS, &error);
+        SCIUnmapSegment(localMap, NO_FLAGS, &error);
+        SCIRemoveDMAQueue(dmaQueue, NO_FLAGS, &error);
+        SCIRemoveSegment(localSegment, NO_FLAGS, &error);
+        SCIClose(sd, NO_FLAGS, &error);
+        SCITerminate();
+        exit(EXIT_FAILURE);
+    }
+    
+    // Enter main loop
+    main_loop(sd, client_segment, server_segment, dmaQueue, localSegment, remoteSegment);
+    
+    printf("Client: Exiting\n");
+    
+    // Clean up resources
+    SCIDisconnectSegment(remoteSegment, NO_FLAGS, &error);
+    SCIUnmapSegment(remoteMap, NO_FLAGS, &error);
+    SCISetSegmentUnavailable(localSegment, localAdapterNo, NO_FLAGS, &error);
+    SCIUnmapSegment(localMap, NO_FLAGS, &error);
+    SCIRemoveDMAQueue(dmaQueue, NO_FLAGS, &error);
+    SCIRemoveSegment(localSegment, NO_FLAGS, &error);
+    SCIClose(sd, NO_FLAGS, &error);
+    SCITerminate();
+    
+    return 0;
 }

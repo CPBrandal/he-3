@@ -1,0 +1,14 @@
+Client: Connecting to server segment...
+./c63client: invalid option -- 'o'
+./c63client: invalid option -- 'w'
+./c63client: invalid option -- 'h'
+Client: Connected to server segment
+Client: Starting communication
+Client: Sent hello message
+Client: Received response: "hello from client"
+Client: Exiting
+
+real	0m0,208s
+user	0m0,003s
+sys	0m0,004s
+PC exit code: 0

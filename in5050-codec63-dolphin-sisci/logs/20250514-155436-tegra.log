@@ -1,0 +1,14 @@
+Server: Waiting for client connection...
+Server: Connected to client segment
+Server: Waiting for commands...
+Server: Received command 1
+Server: Received hello message: "hello from client"
+Server: Sent response message
+Server: Received command 3
+Server: Received quit command
+Server: Exiting
+
+real	0m0.086s
+user	0m0.078s
+sys	0m0.008s
+Tegra exit code: 0

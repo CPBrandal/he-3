@@ -114,8 +114,8 @@ ssh -t $PC "export PATH=/usr/local/cuda/bin:\$PATH && mkdir -p ${BUILD_DIR}/${SU
 
 #Launch on both nodes
 echo "Running:"
-ssh -t $TEGRA "cd $BUILD_DIR/$SUBDIR/build && time ./$TEGRA_CMD -r $PC_NODE $TEGRA_ARGS; echo Tegra exit code: \$?" |& tee logs/$DATE-tegra.log
-ssh -t $PC "cd $BUILD_DIR/$SUBDIR/build && time ./$PC_CMD -r $TEGRA_NODE $PC_ARGS; echo PC exit code: \$?" |& tee logs/$DATE-pc.log
+stdbuf -oL -eL ssh $TEGRA "cd $BUILD_DIR/$SUBDIR/build && time stdbuf -oL -eL ./$TEGRA_CMD -r $PC_NODE $TEGRA_ARGS; echo Tegra exit code: \$?" |& tee logs/$DATE-tegra.log &
+stdbuf -oL -eL ssh $PC "cd $BUILD_DIR/$SUBDIR/build && time stdbuf -oL -eL ./$PC_CMD -r $TEGRA_NODE $PC_ARGS; echo PC exit code: \$?" |& tee logs/$DATE-pc.log &
 
 wait 
 

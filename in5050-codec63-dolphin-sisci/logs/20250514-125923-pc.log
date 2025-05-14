@@ -1,0 +1,8 @@
+Frame buffer size: 152064 bytes
+Connecting to remote segment (ID=0x90001) on node 20...
+SCIConnectSegment failed: Segment ID/interrupt number not found
+PC exit code: 1
+
+real	0m0,102s
+user	0m0,002s
+sys	0m0,000s
