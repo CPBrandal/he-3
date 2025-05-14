@@ -30,6 +30,7 @@ to set your group number in `common.h`.
 - Set cuda or c in `run.sh`
 - Set your group number in `c63.h`
 
+aa3pKLdWCf
 
 ## Usage
 
@@ -41,7 +42,7 @@ to `c63client`, use `--args "arg1 arg2"`.
 
 Example usage:
 ```
-./run.sh --tegra tegra-1 --args "/mnt/sdcard/foreman.yuv -o output -w 352 -h 288"
+./run.sh --tegra tegra-3 --args "/mnt/sdcard/foreman.yuv -o output -w 352 -h 288"
 ```
 
 We strongly recommend that clone the github repository in5050-codec63 twice.
