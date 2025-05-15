@@ -1,0 +1,8 @@
+Client: Connecting to server segment...
+Client: Connected to server segment
+PC exit code: 139
+bash: line 1: 515924 Segmentation fault      (core dumped) stdbuf -oL -eL ./c63client -r 20 /opt/Media/foreman.yuv -o output -w 352 -h 288
+
+real	0m0,339s
+user	0m0,000s
+sys	0m0,018s

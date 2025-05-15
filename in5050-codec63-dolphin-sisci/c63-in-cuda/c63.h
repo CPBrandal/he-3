@@ -13,12 +13,17 @@
 
 #define NO_FLAGS 0
 #define NO_CALLBACK NULL
-#define NO_ARG NULL
+
+#define MAX_WIDTH 1920
+#define MAX_HEIGHT 1080
+#define MAX_Y_SIZE (MAX_WIDTH * MAX_HEIGHT)
+#define MAX_UV_SIZE (MAX_Y_SIZE / 4)
 
 /* GET_SEGMENTID(2) gives you segmentid 2 at your groups offset */
 #define GET_SEGMENTID(id) ( GROUP << 16 | id )
-#define SEGMENT_CLIENT GET_SEGMENTID(1)
-#define SEGMENT_SERVER GET_SEGMENTID(2)
+#define SEGMENT_CLIENT_RESULT GET_SEGMENTID(3)
+#define SEGMENT_CLIENT_CONTROL GET_SEGMENTID(4)
+#define SEGMENT_SERVER_CONTROL GET_SEGMENTID(5)
 
 // Message sizes
 #define MESSAGE_SIZE 256   // Size for hello message
@@ -139,29 +144,64 @@ struct c63_common
     struct entropy_ctx e_ctx;
 };
 
-struct packet
+enum frame_cmd
 {
-    union {
-        struct {
-            uint32_t cmd;          // Command type
-            uint32_t data_size;    // Size of data in buffer
-        };
-        uint8_t padding[64];       // Align to cache line
-    } __attribute__((aligned(64)));
+    CMD_FRAME_DATA = 10,      // Client sending frame data
+    CMD_PROCESS_FRAME = 11,   // Request to process frame
+    CMD_PROCESSED_FRAME = 12, // Server sending processed frame data
+    CMD_FRAME_DONE = 13,      // Frame processing complete
+    CMD_PROCESSING = 14,      // Currently processing frame
+    CMD_WAITING = 15          // Waiting for processing
 };
 
-// Server segment structure
-struct server_segment
-{
-    struct packet packet __attribute__((aligned(64)));
-    char message_buffer[MESSAGE_SIZE] __attribute__((aligned(64))); // Buffer for messages
-};
+// Frame data message from client to server
+typedef struct {
+    struct {
+        uint32_t command;           // Command type (CMD_FRAME_DATA)
+        uint32_t frame_number;      // Current frame number
+        uint32_t frames_since_keyframe;
+        uint32_t width;
+        uint32_t height;
+        uint32_t y_size;
+        uint32_t u_size;
+        uint32_t v_size;
+        uint8_t padding[36];        // Pad to 64 bytes
+    } __attribute__((packed, aligned(64))) header;
+    
+    // YUV data follows in the segment (after header)
+} client_to_server_t;
 
-// Client segment structure
-struct client_segment
-{
-    struct packet packet __attribute__((aligned(64)));
-    char message_buffer[MESSAGE_SIZE] __attribute__((aligned(64))); // Buffer for messages
-};
+// Processed frame data from server to client
+typedef struct {
+    struct {
+        uint32_t command;           // Command type (CMD_PROCESSED_FRAME)
+        uint32_t frame_number;      // Frame that was processed
+        uint32_t frames_since_keyframe;  // Updated count
+        uint32_t is_keyframe;       // Was this processed as a keyframe?
+        uint32_t ydct_size;         // Size of Y DCT coefficients
+        uint32_t udct_size;         // Size of U DCT coefficients
+        uint32_t vdct_size;         // Size of V DCT coefficients
+        uint32_t mb_y_count;        // Number of Y macroblocks
+        uint32_t mb_u_count;        // Number of U macroblocks
+        uint32_t mb_v_count;        // Number of V macroblocks
+        uint8_t padding[24];        // Pad to 64 bytes
+    } __attribute__((packed, aligned(64))) header;
+    
+    // After the header follows:
+    // 1. Ydct coefficients
+    // 2. Udct coefficients
+    // 3. Vdct coefficients
+    // 4. Y macroblocks
+    // 5. U macroblocks
+    // 6. V macroblocks
+} processed_frame_t;
+
+// Control message structure
+typedef struct {
+    uint32_t command;        // Command type
+    uint32_t frame_number;   // Current frame
+    uint32_t status;         // Status code
+    uint8_t padding[52];     // Pad to 64 bytes
+} __attribute__((aligned(64))) control_message_t;
 
 #endif /* C63_C63_H_ */

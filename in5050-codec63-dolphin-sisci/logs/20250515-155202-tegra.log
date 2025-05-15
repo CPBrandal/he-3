@@ -1,0 +1,8 @@
+Server: Waiting for client connection...
+Server: Connected to client segment
+bash: line 1: 264092 Segmentation fault      (core dumped) stdbuf -oL -eL ./c63server -r 8
+
+real	0m0.412s
+user	0m0.003s
+sys	0m0.019s
+Tegra exit code: 139
