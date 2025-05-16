@@ -29,6 +29,8 @@ enum cmd
     CMD_INVALID = 0,   // No command/initial state
     CMD_HELLO,         // Client sending hello
     CMD_HELLO_ACK,     // Server acknowledging hello
+    CMD_DIMENSIONS,    // Client sending dimensions
+    CMD_DIMENSIONS_ACK,// Server acknowledging dimensions
     CMD_QUIT,          // Signal to terminate
     CMD_DATA_READY     // Signal that data is ready to be read
 };
@@ -103,11 +105,11 @@ struct macroblock
 
 struct frame
 {
-    yuv_t *orig;                // Original input image
-    yuv_t *recons;              // Reconstructed image
-    yuv_t *predicted;           // Predicted frame from intra-prediction
+    yuv_t *orig;        // Original input image
+    yuv_t *recons;      // Reconstructed image
+    yuv_t *predicted;   // Predicted frame from intra-prediction
 
-    dct_t *residuals;           // Difference between original image and predicted frame
+    dct_t *residuals;   // Difference between original image and predicted frame
 
     struct macroblock *mbs[COLOR_COMPONENTS];
     int keyframe;
@@ -122,7 +124,7 @@ struct c63_common
 
     int mb_cols, mb_rows;
 
-    uint8_t qp;                 // Quality parameter
+    uint8_t qp;         // Quality parameter
 
     int me_search_range;
 
@@ -137,6 +139,11 @@ struct c63_common
     int frames_since_keyframe;
 
     struct entropy_ctx e_ctx;
+};
+
+struct dimensions_data {
+    uint32_t width;
+    uint32_t height;
 };
 
 struct packet
@@ -164,4 +171,4 @@ struct client_segment
     char message_buffer[MESSAGE_SIZE] __attribute__((aligned(64))); // Buffer for messages
 };
 
-#endif /* C63_C63_H_ */
+#endif  /* C63_C63_H_ */

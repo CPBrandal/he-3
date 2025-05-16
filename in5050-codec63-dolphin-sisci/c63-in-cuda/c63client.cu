@@ -13,9 +13,7 @@
 
 #include "c63.h"
 #include "c63_write.h"
-#include "quantdct.h"
 #include "common.h"
-#include "me.h"
 #include "tables.h"
 
 static char *output_file, *input_file;
@@ -132,94 +130,150 @@ free_c63_enc( struct c63_common *cm )
 
 /* Main client processing loop */
 int main_client_loop(struct c63_common *cm, FILE *infile, int limit_numframes,
-                    volatile struct client_segment *local_seg,
-                    volatile struct server_segment *remote_seg,
-                    sci_dma_queue_t dma_queue,
-                    sci_local_segment_t local_segment,
-                    sci_remote_segment_t remote_segment) 
+    volatile struct client_segment *local_seg,
+    volatile struct server_segment *remote_seg,
+    sci_dma_queue_t dma_queue,
+    sci_local_segment_t local_segment,
+    sci_remote_segment_t remote_segment) 
 {
-    yuv_t *image;
-    int numframes = 0;
-    sci_error_t error;
-    
-    printf("Client: Starting video encoding\n");
-    
-    while (1) {
-        // Read YUV frame
-        image = read_yuv(infile, cm);
-        if (!image) break;
-        
-        printf("Processing frame %d, ", numframes);
-        
-        // Send frame number to server
-        *((int*)local_seg->message_buffer) = numframes;
-        local_seg->packet.data_size = sizeof(int);
-        
-        // Use DMA to transfer the frame number
-        SCIStartDmaTransfer(dma_queue, 
-                           local_segment,
-                           remote_segment,
-                           offsetof(struct client_segment, message_buffer),
-                           local_seg->packet.data_size,
-                           offsetof(struct server_segment, message_buffer),
-                           NO_CALLBACK,
-                           NULL,
-                           NO_FLAGS,
-                           &error);
-        if (error != SCI_ERR_OK) {
-            fprintf(stderr, "Client: SCIStartDmaTransfer failed - Error code 0x%x\n", error);
-            break;
-        }
-        
-        // Wait for DMA transfer to complete
-        SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
-        if (error != SCI_ERR_OK) {
-            fprintf(stderr, "Client: SCIWaitForDMAQueue failed - Error code 0x%x\n", error);
-            break;
-        }
-        
-        // Signal server that data is ready
-        SCIFlush(NULL, NO_FLAGS);
-        remote_seg->packet.cmd = CMD_DATA_READY;
-        SCIFlush(NULL, NO_FLAGS);
-        
-        // Wait for server to echo back the frame number
-        local_seg->packet.cmd = CMD_INVALID;
-        while (local_seg->packet.cmd != CMD_DATA_READY) {
-            // Just wait
-        }
-        
-        // Verify echoed frame number
-        int echoed_frame = *((int*)local_seg->message_buffer);
-        if (echoed_frame != numframes) {
-            fprintf(stderr, "Client: Server echoed wrong frame number %d (expected %d)\n", 
-                   echoed_frame, numframes);
-        }
-        
-        // Process the frame
-        //c63_encode_image(cm, image);
-        
-        // Clean up the image
-        free(image->Y);
-        free(image->U);
-        free(image->V);
-        free(image);
-        
-        printf("Done!\n");
-        
-        ++numframes;
-        
-        if (limit_numframes && numframes >= limit_numframes) {
-            break;
-        }
-    }
-    
-    // Signal server to quit
-    remote_seg->packet.cmd = CMD_QUIT;
-    SCIFlush(NULL, NO_FLAGS);
-    
-    printf("Client: Finished processing %d frames\n", numframes);
-    return numframes;
+yuv_t *image;
+int numframes = 0;
+sci_error_t error;
+
+printf("Client: Sending dimensions (width=%u, height=%u)\n", width, height);
+
+// Prepare the dimensions data
+struct dimensions_data dim_data;
+dim_data.width = width;
+dim_data.height = height;
+
+// Copy dimensions to the message buffer
+memcpy((void*)local_seg->message_buffer, &dim_data, sizeof(struct dimensions_data));
+local_seg->packet.data_size = sizeof(struct dimensions_data);
+
+// Use DMA to transfer the dimensions
+SCIStartDmaTransfer(dma_queue, 
+       local_segment,
+       remote_segment,
+       offsetof(struct client_segment, message_buffer),
+       sizeof(struct dimensions_data),
+       offsetof(struct server_segment, message_buffer),
+       NO_CALLBACK,
+       NULL,
+       NO_FLAGS,
+       &error);
+
+if (error != SCI_ERR_OK) {
+fprintf(stderr, "Client: SCIStartDmaTransfer for dimensions failed - Error code 0x%x\n", error);
+return -1;
+}
+
+// Wait for DMA transfer to complete
+SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+if (error != SCI_ERR_OK) {
+fprintf(stderr, "Client: SCIWaitForDMAQueue for dimensions failed - Error code 0x%x\n", error);
+return -1;
+}
+
+// Signal server that dimensions are ready
+SCIFlush(NULL, NO_FLAGS);
+remote_seg->packet.cmd = CMD_DIMENSIONS;
+SCIFlush(NULL, NO_FLAGS);
+
+// Wait for server acknowledgment
+local_seg->packet.cmd = CMD_INVALID;
+while (local_seg->packet.cmd != CMD_DIMENSIONS_ACK) {
+// Just wait
+}
+
+// Verify echoed dimensions
+struct dimensions_data received_dim;
+memcpy(&received_dim, (void*)local_seg->message_buffer, sizeof(struct dimensions_data));
+
+if (received_dim.width != width || received_dim.height != height) {
+fprintf(stderr, "Client: Server responded with incorrect dimensions (width=%u, height=%u)\n", 
+received_dim.width, received_dim.height);
+return -1;
+}
+
+printf("Client: Dimensions verified, starting video encoding\n");
+
+while (1) {
+// Read YUV frame
+image = read_yuv(infile, cm);
+if (!image) break;
+
+printf("Processing frame %d, ", numframes);
+
+// Send frame number to server
+*((int*)local_seg->message_buffer) = numframes;
+local_seg->packet.data_size = sizeof(int);
+
+// Use DMA to transfer the frame number
+SCIStartDmaTransfer(dma_queue, 
+           local_segment,
+           remote_segment,
+           offsetof(struct client_segment, message_buffer),
+           local_seg->packet.data_size,
+           offsetof(struct server_segment, message_buffer),
+           NO_CALLBACK,
+           NULL,
+           NO_FLAGS,
+           &error);
+if (error != SCI_ERR_OK) {
+fprintf(stderr, "Client: SCIStartDmaTransfer failed - Error code 0x%x\n", error);
+break;
+}
+
+// Wait for DMA transfer to complete
+SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+if (error != SCI_ERR_OK) {
+fprintf(stderr, "Client: SCIWaitForDMAQueue failed - Error code 0x%x\n", error);
+break;
+}
+
+// Signal server that data is ready
+SCIFlush(NULL, NO_FLAGS);
+remote_seg->packet.cmd = CMD_DATA_READY;
+SCIFlush(NULL, NO_FLAGS);
+
+// Wait for server to echo back the frame number
+local_seg->packet.cmd = CMD_INVALID;
+while (local_seg->packet.cmd != CMD_DATA_READY) {
+// Just wait
+}
+
+// Verify echoed frame number
+int echoed_frame = *((int*)local_seg->message_buffer);
+if (echoed_frame != numframes) {
+fprintf(stderr, "Client: Server echoed wrong frame number %d (expected %d)\n", 
+   echoed_frame, numframes);
+}
+
+// Process the frame
+//c63_encode_image(cm, image);
+
+// Clean up the image
+free(image->Y);
+free(image->U);
+free(image->V);
+free(image);
+
+printf("Done!\n");
+
+++numframes;
+
+if (limit_numframes && numframes >= limit_numframes) {
+break;
+}
+}
+
+// Signal server to quit
+remote_seg->packet.cmd = CMD_QUIT;
+SCIFlush(NULL, NO_FLAGS);
+
+printf("Client: Finished processing %d frames\n", numframes);
+return numframes;
 }
 
 static void print_help()

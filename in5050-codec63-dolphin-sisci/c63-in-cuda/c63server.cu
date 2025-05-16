@@ -7,16 +7,139 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "c63.h"
+#include "quantdct.h"
+#include "common.h"
+#include "me.h"
+#include "tables.h"
+
 
 #include <sisci_error.h>
 #include <sisci_api.h>
+
+static uint32_t width = 0;
+static uint32_t height = 0;
 
 /* getopt */
 extern int optind;
 extern char *optarg;
 
-// Modified main loop to echo frame numbers
+struct c63_common *
+init_c63_enc( int width, int height )
+{
+    int i;
+
+    /* calloc() sets allocated memory to zero */
+    c63_common *cm =
+        ( c63_common * ) calloc( 1, sizeof( struct c63_common ) );
+
+    cm->width = width;
+    cm->height = height;
+
+    cm->padw[Y_COMPONENT] = cm->ypw =
+        ( uint32_t ) ( ceil( width / 16.0f ) * 16 );
+    cm->padh[Y_COMPONENT] = cm->yph =
+        ( uint32_t ) ( ceil( height / 16.0f ) * 16 );
+    cm->padw[U_COMPONENT] = cm->upw =
+        ( uint32_t ) ( ceil( width * UX / ( YX * 8.0f ) ) * 8 );
+    cm->padh[U_COMPONENT] = cm->uph =
+        ( uint32_t ) ( ceil( height * UY / ( YY * 8.0f ) ) * 8 );
+    cm->padw[V_COMPONENT] = cm->vpw =
+        ( uint32_t ) ( ceil( width * VX / ( YX * 8.0f ) ) * 8 );
+    cm->padh[V_COMPONENT] = cm->vph =
+        ( uint32_t ) ( ceil( height * VY / ( YY * 8.0f ) ) * 8 );
+
+    cm->mb_cols = cm->ypw / 8;
+    cm->mb_rows = cm->yph / 8;
+
+    /* Quality parameters -- Home exam deliveries should have original values,
+       i.e., quantization factor should be 25, search range should be 16, and the
+       keyframe interval should be 100. */
+    cm->qp = 25;                // Constant quantization factor. Range: [1..50]
+    cm->me_search_range = 16;   // Pixels in every direction
+    cm->keyframe_interval = 100;        // Distance between keyframes
+
+    /* Initialize quantization tables */
+    for ( i = 0; i < 64; ++i )
+    {
+        cm->quanttbl[Y_COMPONENT][i] = yquanttbl_def[i] / ( cm->qp / 10.0 );
+        cm->quanttbl[U_COMPONENT][i] = uvquanttbl_def[i] / ( cm->qp / 10.0 );
+        cm->quanttbl[V_COMPONENT][i] = uvquanttbl_def[i] / ( cm->qp / 10.0 );
+    }
+
+    return cm;
+}
+
+static void
+c63_encode_image_server( struct c63_common *cm, yuv_t *image )
+{
+    /* Advance to next frame */
+    destroy_frame( cm->refframe );
+    cm->refframe = cm->curframe;
+    cm->curframe = create_frame( cm, image );
+
+    /* Check if keyframe */
+    if ( cm->framenum == 0
+         || cm->frames_since_keyframe == cm->keyframe_interval )
+    {
+        cm->curframe->keyframe = 1;
+        cm->frames_since_keyframe = 0;
+
+        fprintf( stderr, " (keyframe) " );
+    }
+    else
+    {
+        cm->curframe->keyframe = 0;
+    }
+
+    if ( !cm->curframe->keyframe )
+    {
+        /* Motion Estimation */
+        c63_motion_estimate( cm );
+
+        /* Motion Compensation */
+        c63_motion_compensate( cm );
+    }
+
+    /* DCT and Quantization */
+    dct_quantize( image->Y, cm->curframe->predicted->Y, cm->padw[Y_COMPONENT],
+                  cm->padh[Y_COMPONENT], cm->curframe->residuals->Ydct,
+                  cm->quanttbl[Y_COMPONENT] );
+
+    dct_quantize( image->U, cm->curframe->predicted->U, cm->padw[U_COMPONENT],
+                  cm->padh[U_COMPONENT], cm->curframe->residuals->Udct,
+                  cm->quanttbl[U_COMPONENT] );
+
+    dct_quantize( image->V, cm->curframe->predicted->V, cm->padw[V_COMPONENT],
+                  cm->padh[V_COMPONENT], cm->curframe->residuals->Vdct,
+                  cm->quanttbl[V_COMPONENT] );
+
+    /* Reconstruct frame for inter-prediction */
+    dequantize_idct( cm->curframe->residuals->Ydct,
+                     cm->curframe->predicted->Y, cm->ypw, cm->yph,
+                     cm->curframe->recons->Y, cm->quanttbl[Y_COMPONENT] );
+    dequantize_idct( cm->curframe->residuals->Udct,
+                     cm->curframe->predicted->U, cm->upw, cm->uph,
+                     cm->curframe->recons->U, cm->quanttbl[U_COMPONENT] );
+    dequantize_idct( cm->curframe->residuals->Vdct,
+                     cm->curframe->predicted->V, cm->vpw, cm->vph,
+                     cm->curframe->recons->V, cm->quanttbl[V_COMPONENT] );
+
+    /* Function dump_image(), found in common.c, can be used here to check if the
+       prediction is correct */
+
+    ++cm->framenum;
+    ++cm->frames_since_keyframe;
+}
+
+void
+free_c63_enc( struct c63_common *cm )
+{
+    destroy_frame( cm->curframe );
+    free( cm );
+}
+
 // Modified main loop to echo frame numbers
 int main_loop(sci_desc_t sd, 
     volatile struct server_segment *local_seg,
@@ -31,7 +154,9 @@ int main_loop(sci_desc_t sd,
     int frame_count = 0;
     int frame_number;  // Moved declaration outside of the switch
 
-    printf("Server: Waiting for frames...\n");
+    struct c63_common *cm;
+
+    printf("Server: Waiting for commands...\n");
 
     while(running)
     {
@@ -47,8 +172,63 @@ int main_loop(sci_desc_t sd,
         local_seg->packet.cmd = CMD_INVALID;
 
         switch(cmd) {
+            case CMD_DIMENSIONS:
+                // Extract the dimensions from the message buffer
+                struct dimensions_data dim_data;
+                memcpy(&dim_data, (const void*)local_seg->message_buffer, sizeof(struct dimensions_data));
+                
+                printf("Server: Received dimensions (width=%u, height=%u)\n", 
+                       dim_data.width, dim_data.height);
+                
+                // Store dimensions for later use
+                width = dim_data.width;
+                height = dim_data.height;
+                
+                // Acknowledge by sending the same dimensions back
+                memcpy((void*)local_seg->message_buffer, &dim_data, sizeof(struct dimensions_data));
+                local_seg->packet.data_size = sizeof(struct dimensions_data);
+                
+                // Use DMA to transfer the acknowledgment
+                SCIStartDmaTransfer(dma_queue, 
+                                   local_segment,  // Source segment
+                                   remote_segment, // Destination segment
+                                   offsetof(struct server_segment, message_buffer),  // Source offset
+                                   sizeof(struct dimensions_data), // Size to transfer
+                                   offsetof(struct client_segment, message_buffer),  // Destination offset
+                                   NO_CALLBACK, 
+                                   NULL, 
+                                   NO_FLAGS, 
+                                   &error);
+                if (error != SCI_ERR_OK) {
+                    fprintf(stderr, "Server: SCIStartDmaTransfer for dimensions ack failed - Error code 0x%x\n", error);
+                    running = 0;
+                    break;
+                }
+                
+                // Wait for DMA transfer to complete
+                SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+                if (error != SCI_ERR_OK) {
+                    fprintf(stderr, "Server: SCIWaitForDMAQueue for dimensions ack failed - Error code 0x%x\n", error);
+                    running = 0;
+                    break;
+                }
+                
+                // Signal client that dimensions are acknowledged
+                SCIFlush(NULL, NO_FLAGS);
+                remote_seg->packet.cmd = CMD_DIMENSIONS_ACK;
+                SCIFlush(NULL, NO_FLAGS);
+                
+                cm = init_c63_enc(width, height);
+
+                thread_pool_init(); // Initialize the threads once
+
+                task_pool_init(cm->padh[Y_COMPONENT]);
+                printf("Server: Dimensions acknowledged\n");
+                printf("Server: Waiting for frames...\n");
+                break;
+                
             case CMD_DATA_READY:
-                // Get frame number from client - REMOVED "int" DECLARATION HERE
+                // Get frame number from client
                 frame_number = *((int*)local_seg->message_buffer);
                 printf("Server: Received frame number %d\n", frame_number);
                 frame_count++;
@@ -101,6 +281,7 @@ int main_loop(sci_desc_t sd,
         }
     }
 
+    free_c63_enc( cm );
     return 0;
 }
 
@@ -277,7 +458,7 @@ int main(int argc, char **argv)
     main_loop(sd, server_segment, client_segment, dmaQueue, localSegment, remoteSegment);
 
     printf("Server: Exiting\n");
-
+    
     // Clean up resources
     SCIDisconnectSegment(remoteSegment, NO_FLAGS, &error);
     SCIUnmapSegment(remoteMap, NO_FLAGS, &error);
@@ -287,6 +468,9 @@ int main(int argc, char **argv)
     SCIRemoveSegment(localSegment, NO_FLAGS, &error);
     SCIClose(sd, NO_FLAGS, &error);
     SCITerminate();
+
+    task_pool_destroy();
+    thread_pool_destroy(); // Clean-up of the threads
 
     return 0;
 }

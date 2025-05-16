@@ -1,0 +1,11 @@
+Client: Connecting to server segments...
+Client: Connected to server segments
+Client: Starting video encoding
+Processing frame 0, Client: Finished processing 0 frames
+Client: Exiting
+Frame data transfer failed - Error code 0x4000090b
+PC exit code: 0
+
+real	0m0,201s
+user	0m0,000s
+sys	0m0,075s
