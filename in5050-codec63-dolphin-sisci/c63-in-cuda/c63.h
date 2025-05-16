@@ -15,6 +15,12 @@
 #define NO_CALLBACK NULL
 #define NO_ARG NULL
 
+#define MAX_WIDTH 1280
+#define MAX_HEIGHT 720
+#define MAX_Y_SIZE ((((MAX_WIDTH+15)/16)*16) * (((MAX_HEIGHT+15)/16)*16))
+#define MAX_U_SIZE (MAX_Y_SIZE/4)
+#define MAX_V_SIZE (MAX_Y_SIZE/4)
+
 /* GET_SEGMENTID(2) gives you segmentid 2 at your groups offset */
 #define GET_SEGMENTID(id) ( GROUP << 16 | id )
 #define SEGMENT_CLIENT GET_SEGMENTID(1)
@@ -23,16 +29,32 @@
 // Message sizes
 #define MESSAGE_SIZE 256   // Size for hello message
 
-// Command definitions for signaling
-enum cmd
-{
-    CMD_INVALID = 0,   // No command/initial state
-    CMD_HELLO,         // Client sending hello
-    CMD_HELLO_ACK,     // Server acknowledging hello
-    CMD_DIMENSIONS,    // Client sending dimensions
-    CMD_DIMENSIONS_ACK,// Server acknowledging dimensions
-    CMD_QUIT,          // Signal to terminate
-    CMD_DATA_READY     // Signal that data is ready to be read
+enum cmd {
+    CMD_INVALID = 0,
+    CMD_HELLO,
+    CMD_HELLO_ACK,
+    CMD_DIMENSIONS,
+    CMD_DIMENSIONS_ACK,
+    CMD_FRAME_HEADER,     // New command for frame header
+    CMD_FRAME_HEADER_ACK, // Server acknowledges header
+    CMD_Y_DATA_READY,     // Y data is ready
+    CMD_Y_DATA_ACK,       // Y data acknowledged
+    CMD_U_DATA_READY,     // U data is ready
+    CMD_U_DATA_ACK,       // U data acknowledged
+    CMD_V_DATA_READY,     // V data is ready
+    CMD_V_DATA_ACK,       // V data acknowledged
+    CMD_FRAME_ENCODED,    // Server has encoded the frame
+    CMD_ENCODED_DATA_HEADER,     // Metadata about the encoded frame
+    CMD_ENCODED_DATA_HEADER_ACK, // Client acknowledges header
+    CMD_RESIDUALS_Y_READY,       // Y residuals data is ready
+    CMD_RESIDUALS_Y_ACK,         // Y residuals acknowledged
+    CMD_RESIDUALS_U_READY,       // U residuals data is ready
+    CMD_RESIDUALS_U_ACK,         // U residuals acknowledged
+    CMD_RESIDUALS_V_READY,       // V residuals data is ready
+    CMD_RESIDUALS_V_ACK,         // V residuals acknowledged
+    CMD_MOTION_VECTORS_READY,    // Motion vectors data is ready
+    CMD_MOTION_VECTORS_ACK,      // Motion vectors acknowledged
+    CMD_QUIT     
 };
 
 #define MAX_FILELENGTH 200
@@ -157,18 +179,43 @@ struct packet
     } __attribute__((aligned(64)));
 };
 
-// Server segment structure
-struct server_segment
-{
-    struct packet packet __attribute__((aligned(64)));
-    char message_buffer[MESSAGE_SIZE] __attribute__((aligned(64))); // Buffer for messages
+struct frame_header {
+    uint32_t frame_number;       // Current frame number
+    uint8_t is_last_frame;       // Flag to indicate if this is the last frame
 };
 
-// Client segment structure
-struct client_segment
-{
+struct server_segment {
     struct packet packet __attribute__((aligned(64)));
-    char message_buffer[MESSAGE_SIZE] __attribute__((aligned(64))); // Buffer for messages
+    char message_buffer[MESSAGE_SIZE] __attribute__((aligned(64))); 
+    uint8_t y_buffer[MAX_Y_SIZE] __attribute__((aligned(64)));
+    uint8_t u_buffer[MAX_U_SIZE] __attribute__((aligned(64)));
+    uint8_t v_buffer[MAX_V_SIZE] __attribute__((aligned(64)));
+    // Add new buffers for motion vectors
+    uint8_t mv_y_buffer[MAX_Y_SIZE/64] __attribute__((aligned(64))); // Motion vectors are much smaller
+    uint8_t mv_u_buffer[MAX_U_SIZE/64] __attribute__((aligned(64)));
+    uint8_t mv_v_buffer[MAX_V_SIZE/64] __attribute__((aligned(64)));
+};
+
+struct client_segment {
+    struct packet packet __attribute__((aligned(64)));
+    char message_buffer[MESSAGE_SIZE] __attribute__((aligned(64)));
+    uint8_t y_buffer[MAX_Y_SIZE] __attribute__((aligned(64)));
+    uint8_t u_buffer[MAX_U_SIZE] __attribute__((aligned(64)));
+    uint8_t v_buffer[MAX_V_SIZE] __attribute__((aligned(64)));
+    // Add new buffers for motion vectors
+    uint8_t mv_y_buffer[MAX_Y_SIZE/64] __attribute__((aligned(64)));
+    uint8_t mv_u_buffer[MAX_U_SIZE/64] __attribute__((aligned(64)));
+    uint8_t mv_v_buffer[MAX_V_SIZE/64] __attribute__((aligned(64)));
+};
+
+struct encoded_frame_header {
+    int keyframe;            // Is this a keyframe?
+    uint32_t y_size;         // Size of Y residuals data
+    uint32_t u_size;         // Size of U residuals data
+    uint32_t v_size;         // Size of V residuals data
+    uint32_t mv_y_size;      // Size of Y motion vectors
+    uint32_t mv_u_size;      // Size of U motion vectors
+    uint32_t mv_v_size;      // Size of V motion vectors
 };
 
 #endif  /* C63_C63_H_ */

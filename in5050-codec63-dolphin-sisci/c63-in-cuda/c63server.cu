@@ -14,7 +14,6 @@
 #include "me.h"
 #include "tables.h"
 
-
 #include <sisci_error.h>
 #include <sisci_api.h>
 
@@ -71,15 +70,37 @@ init_c63_enc( int width, int height )
     return cm;
 }
 
+static yuv_t *yuv_server(struct c63_common *cm)
+{
+    if(!cm){
+        printf("CM IS NULL");
+        return NULL;
+    }
+    yuv_t *image = (yuv_t *)malloc(sizeof(*image));
+
+    /* Read Y. The size of Y is the same as the size of the image */
+    cudaMallocManaged((void**)&image->Y, cm->padw[Y_COMPONENT] * cm->padh[Y_COMPONENT] * sizeof(uint8_t));
+
+    /* Read U. Given 4:2:0 chroma sub-sampling, the size is 1/4 of Y */
+    cudaMallocManaged((void**)&image->U, cm->padw[U_COMPONENT] * cm->padh[U_COMPONENT] * sizeof(uint8_t));
+
+    /* Read V. Given 4:2:0 chroma sub-sampling, the size is 1/4 of Y. */
+    cudaMallocManaged((void**)&image->V, cm->padw[V_COMPONENT] * cm->padh[V_COMPONENT] * sizeof(uint8_t));
+
+    return image;
+}
+
 static void
 c63_encode_image_server( struct c63_common *cm, yuv_t *image )
 {
     /* Advance to next frame */
+    printf("1\n");
     destroy_frame( cm->refframe );
     cm->refframe = cm->curframe;
     cm->curframe = create_frame( cm, image );
-
     /* Check if keyframe */
+    printf("2\n");
+
     if ( cm->framenum == 0
          || cm->frames_since_keyframe == cm->keyframe_interval )
     {
@@ -92,6 +113,7 @@ c63_encode_image_server( struct c63_common *cm, yuv_t *image )
     {
         cm->curframe->keyframe = 0;
     }
+    printf("3\n");
 
     if ( !cm->curframe->keyframe )
     {
@@ -101,6 +123,7 @@ c63_encode_image_server( struct c63_common *cm, yuv_t *image )
         /* Motion Compensation */
         c63_motion_compensate( cm );
     }
+    printf("4\n");
 
     /* DCT and Quantization */
     dct_quantize( image->Y, cm->curframe->predicted->Y, cm->padw[Y_COMPONENT],
@@ -114,6 +137,7 @@ c63_encode_image_server( struct c63_common *cm, yuv_t *image )
     dct_quantize( image->V, cm->curframe->predicted->V, cm->padw[V_COMPONENT],
                   cm->padh[V_COMPONENT], cm->curframe->residuals->Vdct,
                   cm->quanttbl[V_COMPONENT] );
+    printf("5\n");
 
     /* Reconstruct frame for inter-prediction */
     dequantize_idct( cm->curframe->residuals->Ydct,
@@ -128,6 +152,7 @@ c63_encode_image_server( struct c63_common *cm, yuv_t *image )
 
     /* Function dump_image(), found in common.c, can be used here to check if the
        prediction is correct */
+    printf("6\n");
 
     ++cm->framenum;
     ++cm->frames_since_keyframe;
@@ -140,8 +165,344 @@ free_c63_enc( struct c63_common *cm )
     free( cm );
 }
 
-// Modified main loop to echo frame numbers
-int main_loop(sci_desc_t sd, 
+int process_frame(struct c63_common *cm,
+    volatile struct server_segment *local_seg,
+    volatile struct client_segment *remote_seg,
+    sci_dma_queue_t dma_queue,
+    sci_local_segment_t local_segment,
+    sci_remote_segment_t remote_segment) 
+{
+    sci_error_t error;
+
+    // 1. Wait for and process frame header
+    while (local_seg->packet.cmd != CMD_FRAME_HEADER) {
+    // Wait for frame header
+    }
+
+    struct frame_header header;
+    memcpy(&header, (const void*)local_seg->message_buffer, sizeof(struct frame_header));
+
+    int frame_number = header.frame_number;
+    int is_last_frame = header.is_last_frame;
+
+    printf("Server: Received frame header for frame %d\n", frame_number);
+
+    // Acknowledge frame header
+    local_seg->packet.cmd = CMD_INVALID;
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_FRAME_HEADER_ACK;
+    SCIFlush(NULL, NO_FLAGS);
+
+    // 2. Wait for Y component
+    while (local_seg->packet.cmd != CMD_Y_DATA_READY) {
+        // Wait for Y data
+    }
+    printf("Server: Received Y component for frame %d\n", frame_number);
+
+    // Acknowledge Y component
+    local_seg->packet.cmd = CMD_INVALID;
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_Y_DATA_ACK;
+    SCIFlush(NULL, NO_FLAGS);
+
+    // 3. Wait for U component
+    while (local_seg->packet.cmd != CMD_U_DATA_READY) {
+        // Wait for U data
+    }
+    printf("Server: Received U component for frame %d\n", frame_number);
+
+    // Acknowledge U component
+    local_seg->packet.cmd = CMD_INVALID;
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_U_DATA_ACK;
+    SCIFlush(NULL, NO_FLAGS);
+
+    // 4. Wait for V component
+    while (local_seg->packet.cmd != CMD_V_DATA_READY) {
+        // Wait for V data
+    }
+    printf("Server: Received V component for frame %d\n", frame_number);
+
+    // Acknowledge V component
+    local_seg->packet.cmd = CMD_INVALID;
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_V_DATA_ACK;
+    SCIFlush(NULL, NO_FLAGS);
+
+    // 5. Create yuv_t structure pointing to received data
+    yuv_t *image = yuv_server(cm);
+    
+    // Allocate memory for the Y, U, V planes
+    int y_size = cm->padw[Y_COMPONENT] * cm->padh[Y_COMPONENT];
+    int u_size = cm->padw[U_COMPONENT] * cm->padh[U_COMPONENT];
+    int v_size = cm->padw[V_COMPONENT] * cm->padh[V_COMPONENT];
+    
+    if (!image->Y || !image->U || !image->V) {
+        fprintf(stderr, "Failed to allocate image buffers\n");
+        // Free any allocated memory
+        if (image->Y) cudaFree(image->Y);
+        if (image->U) cudaFree(image->U);
+        if (image->V) cudaFree(image->V);
+        free(image);
+        return -1;
+    }
+
+    // Copy data from shared memory buffers
+    memcpy(image->Y, (const void*)local_seg->y_buffer, y_size);
+    memcpy(image->U, (const void*)local_seg->u_buffer, u_size);
+    memcpy(image->V, (const void*)local_seg->v_buffer, v_size);
+
+    // 6. Process the frame with encoding functions
+    printf("Server: Processing frame %d\n", frame_number);
+
+    // Perform encoding as in your provided code
+    c63_encode_image_server(cm, image);
+
+    printf("Server: Sending encoded data for frame %d\n", frame_number);
+
+    // First, send the encoded frame header
+    struct encoded_frame_header enc_header;
+    enc_header.keyframe = cm->curframe->keyframe;
+    enc_header.y_size = cm->padw[Y_COMPONENT] * cm->padh[Y_COMPONENT] * sizeof(int16_t);
+    enc_header.u_size = cm->padw[U_COMPONENT] * cm->padh[U_COMPONENT] * sizeof(int16_t);
+    enc_header.v_size = cm->padw[V_COMPONENT] * cm->padh[V_COMPONENT] * sizeof(int16_t);
+    enc_header.mv_y_size = (cm->mb_rows * cm->mb_cols) * sizeof(struct macroblock);
+    enc_header.mv_u_size = ((cm->mb_rows/2) * (cm->mb_cols/2)) * sizeof(struct macroblock);
+    enc_header.mv_v_size = ((cm->mb_rows/2) * (cm->mb_cols/2)) * sizeof(struct macroblock);
+    
+    memcpy((void*)local_seg->message_buffer, &enc_header, sizeof(struct encoded_frame_header));
+    
+    // Use DMA to transfer the header
+    SCIStartDmaTransfer(dma_queue, 
+        local_segment,
+        remote_segment,
+        offsetof(struct server_segment, message_buffer),
+        sizeof(struct encoded_frame_header),
+        offsetof(struct client_segment, message_buffer),
+        NO_CALLBACK,
+        NULL,
+        NO_FLAGS,
+        &error);
+        
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIStartDmaTransfer for encoded header failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIWaitForDMAQueue for encoded header failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    // Notify client that encoded header is ready
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_ENCODED_DATA_HEADER;
+    SCIFlush(NULL, NO_FLAGS);
+    
+    // Wait for client to acknowledge
+    local_seg->packet.cmd = CMD_INVALID;
+    while (local_seg->packet.cmd != CMD_ENCODED_DATA_HEADER_ACK) {
+        // Wait for acknowledgment
+    }
+    
+    // Send Y residuals
+    memcpy((void*)local_seg->y_buffer, cm->curframe->residuals->Ydct, enc_header.y_size);
+    
+    SCIStartDmaTransfer(dma_queue, 
+                        local_segment,
+                        remote_segment,
+                        offsetof(struct server_segment, y_buffer),
+                        enc_header.y_size,
+                        offsetof(struct client_segment, y_buffer),
+                        NO_CALLBACK,
+                        NULL,
+                        NO_FLAGS,
+                        &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIStartDmaTransfer for Y residuals failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIWaitForDMAQueue for Y residuals failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    // Notify client that Y residuals data is ready
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_RESIDUALS_Y_READY;
+    SCIFlush(NULL, NO_FLAGS);
+    
+    // Wait for acknowledgment
+    local_seg->packet.cmd = CMD_INVALID;
+    while (local_seg->packet.cmd != CMD_RESIDUALS_Y_ACK) {
+        // Wait for acknowledgment
+    }
+    
+    // Send U residuals
+    memcpy((void*)local_seg->u_buffer, cm->curframe->residuals->Udct, enc_header.u_size);
+    
+    SCIStartDmaTransfer(dma_queue, 
+                        local_segment,
+                        remote_segment,
+                        offsetof(struct server_segment, u_buffer),
+                        enc_header.u_size,
+                        offsetof(struct client_segment, u_buffer),
+                        NO_CALLBACK,
+                        NULL,
+                        NO_FLAGS,
+                        &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIStartDmaTransfer for U residuals failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIWaitForDMAQueue for U residuals failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    // Notify client that U residuals data is ready
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_RESIDUALS_U_READY;
+    SCIFlush(NULL, NO_FLAGS);
+    
+    // Wait for acknowledgment
+    local_seg->packet.cmd = CMD_INVALID;
+    while (local_seg->packet.cmd != CMD_RESIDUALS_U_ACK) {
+        // Wait for acknowledgment
+    }
+    
+    // Send V residuals
+    memcpy((void*)local_seg->v_buffer, cm->curframe->residuals->Vdct, enc_header.v_size);
+    
+    SCIStartDmaTransfer(dma_queue, 
+                        local_segment,
+                        remote_segment,
+                        offsetof(struct server_segment, v_buffer),
+                        enc_header.v_size,
+                        offsetof(struct client_segment, v_buffer),
+                        NO_CALLBACK,
+                        NULL,
+                        NO_FLAGS,
+                        &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIStartDmaTransfer for V residuals failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIWaitForDMAQueue for V residuals failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    // Notify client that V residuals data is ready
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_RESIDUALS_V_READY;
+    SCIFlush(NULL, NO_FLAGS);
+    
+    // Wait for acknowledgment
+    local_seg->packet.cmd = CMD_INVALID;
+    while (local_seg->packet.cmd != CMD_RESIDUALS_V_ACK) {
+        // Wait for acknowledgment
+    }
+    
+    // Send motion vectors for all components
+    memcpy((void*)local_seg->mv_y_buffer, cm->curframe->mbs[Y_COMPONENT], enc_header.mv_y_size);
+    memcpy((void*)local_seg->mv_u_buffer, cm->curframe->mbs[U_COMPONENT], enc_header.mv_u_size);
+    memcpy((void*)local_seg->mv_v_buffer, cm->curframe->mbs[V_COMPONENT], enc_header.mv_v_size);
+    
+    // Transfer Y motion vectors
+    SCIStartDmaTransfer(dma_queue, 
+        local_segment,
+        remote_segment,
+        offsetof(struct server_segment, mv_y_buffer),
+        enc_header.mv_y_size,
+        offsetof(struct client_segment, mv_y_buffer),
+        NO_CALLBACK,
+        NULL,
+        NO_FLAGS,
+        &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIStartDmaTransfer for Y motion vectors failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIWaitForDMAQueue for Y motion vectors failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    // Transfer U motion vectors
+    SCIStartDmaTransfer(dma_queue, 
+        local_segment,
+        remote_segment,
+        offsetof(struct server_segment, mv_u_buffer),
+        enc_header.mv_u_size,
+        offsetof(struct client_segment, mv_u_buffer),
+        NO_CALLBACK,
+        NULL,
+        NO_FLAGS,
+        &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIStartDmaTransfer for U motion vectors failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIWaitForDMAQueue for U motion vectors failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    // Transfer V motion vectors
+    SCIStartDmaTransfer(dma_queue, 
+        local_segment,
+        remote_segment,
+        offsetof(struct server_segment, mv_v_buffer),
+        enc_header.mv_v_size,
+        offsetof(struct client_segment, mv_v_buffer),
+        NO_CALLBACK,
+        NULL,
+        NO_FLAGS,
+        &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIStartDmaTransfer for V motion vectors failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: SCIWaitForDMAQueue for V motion vectors failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    // Notify client that motion vectors are ready
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_MOTION_VECTORS_READY;
+    SCIFlush(NULL, NO_FLAGS);
+    
+    // Wait for acknowledgment
+    local_seg->packet.cmd = CMD_INVALID;
+    while (local_seg->packet.cmd != CMD_MOTION_VECTORS_ACK) {
+        // Wait for acknowledgment
+    }
+    
+    // Notify client that all encoded data has been transferred
+    printf("Server: Completed sending encoded data for frame %d\n", frame_number);
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_FRAME_ENCODED;
+    SCIFlush(NULL, NO_FLAGS);
+
+    return is_last_frame;
+}
+
+int main_loop(sci_desc_t sd,
     volatile struct server_segment *local_seg,
     volatile struct client_segment *remote_seg,
     sci_dma_queue_t dma_queue,
@@ -152,24 +513,18 @@ int main_loop(sci_desc_t sd,
     uint32_t cmd;
     sci_error_t error;
     int frame_count = 0;
-    int frame_number;  // Moved declaration outside of the switch
-
-    struct c63_common *cm;
+    struct c63_common *cm = NULL;
 
     printf("Server: Waiting for commands...\n");
 
-    while(running)
-    {
+    while(running) {
         // Wait for command from client
-        while(local_seg->packet.cmd == CMD_INVALID) {
-            // Just wait
+        if (local_seg->packet.cmd == CMD_INVALID) {
+            continue; // Keep waiting
         }
 
         // Process command
         cmd = local_seg->packet.cmd;
-        
-        // Reset command field
-        local_seg->packet.cmd = CMD_INVALID;
 
         switch(cmd) {
             case CMD_DIMENSIONS:
@@ -178,96 +533,62 @@ int main_loop(sci_desc_t sd,
                 memcpy(&dim_data, (const void*)local_seg->message_buffer, sizeof(struct dimensions_data));
                 
                 printf("Server: Received dimensions (width=%u, height=%u)\n", 
-                       dim_data.width, dim_data.height);
+                        dim_data.width, dim_data.height);
                 
                 // Store dimensions for later use
                 width = dim_data.width;
                 height = dim_data.height;
                 
-                // Acknowledge by sending the same dimensions back
+                // Initialize encoder
+                cm = init_c63_enc(width, height);
+                
+                // Initialize threading resources
+                thread_pool_init();
+                task_pool_init(cm->padh[Y_COMPONENT]);
+                
+                // Acknowledge dimensions
+                local_seg->packet.cmd = CMD_INVALID;
+                SCIFlush(NULL, NO_FLAGS);
+                
+                // Send acknowledgment
                 memcpy((void*)local_seg->message_buffer, &dim_data, sizeof(struct dimensions_data));
                 local_seg->packet.data_size = sizeof(struct dimensions_data);
                 
                 // Use DMA to transfer the acknowledgment
                 SCIStartDmaTransfer(dma_queue, 
-                                   local_segment,  // Source segment
-                                   remote_segment, // Destination segment
-                                   offsetof(struct server_segment, message_buffer),  // Source offset
-                                   sizeof(struct dimensions_data), // Size to transfer
-                                   offsetof(struct client_segment, message_buffer),  // Destination offset
-                                   NO_CALLBACK, 
-                                   NULL, 
-                                   NO_FLAGS, 
-                                   &error);
-                if (error != SCI_ERR_OK) {
-                    fprintf(stderr, "Server: SCIStartDmaTransfer for dimensions ack failed - Error code 0x%x\n", error);
-                    running = 0;
-                    break;
-                }
+                                    local_segment,
+                                    remote_segment,
+                                    offsetof(struct server_segment, message_buffer),
+                                    sizeof(struct dimensions_data),
+                                    offsetof(struct client_segment, message_buffer),
+                                    NO_CALLBACK,
+                                    NULL,
+                                    NO_FLAGS,
+                                    &error);
+                                    
+                // [Error handling...]
                 
-                // Wait for DMA transfer to complete
-                SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
-                if (error != SCI_ERR_OK) {
-                    fprintf(stderr, "Server: SCIWaitForDMAQueue for dimensions ack failed - Error code 0x%x\n", error);
-                    running = 0;
-                    break;
-                }
-                
-                // Signal client that dimensions are acknowledged
-                SCIFlush(NULL, NO_FLAGS);
                 remote_seg->packet.cmd = CMD_DIMENSIONS_ACK;
                 SCIFlush(NULL, NO_FLAGS);
                 
-                cm = init_c63_enc(width, height);
-
-                thread_pool_init(); // Initialize the threads once
-
-                task_pool_init(cm->padh[Y_COMPONENT]);
                 printf("Server: Dimensions acknowledged\n");
                 printf("Server: Waiting for frames...\n");
                 break;
                 
-            case CMD_DATA_READY:
-                // Get frame number from client
-                frame_number = *((int*)local_seg->message_buffer);
-                printf("Server: Received frame number %d\n", frame_number);
-                frame_count++;
-                
-                // Echo the frame number back to client 
-                *((int*)local_seg->message_buffer) = frame_number;
-                local_seg->packet.data_size = sizeof(int);
-                
-                // Use DMA to transfer the response 
-                SCIStartDmaTransfer(dma_queue, 
-                                   local_segment,  // Source segment
-                                   remote_segment, // Destination segment
-                                   offsetof(struct server_segment, message_buffer),  // Source offset
-                                   local_seg->packet.data_size, // Size to transfer
-                                   offsetof(struct client_segment, message_buffer),  // Destination offset
-                                   NO_CALLBACK, 
-                                   NULL, 
-                                   NO_FLAGS, 
-                                   &error);
-                if (error != SCI_ERR_OK) {
-                    fprintf(stderr, "Server: SCIStartDmaTransfer failed - Error code 0x%x\n", error);
-                    running = 0;
-                    break;
+            // Process frame components (handled by process_frame function)
+            case CMD_FRAME_HEADER:
+            case CMD_Y_DATA_READY:
+            case CMD_U_DATA_READY:
+            case CMD_V_DATA_READY:
+                {
+                    int is_last = process_frame(cm, local_seg, remote_seg, dma_queue, local_segment, remote_segment);
+                    frame_count++;
+                    
+                    if (is_last) {
+                        printf("Server: Last frame processed. Total frames: %d\n", frame_count);
+                        running = 0;
+                    }
                 }
-                
-                // Wait for DMA transfer to complete
-                SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
-                if (error != SCI_ERR_OK) {
-                    fprintf(stderr, "Server: SCIWaitForDMAQueue failed - Error code 0x%x\n", error);
-                    running = 0;
-                    break;
-                }
-                
-                // Signal that data is ready
-                SCIFlush(NULL, NO_FLAGS);
-                remote_seg->packet.cmd = CMD_DATA_READY;
-                SCIFlush(NULL, NO_FLAGS);
-                
-                printf("Server: Echoed frame number %d\n", frame_number);
                 break;
                 
             case CMD_QUIT:
@@ -275,13 +596,34 @@ int main_loop(sci_desc_t sd,
                 running = 0;
                 break;
                 
+            // Handle acknowledgment commands from the new protocol
+            case CMD_ENCODED_DATA_HEADER_ACK:
+            case CMD_RESIDUALS_Y_ACK:
+            case CMD_RESIDUALS_U_ACK:
+            case CMD_RESIDUALS_V_ACK:
+            case CMD_MOTION_VECTORS_ACK:
+                // These are acknowledgments from the client during the data transfer
+                // We don't need to do anything special here, just clear the command
+                local_seg->packet.cmd = CMD_INVALID;
+                SCIFlush(NULL, NO_FLAGS);
+                break;
+                
             default:
                 printf("Server: Unknown command: %d\n", cmd);
+                local_seg->packet.cmd = CMD_INVALID;
+                SCIFlush(NULL, NO_FLAGS);
                 break;
         }
     }
 
-    free_c63_enc( cm );
+    // Clean up resources
+    if (cm) {
+        free_c63_enc(cm);
+    }
+
+    task_pool_destroy();
+    thread_pool_destroy();
+
     return 0;
 }
 
@@ -468,9 +810,6 @@ int main(int argc, char **argv)
     SCIRemoveSegment(localSegment, NO_FLAGS, &error);
     SCIClose(sd, NO_FLAGS, &error);
     SCITerminate();
-
-    task_pool_destroy();
-    thread_pool_destroy(); // Clean-up of the threads
 
     return 0;
 }

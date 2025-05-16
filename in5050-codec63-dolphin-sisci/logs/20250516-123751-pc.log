@@ -1,0 +1,33 @@
+Client: Connecting to server segment...
+Client: Connected to server segment
+Client: Sending dimensions (width=352, height=288)
+Client: Waiting for dimensions acknowledgment...
+Client: Dimensions verified, starting video encoding
+Processing frame 0, Frame 0 header sent and acknowledged
+Frame 0 Y component sent and acknowledged
+Frame 0 U component sent and acknowledged
+Frame 0 V component sent and acknowledged
+Frame 0 waiting for encoded data...
+Frame 0 received encoded header (keyframe=1)
+Frame 0 received Y residuals
+Frame 0 received U residuals
+Frame 0 received V residuals
+Frame 0 received motion vectors
+Frame 0 processing and data transfer completed
+Done!
+Processing frame 1, Frame 1 header sent and acknowledged
+Frame 1 Y component sent and acknowledged
+Frame 1 U component sent and acknowledged
+Frame 1 V component sent and acknowledged
+Frame 1 waiting for encoded data...
+Frame 1 received encoded header (keyframe=0)
+Frame 1 received Y residuals
+Frame 1 received U residuals
+Frame 1 received V residuals
+Frame 1 received motion vectors
+PC exit code: 143
+Terminated
+
+real	0m6,447s
+user	0m6,240s
+sys	0m0,004s

@@ -1,0 +1,204 @@
+Server: Waiting for client connection...
+Server: Connected to client segment
+Server: Waiting for commands...
+Server: Received dimensions (width=352, height=288)
+Thread pool initialized with 8 threads
+Task pool is initialized with 36 tasks
+Server: Dimensions acknowledged
+Server: Waiting for frames...
+Server: Received frame header for frame 0
+Server: Received Y component for frame 0
+Server: Received U component for frame 0
+Server: Received V component for frame 0
+Server: Processing frame 0
+Server: Sending encoded data for frame 0
+Server: Completed sending encoded data for frame 0
+Server: Unknown command: 23
+Server: Received frame header for frame 1
+Server: Received Y component for frame 1
+Server: Received U component for frame 1
+Server: Received V component for frame 1
+Server: Processing frame 1
+Server: Sending encoded data for frame 1
+Server: Completed sending encoded data for frame 1
+Server: Unknown command: 23
+Server: Received frame header for frame 2
+Server: Received Y component for frame 2
+Server: Received U component for frame 2
+Server: Received V component for frame 2
+Server: Processing frame 2
+Server: Sending encoded data for frame 2
+Server: Completed sending encoded data for frame 2
+Server: Unknown command: 23
+Server: Received frame header for frame 3
+Server: Received Y component for frame 3
+Server: Received U component for frame 3
+Server: Received V component for frame 3
+Server: Processing frame 3
+Server: Sending encoded data for frame 3
+Server: Completed sending encoded data for frame 3
+Server: Unknown command: 23
+Server: Received frame header for frame 4
+Server: Received Y component for frame 4
+Server: Received U component for frame 4
+Server: Received V component for frame 4
+Server: Processing frame 4
+Server: Sending encoded data for frame 4
+Server: Completed sending encoded data for frame 4
+Server: Unknown command: 23
+Server: Received frame header for frame 5
+Server: Received Y component for frame 5
+Server: Received U component for frame 5
+Server: Received V component for frame 5
+Server: Processing frame 5
+Server: Sending encoded data for frame 5
+Server: Completed sending encoded data for frame 5
+Server: Unknown command: 23
+Server: Received frame header for frame 6
+Server: Received Y component for frame 6
+Server: Received U component for frame 6
+Server: Received V component for frame 6
+Server: Processing frame 6
+Server: Sending encoded data for frame 6
+Server: Completed sending encoded data for frame 6
+Server: Unknown command: 23
+Server: Received frame header for frame 7
+Server: Received Y component for frame 7
+Server: Received U component for frame 7
+Server: Received V component for frame 7
+Server: Processing frame 7
+Server: Sending encoded data for frame 7
+Server: Completed sending encoded data for frame 7
+Server: Unknown command: 23
+Server: Received frame header for frame 8
+Server: Received Y component for frame 8
+Server: Received U component for frame 8
+Server: Received V component for frame 8
+Server: Processing frame 8
+Server: Sending encoded data for frame 8
+Server: Completed sending encoded data for frame 8
+Server: Unknown command: 23
+Server: Received frame header for frame 9
+Server: Received Y component for frame 9
+Server: Received U component for frame 9
+Server: Received V component for frame 9
+Server: Processing frame 9
+Server: Sending encoded data for frame 9
+Server: Completed sending encoded data for frame 9
+Server: Unknown command: 23
+Server: Received frame header for frame 10
+Server: Received Y component for frame 10
+Server: Received U component for frame 10
+Server: Received V component for frame 10
+Server: Processing frame 10
+Server: Sending encoded data for frame 10
+Server: Completed sending encoded data for frame 10
+Server: Unknown command: 23
+Server: Received frame header for frame 11
+Server: Received Y component for frame 11
+Server: Received U component for frame 11
+Server: Received V component for frame 11
+Server: Processing frame 11
+Server: Sending encoded data for frame 11
+Server: Completed sending encoded data for frame 11
+Server: Unknown command: 23
+Server: Received frame header for frame 12
+Server: Received Y component for frame 12
+Server: Received U component for frame 12
+Server: Received V component for frame 12
+Server: Processing frame 12
+Server: Sending encoded data for frame 12
+Server: Completed sending encoded data for frame 12
+Server: Unknown command: 23
+Server: Received frame header for frame 13
+Server: Received Y component for frame 13
+Server: Received U component for frame 13
+Server: Received V component for frame 13
+Server: Processing frame 13
+Server: Sending encoded data for frame 13
+Server: Completed sending encoded data for frame 13
+Server: Unknown command: 23
+Server: Received frame header for frame 14
+Server: Received Y component for frame 14
+Server: Received U component for frame 14
+Server: Received V component for frame 14
+Server: Processing frame 14
+Server: Sending encoded data for frame 14
+Server: Completed sending encoded data for frame 14
+Server: Unknown command: 23
+Server: Received frame header for frame 15
+Server: Received Y component for frame 15
+Server: Received U component for frame 15
+Server: Received V component for frame 15
+Server: Processing frame 15
+Server: Sending encoded data for frame 15
+Server: Completed sending encoded data for frame 15
+Server: Unknown command: 23
+Server: Received frame header for frame 16
+Server: Received Y component for frame 16
+Server: Received U component for frame 16
+Server: Received V component for frame 16
+Server: Processing frame 16
+Server: Sending encoded data for frame 16
+Server: Completed sending encoded data for frame 16
+Server: Unknown command: 23
+Server: Received frame header for frame 17
+Server: Received Y component for frame 17
+Server: Received U component for frame 17
+Server: Received V component for frame 17
+Server: Processing frame 17
+Server: Sending encoded data for frame 17
+Server: Completed sending encoded data for frame 17
+Server: Unknown command: 23
+Server: Received frame header for frame 18
+Server: Received Y component for frame 18
+Server: Received U component for frame 18
+Server: Received V component for frame 18
+Server: Processing frame 18
+Server: Sending encoded data for frame 18
+Server: Completed sending encoded data for frame 18
+Server: Unknown command: 23
+Server: Received frame header for frame 19
+Server: Received Y component for frame 19
+Server: Received U component for frame 19
+Server: Received V component for frame 19
+Server: Processing frame 19
+Server: Sending encoded data for frame 19
+Server: Completed sending encoded data for frame 19
+Server: Unknown command: 23
+Server: Received frame header for frame 20
+Server: Received Y component for frame 20
+Server: Received U component for frame 20
+Server: Received V component for frame 20
+Server: Processing frame 20
+Server: Sending encoded data for frame 20
+Server: Completed sending encoded data for frame 20
+Server: Unknown command: 23
+Server: Received frame header for frame 21
+Server: Received Y component for frame 21
+Server: Received U component for frame 21
+Server: Received V component for frame 21
+Server: Processing frame 21
+Server: Sending encoded data for frame 21
+Server: Completed sending encoded data for frame 21
+Server: Unknown command: 23
+Server: Received frame header for frame 22
+Server: Received Y component for frame 22
+Server: Received U component for frame 22
+Server: Received V component for frame 22
+Server: Processing frame 22
+Server: Sending encoded data for frame 22
+Server: Completed sending encoded data for frame 22
+Server: Unknown command: 23
+Server: Received frame header for frame 23
+Server: Received Y component for frame 23
+Server: Received U component for frame 23
+Server: Received V component for frame 23
+Server: Processing frame 23
+Server: Sending encoded data for frame 23
+Terminated
+
+real	0m10.560s
+user	0m10.261s
+sys	0m0.365s
+Tegra exit code: 143

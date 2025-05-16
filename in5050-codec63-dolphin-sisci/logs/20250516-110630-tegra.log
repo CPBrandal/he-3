@@ -1,0 +1,14 @@
+Server: Waiting for client connection...
+Server: Connected to client segment
+Server: Waiting for commands...
+Server: Received frame header for frame 0
+Server: Received Y component for frame 0
+Server: Received U component for frame 0
+Server: Received V component for frame 0
+Server: Processing frame 0
+bash: line 1: 284414 Segmentation fault      (core dumped) stdbuf -oL -eL ./c63server -r 8
+Tegra exit code: 139
+
+real	0m0.485s
+user	0m0.088s
+sys	0m0.009s

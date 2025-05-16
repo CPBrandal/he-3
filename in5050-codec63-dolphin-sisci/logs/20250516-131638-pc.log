@@ -1,0 +1,77 @@
+Client: Connecting to server segment...
+Client: Connected to server segment
+Client: Sending dimensions (width=352, height=288)
+Client: Waiting for dimensions acknowledgment...
+Client: Dimensions verified, starting video encoding
+Processing frame 0, Frame 0 header sent and acknowledged
+Frame 0 Y component sent and acknowledged
+Frame 0 U component sent and acknowledged
+Frame 0 V component sent and acknowledged
+Frame 0 waiting for encoded data...
+Frame 0 received encoded header (keyframe=1)
+Frame 0 received Y residuals
+Frame 0 received U residuals
+Frame 0 received V residuals
+Frame 0 received motion vectors
+Frame 0 processing and data transfer completed
+Done!
+Processing frame 100, Frame 100 header sent and acknowledged
+Frame 100 Y component sent and acknowledged
+Frame 100 U component sent and acknowledged
+Frame 100 V component sent and acknowledged
+Frame 100 waiting for encoded data...
+Frame 100 received encoded header (keyframe=0)
+Frame 100 received Y residuals
+Frame 100 received U residuals
+Frame 100 received V residuals
+Frame 100 received motion vectors
+Frame 100 processing and data transfer completed
+Done!
+Processing frame 200, Frame 200 header sent and acknowledged
+Frame 200 Y component sent and acknowledged
+Frame 200 U component sent and acknowledged
+Frame 200 V component sent and acknowledged
+Frame 200 waiting for encoded data...
+Frame 200 received encoded header (keyframe=0)
+Frame 200 received Y residuals
+Frame 200 received U residuals
+Frame 200 received V residuals
+Frame 200 received motion vectors
+Frame 200 processing and data transfer completed
+Done!
+Processing frame 300, Frame 300 header sent and acknowledged
+Frame 300 Y component sent and acknowledged
+Frame 300 U component sent and acknowledged
+Frame 300 V component sent and acknowledged
+Frame 300 waiting for encoded data...
+Frame 300 received encoded header (keyframe=0)
+Frame 300 received Y residuals
+Frame 300 received U residuals
+Frame 300 received V residuals
+Frame 300 received motion vectors
+Frame 300 processing and data transfer completed
+Done!
+Processing frame 400, Frame 400 header sent and acknowledged
+Frame 400 Y component sent and acknowledged
+Frame 400 U component sent and acknowledged
+Frame 400 V component sent and acknowledged
+Frame 400 waiting for encoded data...
+Frame 400 received encoded header (keyframe=0)
+Frame 400 received Y residuals
+Frame 400 received U residuals
+Frame 400 received V residuals
+Frame 400 received motion vectors
+Frame 400 processing and data transfer completed
+Done!
+Processing frame 500, Frame 500 header sent and acknowledged
+Frame 500 Y component sent and acknowledged
+Frame 500 U component sent and acknowledged
+Frame 500 V component sent and acknowledged
+Frame 500 waiting for encoded data...
+Frame 500 received encoded header (keyframe=0)
+PC exit code: 143
+Terminated
+
+real	0m15,408s
+user	0m15,202s
+sys	0m0,000s

@@ -1,0 +1,91 @@
+Server: Waiting for client connection...
+Server: Connected to client segment
+Server: Waiting for commands...
+Server: Received dimensions (width=352, height=288)
+Thread pool initialized with 8 threads
+Task pool is initialized with 36 tasks
+Server: Dimensions acknowledged
+Server: Waiting for frames...
+Server: Received frame header for frame 0
+Server: Received Y component for frame 0
+Server: Received U component for frame 0
+Server: Received V component for frame 0
+Server: Processing frame 0
+1
+2
+3
+4
+5
+6
+Server: Sending encoded data for frame 0
+Server: Completed sending encoded data for frame 0
+Server: Received frame header for frame 100
+Server: Received Y component for frame 100
+Server: Received U component for frame 100
+Server: Received V component for frame 100
+Server: Processing frame 100
+1
+2
+3
+4
+5
+6
+Server: Sending encoded data for frame 100
+Server: Completed sending encoded data for frame 100
+Server: Received frame header for frame 200
+Server: Received Y component for frame 200
+Server: Received U component for frame 200
+Server: Received V component for frame 200
+Server: Processing frame 200
+1
+2
+3
+4
+5
+6
+Server: Sending encoded data for frame 200
+Server: Completed sending encoded data for frame 200
+Server: Received frame header for frame 300
+Server: Received Y component for frame 300
+Server: Received U component for frame 300
+Server: Received V component for frame 300
+Server: Processing frame 300
+1
+2
+3
+4
+5
+6
+Server: Sending encoded data for frame 300
+Server: Completed sending encoded data for frame 300
+Server: Received frame header for frame 400
+Server: Received Y component for frame 400
+Server: Received U component for frame 400
+Server: Received V component for frame 400
+Server: Processing frame 400
+1
+2
+3
+4
+5
+6
+Server: Sending encoded data for frame 400
+Server: Completed sending encoded data for frame 400
+Server: Received frame header for frame 500
+Server: Received Y component for frame 500
+Server: Received U component for frame 500
+Server: Received V component for frame 500
+Server: Processing frame 500
+1
+2
+3
+4
+5
+6
+Server: Sending encoded data for frame 500
+Terminated
+
+real	0m15.078s
+user	0m14.851s
+sys	0m0.131s
+Tegra exit code: 143

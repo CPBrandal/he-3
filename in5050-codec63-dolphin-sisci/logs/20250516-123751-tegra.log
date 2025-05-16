@@ -1,0 +1,27 @@
+Server: Waiting for client connection...
+Server: Connected to client segment
+Server: Waiting for commands...
+Server: Received dimensions (width=352, height=288)
+Thread pool initialized with 8 threads
+Task pool is initialized with 36 tasks
+Server: Dimensions acknowledged
+Server: Waiting for frames...
+Server: Received frame header for frame 0
+Server: Received Y component for frame 0
+Server: Received U component for frame 0
+Server: Received V component for frame 0
+Server: Processing frame 0
+Server: Sending encoded data for frame 0
+Server: Completed sending encoded data for frame 0
+Server: Received frame header for frame 1
+Server: Received Y component for frame 1
+Server: Received U component for frame 1
+Server: Received V component for frame 1
+Server: Processing frame 1
+Server: Sending encoded data for frame 1
+Tegra exit code: 143
+Terminated
+
+real	0m6.167s
+user	0m6.059s
+sys	0m0.091s
