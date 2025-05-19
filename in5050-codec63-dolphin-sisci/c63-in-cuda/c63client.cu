@@ -770,7 +770,6 @@ int main(int argc, char **argv)
     
     // Clean up resources
     destroy_frame(cm->refframe);
-    destroy_frame(cm->curframe);
     fclose(outfile);
     fclose(infile);
     free_c63_enc(cm);

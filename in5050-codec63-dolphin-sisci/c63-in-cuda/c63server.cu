@@ -316,7 +316,7 @@ void encode_frame(struct c63_common *cm, yuv_t *image, int frame_count,
         local_seg->packet.cmd = CMD_INVALID;
         
         // Advance frame counters
-        printf("Server: Frame %d processing complete\n", frame_count);
+        printf("Server: Frame %d processing complete\n", cm->framenum);
         cm->framenum++;
         cm->frames_since_keyframe++;
     }
@@ -477,7 +477,7 @@ int main_loop(sci_desc_t sd,
             }
             break;    
             case CMD_QUIT:
-                printf("Server: Received quit command after processing %d frames\n", frame_count);
+                printf("Server: Received quit command after processing %d frames\n", cm->framenum);
                 running = 0;
                 
                 // Free allocated resources
@@ -683,9 +683,6 @@ int main(int argc, char **argv)
     SCIRemoveSegment(localSegment, NO_FLAGS, &error);
     SCIClose(sd, NO_FLAGS, &error);
     SCITerminate();
-
-    task_pool_destroy();
-    thread_pool_destroy(); // Clean-up of the threads
 
     return 0;
 }
