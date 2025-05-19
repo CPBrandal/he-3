@@ -140,6 +140,188 @@ free_c63_enc( struct c63_common *cm )
     free( cm );
 }
 
+void encode_frame(struct c63_common *cm, yuv_t *image, int frame_count,
+                 volatile struct server_segment *local_seg,
+                 volatile struct client_segment *remote_seg,
+                 sci_dma_queue_t dma_queue,
+                 sci_local_segment_t local_segment,
+                 sci_remote_segment_t remote_segment) 
+{
+    sci_error_t error;
+    
+    // Now we have all YUV planes, encode the frame
+    printf("Server: Encoding frame %d\n", frame_count);
+    
+    // Encode the frame
+    // First, advance frame pointers
+    destroy_frame(cm->refframe);
+    cm->refframe = cm->curframe;
+    cm->curframe = create_frame(cm, image);
+    
+    // Check if keyframe
+    if (cm->framenum == 0 || cm->frames_since_keyframe == cm->keyframe_interval) {
+        cm->curframe->keyframe = 1;
+        cm->frames_since_keyframe = 0;
+        printf("Server: Frame %d is a keyframe\n", frame_count);
+    } else {
+        cm->curframe->keyframe = 0;
+        printf("Server: Frame %d is not a keyframe\n", frame_count);
+    }
+    
+    // Perform motion estimation if not keyframe
+    if (!cm->curframe->keyframe) {
+        printf("Server: Starting motion estimation\n");
+        c63_motion_estimate(cm);
+        printf("Server: Motion estimation complete\n");
+        
+        printf("Server: Starting motion compensation\n");
+        c63_motion_compensate(cm);
+        printf("Server: Motion compensation complete\n");
+    }
+    
+    // DCT and Quantization
+    printf("Server: Starting DCT/quantization for Y plane\n");
+    dct_quantize(image->Y, cm->curframe->predicted->Y, cm->padw[Y_COMPONENT],
+               cm->padh[Y_COMPONENT], cm->curframe->residuals->Ydct,
+               cm->quanttbl[Y_COMPONENT]);
+    printf("Server: Y plane DCT/quantization complete\n");
+    
+    printf("Server: Starting DCT/quantization for U plane\n");
+    dct_quantize(image->U, cm->curframe->predicted->U, cm->padw[U_COMPONENT],
+               cm->padh[U_COMPONENT], cm->curframe->residuals->Udct,
+               cm->quanttbl[U_COMPONENT]);
+    printf("Server: U plane DCT/quantization complete\n");
+    
+    printf("Server: Starting DCT/quantization for V plane\n");
+    dct_quantize(image->V, cm->curframe->predicted->V, cm->padw[V_COMPONENT],
+               cm->padh[V_COMPONENT], cm->curframe->residuals->Vdct,
+               cm->quanttbl[V_COMPONENT]);
+    printf("Server: V plane DCT/quantization complete\n");
+    
+    // Reconstruct frame for inter-prediction
+    printf("Server: Starting dequantization/IDCT for reference frame\n");
+    dequantize_idct(cm->curframe->residuals->Ydct, cm->curframe->predicted->Y,
+                  cm->ypw, cm->yph, cm->curframe->recons->Y, cm->quanttbl[Y_COMPONENT]);
+    
+    dequantize_idct(cm->curframe->residuals->Udct, cm->curframe->predicted->U,
+                  cm->upw, cm->uph, cm->curframe->recons->U, cm->quanttbl[U_COMPONENT]);
+    
+    dequantize_idct(cm->curframe->residuals->Vdct, cm->curframe->predicted->V,
+                  cm->vpw, cm->vph, cm->curframe->recons->V, cm->quanttbl[V_COMPONENT]);
+    printf("Server: Dequantization/IDCT complete\n");
+    
+    // Now send all the encoded data back to the client in one transfer
+    printf("Server: Preparing encoded data for transfer\n");
+    
+    // First, place keyframe flag
+    *((int*)local_seg->message_buffer) = cm->curframe->keyframe;
+    
+    // Calculate offsets for each piece of data
+    char* ptr = (char*)local_seg->message_buffer + sizeof(int);
+    
+    // Copy all data into the message buffer
+    // Ydct
+    memcpy(ptr, cm->curframe->residuals->Ydct, 
+          cm->ypw * cm->yph * sizeof(int16_t));
+    ptr += cm->ypw * cm->yph * sizeof(int16_t);
+    
+    // Udct
+    memcpy(ptr, cm->curframe->residuals->Udct,
+          cm->upw * cm->uph * sizeof(int16_t));
+    ptr += cm->upw * cm->uph * sizeof(int16_t);
+    
+    // Vdct
+    memcpy(ptr, cm->curframe->residuals->Vdct,
+          cm->vpw * cm->vph * sizeof(int16_t));
+    ptr += cm->vpw * cm->vph * sizeof(int16_t);
+    
+    // Macroblocks - Y component
+    memcpy(ptr, cm->curframe->mbs[Y_COMPONENT],
+          cm->mb_rows * cm->mb_cols * sizeof(struct macroblock));
+    ptr += cm->mb_rows * cm->mb_cols * sizeof(struct macroblock);
+    
+    // Macroblocks - U component
+    memcpy(ptr, cm->curframe->mbs[U_COMPONENT],
+          (cm->mb_rows/2) * (cm->mb_cols/2) * sizeof(struct macroblock));
+    ptr += (cm->mb_rows/2) * (cm->mb_cols/2) * sizeof(struct macroblock);
+    
+    // Macroblocks - V component
+    memcpy(ptr, cm->curframe->mbs[V_COMPONENT],
+          (cm->mb_rows/2) * (cm->mb_cols/2) * sizeof(struct macroblock));
+    
+    // Calculate total size of encoded data
+    size_t total_size = sizeof(int) + // keyframe flag
+                       (cm->ypw * cm->yph * sizeof(int16_t)) + // Ydct
+                       (cm->upw * cm->uph * sizeof(int16_t)) + // Udct
+                       (cm->vpw * cm->vph * sizeof(int16_t)) + // Vdct
+                       (cm->mb_rows * cm->mb_cols * sizeof(struct macroblock)) + // Y macroblocks
+                       ((cm->mb_rows/2) * (cm->mb_cols/2) * sizeof(struct macroblock)) + // U macroblocks
+                       ((cm->mb_rows/2) * (cm->mb_cols/2) * sizeof(struct macroblock)); // V macroblocks
+    
+    printf("Server: Encoded data size: %zu bytes\n", total_size);
+    
+    // Check if encoded data exceeds buffer size
+    if (total_size > MESSAGE_SIZE) {
+        fprintf(stderr, "Server: ERROR - Encoded data size (%zu) exceeds message buffer size (%d)\n", 
+               total_size, MESSAGE_SIZE);
+        // Handle error condition
+        return;
+    }
+    
+    // Transfer encoded data to client
+    printf("Server: Starting DMA transfer of encoded data\n");
+    SCIStartDmaTransfer(dma_queue, 
+                       local_segment, // Source
+                       remote_segment, // Destination
+                       offsetof(struct server_segment, message_buffer),
+                       total_size,
+                       offsetof(struct client_segment, message_buffer),
+                       NO_CALLBACK,
+                       NULL,
+                       NO_FLAGS,
+                       &error);
+    
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Server: Error in encoded data DMA transfer: 0x%x\n", error);
+        return;
+    }
+    
+    // Wait for transfer to complete
+    printf("Server: Waiting for encoded data DMA transfer to complete\n");
+    SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    printf("Server: Encoded data DMA transfer complete\n");
+    
+    // Signal client that encoded data is ready
+    printf("Server: Signaling client that encoded data is ready\n");
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.data_size = total_size;
+    remote_seg->packet.cmd = CMD_ENCODED_DATA;
+    SCIFlush(NULL, NO_FLAGS);
+    printf("Server: Encoded data ready signal sent\n");
+    
+    // Wait for client to acknowledge receipt
+    printf("Server: Waiting for client to acknowledge encoded data\n");
+    time_t start_time = time(NULL);
+    bool timeout = false;
+    
+    while (local_seg->packet.cmd != CMD_ENCODED_DATA_ACK && !timeout) {
+        if (time(NULL) - start_time > 30) {  // 30 second timeout
+            timeout = true;
+            fprintf(stderr, "Server: Timeout waiting for encoded data acknowledgment\n");
+        }
+    }
+    
+    if (!timeout) {
+        printf("Server: Client acknowledged receipt of encoded data\n");
+        local_seg->packet.cmd = CMD_INVALID;
+        
+        // Advance frame counters
+        printf("Server: Frame %d processing complete\n", frame_count);
+        cm->framenum++;
+        cm->frames_since_keyframe++;
+    }
+}
+
 // Modified main loop to echo frame numbers
 int main_loop(sci_desc_t sd, 
     volatile struct server_segment *local_seg,
@@ -152,10 +334,9 @@ int main_loop(sci_desc_t sd,
     uint32_t cmd;
     sci_error_t error;
     int frame_count = 0;
-    int frame_number;  // Moved declaration outside of the switch
-
-    struct c63_common *cm;
-
+    struct c63_common *cm = NULL;
+    yuv_t image;
+    
     printf("Server: Waiting for commands...\n");
 
     while(running)
@@ -184,95 +365,130 @@ int main_loop(sci_desc_t sd,
                 width = dim_data.width;
                 height = dim_data.height;
                 
-                // Acknowledge by sending the same dimensions back
-                memcpy((void*)local_seg->message_buffer, &dim_data, sizeof(struct dimensions_data));
-                local_seg->packet.data_size = sizeof(struct dimensions_data);
+                // Initialize cm structure
+                cm = init_c63_enc(width, height);
+
+                // Initialize thread pool and task pool
+                thread_pool_init();
+                task_pool_init(cm->padh[Y_COMPONENT]);
                 
-                // Use DMA to transfer the acknowledgment
+                // Allocate YUV structure for frames using CUDA unified memory
+                image.Y = NULL;
+                image.U = NULL;
+                image.V = NULL;
+                
+                // Use cudaMallocManaged for Y component
+                cudaMallocManaged((void**)&image.Y, 
+                                cm->padw[Y_COMPONENT] * cm->padh[Y_COMPONENT] * sizeof(uint8_t));
+                
+                // Use cudaMallocManaged for U component
+                cudaMallocManaged((void**)&image.U, 
+                                cm->padw[U_COMPONENT] * cm->padh[U_COMPONENT] * sizeof(uint8_t));
+                
+                // Use cudaMallocManaged for V component
+                cudaMallocManaged((void**)&image.V, 
+                                cm->padw[V_COMPONENT] * cm->padh[V_COMPONENT] * sizeof(uint8_t));
+                
+                // Transfer dimensions back to client as acknowledgment
+                memcpy((void*)local_seg->message_buffer, &dim_data, sizeof(struct dimensions_data));
+                
                 SCIStartDmaTransfer(dma_queue, 
-                                   local_segment,  // Source segment
-                                   remote_segment, // Destination segment
-                                   offsetof(struct server_segment, message_buffer),  // Source offset
-                                   sizeof(struct dimensions_data), // Size to transfer
-                                   offsetof(struct client_segment, message_buffer),  // Destination offset
+                                   local_segment,  // Source
+                                   remote_segment, // Destination
+                                   offsetof(struct server_segment, message_buffer),
+                                   sizeof(struct dimensions_data),
+                                   offsetof(struct client_segment, message_buffer),
                                    NO_CALLBACK, 
                                    NULL, 
                                    NO_FLAGS, 
                                    &error);
-                if (error != SCI_ERR_OK) {
-                    fprintf(stderr, "Server: SCIStartDmaTransfer for dimensions ack failed - Error code 0x%x\n", error);
-                    running = 0;
-                    break;
-                }
-                
-                // Wait for DMA transfer to complete
+                                   
+                // Wait for transfer to complete
                 SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
-                if (error != SCI_ERR_OK) {
-                    fprintf(stderr, "Server: SCIWaitForDMAQueue for dimensions ack failed - Error code 0x%x\n", error);
-                    running = 0;
-                    break;
-                }
                 
                 // Signal client that dimensions are acknowledged
                 SCIFlush(NULL, NO_FLAGS);
                 remote_seg->packet.cmd = CMD_DIMENSIONS_ACK;
                 SCIFlush(NULL, NO_FLAGS);
                 
-                cm = init_c63_enc(width, height);
-
-                thread_pool_init(); // Initialize the threads once
-
-                task_pool_init(cm->padh[Y_COMPONENT]);
                 printf("Server: Dimensions acknowledged\n");
                 printf("Server: Waiting for frames...\n");
                 break;
                 
-            case CMD_DATA_READY:
-                // Get frame number from client
-                frame_number = *((int*)local_seg->message_buffer);
-                printf("Server: Received frame number %d\n", frame_number);
-                frame_count++;
+            // In server main_loop, modify the YUV_DATA case:
+            case CMD_YUV_DATA:
+            {
+                size_t data_size = local_seg->packet.data_size;
                 
-                // Echo the frame number back to client 
-                *((int*)local_seg->message_buffer) = frame_number;
-                local_seg->packet.data_size = sizeof(int);
+                // Reset command immediately
+                local_seg->packet.cmd = CMD_INVALID;
                 
-                // Use DMA to transfer the response 
-                SCIStartDmaTransfer(dma_queue, 
-                                   local_segment,  // Source segment
-                                   remote_segment, // Destination segment
-                                   offsetof(struct server_segment, message_buffer),  // Source offset
-                                   local_seg->packet.data_size, // Size to transfer
-                                   offsetof(struct client_segment, message_buffer),  // Destination offset
-                                   NO_CALLBACK, 
-                                   NULL, 
-                                   NO_FLAGS, 
-                                   &error);
-                if (error != SCI_ERR_OK) {
-                    fprintf(stderr, "Server: SCIStartDmaTransfer failed - Error code 0x%x\n", error);
-                    running = 0;
-                    break;
+                // Determine which plane based on the size
+                if (data_size == width * height) {
+                    // Y plane
+                    printf("Server: Received Y plane with size %zu bytes\n", data_size);
+                    memcpy(image.Y, (const void*)local_seg->message_buffer, data_size);
+                    
+                    // Send acknowledgment
+                    printf("Server: Sending Y plane acknowledgment to client\n");
+                    SCIFlush(NULL, NO_FLAGS);
+                    remote_seg->packet.cmd = CMD_YUV_DATA_ACK;
+                    SCIFlush(NULL, NO_FLAGS);
+                    printf("Server: Y plane acknowledgment sent\n");
                 }
-                
-                // Wait for DMA transfer to complete
-                SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
-                if (error != SCI_ERR_OK) {
-                    fprintf(stderr, "Server: SCIWaitForDMAQueue failed - Error code 0x%x\n", error);
-                    running = 0;
-                    break;
+                else if (data_size == (width * height) / 4) {
+                    static int plane_count = 0;
+                    
+                    if (plane_count == 0) {
+                        // U plane
+                        printf("Server: Received U plane with size %zu bytes\n", data_size);
+                        memcpy(image.U, (const void*)local_seg->message_buffer, data_size);
+                        plane_count++;
+                        
+                        // Send acknowledgment immediately
+                        printf("Server: Sending U plane acknowledgment to client\n");
+                        SCIFlush(NULL, NO_FLAGS);
+                        remote_seg->packet.cmd = CMD_YUV_DATA_ACK;
+                        SCIFlush(NULL, NO_FLAGS);
+                        printf("Server: U plane acknowledgment sent\n");
+                    }
+                    else {
+                        // V plane
+                        printf("Server: Received V plane with size %zu bytes\n", data_size);
+                        memcpy(image.V, (const void*)local_seg->message_buffer, data_size);
+                        plane_count = 0; // Reset for next frame
+                        
+                        // Send acknowledgment for V plane IMMEDIATELY
+                        printf("Server: Sending V plane acknowledgment to client\n");
+                        SCIFlush(NULL, NO_FLAGS);
+                        remote_seg->packet.cmd = CMD_YUV_DATA_ACK;
+                        SCIFlush(NULL, NO_FLAGS);
+                        printf("Server: V plane acknowledgment sent\n");
+                        
+                        // Now that we have all planes, start a separate encoding thread 
+                        // or signal to start encoding
+                        printf("Server: All YUV planes received, starting encoding process\n");
+                        
+                        // For simplicity, let's just create a function to do the encoding
+                        encode_frame(cm, &image, frame_count, local_seg, remote_seg, 
+                                    dma_queue, local_segment, remote_segment);
+                    }
                 }
-                
-                // Signal that data is ready
-                SCIFlush(NULL, NO_FLAGS);
-                remote_seg->packet.cmd = CMD_DATA_READY;
-                SCIFlush(NULL, NO_FLAGS);
-                
-                printf("Server: Echoed frame number %d\n", frame_number);
-                break;
-                
+            }
+            break;    
             case CMD_QUIT:
                 printf("Server: Received quit command after processing %d frames\n", frame_count);
                 running = 0;
+                
+                // Free allocated resources
+                if (cm) {
+                    if (image.Y) cudaFree(image.Y);
+                    if (image.U) cudaFree(image.U);
+                    if (image.V) cudaFree(image.V);
+                    free_c63_enc(cm);
+                    task_pool_destroy();
+                    thread_pool_destroy();
+                }
                 break;
                 
             default:
@@ -281,8 +497,7 @@ int main_loop(sci_desc_t sd,
         }
     }
 
-    free_c63_enc( cm );
-    return 0;
+    return frame_count;
 }
 
 static void print_help()

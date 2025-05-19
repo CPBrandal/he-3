@@ -1,0 +1,11 @@
+Client: Connecting to server segment...
+Client: Connected to server segment
+Client: Starting video encoding
+Processing frame 0, Client: Y plane sent, waiting for acknowledgment
+Client: Y plane acknowledgment received from server
+PC exit code: 143
+Terminated
+
+real	0m4,463s
+user	0m4,261s
+sys	0m0,000s

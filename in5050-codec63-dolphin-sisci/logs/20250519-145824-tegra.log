@@ -1,0 +1,18 @@
+Server: Waiting for client connection...
+Server: Connected to client segment
+Server: Waiting for commands...
+Server: Received dimensions (width=352, height=288)
+Thread pool initialized with 8 threads
+Task pool is initialized with 36 tasks
+Server: Dimensions acknowledged
+Server: Waiting for frames...
+Server: Received Y plane with size 101376 bytes
+Server: Sending Y plane acknowledgment to client
+Server: Y plane acknowledgment sent
+Server: Reset command flag, returning to main loop to wait for U plane
+Tegra exit code: 143
+Terminated
+
+real	0m4.324s
+user	0m4.167s
+sys	0m0.118s

@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include <sisci_error.h>
 #include <sisci_api.h>
@@ -130,150 +131,414 @@ free_c63_enc( struct c63_common *cm )
 
 /* Main client processing loop */
 int main_client_loop(struct c63_common *cm, FILE *infile, int limit_numframes,
-    volatile struct client_segment *local_seg,
-    volatile struct server_segment *remote_seg,
-    sci_dma_queue_t dma_queue,
-    sci_local_segment_t local_segment,
-    sci_remote_segment_t remote_segment) 
+                    volatile struct client_segment *local_seg,
+                    volatile struct server_segment *remote_seg,
+                    sci_dma_queue_t dma_queue,
+                    sci_local_segment_t local_segment,
+                    sci_remote_segment_t remote_segment) 
 {
-yuv_t *image;
-int numframes = 0;
-sci_error_t error;
-
-printf("Client: Sending dimensions (width=%u, height=%u)\n", width, height);
-
-// Prepare the dimensions data
-struct dimensions_data dim_data;
-dim_data.width = width;
-dim_data.height = height;
-
-// Copy dimensions to the message buffer
-memcpy((void*)local_seg->message_buffer, &dim_data, sizeof(struct dimensions_data));
-local_seg->packet.data_size = sizeof(struct dimensions_data);
-
-// Use DMA to transfer the dimensions
-SCIStartDmaTransfer(dma_queue, 
-       local_segment,
-       remote_segment,
-       offsetof(struct client_segment, message_buffer),
-       sizeof(struct dimensions_data),
-       offsetof(struct server_segment, message_buffer),
-       NO_CALLBACK,
-       NULL,
-       NO_FLAGS,
-       &error);
-
-if (error != SCI_ERR_OK) {
-fprintf(stderr, "Client: SCIStartDmaTransfer for dimensions failed - Error code 0x%x\n", error);
-return -1;
-}
-
-// Wait for DMA transfer to complete
-SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
-if (error != SCI_ERR_OK) {
-fprintf(stderr, "Client: SCIWaitForDMAQueue for dimensions failed - Error code 0x%x\n", error);
-return -1;
-}
-
-// Signal server that dimensions are ready
-SCIFlush(NULL, NO_FLAGS);
-remote_seg->packet.cmd = CMD_DIMENSIONS;
-SCIFlush(NULL, NO_FLAGS);
-
-// Wait for server acknowledgment
-local_seg->packet.cmd = CMD_INVALID;
-while (local_seg->packet.cmd != CMD_DIMENSIONS_ACK) {
-// Just wait
-}
-
-// Verify echoed dimensions
-struct dimensions_data received_dim;
-memcpy(&received_dim, (void*)local_seg->message_buffer, sizeof(struct dimensions_data));
-
-if (received_dim.width != width || received_dim.height != height) {
-fprintf(stderr, "Client: Server responded with incorrect dimensions (width=%u, height=%u)\n", 
-received_dim.width, received_dim.height);
-return -1;
-}
-
-printf("Client: Dimensions verified, starting video encoding\n");
-
-while (1) {
-// Read YUV frame
-image = read_yuv(infile, cm);
-if (!image) break;
-
-printf("Processing frame %d, ", numframes);
-
-// Send frame number to server
-*((int*)local_seg->message_buffer) = numframes;
-local_seg->packet.data_size = sizeof(int);
-
-// Use DMA to transfer the frame number
-SCIStartDmaTransfer(dma_queue, 
-           local_segment,
-           remote_segment,
-           offsetof(struct client_segment, message_buffer),
-           local_seg->packet.data_size,
-           offsetof(struct server_segment, message_buffer),
-           NO_CALLBACK,
-           NULL,
-           NO_FLAGS,
-           &error);
-if (error != SCI_ERR_OK) {
-fprintf(stderr, "Client: SCIStartDmaTransfer failed - Error code 0x%x\n", error);
-break;
-}
-
-// Wait for DMA transfer to complete
-SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
-if (error != SCI_ERR_OK) {
-fprintf(stderr, "Client: SCIWaitForDMAQueue failed - Error code 0x%x\n", error);
-break;
-}
-
-// Signal server that data is ready
-SCIFlush(NULL, NO_FLAGS);
-remote_seg->packet.cmd = CMD_DATA_READY;
-SCIFlush(NULL, NO_FLAGS);
-
-// Wait for server to echo back the frame number
-local_seg->packet.cmd = CMD_INVALID;
-while (local_seg->packet.cmd != CMD_DATA_READY) {
-// Just wait
-}
-
-// Verify echoed frame number
-int echoed_frame = *((int*)local_seg->message_buffer);
-if (echoed_frame != numframes) {
-fprintf(stderr, "Client: Server echoed wrong frame number %d (expected %d)\n", 
-   echoed_frame, numframes);
-}
-
-// Process the frame
-//c63_encode_image(cm, image);
-
-// Clean up the image
-free(image->Y);
-free(image->U);
-free(image->V);
-free(image);
-
-printf("Done!\n");
-
-++numframes;
-
-if (limit_numframes && numframes >= limit_numframes) {
-break;
-}
-}
-
-// Signal server to quit
-remote_seg->packet.cmd = CMD_QUIT;
-SCIFlush(NULL, NO_FLAGS);
-
-printf("Client: Finished processing %d frames\n", numframes);
-return numframes;
+    yuv_t *image;
+    int numframes = 0;
+    sci_error_t error;
+    
+    printf("Client: Starting video encoding\n");
+    
+    // Send dimensions to server
+    struct dimensions_data dim_data;
+    dim_data.width = width;
+    dim_data.height = height;
+    
+    // Place dimensions in local buffer
+    memcpy((void*)local_seg->message_buffer, &dim_data, sizeof(struct dimensions_data));
+    
+    // Transfer dimensions to server's segment
+    SCIStartDmaTransfer(dma_queue, 
+                       local_segment,
+                       remote_segment,
+                       offsetof(struct client_segment, message_buffer),  // Source offset
+                       sizeof(struct dimensions_data),                  // Size to transfer
+                       offsetof(struct server_segment, message_buffer),  // Destination offset
+                       NO_CALLBACK,
+                       NULL,
+                       NO_FLAGS,
+                       &error);
+                       
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "Client: SCIStartDmaTransfer for dimensions failed - Error code 0x%x\n", error);
+        return -1;
+    }
+    
+    // Wait for transfer to complete
+    SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    
+    // Signal server that dimensions are ready
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_DIMENSIONS;
+    SCIFlush(NULL, NO_FLAGS);
+    
+    // Wait for server to acknowledge dimensions
+    printf("Client: Waiting for server to acknowledge dimensions\n");
+    time_t dim_start = time(NULL);
+    bool dim_timeout = false;
+    
+    while (local_seg->packet.cmd != CMD_DIMENSIONS_ACK && !dim_timeout) {
+        if (time(NULL) - dim_start > 30) {  // 30 second timeout
+            dim_timeout = true;
+            fprintf(stderr, "Client: Timeout waiting for dimensions acknowledgment\n");
+        }
+    }
+    
+    if (dim_timeout) {
+        fprintf(stderr, "Client: Failed to receive dimensions acknowledgment, exiting\n");
+        return -1;
+    }
+    
+    printf("Client: Dimensions acknowledged by server\n");
+    local_seg->packet.cmd = CMD_INVALID;  // Reset command
+    
+    // Frame processing loop
+    while (1) {
+        // Read YUV frame
+        image = read_yuv(infile, cm);
+        if (!image) {
+            printf("Client: End of input file reached\n");
+            break;
+        }
+        
+        printf("Processing frame %d, ", numframes);
+        
+        // Calculate sizes of YUV components
+        size_t y_size = width * height;               // Y plane
+        size_t u_size = (width * height) / 4;         // U plane
+        size_t v_size = (width * height) / 4;         // V plane
+        
+        printf("Client: YUV plane sizes - Y: %zu bytes, U: %zu bytes, V: %zu bytes\n", 
+               y_size, u_size, v_size);
+        
+        // Verify buffer size is adequate
+        if (y_size > MESSAGE_SIZE || u_size > MESSAGE_SIZE || v_size > MESSAGE_SIZE) {
+            fprintf(stderr, "Client: ERROR - YUV plane size exceeds message buffer size (%d)\n", 
+                    MESSAGE_SIZE);
+            free(image->Y);
+            free(image->U);
+            free(image->V);
+            free(image);
+            return -1;
+        }
+        
+        //
+        // TRANSFER Y PLANE
+        //
+        printf("Client: Transferring Y plane (%zu bytes)\n", y_size);
+        
+        // Copy Y data to message buffer
+        memcpy((void*)local_seg->message_buffer, image->Y, y_size);
+        
+        // Start DMA transfer to server
+        SCIStartDmaTransfer(dma_queue, 
+                           local_segment,
+                           remote_segment,
+                           offsetof(struct client_segment, message_buffer),
+                           y_size,
+                           offsetof(struct server_segment, message_buffer),
+                           NO_CALLBACK,
+                           NULL,
+                           NO_FLAGS,
+                           &error);
+        
+        if (error != SCI_ERR_OK) {
+            fprintf(stderr, "Client: Y plane DMA transfer failed - Error code 0x%x\n", error);
+            free(image->Y);
+            free(image->U);
+            free(image->V);
+            free(image);
+            continue;  // Try next frame
+        }
+        
+        // Wait for Y plane transfer to complete
+        SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+        printf("Client: Y plane DMA transfer complete\n");
+        
+        // Signal server that Y plane is ready
+        SCIFlush(NULL, NO_FLAGS);
+        remote_seg->packet.cmd = CMD_YUV_DATA;
+        remote_seg->packet.data_size = y_size;
+        SCIFlush(NULL, NO_FLAGS);
+        printf("Client: Y plane sent, waiting for acknowledgment\n");
+        
+        // Wait for Y plane acknowledgment
+        time_t y_start = time(NULL);
+        bool y_timeout = false;
+        
+        while (local_seg->packet.cmd != CMD_YUV_DATA_ACK && !y_timeout) {
+            if (time(NULL) - y_start > 30) {  // 30 second timeout
+                y_timeout = true;
+                fprintf(stderr, "Client: Timeout waiting for Y plane acknowledgment\n");
+            }
+        }
+        
+        if (y_timeout) {
+            fprintf(stderr, "Client: Failed to get Y plane acknowledgment, skipping frame\n");
+            free(image->Y);
+            free(image->U);
+            free(image->V);
+            free(image);
+            continue;  // Try next frame
+        }
+        
+        printf("Client: Y plane acknowledgment received from server\n");
+        local_seg->packet.cmd = CMD_INVALID;  // Reset command
+        printf("Client: Reset command flag. Current command value: %d\n", local_seg->packet.cmd);
+        
+        //
+        // TRANSFER U PLANE
+        //
+        printf("Client: Starting U plane transfer process\n");
+        printf("Client: U plane size: %zu bytes\n", u_size);
+        
+        // Copy U data to message buffer
+        printf("Client: Copying U plane to message buffer\n");
+        memcpy((void*)local_seg->message_buffer, image->U, u_size);
+        
+        // Start DMA transfer to server
+        printf("Client: Initiating DMA transfer for U plane\n");
+        SCIStartDmaTransfer(dma_queue, 
+                           local_segment,
+                           remote_segment,
+                           offsetof(struct client_segment, message_buffer),
+                           u_size,
+                           offsetof(struct server_segment, message_buffer),
+                           NO_CALLBACK,
+                           NULL,
+                           NO_FLAGS,
+                           &error);
+        
+        if (error != SCI_ERR_OK) {
+            fprintf(stderr, "Client: U plane DMA transfer failed - Error code 0x%x\n", error);
+            free(image->Y);
+            free(image->U);
+            free(image->V);
+            free(image);
+            continue;  // Try next frame
+        }
+        
+        // Wait for U plane transfer to complete
+        printf("Client: Waiting for U plane DMA transfer to complete\n");
+        SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+        printf("Client: U plane DMA transfer completed\n");
+        
+        // Signal server that U plane is ready
+        printf("Client: Sending U plane ready signal to server\n");
+        SCIFlush(NULL, NO_FLAGS);
+        remote_seg->packet.cmd = CMD_YUV_DATA;
+        remote_seg->packet.data_size = u_size;
+        SCIFlush(NULL, NO_FLAGS);
+        printf("Client: U plane ready signal sent. Command value: %d, Data size: %u\n", 
+               remote_seg->packet.cmd, remote_seg->packet.data_size);
+        
+        // Wait for U plane acknowledgment
+        printf("Client: Waiting for U plane acknowledgment\n");
+        time_t u_start = time(NULL);
+        bool u_timeout = false;
+        
+        while (local_seg->packet.cmd != CMD_YUV_DATA_ACK && !u_timeout) {
+            if (time(NULL) - u_start > 30) {  // 30 second timeout
+                u_timeout = true;
+                fprintf(stderr, "Client: Timeout waiting for U plane acknowledgment\n");
+            }
+        }
+        
+        if (u_timeout) {
+            fprintf(stderr, "Client: Failed to get U plane acknowledgment, skipping frame\n");
+            free(image->Y);
+            free(image->U);
+            free(image->V);
+            free(image);
+            continue;  // Try next frame
+        }
+        
+        printf("Client: U plane acknowledgment received from server\n");
+        local_seg->packet.cmd = CMD_INVALID;  // Reset command
+        
+        //
+        // TRANSFER V PLANE
+        //
+        printf("Client: Starting V plane transfer process\n");
+        printf("Client: V plane size: %zu bytes\n", v_size);
+        
+        // Copy V data to message buffer
+        memcpy((void*)local_seg->message_buffer, image->V, v_size);
+        
+        // Start DMA transfer to server
+        SCIStartDmaTransfer(dma_queue, 
+                           local_segment,
+                           remote_segment,
+                           offsetof(struct client_segment, message_buffer),
+                           v_size,
+                           offsetof(struct server_segment, message_buffer),
+                           NO_CALLBACK,
+                           NULL,
+                           NO_FLAGS,
+                           &error);
+        
+        if (error != SCI_ERR_OK) {
+            fprintf(stderr, "Client: V plane DMA transfer failed - Error code 0x%x\n", error);
+            free(image->Y);
+            free(image->U);
+            free(image->V);
+            free(image);
+            continue;  // Try next frame
+        }
+        
+        // Wait for V plane transfer to complete
+        SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+        printf("Client: V plane DMA transfer completed\n");
+        
+        // Signal server that V plane is ready
+        SCIFlush(NULL, NO_FLAGS);
+        remote_seg->packet.cmd = CMD_YUV_DATA;
+        remote_seg->packet.data_size = v_size;
+        SCIFlush(NULL, NO_FLAGS);
+        printf("Client: V plane ready signal sent\n");
+        
+        // Wait for V plane acknowledgment
+        printf("Client: Waiting for V plane acknowledgment\n");
+        time_t v_start = time(NULL);
+        bool v_timeout = false;
+        
+        while (local_seg->packet.cmd != CMD_YUV_DATA_ACK && !v_timeout) {
+            if (time(NULL) - v_start > 30) {  // 30 second timeout
+                v_timeout = true;
+                fprintf(stderr, "Client: Timeout waiting for V plane acknowledgment\n");
+            }
+        }
+        
+        if (v_timeout) {
+            fprintf(stderr, "Client: Failed to get V plane acknowledgment, skipping frame\n");
+            free(image->Y);
+            free(image->U);
+            free(image->V);
+            free(image);
+            continue;  // Try next frame
+        }
+        
+        printf("Client: V plane acknowledgment received from server\n");
+        local_seg->packet.cmd = CMD_INVALID;  // Reset command
+        
+        // Free original image buffers as they're no longer needed
+        printf("Client: All YUV planes transferred successfully, freeing original image buffers\n");
+        free(image->Y);
+        free(image->U);
+        free(image->V);
+        free(image);
+        
+        //
+        // WAIT FOR ENCODED DATA FROM SERVER
+        //
+        printf("Client: Waiting for server to process and return encoded data\n");
+        time_t encode_start = time(NULL);
+        bool encode_timeout = false;
+        
+        while (local_seg->packet.cmd != CMD_ENCODED_DATA && !encode_timeout) {
+            if (time(NULL) - encode_start > 120) {  // 2 minute timeout - encoding can take time
+                encode_timeout = true;
+                fprintf(stderr, "Client: Timeout waiting for encoded data\n");
+            }
+            
+            // Print status every 10 seconds
+            if (!encode_timeout && (time(NULL) - encode_start) % 10 == 0 && time(NULL) > encode_start) {
+                printf("Client: Still waiting for encoded data... (%ld seconds)\n", 
+                       time(NULL) - encode_start);
+            }
+            
+        }
+        
+        if (encode_timeout) {
+            fprintf(stderr, "Client: Failed to receive encoded data, skipping frame\n");
+            continue;  // Try next frame
+        }
+        
+        //
+        // PROCESS ENCODED DATA
+        //
+        printf("Client: Received encoded data from server\n");
+        
+        // Get total data size
+        size_t data_size = local_seg->packet.data_size;
+        printf("Client: Encoded data size: %zu bytes\n", data_size);
+        
+        // Get keyframe flag
+        int keyframe = *((int*)local_seg->message_buffer);
+        cm->curframe->keyframe = keyframe;
+        printf("Client: Frame is %s\n", keyframe ? "a keyframe" : "not a keyframe");
+        
+        // Get a pointer to the encoded data (after the keyframe flag)
+        char* encoded_data = (char*)local_seg->message_buffer + sizeof(int);
+        
+        // Copy the encoded data to our curframe structure
+        // Ydct
+        size_t ydct_size = cm->ypw * cm->yph * sizeof(int16_t);
+        memcpy(cm->curframe->residuals->Ydct, encoded_data, ydct_size);
+        encoded_data += ydct_size;
+        
+        // Udct
+        size_t udct_size = cm->upw * cm->uph * sizeof(int16_t);
+        memcpy(cm->curframe->residuals->Udct, encoded_data, udct_size);
+        encoded_data += udct_size;
+        
+        // Vdct
+        size_t vdct_size = cm->vpw * cm->vph * sizeof(int16_t);
+        memcpy(cm->curframe->residuals->Vdct, encoded_data, vdct_size);
+        encoded_data += vdct_size;
+        
+        // Macroblocks - Y component
+        size_t mby_size = cm->mb_rows * cm->mb_cols * sizeof(struct macroblock);
+        memcpy(cm->curframe->mbs[Y_COMPONENT], encoded_data, mby_size);
+        encoded_data += mby_size;
+        
+        // Macroblocks - U component
+        size_t mbu_size = (cm->mb_rows/2) * (cm->mb_cols/2) * sizeof(struct macroblock);
+        memcpy(cm->curframe->mbs[U_COMPONENT], encoded_data, mbu_size);
+        encoded_data += mbu_size;
+        
+        // Macroblocks - V component
+        size_t mbv_size = (cm->mb_rows/2) * (cm->mb_cols/2) * sizeof(struct macroblock);
+        memcpy(cm->curframe->mbs[V_COMPONENT], encoded_data, mbv_size);
+        
+        // Acknowledge receipt of encoded data
+        printf("Client: Sending acknowledgment of encoded data receipt\n");
+        local_seg->packet.cmd = CMD_INVALID;  // Reset command first
+        SCIFlush(NULL, NO_FLAGS);
+        remote_seg->packet.cmd = CMD_ENCODED_DATA_ACK;
+        SCIFlush(NULL, NO_FLAGS);
+        
+        // Write the encoded frame to disk
+        printf("Client: Writing encoded frame to output file\n");
+        write_frame(cm);
+        
+        printf("Done!\n");
+        cm->framenum++;
+        cm->frames_since_keyframe++;
+        if (cm->curframe->keyframe) {
+            cm->frames_since_keyframe = 0;
+        }
+        
+        ++numframes;
+        
+        if (limit_numframes && numframes >= limit_numframes) {
+            printf("Client: Reached frame limit (%d frames), stopping\n", limit_numframes);
+            break;
+        }
+    }
+    
+    // Signal server to quit
+    printf("Client: Sending quit command to server\n");
+    SCIFlush(NULL, NO_FLAGS);
+    remote_seg->packet.cmd = CMD_QUIT;
+    SCIFlush(NULL, NO_FLAGS);
+    
+    printf("Client: Finished processing %d frames\n", numframes);
+    return numframes;
 }
 
 static void print_help()
@@ -355,7 +620,8 @@ int main(int argc, char **argv)
     {
         printf("Limited to %d frames.\n", limit_numframes);
     }
-
+    cm->curframe = create_frame(cm, NULL);  // Create with NULL for a placeholder
+    cm->refframe = create_frame(cm, NULL); 
     // Open input file
     FILE *infile = fopen(input_file, "rb");
     if (infile == NULL)
@@ -503,6 +769,8 @@ int main(int argc, char **argv)
                      dmaQueue, localSegment, remoteSegment);
     
     // Clean up resources
+    destroy_frame(cm->refframe);
+    destroy_frame(cm->curframe);
     fclose(outfile);
     fclose(infile);
     free_c63_enc(cm);

@@ -21,7 +21,7 @@
 #define SEGMENT_SERVER GET_SEGMENTID(2)
 
 // Message sizes
-#define MESSAGE_SIZE 256   // Size for hello message
+#define MESSAGE_SIZE (1024 * 1024)  // 1MB buffer size to accommodate large transfers
 
 // Command definitions for signaling
 enum cmd
@@ -32,7 +32,11 @@ enum cmd
     CMD_DIMENSIONS,    // Client sending dimensions
     CMD_DIMENSIONS_ACK,// Server acknowledging dimensions
     CMD_QUIT,          // Signal to terminate
-    CMD_DATA_READY     // Signal that data is ready to be read
+    CMD_DATA_READY,    // Signal that data is ready to be read
+    CMD_YUV_DATA,      // Client sending YUV frame data
+    CMD_YUV_DATA_ACK,  // Server acknowledging receipt of YUV data
+    CMD_ENCODED_DATA,  // Server sending encoded frame data
+    CMD_ENCODED_DATA_ACK// Client acknowledging receipt of encoded data
 };
 
 #define MAX_FILELENGTH 200
