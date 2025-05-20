@@ -150,7 +150,7 @@ void encode_frame(struct c63_common *cm, yuv_t *image, int frame_count,
     sci_error_t error;
     
     // Now we have all YUV planes, encode the frame
-    printf("Server: Encoding frame %d\n", frame_count);
+    printf("Server: Encoding frame %d\n", cm->framenum);
     
     // Encode the frame
     // First, advance frame pointers
@@ -162,10 +162,10 @@ void encode_frame(struct c63_common *cm, yuv_t *image, int frame_count,
     if (cm->framenum == 0 || cm->frames_since_keyframe == cm->keyframe_interval) {
         cm->curframe->keyframe = 1;
         cm->frames_since_keyframe = 0;
-        printf("Server: Frame %d is a keyframe\n", frame_count);
+        printf("Server: Frame %d is a keyframe\n", cm->framenum);
     } else {
         cm->curframe->keyframe = 0;
-        printf("Server: Frame %d is not a keyframe\n", frame_count);
+        printf("Server: Frame %d is not a keyframe\n", cm->framenum);
     }
     
     // Perform motion estimation if not keyframe
