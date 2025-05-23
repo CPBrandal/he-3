@@ -1,0 +1,35 @@
+Server: Waiting for client connection...
+Server: Connected to client segment
+Server: Waiting for commands...
+Server: Received dimensions (width=1920, height=1080)
+Thread pool initialized with 8 threads
+Task pool is initialized with 136 tasks
+Server: Dimensions acknowledged
+Server: Waiting for frames...
+Server: Received Y plane with size 2073600 bytes
+Server: Sending Y plane acknowledgment to client
+Server: Y plane acknowledgment sent
+Server: Received U plane with size 518400 bytes
+Server: Sending U plane acknowledgment to client
+Server: U plane acknowledgment sent
+Server: Received V plane with size 518400 bytes
+Server: Sending V plane acknowledgment to client
+Server: V plane acknowledgment sent
+Server: All YUV planes received, starting encoding process
+Server: Encoding frame 0
+Server: Frame 0 is a keyframe
+Server: Starting DCT/quantization for Y plane
+Server: Y plane DCT/quantization complete
+Server: Starting DCT/quantization for U plane
+Server: U plane DCT/quantization complete
+Server: Starting DCT/quantization for V plane
+Server: V plane DCT/quantization complete
+Server: Starting dequantization/IDCT for reference frame
+Server: Dequantization/IDCT complete
+Server: Preparing encoded data for transfer
+bash: line 1: 735544 Segmentation fault      (core dumped) stdbuf -oL -eL ./c63server -r 8
+Tegra exit code: 139
+
+real	0m0.675s
+user	0m0.611s
+sys	0m0.127s

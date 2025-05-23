@@ -21,7 +21,7 @@
 #define SEGMENT_SERVER GET_SEGMENTID(2)
 
 // Message sizes
-#define MESSAGE_SIZE (1024 * 1024)  // 1MB buffer size to accommodate large transfers
+#define MESSAGE_SIZE (8 * 1024 * 1024)  // 8MB buffer size
 
 // Command definitions for signaling
 enum cmd
