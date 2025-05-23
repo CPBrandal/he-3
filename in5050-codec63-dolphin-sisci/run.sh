@@ -19,7 +19,8 @@ if [ ! -d $SRC_DIR/$SUBDIR ]; then
 fi
 
 PC_CMD="c63client"
-PC_ARGS="/opt/Media/foreman.yuv -o output -w 352 -h 288"
+#PC_ARGS="/opt/Media/foreman.yuv -f 120 -o output -w 352 -h 288"
+PC_ARGS="/opt/Media/tractor.yuv -f 250 -o tractor -w 1920 -h 1080"
 
 DATE=$(date -u +%Y%m%d-%H%M%S)
 RSYNC_ARGS="-rt --exclude=logs/ --exclude=.*"
