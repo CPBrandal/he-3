@@ -1,0 +1,565 @@
+Server: Waiting for client connection...
+Server: Connected to client segments
+Server: Ready for 3-frame pipeline processing
+Server: Waiting for commands...
+Server: Received dimensions (width=1920, height=1080)
+Thread pool initialized with 5 threads
+Task pool is initialized with 136 tasks
+Server: Processing thread started
+Server: No frames ready for processing, waiting...
+Server: Sending thread started
+Server: Dimensions acknowledged, pipeline ready with 3 frame slots
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 0 in slot 0 (pipeline: recv=1, proc=0, sent=0)
+Server: Frame added to processing pipeline
+Server: Processing frame 0 from slot 0
+Server: Encoding frame 0
+Server: Frame 0 is a keyframe
+Server: DCT/quantization for frame 0
+Server: Dequantization/IDCT for frame 0
+Server: Frame 0 encoded, size: 6658564 bytes
+Server: Marked frame 0 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 0 from slot 0
+Server: Sending encoded data for frame 0
+Server: Signaled client about encoded data for frame 0
+Server: Client acknowledged frame 0
+Server: Marked frame 0 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 1 in slot 1 (pipeline: recv=2, proc=1, sent=1)
+Server: Frame added to processing pipeline
+Server: Processing frame 1 from slot 1
+Server: Encoding frame 1
+Server: Frame 1 is not a keyframe
+Server: Motion estimation for frame 1
+Server: Motion estimation complete for frame 1
+Server: DCT/quantization for frame 1
+Server: Dequantization/IDCT for frame 1
+Server: Frame 1 encoded, size: 6658564 bytes
+Server: Marked frame 1 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 1 from slot 1
+Server: Sending encoded data for frame 1
+Server: Signaled client about encoded data for frame 1
+Server: Client acknowledged frame 1
+Server: Marked frame 1 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 2 in slot 2 (pipeline: recv=3, proc=2, sent=2)
+Server: Frame added to processing pipeline
+Server: Processing frame 2 from slot 2
+Server: Encoding frame 2
+Server: Frame 2 is not a keyframe
+Server: Motion estimation for frame 2
+Server: Motion estimation complete for frame 2
+Server: DCT/quantization for frame 2
+Server: Dequantization/IDCT for frame 2
+Server: Frame 2 encoded, size: 6658564 bytes
+Server: Marked frame 2 as processed (processing time: 1 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 2 from slot 2
+Server: Sending encoded data for frame 2
+Server: Signaled client about encoded data for frame 2
+Server: Client acknowledged frame 2
+Server: Marked frame 2 as sent (total pipeline time: 1 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 3 in slot 0 (pipeline: recv=4, proc=3, sent=3)
+Server: Frame added to processing pipeline
+Server: Processing frame 3 from slot 0
+Server: Encoding frame 3
+Server: Frame 3 is not a keyframe
+Server: Motion estimation for frame 3
+Server: Motion estimation complete for frame 3
+Server: DCT/quantization for frame 3
+Server: Dequantization/IDCT for frame 3
+Server: Frame 3 encoded, size: 6658564 bytes
+Server: Marked frame 3 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 3 from slot 0
+Server: Sending encoded data for frame 3
+Server: Signaled client about encoded data for frame 3
+Server: Client acknowledged frame 3
+Server: Marked frame 3 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 4 in slot 1 (pipeline: recv=5, proc=4, sent=4)
+Server: Frame added to processing pipeline
+Server: Processing frame 4 from slot 1
+Server: Encoding frame 4
+Server: Frame 4 is not a keyframe
+Server: Motion estimation for frame 4
+Server: Motion estimation complete for frame 4
+Server: DCT/quantization for frame 4
+Server: Dequantization/IDCT for frame 4
+Server: Frame 4 encoded, size: 6658564 bytes
+Server: Marked frame 4 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 4 from slot 1
+Server: Sending encoded data for frame 4
+Server: Signaled client about encoded data for frame 4
+Server: Client acknowledged frame 4
+Server: Marked frame 4 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 5 in slot 2 (pipeline: recv=6, proc=5, sent=5)
+Server: Frame added to processing pipeline
+Server: Processing frame 5 from slot 2
+Server: Encoding frame 5
+Server: Frame 5 is not a keyframe
+Server: Motion estimation for frame 5
+Server: Motion estimation complete for frame 5
+Server: DCT/quantization for frame 5
+Server: Dequantization/IDCT for frame 5
+Server: Frame 5 encoded, size: 6658564 bytes
+Server: Marked frame 5 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 5 from slot 2
+Server: Sending encoded data for frame 5
+Server: Signaled client about encoded data for frame 5
+Server: Client acknowledged frame 5
+Server: Marked frame 5 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 6 in slot 0 (pipeline: recv=7, proc=6, sent=6)
+Server: Frame added to processing pipeline
+Server: Processing frame 6 from slot 0
+Server: Encoding frame 6
+Server: Frame 6 is not a keyframe
+Server: Motion estimation for frame 6
+Server: Motion estimation complete for frame 6
+Server: DCT/quantization for frame 6
+Server: Dequantization/IDCT for frame 6
+Server: Frame 6 encoded, size: 6658564 bytes
+Server: Marked frame 6 as processed (processing time: 1 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 6 from slot 0
+Server: Sending encoded data for frame 6
+Server: Signaled client about encoded data for frame 6
+Server: Client acknowledged frame 6
+Server: Marked frame 6 as sent (total pipeline time: 1 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 7 in slot 1 (pipeline: recv=8, proc=7, sent=7)
+Server: Frame added to processing pipeline
+Server: Processing frame 7 from slot 1
+Server: Encoding frame 7
+Server: Frame 7 is not a keyframe
+Server: Motion estimation for frame 7
+Server: Motion estimation complete for frame 7
+Server: DCT/quantization for frame 7
+Server: Dequantization/IDCT for frame 7
+Server: Frame 7 encoded, size: 6658564 bytes
+Server: Marked frame 7 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 7 from slot 1
+Server: Sending encoded data for frame 7
+Server: Signaled client about encoded data for frame 7
+Server: Client acknowledged frame 7
+Server: Marked frame 7 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 8 in slot 2 (pipeline: recv=9, proc=8, sent=8)
+Server: Frame added to processing pipeline
+Server: Processing frame 8 from slot 2
+Server: Encoding frame 8
+Server: Frame 8 is not a keyframe
+Server: Motion estimation for frame 8
+Server: Motion estimation complete for frame 8
+Server: DCT/quantization for frame 8
+Server: Dequantization/IDCT for frame 8
+Server: Frame 8 encoded, size: 6658564 bytes
+Server: Marked frame 8 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 8 from slot 2
+Server: Sending encoded data for frame 8
+Server: Signaled client about encoded data for frame 8
+Server: Client acknowledged frame 8
+Server: Marked frame 8 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 9 in slot 0 (pipeline: recv=10, proc=9, sent=9)
+Server: Frame added to processing pipeline
+Server: Processing frame 9 from slot 0
+Server: Encoding frame 9
+Server: Frame 9 is not a keyframe
+Server: Motion estimation for frame 9
+Server: Motion estimation complete for frame 9
+Server: DCT/quantization for frame 9
+Server: Dequantization/IDCT for frame 9
+Server: Frame 9 encoded, size: 6658564 bytes
+Server: Marked frame 9 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 9 from slot 0
+Server: Sending encoded data for frame 9
+Server: Signaled client about encoded data for frame 9
+Server: Client acknowledged frame 9
+Server: Marked frame 9 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 10 in slot 1 (pipeline: recv=11, proc=10, sent=10)
+Server: Frame added to processing pipeline
+Server: Processing frame 10 from slot 1
+Server: Encoding frame 10
+Server: Frame 10 is not a keyframe
+Server: Motion estimation for frame 10
+Server: Motion estimation complete for frame 10
+Server: DCT/quantization for frame 10
+Server: Dequantization/IDCT for frame 10
+Server: Frame 10 encoded, size: 6658564 bytes
+Server: Marked frame 10 as processed (processing time: 1 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 10 from slot 1
+Server: Sending encoded data for frame 10
+Server: Signaled client about encoded data for frame 10
+Server: Client acknowledged frame 10
+Server: Marked frame 10 as sent (total pipeline time: 1 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 11 in slot 2 (pipeline: recv=12, proc=11, sent=11)
+Server: Frame added to processing pipeline
+Server: Processing frame 11 from slot 2
+Server: Encoding frame 11
+Server: Frame 11 is not a keyframe
+Server: Motion estimation for frame 11
+Server: Motion estimation complete for frame 11
+Server: DCT/quantization for frame 11
+Server: Dequantization/IDCT for frame 11
+Server: Frame 11 encoded, size: 6658564 bytes
+Server: Marked frame 11 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 11 from slot 2
+Server: Sending encoded data for frame 11
+Server: Signaled client about encoded data for frame 11
+Server: Client acknowledged frame 11
+Server: Marked frame 11 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 12 in slot 0 (pipeline: recv=13, proc=12, sent=12)
+Server: Frame added to processing pipeline
+Server: Processing frame 12 from slot 0
+Server: Encoding frame 12
+Server: Frame 12 is not a keyframe
+Server: Motion estimation for frame 12
+Server: Motion estimation complete for frame 12
+Server: DCT/quantization for frame 12
+Server: Dequantization/IDCT for frame 12
+Server: Frame 12 encoded, size: 6658564 bytes
+Server: Marked frame 12 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 12 from slot 0
+Server: Sending encoded data for frame 12
+Server: Signaled client about encoded data for frame 12
+Server: Client acknowledged frame 12
+Server: Marked frame 12 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 13 in slot 1 (pipeline: recv=14, proc=13, sent=13)
+Server: Frame added to processing pipeline
+Server: Processing frame 13 from slot 1
+Server: Encoding frame 13
+Server: Frame 13 is not a keyframe
+Server: Motion estimation for frame 13
+Server: Motion estimation complete for frame 13
+Server: DCT/quantization for frame 13
+Server: Dequantization/IDCT for frame 13
+Server: Frame 13 encoded, size: 6658564 bytes
+Server: Marked frame 13 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 13 from slot 1
+Server: Sending encoded data for frame 13
+Server: Signaled client about encoded data for frame 13
+Server: Client acknowledged frame 13
+Server: Marked frame 13 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 14 in slot 2 (pipeline: recv=15, proc=14, sent=14)
+Server: Frame added to processing pipeline
+Server: Processing frame 14 from slot 2
+Server: Encoding frame 14
+Server: Frame 14 is not a keyframe
+Server: Motion estimation for frame 14
+Server: Motion estimation complete for frame 14
+Server: DCT/quantization for frame 14
+Server: Dequantization/IDCT for frame 14
+Server: Frame 14 encoded, size: 6658564 bytes
+Server: Marked frame 14 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 14 from slot 2
+Server: Sending encoded data for frame 14
+Server: Signaled client about encoded data for frame 14
+Server: Client acknowledged frame 14
+Server: Marked frame 14 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 15 in slot 0 (pipeline: recv=16, proc=15, sent=15)
+Server: Frame added to processing pipeline
+Server: Processing frame 15 from slot 0
+Server: Encoding frame 15
+Server: Frame 15 is not a keyframe
+Server: Motion estimation for frame 15
+Server: Motion estimation complete for frame 15
+Server: DCT/quantization for frame 15
+Server: Dequantization/IDCT for frame 15
+Server: Frame 15 encoded, size: 6658564 bytes
+Server: Marked frame 15 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 15 from slot 0
+Server: Sending encoded data for frame 15
+Server: Signaled client about encoded data for frame 15
+Server: Client acknowledged frame 15
+Server: Marked frame 15 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 16 in slot 1 (pipeline: recv=17, proc=16, sent=16)
+Server: Frame added to processing pipeline
+Server: Processing frame 16 from slot 1
+Server: Encoding frame 16
+Server: Frame 16 is not a keyframe
+Server: Motion estimation for frame 16
+Server: Motion estimation complete for frame 16
+Server: DCT/quantization for frame 16
+Server: Dequantization/IDCT for frame 16
+Server: Frame 16 encoded, size: 6658564 bytes
+Server: Marked frame 16 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 16 from slot 1
+Server: Sending encoded data for frame 16
+Server: Signaled client about encoded data for frame 16
+Server: Client acknowledged frame 16
+Server: Marked frame 16 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 17 in slot 2 (pipeline: recv=18, proc=17, sent=17)
+Server: Frame added to processing pipeline
+Server: Processing frame 17 from slot 2
+Server: Encoding frame 17
+Server: Frame 17 is not a keyframe
+Server: Motion estimation for frame 17
+Server: Motion estimation complete for frame 17
+Server: DCT/quantization for frame 17
+Server: Dequantization/IDCT for frame 17
+Server: Frame 17 encoded, size: 6658564 bytes
+Server: Marked frame 17 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 17 from slot 2
+Server: Sending encoded data for frame 17
+Server: Signaled client about encoded data for frame 17
+Server: Client acknowledged frame 17
+Server: Marked frame 17 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 18 in slot 0 (pipeline: recv=19, proc=18, sent=18)
+Server: Frame added to processing pipeline
+Server: Processing frame 18 from slot 0
+Server: Encoding frame 18
+Server: Frame 18 is not a keyframe
+Server: Motion estimation for frame 18
+Server: Motion estimation complete for frame 18
+Server: DCT/quantization for frame 18
+Server: Dequantization/IDCT for frame 18
+Server: Frame 18 encoded, size: 6658564 bytes
+Server: Marked frame 18 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 18 from slot 0
+Server: Sending encoded data for frame 18
+Server: Signaled client about encoded data for frame 18
+Server: Client acknowledged frame 18
+Server: Marked frame 18 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 19 in slot 1 (pipeline: recv=20, proc=19, sent=19)
+Server: Frame added to processing pipeline
+Server: Processing frame 19 from slot 1
+Server: Encoding frame 19
+Server: Frame 19 is not a keyframe
+Server: Motion estimation for frame 19
+Server: Motion estimation complete for frame 19
+Server: DCT/quantization for frame 19
+Server: Dequantization/IDCT for frame 19
+Server: Frame 19 encoded, size: 6658564 bytes
+Server: Marked frame 19 as processed (processing time: 1 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 19 from slot 1
+Server: Sending encoded data for frame 19
+Server: Signaled client about encoded data for frame 19
+Server: Client acknowledged frame 19
+Server: Marked frame 19 as sent (total pipeline time: 1 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 20 in slot 2 (pipeline: recv=21, proc=20, sent=20)
+Server: Frame added to processing pipeline
+Server: Processing frame 20 from slot 2
+Server: Encoding frame 20
+Server: Frame 20 is not a keyframe
+Server: Motion estimation for frame 20
+Server: Motion estimation complete for frame 20
+Server: DCT/quantization for frame 20
+Server: Dequantization/IDCT for frame 20
+Server: Frame 20 encoded, size: 6658564 bytes
+Server: Marked frame 20 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 20 from slot 2
+Server: Sending encoded data for frame 20
+Server: Signaled client about encoded data for frame 20
+Server: Client acknowledged frame 20
+Server: Marked frame 20 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 21 in slot 0 (pipeline: recv=22, proc=21, sent=21)
+Server: Frame added to processing pipeline
+Server: Processing frame 21 from slot 0
+Server: Encoding frame 21
+Server: Frame 21 is not a keyframe
+Server: Motion estimation for frame 21
+Server: Motion estimation complete for frame 21
+Server: DCT/quantization for frame 21
+Server: Dequantization/IDCT for frame 21
+Server: Frame 21 encoded, size: 6658564 bytes
+Server: Marked frame 21 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 21 from slot 0
+Server: Sending encoded data for frame 21
+Server: Signaled client about encoded data for frame 21
+Server: Client acknowledged frame 21
+Server: Marked frame 21 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 22 in slot 1 (pipeline: recv=23, proc=22, sent=22)
+Server: Frame added to processing pipeline
+Server: Processing frame 22 from slot 1
+Server: Encoding frame 22
+Server: Frame 22 is not a keyframe
+Server: Motion estimation for frame 22
+Server: Motion estimation complete for frame 22
+Server: DCT/quantization for frame 22
+Server: Dequantization/IDCT for frame 22
+Server: Frame 22 encoded, size: 6658564 bytes
+Server: Marked frame 22 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 22 from slot 1
+Server: Sending encoded data for frame 22
+Server: Signaled client about encoded data for frame 22
+Server: Client acknowledged frame 22
+Server: Marked frame 22 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 23 in slot 2 (pipeline: recv=24, proc=23, sent=23)
+Server: Frame added to processing pipeline
+Server: Processing frame 23 from slot 2
+Server: Encoding frame 23
+Server: Frame 23 is not a keyframe
+Server: Motion estimation for frame 23
+Server: Motion estimation complete for frame 23
+Server: DCT/quantization for frame 23
+Server: Dequantization/IDCT for frame 23
+Server: Frame 23 encoded, size: 6658564 bytes
+Server: Marked frame 23 as processed (processing time: 1 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 23 from slot 2
+Server: Sending encoded data for frame 23
+Server: Signaled client about encoded data for frame 23
+Server: Client acknowledged frame 23
+Server: Marked frame 23 as sent (total pipeline time: 1 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 24 in slot 0 (pipeline: recv=25, proc=24, sent=24)
+Server: Frame added to processing pipeline
+Server: Processing frame 24 from slot 0
+Server: Encoding frame 24
+Server: Frame 24 is not a keyframe
+Server: Motion estimation for frame 24
+Server: Motion estimation complete for frame 24
+Server: DCT/quantization for frame 24
+Server: Dequantization/IDCT for frame 24
+Server: Frame 24 encoded, size: 6658564 bytes
+Server: Marked frame 24 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 24 from slot 0
+Server: Sending encoded data for frame 24
+Server: Signaled client about encoded data for frame 24
+Server: Client acknowledged frame 24
+Server: Marked frame 24 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 25 in slot 1 (pipeline: recv=26, proc=25, sent=25)
+Server: Frame added to processing pipeline
+Server: Processing frame 25 from slot 1
+Server: Encoding frame 25
+Server: Frame 25 is not a keyframe
+Server: Motion estimation for frame 25
+Server: Motion estimation complete for frame 25
+Server: DCT/quantization for frame 25
+Server: Dequantization/IDCT for frame 25
+Server: Frame 25 encoded, size: 6658564 bytes
+Server: Marked frame 25 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 25 from slot 1
+Server: Sending encoded data for frame 25
+Server: Signaled client about encoded data for frame 25
+Server: Client acknowledged frame 25
+Server: Marked frame 25 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 26 in slot 2 (pipeline: recv=27, proc=26, sent=26)
+Server: Frame added to processing pipeline
+Server: Processing frame 26 from slot 2
+Server: Encoding frame 26
+Server: Frame 26 is not a keyframe
+Server: Motion estimation for frame 26
+Server: Motion estimation complete for frame 26
+Server: DCT/quantization for frame 26
+Server: Dequantization/IDCT for frame 26
+Server: Frame 26 encoded, size: 6658564 bytes
+Server: Marked frame 26 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 26 from slot 2
+Server: Sending encoded data for frame 26
+Server: Signaled client about encoded data for frame 26
+Server: Client acknowledged frame 26
+Server: Marked frame 26 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 27 in slot 0 (pipeline: recv=28, proc=27, sent=27)
+Server: Frame added to processing pipeline
+Server: Processing frame 27 from slot 0
+Server: Encoding frame 27
+Server: Frame 27 is not a keyframe
+Server: Motion estimation for frame 27
+Server: Motion estimation complete for frame 27
+Server: DCT/quantization for frame 27
+Server: Dequantization/IDCT for frame 27
+Server: Frame 27 encoded, size: 6658564 bytes
+Server: Marked frame 27 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 27 from slot 0
+Server: Sending encoded data for frame 27
+Server: Signaled client about encoded data for frame 27
+Server: Client acknowledged frame 27
+Server: Marked frame 27 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 28 in slot 1 (pipeline: recv=29, proc=28, sent=28)
+Server: Frame added to processing pipeline
+Server: Processing frame 28 from slot 1
+Server: Encoding frame 28
+Server: Frame 28 is not a keyframe
+Server: Motion estimation for frame 28
+Server: Motion estimation complete for frame 28
+Server: DCT/quantization for frame 28
+Server: Dequantization/IDCT for frame 28
+Server: Frame 28 encoded, size: 6658564 bytes
+Server: Marked frame 28 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 28 from slot 1
+Server: Sending encoded data for frame 28
+Server: Signaled client about encoded data for frame 28
+Server: Client acknowledged frame 28
+Server: Marked frame 28 as sent (total pipeline time: 0 seconds)
+Server: Received YUV frame with size 3110400 bytes
+Server: Stored frame 29 in slot 2 (pipeline: recv=30, proc=29, sent=29)
+Server: Frame added to processing pipeline
+Server: Processing frame 29 from slot 2
+Server: Encoding frame 29
+Server: Frame 29 is not a keyframe
+Server: Motion estimation for frame 29
+Server: Motion estimation complete for frame 29
+Server: DCT/quantization for frame 29
+Server: Dequantization/IDCT for frame 29
+Server: Frame 29 encoded, size: 6658564 bytes
+Server: Marked frame 29 as processed (processing time: 0 seconds)
+Server: No frames ready for processing, waiting...
+Server: Sending frame 29 from slot 2
+Server: Sending encoded data for frame 29
+Server: Signaled client about encoded data for frame 29
+Server: Client acknowledged frame 29
+Server: Marked frame 29 as sent (total pipeline time: 0 seconds)
+Server: Received quit command
+Server: Waiting for pipeline to finish processing remaining frames...
+Server: Sending thread exiting
+Server: Processing thread exiting
+Server: Final pipeline statistics:
+  Frames received: 30
+  Frames processed: 30
+  Frames sent: 30
+aaaaaa1ababab23Task pool destroyed
+Thread pool destroyed
+Server: Exiting
+
+real	0m7.480s
+user	0m11.954s
+sys	0m1.389s
+Tegra exit code: 0

@@ -20,11 +20,11 @@ fi
 
 PC_CMD="c63client"
 #PC_ARGS="/opt/Media/foreman.yuv -f 120 -o output -w 352 -h 288"
-PC_ARGS="/opt/Media/tractor.yuv -f 250 -o tractor -w 1920 -h 1080"
+PC_ARGS="/opt/Media/tractor.yuv -f 120 -o tractor -w 1920 -h 1080"
 
 DATE=$(date -u +%Y%m%d-%H%M%S)
 RSYNC_ARGS="-rt --exclude=logs/ --exclude=.*"
-BUILD_DIR="in5050-codec63-build"
+BUILD_DIR="in5050-codec63-build-philip"
 
 echo "Source dir: $SRC_DIR"
 
@@ -79,7 +79,7 @@ if [ -z "$PC" ]; then
         PC="in5050-2016-10"
         TEGRA="tegra-1"
     elif [ "$TEGRA" == "tegra-2" ]; then
-        PC="in5050-2016-10"
+        PC="in5050-2014-11"
         TEGRA="tegra-2"
     elif [ "$TEGRA" == "tegra-3" ]; then
         PC="in5050-2014-11"

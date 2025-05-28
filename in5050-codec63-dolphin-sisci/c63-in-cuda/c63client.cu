@@ -8,6 +8,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <time.h>
+#include <stdbool.h>
 
 #include <sisci_error.h>
 #include <sisci_api.h>
@@ -17,18 +21,242 @@
 #include "common.h"
 #include "tables.h"
 
-static char *output_file, *input_file;
-FILE *outfile;
+#define MAX_PIPELINE_FRAMES 3
 
+// Pipeline management structures
+typedef struct {
+    yuv_t *image;
+    int frame_number;
+    bool valid;
+    bool sent;        // Add this field
+    time_t send_time;
+} pipeline_slot_t;
+
+
+typedef struct {
+    pipeline_slot_t slots[MAX_PIPELINE_FRAMES];
+    int frames_in_pipeline;
+    int next_send_slot;
+    int next_receive_slot;
+    pthread_mutex_t mutex;
+    pthread_cond_t slot_available;  // Signals when a pipeline slot becomes available
+    pthread_cond_t frame_ready;     // Signals when a frame is ready to send
+    bool finished;
+    int total_frames_read;
+    int total_frames_sent;
+    int total_frames_received;
+} pipeline_manager_t;
+
+// Global variables
+static char *output_file, *input_file;
 static uint32_t remote_node = 0;
 static int limit_numframes = 0;
-
 static uint32_t width;
 static uint32_t height;
+static FILE *outfile;
 
-/* getopt */
-extern int optind;
-extern char *optarg;
+// SISCI resources
+typedef struct {
+    volatile struct send_segment *send_seg;
+    volatile struct recv_segment *recv_seg;
+    volatile struct recv_segment *server_recv;
+    volatile struct send_segment *server_send;
+    
+    sci_dma_queue_t dma_queue;
+    sci_local_segment_t send_segment;
+    sci_local_segment_t recv_segment;
+    sci_remote_segment_t remote_server_recv;
+    sci_remote_segment_t remote_server_send;
+    struct c63_common *cm;
+} sisci_resources_t;
+
+static sisci_resources_t g_sisci;
+static pipeline_manager_t pipeline_mgr;
+
+// Pipeline management functions
+void pipeline_manager_init(pipeline_manager_t *mgr) {
+    memset(mgr, 0, sizeof(pipeline_manager_t));
+    mgr->finished = false;
+    mgr->frames_in_pipeline = 0;
+    mgr->next_send_slot = 0;
+    mgr->next_receive_slot = 0;
+    
+    for (int i = 0; i < MAX_PIPELINE_FRAMES; i++) {
+        mgr->slots[i].valid = false;
+        mgr->slots[i].image = NULL;
+        mgr->slots[i].sent = false; 
+    }
+    
+    pthread_mutex_init(&mgr->mutex, NULL);
+    pthread_cond_init(&mgr->slot_available, NULL);
+    pthread_cond_init(&mgr->frame_ready, NULL);
+}
+
+void pipeline_manager_destroy(pipeline_manager_t *mgr) {
+    for (int i = 0; i < MAX_PIPELINE_FRAMES; i++) {
+        if (mgr->slots[i].image) {
+            free(mgr->slots[i].image->Y);
+            free(mgr->slots[i].image->U);
+            free(mgr->slots[i].image->V);
+            free(mgr->slots[i].image);
+        }
+    }
+    
+    pthread_mutex_destroy(&mgr->mutex);
+    pthread_cond_destroy(&mgr->slot_available);
+    pthread_cond_destroy(&mgr->frame_ready);
+}
+
+// Get an available slot for a new frame (blocks if pipeline is full)
+int pipeline_manager_get_send_slot(pipeline_manager_t *mgr) {
+    pthread_mutex_lock(&mgr->mutex);
+    
+    while (mgr->frames_in_pipeline >= MAX_PIPELINE_FRAMES && !mgr->finished) {
+        printf("Pipeline full, waiting for slot...\n");
+        pthread_cond_wait(&mgr->slot_available, &mgr->mutex);
+    }
+    
+    if (mgr->finished) {
+        pthread_mutex_unlock(&mgr->mutex);
+        return -1;
+    }
+    
+    int slot = mgr->next_send_slot;
+    mgr->next_send_slot = (mgr->next_send_slot + 1) % MAX_PIPELINE_FRAMES;
+    
+    pthread_mutex_unlock(&mgr->mutex);
+    return slot;
+}
+
+// Add a frame to the pipeline
+bool pipeline_manager_add_frame(pipeline_manager_t *mgr, int slot, yuv_t *image, int frame_number) {
+    pthread_mutex_lock(&mgr->mutex);
+    
+    if (mgr->finished || slot < 0 || slot >= MAX_PIPELINE_FRAMES) {
+        pthread_mutex_unlock(&mgr->mutex);
+        return false;
+    }
+    
+    mgr->slots[slot].image = image;
+    mgr->slots[slot].frame_number = frame_number;
+    mgr->slots[slot].valid = true;
+    mgr->slots[slot].send_time = time(NULL);
+    mgr->slots[slot].sent = false; 
+    mgr->frames_in_pipeline++;
+    mgr->total_frames_read++;
+    
+    printf("Added frame %d to pipeline slot %d (pipeline: %d/%d)\n", 
+           frame_number, slot, mgr->frames_in_pipeline, MAX_PIPELINE_FRAMES);
+    
+    pthread_cond_signal(&mgr->frame_ready);
+    pthread_mutex_unlock(&mgr->mutex);
+    return true;
+}
+
+// Get next frame to send
+pipeline_slot_t* pipeline_manager_get_frame_to_send(pipeline_manager_t *mgr) {
+    pthread_mutex_lock(&mgr->mutex);
+    
+    while (true) {
+        // Find the OLDEST unsent frame (FIFO order)
+        pipeline_slot_t *oldest_frame = NULL;
+        int oldest_frame_number = INT_MAX;
+        
+        for (int i = 0; i < MAX_PIPELINE_FRAMES; i++) {
+            if (mgr->slots[i].valid && !mgr->slots[i].sent) {
+                if (mgr->slots[i].frame_number < oldest_frame_number) {
+                    oldest_frame = &mgr->slots[i];
+                    oldest_frame_number = mgr->slots[i].frame_number;
+                }
+            }
+        }
+        
+        if (oldest_frame) {
+            printf("Consumer: Found oldest frame %d to send from slot %d\n", 
+                oldest_frame->frame_number, oldest_frame - mgr->slots);
+            pthread_mutex_unlock(&mgr->mutex);
+            return oldest_frame;
+        }
+        
+        // Check if we're done: finished reading AND all frames received back
+        if (mgr->finished && mgr->total_frames_received >= mgr->total_frames_read) {
+            printf("Consumer: All frames processed (read: %d, sent: %d, received: %d)\n",
+                   mgr->total_frames_read, mgr->total_frames_sent, mgr->total_frames_received);
+            pthread_mutex_unlock(&mgr->mutex);
+            return NULL;
+        }
+        
+        // Still waiting for frames to send or results to come back
+        printf("Consumer: Waiting for FIFO frame - Read: %d, Sent: %d, Received: %d, Pipeline: %d, Finished: %s\n", 
+               mgr->total_frames_read, mgr->total_frames_sent, mgr->total_frames_received,
+               mgr->frames_in_pipeline, mgr->finished ? "true" : "false");
+        
+        pthread_cond_wait(&mgr->frame_ready, &mgr->mutex);
+    }
+}
+
+// Mark frame as sent (ready to receive result)
+void pipeline_manager_mark_sent(pipeline_manager_t *mgr, int frame_number) {
+    pthread_mutex_lock(&mgr->mutex);
+    
+    // ADD THIS: Find the frame and mark it as sent
+    for (int i = 0; i < MAX_PIPELINE_FRAMES; i++) {
+        if (mgr->slots[i].valid && mgr->slots[i].frame_number == frame_number) {
+            mgr->slots[i].sent = true;
+            break;
+        }
+    }
+    
+    mgr->total_frames_sent++;
+    printf("Frame %d sent to server (sent: %d, in pipeline: %d)\n", 
+           frame_number, mgr->total_frames_sent, mgr->frames_in_pipeline);
+    pthread_mutex_unlock(&mgr->mutex);
+}
+
+// Remove frame from pipeline (when result received)
+void pipeline_manager_frame_completed(pipeline_manager_t *mgr, int frame_number) {
+    pthread_mutex_lock(&mgr->mutex);
+    
+    // Find and clear the slot
+    for (int i = 0; i < MAX_PIPELINE_FRAMES; i++) {
+        if (mgr->slots[i].valid && mgr->slots[i].frame_number == frame_number) {
+            if (mgr->slots[i].image) {
+                free(mgr->slots[i].image->Y);
+                free(mgr->slots[i].image->U);
+                free(mgr->slots[i].image->V);
+                free(mgr->slots[i].image);
+                mgr->slots[i].sent = false;
+                mgr->slots[i].image = NULL;
+            }
+            mgr->slots[i].valid = false;
+            mgr->frames_in_pipeline--;
+            mgr->total_frames_received++;
+            
+            printf("Frame %d completed, removed from pipeline (received: %d, pipeline: %d/%d)\n", 
+                   frame_number, mgr->total_frames_received, mgr->frames_in_pipeline, MAX_PIPELINE_FRAMES);
+            
+            pthread_cond_signal(&mgr->slot_available);
+            
+            // CRITICAL FIX: Signal consumer to check exit condition
+            if (mgr->finished && mgr->frames_in_pipeline == 0) {
+                printf("Pipeline empty and finished - signaling consumer to exit\n");
+                pthread_cond_signal(&mgr->frame_ready);
+            }
+            
+            break;
+        }
+    }
+    
+    pthread_mutex_unlock(&mgr->mutex);
+}
+
+void pipeline_manager_finish(pipeline_manager_t *mgr) {
+    pthread_mutex_lock(&mgr->mutex);
+    mgr->finished = true;
+    pthread_cond_broadcast(&mgr->slot_available);
+    pthread_cond_broadcast(&mgr->frame_ready);
+    pthread_mutex_unlock(&mgr->mutex);
+}
 
 /* Read planar YUV frames with 4:2:0 chroma sub-sampling */
 static yuv_t *read_yuv(FILE *file, struct c63_common *cm)
@@ -36,21 +264,22 @@ static yuv_t *read_yuv(FILE *file, struct c63_common *cm)
     size_t len = 0;
     yuv_t *image = (yuv_t *)malloc(sizeof(*image));
 
-    /* Read Y. The size of Y is the same as the size of the image. */
     image->Y = (uint8_t *)calloc(1, cm->padw[Y_COMPONENT] * cm->padh[Y_COMPONENT]);
     len += fread(image->Y, 1, width * height, file);
 
-    /* Read U. Given 4:2:0 chroma sub-sampling, the size is 1/4 of Y */
     image->U = (uint8_t *)calloc(1, cm->padw[U_COMPONENT] * cm->padh[U_COMPONENT]);
     len += fread(image->U, 1, (width * height) / 4, file);
 
-    /* Read V. Given 4:2:0 chroma sub-sampling, the size is 1/4 of Y. */
     image->V = (uint8_t *)calloc(1, cm->padw[V_COMPONENT] * cm->padh[V_COMPONENT]);
     len += fread(image->V, 1, (width * height) / 4, file);
 
     if (ferror(file))
     {
         perror("ferror");
+        free(image->Y);
+        free(image->U);
+        free(image->V);
+        free(image);
         exit(EXIT_FAILURE);
     }
 
@@ -76,116 +305,265 @@ static yuv_t *read_yuv(FILE *file, struct c63_common *cm)
     return image;
 }
 
-struct c63_common *
-init_c63_enc( int width, int height )
-{
-    int i;
-
-    /* calloc() sets allocated memory to zero */
-    c63_common *cm =
-        ( c63_common * ) calloc( 1, sizeof( struct c63_common ) );
-
-    cm->width = width;
-    cm->height = height;
-
-    cm->padw[Y_COMPONENT] = cm->ypw =
-        ( uint32_t ) ( ceil( width / 16.0f ) * 16 );
-    cm->padh[Y_COMPONENT] = cm->yph =
-        ( uint32_t ) ( ceil( height / 16.0f ) * 16 );
-    cm->padw[U_COMPONENT] = cm->upw =
-        ( uint32_t ) ( ceil( width * UX / ( YX * 8.0f ) ) * 8 );
-    cm->padh[U_COMPONENT] = cm->uph =
-        ( uint32_t ) ( ceil( height * UY / ( YY * 8.0f ) ) * 8 );
-    cm->padw[V_COMPONENT] = cm->vpw =
-        ( uint32_t ) ( ceil( width * VX / ( YX * 8.0f ) ) * 8 );
-    cm->padh[V_COMPONENT] = cm->vph =
-        ( uint32_t ) ( ceil( height * VY / ( YY * 8.0f ) ) * 8 );
-
-    cm->mb_cols = cm->ypw / 8;
-    cm->mb_rows = cm->yph / 8;
-
-    /* Quality parameters -- Home exam deliveries should have original values,
-       i.e., quantization factor should be 25, search range should be 16, and the
-       keyframe interval should be 100. */
-    cm->qp = 25;                // Constant quantization factor. Range: [1..50]
-    cm->me_search_range = 16;   // Pixels in every direction
-    cm->keyframe_interval = 100;        // Distance between keyframes
-
-    /* Initialize quantization tables */
-    for ( i = 0; i < 64; ++i )
-    {
-        cm->quanttbl[Y_COMPONENT][i] = yquanttbl_def[i] / ( cm->qp / 10.0 );
-        cm->quanttbl[U_COMPONENT][i] = uvquanttbl_def[i] / ( cm->qp / 10.0 );
-        cm->quanttbl[V_COMPONENT][i] = uvquanttbl_def[i] / ( cm->qp / 10.0 );
-    }
-
-    return cm;
-}
-
-void
-free_c63_enc( struct c63_common *cm )
-{
-    destroy_frame( cm->curframe );
-    free( cm );
-}
-
-/* Main client processing loop */
-int main_client_loop(struct c63_common *cm, FILE *infile, int limit_numframes,
-                    volatile struct client_segment *local_seg,
-                    volatile struct server_segment *remote_seg,
-                    sci_dma_queue_t dma_queue,
-                    sci_local_segment_t local_segment,
-                    sci_remote_segment_t remote_segment) 
-{
+// Producer thread - reads frames and adds them to pipeline (with flow control)
+void *producer_thread(void *arg) {
+    FILE *infile = (FILE *)arg;
     yuv_t *image;
     int numframes = 0;
+    
+    printf("Producer: Starting to read frames\n");
+    
+    while (1) {
+        // Check termination conditions BEFORE getting a slot
+        if (limit_numframes && numframes >= limit_numframes) {
+            printf("Producer: Reached frame limit (%d frames), stopping\n", limit_numframes);
+            break;
+        }
+        
+        // Try to read next frame first
+        image = read_yuv(infile, g_sisci.cm);
+        if (!image) {
+            printf("Producer: End of input file reached\n");
+            break;
+        }
+        
+        // Only get pipeline slot after we have a valid frame
+        int slot = pipeline_manager_get_send_slot(&pipeline_mgr);
+        if (slot < 0) {
+            printf("Producer: Pipeline finished, stopping\n");
+            // Free the frame we just read since we can't process it
+            free(image->Y);
+            free(image->U);
+            free(image->V);
+            free(image);
+            break;
+        }
+
+        printf("Producer: Read frame %d from disk\n", numframes);
+
+        if (!pipeline_manager_add_frame(&pipeline_mgr, slot, image, numframes)) {
+            printf("Producer: Failed to add frame to pipeline\n");
+            // Free the image since it wasn't added
+            free(image->Y);
+            free(image->U);
+            free(image->V);
+            free(image);
+            break;
+        }
+        
+        ++numframes;
+    }
+    
+    pipeline_manager_finish(&pipeline_mgr);
+    printf("Producer: Finished reading %d frames\n", numframes);
+    return NULL;
+}
+
+// Consumer thread - sends frames to server and receives/writes results
+void *consumer_thread(void *arg) {
     sci_error_t error;
     
-    printf("Client: Starting video encoding\n");
+    printf("Consumer: Starting to process frames\n");
     
-    // Send dimensions to server
+    while (true) {
+        pipeline_slot_t *slot = pipeline_manager_get_frame_to_send(&pipeline_mgr);
+        if (!slot) {
+            printf("Consumer: No more frames to process\n");
+            break;
+        }
+        
+        yuv_t *image = slot->image;
+        int frame_number = slot->frame_number;
+        
+        printf("Consumer: Processing frame %d\n", frame_number);
+
+        size_t y_size = width * height;
+        size_t u_size = (width * height) / 4;
+        size_t v_size = (width * height) / 4;
+        size_t total_yuv_size = y_size + u_size + v_size;
+
+        if (total_yuv_size > MESSAGE_SIZE) {
+            fprintf(stderr, "Consumer: ERROR - Total YUV frame size (%zu) exceeds message buffer size (%d)\n", 
+                   total_yuv_size, MESSAGE_SIZE);
+            pipeline_manager_frame_completed(&pipeline_mgr, frame_number);
+            continue;
+        }
+
+        // Pack YUV frames in send segment buffer
+        memcpy((void*)g_sisci.send_seg->message_buffer, image->Y, y_size);
+        memcpy((void*)(g_sisci.send_seg->message_buffer + y_size), image->U, u_size);
+        memcpy((void*)(g_sisci.send_seg->message_buffer + y_size + u_size), image->V, v_size);
+
+        // DMA transfer to server's receive segment
+        SCIStartDmaTransfer(g_sisci.dma_queue, 
+                        g_sisci.send_segment,
+                        g_sisci.remote_server_recv,
+                        offsetof(struct send_segment, message_buffer),
+                        total_yuv_size,
+                        offsetof(struct recv_segment, message_buffer),
+                        NO_CALLBACK, NULL, NO_FLAGS, &error);
+
+        if (error != SCI_ERR_OK) {
+            fprintf(stderr, "Consumer: YUV frame DMA transfer failed - Error code 0x%x\n", error);
+            pipeline_manager_frame_completed(&pipeline_mgr, frame_number);
+            continue;
+        }
+
+        SCIWaitForDMAQueue(g_sisci.dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+
+        // Signal server that YUV frame is ready
+        SCIFlush(NULL, NO_FLAGS);
+        g_sisci.server_recv->packet.cmd = CMD_YUV_DATA;
+        g_sisci.server_recv->packet.data_size = total_yuv_size;
+        g_sisci.server_recv->packet.y_size = y_size;
+        g_sisci.server_recv->packet.u_size = u_size;
+        g_sisci.server_recv->packet.v_size = v_size;
+        SCIFlush(NULL, NO_FLAGS);
+
+        printf("Consumer: Sent frame %d to server, waiting for acknowledgment\n", frame_number);
+        pipeline_manager_mark_sent(&pipeline_mgr, frame_number);
+
+        // Wait for frame acknowledgment
+        time_t frame_start = time(NULL);
+        bool frame_timeout = false;
+
+        while (g_sisci.recv_seg->packet.cmd != CMD_YUV_DATA_ACK && !frame_timeout) {
+            if (time(NULL) - frame_start > 30) {
+                frame_timeout = true;
+                fprintf(stderr, "Consumer: Timeout waiting for YUV frame acknowledgment\n");
+            }
+            usleep(1000);
+        }
+
+        if (frame_timeout) {
+            fprintf(stderr, "Consumer: Failed to get YUV frame acknowledgment, skipping frame %d\n", frame_number);
+            pipeline_manager_frame_completed(&pipeline_mgr, frame_number);
+            continue;
+        }
+
+        printf("Consumer: Frame %d acknowledged by server\n", frame_number);
+        g_sisci.recv_seg->packet.cmd = CMD_INVALID;
+
+        printf("Consumer: Waiting for encoded data for frame %d\n", frame_number);
+        time_t encode_start = time(NULL);
+        bool encode_timeout = false;
+        
+        while (g_sisci.recv_seg->packet.cmd != CMD_ENCODED_DATA && !encode_timeout) {
+            if (time(NULL) - encode_start > 120) {
+                encode_timeout = true;
+                fprintf(stderr, "Consumer: Timeout waiting for encoded data for frame %d\n", frame_number);
+            }
+            usleep(1000);
+        }
+        
+        if (encode_timeout) {
+            fprintf(stderr, "Consumer: Failed to receive encoded data, marking frame %d as completed anyway\n", frame_number);
+            pipeline_manager_frame_completed(&pipeline_mgr, frame_number);
+            continue;
+        }
+
+        printf("Consumer: Received encoded data for frame %d\n", frame_number);
+        
+        size_t data_size = g_sisci.recv_seg->packet.data_size;
+        
+        // Get keyframe flag
+        int keyframe = *((int*)g_sisci.recv_seg->message_buffer);
+        g_sisci.cm->curframe->keyframe = keyframe;
+        
+        // Get encoded data pointer
+        char* encoded_data = (char*)g_sisci.recv_seg->message_buffer + sizeof(int);
+        
+        // Copy encoded data to curframe structure
+        size_t ydct_size = g_sisci.cm->ypw * g_sisci.cm->yph * sizeof(int16_t);
+        memcpy(g_sisci.cm->curframe->residuals->Ydct, encoded_data, ydct_size);
+        encoded_data += ydct_size;
+        
+        size_t udct_size = g_sisci.cm->upw * g_sisci.cm->uph * sizeof(int16_t);
+        memcpy(g_sisci.cm->curframe->residuals->Udct, encoded_data, udct_size);
+        encoded_data += udct_size;
+        
+        size_t vdct_size = g_sisci.cm->vpw * g_sisci.cm->vph * sizeof(int16_t);
+        memcpy(g_sisci.cm->curframe->residuals->Vdct, encoded_data, vdct_size);
+        encoded_data += vdct_size;
+        
+        size_t mby_size = g_sisci.cm->mb_rows * g_sisci.cm->mb_cols * sizeof(struct macroblock);
+        memcpy(g_sisci.cm->curframe->mbs[Y_COMPONENT], encoded_data, mby_size);
+        encoded_data += mby_size;
+        
+        size_t mbu_size = (g_sisci.cm->mb_rows/2) * (g_sisci.cm->mb_cols/2) * sizeof(struct macroblock);
+        memcpy(g_sisci.cm->curframe->mbs[U_COMPONENT], encoded_data, mbu_size);
+        encoded_data += mbu_size;
+        
+        size_t mbv_size = (g_sisci.cm->mb_rows/2) * (g_sisci.cm->mb_cols/2) * sizeof(struct macroblock);
+        memcpy(g_sisci.cm->curframe->mbs[V_COMPONENT], encoded_data, mbv_size);
+        
+        // Acknowledge receipt of encoded data
+        g_sisci.recv_seg->packet.cmd = CMD_INVALID;
+        SCIFlush(NULL, NO_FLAGS);
+        g_sisci.server_send->packet.cmd = CMD_ENCODED_DATA_ACK;
+        SCIFlush(NULL, NO_FLAGS);
+        
+        // Write frame to disk
+        printf("Consumer: Writing frame %d to output file\n", frame_number);
+        write_frame(g_sisci.cm);
+        
+        printf("Consumer: Frame %d complete!\n", frame_number);
+        g_sisci.cm->framenum++;
+        g_sisci.cm->frames_since_keyframe++;
+        if (g_sisci.cm->curframe->keyframe) {
+            g_sisci.cm->frames_since_keyframe = 0;
+        }
+        
+        // Mark frame as completed (frees pipeline slot)
+        pipeline_manager_frame_completed(&pipeline_mgr, frame_number);
+    }
+    
+    printf("Consumer: Finished processing frames\n");
+    return NULL;
+}
+
+// Send dimensions to server
+int send_dimensions_to_server() {
+    sci_error_t error;
+    
     struct dimensions_data dim_data;
     dim_data.width = width;
     dim_data.height = height;
     
-    // Place dimensions in local buffer
-    memcpy((void*)local_seg->message_buffer, &dim_data, sizeof(struct dimensions_data));
+    memcpy((void*)g_sisci.send_seg->message_buffer, &dim_data, sizeof(struct dimensions_data));
     
-    // Transfer dimensions to server's segment
-    SCIStartDmaTransfer(dma_queue, 
-                       local_segment,
-                       remote_segment,
-                       offsetof(struct client_segment, message_buffer),  // Source offset
-                       sizeof(struct dimensions_data),                  // Size to transfer
-                       offsetof(struct server_segment, message_buffer),  // Destination offset
-                       NO_CALLBACK,
-                       NULL,
-                       NO_FLAGS,
-                       &error);
+    // DMA transfer to server's receive segment
+    SCIStartDmaTransfer(g_sisci.dma_queue, 
+        g_sisci.send_segment,
+        g_sisci.remote_server_recv,
+        offsetof(struct send_segment, message_buffer),
+        sizeof(struct dimensions_data),
+        offsetof(struct recv_segment, message_buffer),
+        NO_CALLBACK, NULL, NO_FLAGS, &error);
                        
     if (error != SCI_ERR_OK) {
         fprintf(stderr, "Client: SCIStartDmaTransfer for dimensions failed - Error code 0x%x\n", error);
         return -1;
     }
     
-    // Wait for transfer to complete
-    SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    SCIWaitForDMAQueue(g_sisci.dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
     
-    // Signal server that dimensions are ready
+    // Signal server
     SCIFlush(NULL, NO_FLAGS);
-    remote_seg->packet.cmd = CMD_DIMENSIONS;
+    g_sisci.server_recv->packet.cmd = CMD_DIMENSIONS;
     SCIFlush(NULL, NO_FLAGS);
     
-    // Wait for server to acknowledge dimensions
+    // Wait for acknowledgment
     printf("Client: Waiting for server to acknowledge dimensions\n");
     time_t dim_start = time(NULL);
     bool dim_timeout = false;
     
-    while (local_seg->packet.cmd != CMD_DIMENSIONS_ACK && !dim_timeout) {
-        if (time(NULL) - dim_start > 30) {  // 30 second timeout
+    while (g_sisci.recv_seg->packet.cmd != CMD_DIMENSIONS_ACK && !dim_timeout) {
+        if (time(NULL) - dim_start > 30) {
             dim_timeout = true;
             fprintf(stderr, "Client: Timeout waiting for dimensions acknowledgment\n");
         }
+        usleep(1000);
     }
     
     if (dim_timeout) {
@@ -194,351 +572,47 @@ int main_client_loop(struct c63_common *cm, FILE *infile, int limit_numframes,
     }
     
     printf("Client: Dimensions acknowledged by server\n");
-    local_seg->packet.cmd = CMD_INVALID;  // Reset command
+    g_sisci.recv_seg->packet.cmd = CMD_INVALID;
     
-    // Frame processing loop
-    while (1) {
-        // Read YUV frame
-        image = read_yuv(infile, cm);
-        if (!image) {
-            printf("Client: End of input file reached\n");
-            break;
-        }
-        
-        printf("Processing frame %d, ", numframes);
-        
-        // Calculate sizes of YUV components
-        size_t y_size = width * height;               // Y plane
-        size_t u_size = (width * height) / 4;         // U plane
-        size_t v_size = (width * height) / 4;         // V plane
-        
-        printf("Client: YUV plane sizes - Y: %zu bytes, U: %zu bytes, V: %zu bytes\n", 
-               y_size, u_size, v_size);
-        
-        // Verify buffer size is adequate
-        if (y_size > MESSAGE_SIZE || u_size > MESSAGE_SIZE || v_size > MESSAGE_SIZE) {
-            fprintf(stderr, "Client: ERROR - YUV plane size exceeds message buffer size (%d)\n", 
-                    MESSAGE_SIZE);
-            free(image->Y);
-            free(image->U);
-            free(image->V);
-            free(image);
-            return -1;
-        }
-        
-        //
-        // TRANSFER Y PLANE
-        //
-        printf("Client: Transferring Y plane (%zu bytes)\n", y_size);
-        
-        // Copy Y data to message buffer
-        memcpy((void*)local_seg->message_buffer, image->Y, y_size);
-        
-        // Start DMA transfer to server
-        SCIStartDmaTransfer(dma_queue, 
-                           local_segment,
-                           remote_segment,
-                           offsetof(struct client_segment, message_buffer),
-                           y_size,
-                           offsetof(struct server_segment, message_buffer),
-                           NO_CALLBACK,
-                           NULL,
-                           NO_FLAGS,
-                           &error);
-        
-        if (error != SCI_ERR_OK) {
-            fprintf(stderr, "Client: Y plane DMA transfer failed - Error code 0x%x\n", error);
-            free(image->Y);
-            free(image->U);
-            free(image->V);
-            free(image);
-            continue;  // Try next frame
-        }
-        
-        // Wait for Y plane transfer to complete
-        SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
-        printf("Client: Y plane DMA transfer complete\n");
-        
-        // Signal server that Y plane is ready
-        SCIFlush(NULL, NO_FLAGS);
-        remote_seg->packet.cmd = CMD_YUV_DATA;
-        remote_seg->packet.data_size = y_size;
-        SCIFlush(NULL, NO_FLAGS);
-        printf("Client: Y plane sent, waiting for acknowledgment\n");
-        
-        // Wait for Y plane acknowledgment
-        time_t y_start = time(NULL);
-        bool y_timeout = false;
-        
-        while (local_seg->packet.cmd != CMD_YUV_DATA_ACK && !y_timeout) {
-            if (time(NULL) - y_start > 30) {  // 30 second timeout
-                y_timeout = true;
-                fprintf(stderr, "Client: Timeout waiting for Y plane acknowledgment\n");
-            }
-        }
-        
-        if (y_timeout) {
-            fprintf(stderr, "Client: Failed to get Y plane acknowledgment, skipping frame\n");
-            free(image->Y);
-            free(image->U);
-            free(image->V);
-            free(image);
-            continue;  // Try next frame
-        }
-        
-        printf("Client: Y plane acknowledgment received from server\n");
-        local_seg->packet.cmd = CMD_INVALID;  // Reset command
-        printf("Client: Reset command flag. Current command value: %d\n", local_seg->packet.cmd);
-        
-        //
-        // TRANSFER U PLANE
-        //
-        printf("Client: Starting U plane transfer process\n");
-        printf("Client: U plane size: %zu bytes\n", u_size);
-        
-        // Copy U data to message buffer
-        printf("Client: Copying U plane to message buffer\n");
-        memcpy((void*)local_seg->message_buffer, image->U, u_size);
-        
-        // Start DMA transfer to server
-        printf("Client: Initiating DMA transfer for U plane\n");
-        SCIStartDmaTransfer(dma_queue, 
-                           local_segment,
-                           remote_segment,
-                           offsetof(struct client_segment, message_buffer),
-                           u_size,
-                           offsetof(struct server_segment, message_buffer),
-                           NO_CALLBACK,
-                           NULL,
-                           NO_FLAGS,
-                           &error);
-        
-        if (error != SCI_ERR_OK) {
-            fprintf(stderr, "Client: U plane DMA transfer failed - Error code 0x%x\n", error);
-            free(image->Y);
-            free(image->U);
-            free(image->V);
-            free(image);
-            continue;  // Try next frame
-        }
-        
-        // Wait for U plane transfer to complete
-        printf("Client: Waiting for U plane DMA transfer to complete\n");
-        SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
-        printf("Client: U plane DMA transfer completed\n");
-        
-        // Signal server that U plane is ready
-        printf("Client: Sending U plane ready signal to server\n");
-        SCIFlush(NULL, NO_FLAGS);
-        remote_seg->packet.cmd = CMD_YUV_DATA;
-        remote_seg->packet.data_size = u_size;
-        SCIFlush(NULL, NO_FLAGS);
-        printf("Client: U plane ready signal sent. Command value: %d, Data size: %u\n", 
-               remote_seg->packet.cmd, remote_seg->packet.data_size);
-        
-        // Wait for U plane acknowledgment
-        printf("Client: Waiting for U plane acknowledgment\n");
-        time_t u_start = time(NULL);
-        bool u_timeout = false;
-        
-        while (local_seg->packet.cmd != CMD_YUV_DATA_ACK && !u_timeout) {
-            if (time(NULL) - u_start > 30) {  // 30 second timeout
-                u_timeout = true;
-                fprintf(stderr, "Client: Timeout waiting for U plane acknowledgment\n");
-            }
-        }
-        
-        if (u_timeout) {
-            fprintf(stderr, "Client: Failed to get U plane acknowledgment, skipping frame\n");
-            free(image->Y);
-            free(image->U);
-            free(image->V);
-            free(image);
-            continue;  // Try next frame
-        }
-        
-        printf("Client: U plane acknowledgment received from server\n");
-        local_seg->packet.cmd = CMD_INVALID;  // Reset command
-        
-        //
-        // TRANSFER V PLANE
-        //
-        printf("Client: Starting V plane transfer process\n");
-        printf("Client: V plane size: %zu bytes\n", v_size);
-        
-        // Copy V data to message buffer
-        memcpy((void*)local_seg->message_buffer, image->V, v_size);
-        
-        // Start DMA transfer to server
-        SCIStartDmaTransfer(dma_queue, 
-                           local_segment,
-                           remote_segment,
-                           offsetof(struct client_segment, message_buffer),
-                           v_size,
-                           offsetof(struct server_segment, message_buffer),
-                           NO_CALLBACK,
-                           NULL,
-                           NO_FLAGS,
-                           &error);
-        
-        if (error != SCI_ERR_OK) {
-            fprintf(stderr, "Client: V plane DMA transfer failed - Error code 0x%x\n", error);
-            free(image->Y);
-            free(image->U);
-            free(image->V);
-            free(image);
-            continue;  // Try next frame
-        }
-        
-        // Wait for V plane transfer to complete
-        SCIWaitForDMAQueue(dma_queue, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
-        printf("Client: V plane DMA transfer completed\n");
-        
-        // Signal server that V plane is ready
-        SCIFlush(NULL, NO_FLAGS);
-        remote_seg->packet.cmd = CMD_YUV_DATA;
-        remote_seg->packet.data_size = v_size;
-        SCIFlush(NULL, NO_FLAGS);
-        printf("Client: V plane ready signal sent\n");
-        
-        // Wait for V plane acknowledgment
-        printf("Client: Waiting for V plane acknowledgment\n");
-        time_t v_start = time(NULL);
-        bool v_timeout = false;
-        
-        while (local_seg->packet.cmd != CMD_YUV_DATA_ACK && !v_timeout) {
-            if (time(NULL) - v_start > 30) {  // 30 second timeout
-                v_timeout = true;
-                fprintf(stderr, "Client: Timeout waiting for V plane acknowledgment\n");
-            }
-        }
-        
-        if (v_timeout) {
-            fprintf(stderr, "Client: Failed to get V plane acknowledgment, skipping frame\n");
-            free(image->Y);
-            free(image->U);
-            free(image->V);
-            free(image);
-            continue;  // Try next frame
-        }
-        
-        printf("Client: V plane acknowledgment received from server\n");
-        local_seg->packet.cmd = CMD_INVALID;  // Reset command
-        
-        // Free original image buffers as they're no longer needed
-        printf("Client: All YUV planes transferred successfully, freeing original image buffers\n");
-        free(image->Y);
-        free(image->U);
-        free(image->V);
-        free(image);
-        
-        //
-        // WAIT FOR ENCODED DATA FROM SERVER
-        //
-        printf("Client: Waiting for server to process and return encoded data\n");
-        time_t encode_start = time(NULL);
-        bool encode_timeout = false;
-        
-        while (local_seg->packet.cmd != CMD_ENCODED_DATA && !encode_timeout) {
-            if (time(NULL) - encode_start > 120) {  // 2 minute timeout - encoding can take time
-                encode_timeout = true;
-                fprintf(stderr, "Client: Timeout waiting for encoded data\n");
-            }
-            
-            // Print status every 10 seconds
-            if (!encode_timeout && (time(NULL) - encode_start) % 10 == 0 && time(NULL) > encode_start) {
-                printf("Client: Still waiting for encoded data... (%ld seconds)\n", 
-                       time(NULL) - encode_start);
-            }
-            
-        }
-        
-        if (encode_timeout) {
-            fprintf(stderr, "Client: Failed to receive encoded data, skipping frame\n");
-            continue;  // Try next frame
-        }
-        
-        //
-        // PROCESS ENCODED DATA
-        //
-        printf("Client: Received encoded data from server\n");
-        
-        // Get total data size
-        size_t data_size = local_seg->packet.data_size;
-        printf("Client: Encoded data size: %zu bytes\n", data_size);
-        
-        // Get keyframe flag
-        int keyframe = *((int*)local_seg->message_buffer);
-        cm->curframe->keyframe = keyframe;
-        printf("Client: Frame is %s\n", keyframe ? "a keyframe" : "not a keyframe");
-        
-        // Get a pointer to the encoded data (after the keyframe flag)
-        char* encoded_data = (char*)local_seg->message_buffer + sizeof(int);
-        
-        // Copy the encoded data to our curframe structure
-        // Ydct
-        size_t ydct_size = cm->ypw * cm->yph * sizeof(int16_t);
-        memcpy(cm->curframe->residuals->Ydct, encoded_data, ydct_size);
-        encoded_data += ydct_size;
-        
-        // Udct
-        size_t udct_size = cm->upw * cm->uph * sizeof(int16_t);
-        memcpy(cm->curframe->residuals->Udct, encoded_data, udct_size);
-        encoded_data += udct_size;
-        
-        // Vdct
-        size_t vdct_size = cm->vpw * cm->vph * sizeof(int16_t);
-        memcpy(cm->curframe->residuals->Vdct, encoded_data, vdct_size);
-        encoded_data += vdct_size;
-        
-        // Macroblocks - Y component
-        size_t mby_size = cm->mb_rows * cm->mb_cols * sizeof(struct macroblock);
-        memcpy(cm->curframe->mbs[Y_COMPONENT], encoded_data, mby_size);
-        encoded_data += mby_size;
-        
-        // Macroblocks - U component
-        size_t mbu_size = (cm->mb_rows/2) * (cm->mb_cols/2) * sizeof(struct macroblock);
-        memcpy(cm->curframe->mbs[U_COMPONENT], encoded_data, mbu_size);
-        encoded_data += mbu_size;
-        
-        // Macroblocks - V component
-        size_t mbv_size = (cm->mb_rows/2) * (cm->mb_cols/2) * sizeof(struct macroblock);
-        memcpy(cm->curframe->mbs[V_COMPONENT], encoded_data, mbv_size);
-        
-        // Acknowledge receipt of encoded data
-        printf("Client: Sending acknowledgment of encoded data receipt\n");
-        local_seg->packet.cmd = CMD_INVALID;  // Reset command first
-        SCIFlush(NULL, NO_FLAGS);
-        remote_seg->packet.cmd = CMD_ENCODED_DATA_ACK;
-        SCIFlush(NULL, NO_FLAGS);
-        
-        // Write the encoded frame to disk
-        printf("Client: Writing encoded frame to output file\n");
-        write_frame(cm);
-        
-        printf("Done!\n");
-        cm->framenum++;
-        cm->frames_since_keyframe++;
-        if (cm->curframe->keyframe) {
-            cm->frames_since_keyframe = 0;
-        }
-        
-        ++numframes;
-        
-        if (limit_numframes && numframes >= limit_numframes) {
-            printf("Client: Reached frame limit (%d frames), stopping\n", limit_numframes);
-            break;
-        }
+    return 0;
+}
+
+struct c63_common *init_c63_enc(int width, int height)
+{
+    int i;
+    c63_common *cm = (c63_common *)calloc(1, sizeof(struct c63_common));
+
+    cm->width = width;
+    cm->height = height;
+
+    cm->padw[Y_COMPONENT] = cm->ypw = (uint32_t)(ceil(width / 16.0f) * 16);
+    cm->padh[Y_COMPONENT] = cm->yph = (uint32_t)(ceil(height / 16.0f) * 16);
+    cm->padw[U_COMPONENT] = cm->upw = (uint32_t)(ceil(width * UX / (YX * 8.0f)) * 8);
+    cm->padh[U_COMPONENT] = cm->uph = (uint32_t)(ceil(height * UY / (YY * 8.0f)) * 8);
+    cm->padw[V_COMPONENT] = cm->vpw = (uint32_t)(ceil(width * VX / (YX * 8.0f)) * 8);
+    cm->padh[V_COMPONENT] = cm->vph = (uint32_t)(ceil(height * VY / (YY * 8.0f)) * 8);
+
+    cm->mb_cols = cm->ypw / 8;
+    cm->mb_rows = cm->yph / 8;
+
+    cm->qp = 25;
+    cm->me_search_range = 16;
+    cm->keyframe_interval = 100;
+
+    for (i = 0; i < 64; ++i)
+    {
+        cm->quanttbl[Y_COMPONENT][i] = yquanttbl_def[i] / (cm->qp / 10.0);
+        cm->quanttbl[U_COMPONENT][i] = uvquanttbl_def[i] / (cm->qp / 10.0);
+        cm->quanttbl[V_COMPONENT][i] = uvquanttbl_def[i] / (cm->qp / 10.0);
     }
-    
-    // Signal server to quit
-    printf("Client: Sending quit command to server\n");
-    SCIFlush(NULL, NO_FLAGS);
-    remote_seg->packet.cmd = CMD_QUIT;
-    SCIFlush(NULL, NO_FLAGS);
-    
-    printf("Client: Finished processing %d frames\n", numframes);
-    return numframes;
+
+    return cm;
+}
+
+void free_c63_enc(struct c63_common *cm)
+{
+    destroy_frame(cm->curframe);
+    free(cm);
 }
 
 static void print_help()
@@ -551,7 +625,6 @@ static void print_help()
     printf("  -o                             Output file (.c63)\n");
     printf("  [-f]                           Limit number of frames to encode\n");
     printf("\n");
-
     exit(EXIT_FAILURE);
 }
 
@@ -559,7 +632,6 @@ int main(int argc, char **argv)
 {
     unsigned int localAdapterNo = 0;
     int c;
-    yuv_t *image;
     sci_error_t error;
     
     if (argc == 1) {
@@ -604,7 +676,6 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
 
-    // Open output file
     outfile = fopen(output_file, "wb");
     if (outfile == NULL)
     {
@@ -612,23 +683,19 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
 
-    // Initialize encoder
-    struct c63_common *cm = init_c63_enc(width, height);
-    cm->e_ctx.fp = outfile;
+    g_sisci.cm = init_c63_enc(width, height);
+    g_sisci.cm->e_ctx.fp = outfile;
+    g_sisci.cm->curframe = create_frame(g_sisci.cm, NULL);
+    g_sisci.cm->refframe = create_frame(g_sisci.cm, NULL);
 
-    if (limit_numframes)
-    {
-        printf("Limited to %d frames.\n", limit_numframes);
-    }
-    cm->curframe = create_frame(cm, NULL);  // Create with NULL for a placeholder
-    cm->refframe = create_frame(cm, NULL); 
-    // Open input file
     FILE *infile = fopen(input_file, "rb");
     if (infile == NULL)
     {
         perror("fopen");
-        exit(EXIT_FAILURE);
+        exit(EXIT_FAILURE); 
     }
+
+    pipeline_manager_init(&pipeline_mgr);
 
     // Initialize SISCI
     SCIInitialize(NO_FLAGS, &error);
@@ -637,16 +704,9 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
 
-    // Set up SISCI resources
     sci_desc_t sd;
-    sci_local_segment_t localSegment;
-    sci_remote_segment_t remoteSegment;
-    sci_map_t localMap, remoteMap;
-    sci_dma_queue_t dmaQueue;
-    volatile struct client_segment *client_segment;
-    volatile struct server_segment *server_segment;
+    sci_map_t send_map, recv_map, server_recv_map, server_send_map;
 
-    // Open virtual device
     SCIOpen(&sd, NO_FLAGS, &error);
     if (error != SCI_ERR_OK) {
         fprintf(stderr, "SCIOpen failed - Error code 0x%x\n", error);
@@ -654,132 +714,152 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
     
-    // Create local segment
-    SCICreateSegment(sd,
-                     &localSegment,
-                     SEGMENT_CLIENT,
-                     sizeof(struct client_segment),
-                     NO_CALLBACK,
-                     NULL,
-                     NO_FLAGS,
-                     &error);
+    // Create client's send segment (for YUV data to server)
+    SCICreateSegment(sd, &g_sisci.send_segment, SEGMENT_CLIENT_SEND, sizeof(struct send_segment),
+                     NO_CALLBACK, NULL, NO_FLAGS, &error);
     if (error != SCI_ERR_OK) {
-        fprintf(stderr, "SCICreateSegment failed - Error code 0x%x\n", error);
-        SCIClose(sd, NO_FLAGS, &error);
-        SCITerminate();
+        fprintf(stderr, "SCICreateSegment (send) failed - Error code 0x%x\n", error);
         exit(EXIT_FAILURE);
     }
     
-    // Prepare segment
-    SCIPrepareSegment(localSegment, localAdapterNo, NO_FLAGS, &error);
+    // Create client's receive segment (for encoded data from server)
+    SCICreateSegment(sd, &g_sisci.recv_segment, SEGMENT_CLIENT_RECV, sizeof(struct recv_segment),
+                     NO_CALLBACK, NULL, NO_FLAGS, &error);
     if (error != SCI_ERR_OK) {
-        fprintf(stderr, "SCIPrepareSegment failed - Error code 0x%x\n", error);
-        SCIRemoveSegment(localSegment, NO_FLAGS, &error);
-        SCIClose(sd, NO_FLAGS, &error);
-        SCITerminate();
+        fprintf(stderr, "SCICreateSegment (recv) failed - Error code 0x%x\n", error);
+        exit(EXIT_FAILURE);
+    }
+    
+    // Prepare segments
+    SCIPrepareSegment(g_sisci.send_segment, localAdapterNo, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "SCIPrepareSegment (send) failed - Error code 0x%x\n", error);
+        exit(EXIT_FAILURE);
+    }
+    
+    SCIPrepareSegment(g_sisci.recv_segment, localAdapterNo, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "SCIPrepareSegment (recv) failed - Error code 0x%x\n", error);
         exit(EXIT_FAILURE);
     }
     
     // Create DMA queue
-    SCICreateDMAQueue(sd, &dmaQueue, localAdapterNo, 1, NO_FLAGS, &error);
+    SCICreateDMAQueue(sd, &g_sisci.dma_queue, localAdapterNo, 1, NO_FLAGS, &error);
     if (error != SCI_ERR_OK) {
         fprintf(stderr, "SCICreateDMAQueue failed - Error code 0x%x\n", error);
-        SCIRemoveSegment(localSegment, NO_FLAGS, &error);
-        SCIClose(sd, NO_FLAGS, &error);
-        SCITerminate();
         exit(EXIT_FAILURE);
     }
     
-    // Map local segment
-    client_segment = (volatile struct client_segment *)SCIMapLocalSegment(
-        localSegment, 
-        &localMap, 
-        0, 
-        sizeof(struct client_segment), 
-        NULL, 
-        NO_FLAGS, 
-        &error);
-    
+    // Map local segments
+    g_sisci.send_seg = (volatile struct send_segment *)SCIMapLocalSegment(
+        g_sisci.send_segment, &send_map, 0, sizeof(struct send_segment), NULL, NO_FLAGS, &error);
     if (error != SCI_ERR_OK) {
-        fprintf(stderr, "SCIMapLocalSegment failed - Error code 0x%x\n", error);
-        SCIRemoveDMAQueue(dmaQueue, NO_FLAGS, &error);
-        SCIRemoveSegment(localSegment, NO_FLAGS, &error);
-        SCIClose(sd, NO_FLAGS, &error);
-        SCITerminate();
+        fprintf(stderr, "SCIMapLocalSegment (send) failed - Error code 0x%x\n", error);
         exit(EXIT_FAILURE);
     }
     
-    // Initialize control packet
-    client_segment->packet.cmd = CMD_INVALID;
-    
-    // Make segment available
-    SCISetSegmentAvailable(localSegment, localAdapterNo, NO_FLAGS, &error);
+    g_sisci.recv_seg = (volatile struct recv_segment *)SCIMapLocalSegment(
+        g_sisci.recv_segment, &recv_map, 0, sizeof(struct recv_segment), NULL, NO_FLAGS, &error);
     if (error != SCI_ERR_OK) {
-        fprintf(stderr, "SCISetSegmentAvailable failed - Error code 0x%x\n", error);
-        SCIUnmapSegment(localMap, NO_FLAGS, &error);
-        SCIRemoveDMAQueue(dmaQueue, NO_FLAGS, &error);
-        SCIRemoveSegment(localSegment, NO_FLAGS, &error);
-        SCIClose(sd, NO_FLAGS, &error);
-        SCITerminate();
+        fprintf(stderr, "SCIMapLocalSegment (recv) failed - Error code 0x%x\n", error);
         exit(EXIT_FAILURE);
     }
     
-    printf("Client: Connecting to server segment...\n");
+    g_sisci.send_seg->packet.cmd = CMD_INVALID;
+    g_sisci.recv_seg->packet.cmd = CMD_INVALID;
     
-    // Connect to server segment
+    // Make segments available
+    SCISetSegmentAvailable(g_sisci.send_segment, localAdapterNo, NO_FLAGS, &error);
+    SCISetSegmentAvailable(g_sisci.recv_segment, localAdapterNo, NO_FLAGS, &error);
+    
+    printf("Client: Connecting to server segments...\n");
+    
+    // Connect to server's segments
     do {
-        SCIConnectSegment(sd,
-                          &remoteSegment,
-                          remote_node,
-                          SEGMENT_SERVER,
-                          localAdapterNo,
-                          NO_CALLBACK,
-                          NULL,
-                          SCI_INFINITE_TIMEOUT,
-                          NO_FLAGS,
-                          &error);
+        SCIConnectSegment(sd, &g_sisci.remote_server_recv, remote_node, SEGMENT_SERVER_RECV, localAdapterNo,
+                          NO_CALLBACK, NULL, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
     } while (error != SCI_ERR_OK);
     
-    printf("Client: Connected to server segment\n");
+    do {
+        SCIConnectSegment(sd, &g_sisci.remote_server_send, remote_node, SEGMENT_SERVER_SEND, localAdapterNo,
+                          NO_CALLBACK, NULL, SCI_INFINITE_TIMEOUT, NO_FLAGS, &error);
+    } while (error != SCI_ERR_OK);
     
-    // Map remote segment
-    server_segment = (volatile struct server_segment *)SCIMapRemoteSegment(
-        remoteSegment, 
-        &remoteMap, 
-        0,
-        sizeof(struct server_segment),
-        NULL, 
-        NO_FLAGS, 
-        &error);
+    printf("Client: Connected to server segments\n");
     
+    // Map server's segments
+    g_sisci.server_recv = (volatile struct recv_segment *)SCIMapRemoteSegment(
+        g_sisci.remote_server_recv, &server_recv_map, 0, sizeof(struct recv_segment), NULL, NO_FLAGS, &error);
     if (error != SCI_ERR_OK) {
-        fprintf(stderr, "SCIMapRemoteSegment failed - Error code 0x%x\n", error);
-        SCIDisconnectSegment(remoteSegment, NO_FLAGS, &error);
-        SCISetSegmentUnavailable(localSegment, localAdapterNo, NO_FLAGS, &error);
-        SCIUnmapSegment(localMap, NO_FLAGS, &error);
-        SCIRemoveDMAQueue(dmaQueue, NO_FLAGS, &error);
-        SCIRemoveSegment(localSegment, NO_FLAGS, &error);
-        SCIClose(sd, NO_FLAGS, &error);
-        SCITerminate();
+        fprintf(stderr, "SCIMapRemoteSegment (server recv) failed - Error code 0x%x\n", error);
+        exit(EXIT_FAILURE);
+    }
+
+    g_sisci.server_send = (volatile struct send_segment *)SCIMapRemoteSegment(
+        g_sisci.remote_server_send, &server_send_map, 0, sizeof(struct send_segment), NULL, NO_FLAGS, &error);
+    if (error != SCI_ERR_OK) {
+        fprintf(stderr, "SCIMapRemoteSegment (server send) failed - Error code 0x%x\n", error);
+        exit(EXIT_FAILURE);
+    }
+
+    // Send dimensions to server
+    if (send_dimensions_to_server() != 0) {
+        fprintf(stderr, "Failed to send dimensions to server\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // Create and start threads
+    pthread_t producer_tid, consumer_tid;
+    
+    printf("Client: Starting producer and consumer threads\n");
+    
+    if (pthread_create(&producer_tid, NULL, producer_thread, infile) != 0) {
+        fprintf(stderr, "Failed to create producer thread\n");
         exit(EXIT_FAILURE);
     }
     
-    // Enter main processing loop
-    main_client_loop(cm, infile, limit_numframes, client_segment, server_segment, 
-                     dmaQueue, localSegment, remoteSegment);
+    if (pthread_create(&consumer_tid, NULL, consumer_thread, NULL) != 0) {
+        fprintf(stderr, "Failed to create consumer thread\n");
+        exit(EXIT_FAILURE);
+    }
     
-    // Clean up resources
-    destroy_frame(cm->refframe);
+    // Wait for producer to finish reading
+    pthread_join(producer_tid, NULL);
+    printf("Client: Producer finished, waiting for consumer to process all frames\n");
+    
+    // Wait for consumer to finish processing all frames
+    pthread_join(consumer_tid, NULL);
+
+    // Verify all frames processed before sending QUIT
+    if (pipeline_mgr.total_frames_received != pipeline_mgr.total_frames_read) {
+        printf("Client: WARNING - Waiting for remaining frames...\n");
+        sleep(2);  // Give time for last frames to complete
+    }
+
+    // NOW send quit
+    printf("Client: Sending quit command to server\n");
+    SCIFlush(NULL, NO_FLAGS);
+    g_sisci.server_recv->packet.cmd = CMD_QUIT;
+    SCIFlush(NULL, NO_FLAGS);
+    
+    // Cleanup
+    pipeline_manager_destroy(&pipeline_mgr);
+    destroy_frame(g_sisci.cm->refframe);
     fclose(outfile);
     fclose(infile);
-    free_c63_enc(cm);
+    free_c63_enc(g_sisci.cm);
     
-    SCIDisconnectSegment(remoteSegment, NO_FLAGS, &error);
-    SCIUnmapSegment(remoteMap, NO_FLAGS, &error);
-    SCISetSegmentUnavailable(localSegment, localAdapterNo, NO_FLAGS, &error);
-    SCIUnmapSegment(localMap, NO_FLAGS, &error);
-    SCIRemoveDMAQueue(dmaQueue, NO_FLAGS, &error);
-    SCIRemoveSegment(localSegment, NO_FLAGS, &error);
+    SCIUnmapSegment(server_send_map, NO_FLAGS, &error);
+    SCIUnmapSegment(server_recv_map, NO_FLAGS, &error);
+    SCIDisconnectSegment(g_sisci.remote_server_send, NO_FLAGS, &error);
+    SCIDisconnectSegment(g_sisci.remote_server_recv, NO_FLAGS, &error);
+    SCISetSegmentUnavailable(g_sisci.recv_segment, localAdapterNo, NO_FLAGS, &error);
+    SCISetSegmentUnavailable(g_sisci.send_segment, localAdapterNo, NO_FLAGS, &error);
+    SCIUnmapSegment(recv_map, NO_FLAGS, &error);
+    SCIUnmapSegment(send_map, NO_FLAGS, &error);
+    SCIRemoveDMAQueue(g_sisci.dma_queue, NO_FLAGS, &error);
+    SCIRemoveSegment(g_sisci.recv_segment, NO_FLAGS, &error);
+    SCIRemoveSegment(g_sisci.send_segment, NO_FLAGS, &error);
     SCIClose(sd, NO_FLAGS, &error);
     SCITerminate();
     
