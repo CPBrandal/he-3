@@ -1,5 +1,3 @@
-#include <assert.h>
-#include <errno.h>
 #include <getopt.h>
 #include <limits.h>
 #include <math.h>
@@ -9,7 +7,6 @@
 #include <string.h>
 #include <unistd.h>
 #include <pthread.h>
-#include <semaphore.h>
 #include <time.h>
 #include <stdbool.h>
 
@@ -22,25 +19,27 @@
 #include "tables.h"
 
 #define MAX_PIPELINE_FRAMES 3
+#define PIPELINE_TIMEOUT_SECONDS 30
+#define ENCODE_TIMEOUT_SECONDS 120
+#define DMA_WAIT_MICROSECONDS 1000
 
 // Pipeline management structures
 typedef struct {
     yuv_t *image;
     int frame_number;
     bool valid;
-    bool sent;        // Add this field
+    bool sent;
     time_t send_time;
 } pipeline_slot_t;
-
 
 typedef struct {
     pipeline_slot_t slots[MAX_PIPELINE_FRAMES];
     int frames_in_pipeline;
     int next_send_slot;
-    int next_receive_slot;
+    int next_process_slot;      // NEW: Which slot to process next
     pthread_mutex_t mutex;
-    pthread_cond_t slot_available;  // Signals when a pipeline slot becomes available
-    pthread_cond_t frame_ready;     // Signals when a frame is ready to send
+    pthread_cond_t slot_available;
+    pthread_cond_t frame_ready;
     bool finished;
     int total_frames_read;
     int total_frames_sent;
@@ -79,7 +78,7 @@ void pipeline_manager_init(pipeline_manager_t *mgr) {
     mgr->finished = false;
     mgr->frames_in_pipeline = 0;
     mgr->next_send_slot = 0;
-    mgr->next_receive_slot = 0;
+    mgr->next_process_slot = 0;  // Initialize process pointer
     
     for (int i = 0; i < MAX_PIPELINE_FRAMES; i++) {
         mgr->slots[i].valid = false;
@@ -153,32 +152,23 @@ bool pipeline_manager_add_frame(pipeline_manager_t *mgr, int slot, yuv_t *image,
     return true;
 }
 
-// Get next frame to send
+// SIMPLIFIED: Get next frame to send - no more complex search!
 pipeline_slot_t* pipeline_manager_get_frame_to_send(pipeline_manager_t *mgr) {
     pthread_mutex_lock(&mgr->mutex);
     
     while (true) {
-        // Find the OLDEST unsent frame (FIFO order)
-        pipeline_slot_t *oldest_frame = NULL;
-        int oldest_frame_number = INT_MAX;
+        // Simply check the next slot in sequence
+        pipeline_slot_t *slot = &mgr->slots[mgr->next_process_slot];
         
-        for (int i = 0; i < MAX_PIPELINE_FRAMES; i++) {
-            if (mgr->slots[i].valid && !mgr->slots[i].sent) {
-                if (mgr->slots[i].frame_number < oldest_frame_number) {
-                    oldest_frame = &mgr->slots[i];
-                    oldest_frame_number = mgr->slots[i].frame_number;
-                }
-            }
-        }
-        
-        if (oldest_frame) {
-            printf("Consumer: Found oldest frame %d to send from slot %d\n", 
-                oldest_frame->frame_number, oldest_frame - mgr->slots);
+        // If this slot has a valid, unsent frame - return it
+        if (slot->valid && !slot->sent) {
+            printf("Consumer: Processing frame %d from slot %d\n", 
+                   slot->frame_number, mgr->next_process_slot);
             pthread_mutex_unlock(&mgr->mutex);
-            return oldest_frame;
+            return slot;
         }
         
-        // Check if we're done: finished reading AND all frames received back
+        // Check if we're completely done
         if (mgr->finished && mgr->total_frames_received >= mgr->total_frames_read) {
             printf("Consumer: All frames processed (read: %d, sent: %d, received: %d)\n",
                    mgr->total_frames_read, mgr->total_frames_sent, mgr->total_frames_received);
@@ -186,30 +176,27 @@ pipeline_slot_t* pipeline_manager_get_frame_to_send(pipeline_manager_t *mgr) {
             return NULL;
         }
         
-        // Still waiting for frames to send or results to come back
-        printf("Consumer: Waiting for FIFO frame - Read: %d, Sent: %d, Received: %d, Pipeline: %d, Finished: %s\n", 
-               mgr->total_frames_read, mgr->total_frames_sent, mgr->total_frames_received,
-               mgr->frames_in_pipeline, mgr->finished ? "true" : "false");
+        // Wait for the next frame to be ready
+        printf("Consumer: Waiting for frame in slot %d (Read: %d, Sent: %d, Received: %d)\n", 
+               mgr->next_process_slot, mgr->total_frames_read, mgr->total_frames_sent, mgr->total_frames_received);
         
         pthread_cond_wait(&mgr->frame_ready, &mgr->mutex);
     }
 }
 
-// Mark frame as sent (ready to receive result)
-void pipeline_manager_mark_sent(pipeline_manager_t *mgr, int frame_number) {
+// SIMPLIFIED: Mark frame as sent and advance process pointer
+void pipeline_manager_mark_sent(pipeline_manager_t *mgr, pipeline_slot_t *slot) {
     pthread_mutex_lock(&mgr->mutex);
     
-    // ADD THIS: Find the frame and mark it as sent
-    for (int i = 0; i < MAX_PIPELINE_FRAMES; i++) {
-        if (mgr->slots[i].valid && mgr->slots[i].frame_number == frame_number) {
-            mgr->slots[i].sent = true;
-            break;
-        }
-    }
-    
+    slot->sent = true;
     mgr->total_frames_sent++;
+    
+    // Always advance the process pointer since we process in order
+    mgr->next_process_slot = (mgr->next_process_slot + 1) % MAX_PIPELINE_FRAMES;
+    
     printf("Frame %d sent to server (sent: %d, in pipeline: %d)\n", 
-           frame_number, mgr->total_frames_sent, mgr->frames_in_pipeline);
+           slot->frame_number, mgr->total_frames_sent, mgr->frames_in_pipeline);
+           
     pthread_mutex_unlock(&mgr->mutex);
 }
 
@@ -237,7 +224,7 @@ void pipeline_manager_frame_completed(pipeline_manager_t *mgr, int frame_number)
             
             pthread_cond_signal(&mgr->slot_available);
             
-            // CRITICAL FIX: Signal consumer to check exit condition
+            // Signal consumer to check exit condition
             if (mgr->finished && mgr->frames_in_pipeline == 0) {
                 printf("Pipeline empty and finished - signaling consumer to exit\n");
                 pthread_cond_signal(&mgr->frame_ready);
@@ -421,18 +408,18 @@ void *consumer_thread(void *arg) {
         SCIFlush(NULL, NO_FLAGS);
 
         printf("Consumer: Sent frame %d to server, waiting for acknowledgment\n", frame_number);
-        pipeline_manager_mark_sent(&pipeline_mgr, frame_number);
+        pipeline_manager_mark_sent(&pipeline_mgr, slot);
 
         // Wait for frame acknowledgment
         time_t frame_start = time(NULL);
         bool frame_timeout = false;
 
         while (g_sisci.recv_seg->packet.cmd != CMD_YUV_DATA_ACK && !frame_timeout) {
-            if (time(NULL) - frame_start > 30) {
+            if (time(NULL) - frame_start > PIPELINE_TIMEOUT_SECONDS) {
                 frame_timeout = true;
                 fprintf(stderr, "Consumer: Timeout waiting for YUV frame acknowledgment\n");
             }
-            usleep(1000);
+            usleep(DMA_WAIT_MICROSECONDS);
         }
 
         if (frame_timeout) {
@@ -449,11 +436,11 @@ void *consumer_thread(void *arg) {
         bool encode_timeout = false;
         
         while (g_sisci.recv_seg->packet.cmd != CMD_ENCODED_DATA && !encode_timeout) {
-            if (time(NULL) - encode_start > 120) {
+            if (time(NULL) - encode_start > ENCODE_TIMEOUT_SECONDS) {
                 encode_timeout = true;
                 fprintf(stderr, "Consumer: Timeout waiting for encoded data for frame %d\n", frame_number);
             }
-            usleep(1000);
+            usleep(DMA_WAIT_MICROSECONDS);
         }
         
         if (encode_timeout) {
@@ -559,11 +546,11 @@ int send_dimensions_to_server() {
     bool dim_timeout = false;
     
     while (g_sisci.recv_seg->packet.cmd != CMD_DIMENSIONS_ACK && !dim_timeout) {
-        if (time(NULL) - dim_start > 30) {
+        if (time(NULL) - dim_start > PIPELINE_TIMEOUT_SECONDS) {
             dim_timeout = true;
             fprintf(stderr, "Client: Timeout waiting for dimensions acknowledgment\n");
         }
-        usleep(1000);
+        usleep(DMA_WAIT_MICROSECONDS);
     }
     
     if (dim_timeout) {
@@ -836,7 +823,7 @@ int main(int argc, char **argv)
         sleep(2);  // Give time for last frames to complete
     }
 
-    // NOW send quit
+    // Send quit command
     printf("Client: Sending quit command to server\n");
     SCIFlush(NULL, NO_FLAGS);
     g_sisci.server_recv->packet.cmd = CMD_QUIT;
