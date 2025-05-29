@@ -1,0 +1,16 @@
+SISCI initialized and connected
+Dimensions acknowledged
+Producer: Starting to read frames
+Sender: Starting
+Receiver: Starting
+Writer: Starting
+Writer: No more frames to write
+Writer: Finished
+Sender: Sending frame 0
+Producer: Finished reading 3 frames
+Terminated
+
+real	0m4,113s
+user	0m0,080s
+sys	0m0,247s
+PC exit code: 143

@@ -1,0 +1,443 @@
+SISCI initialized and connected
+Dimensions acknowledged
+Producer: Starting to read frames
+Communication: Starting
+Writer: Starting
+Writer: Waiting for frame 0
+Producer: Read frame 0 into slot 0
+Communication: Sending frame 0
+Producer: Read frame 1 into slot 1
+Producer: Read frame 2 into slot 2
+Communication: Frame 0 sent, waiting for result
+Communication: Frame 0 result received
+Communication: Sending frame 1
+Writer: Writing frame 0
+Communication: Frame 1 sent, waiting for result
+Writer: Frame 0 written successfully
+Writer: Waiting for frame 1
+Producer: Read frame 3 into slot 0
+Communication: Frame 1 result received
+Communication: Sending frame 2
+Writer: Writing frame 1
+Communication: Frame 2 sent, waiting for result
+Writer: Frame 1 written successfully
+Writer: Waiting for frame 2
+Producer: Read frame 4 into slot 1
+Communication: Frame 2 result received
+Communication: Sending frame 3
+Writer: Writing frame 2
+Communication: Frame 3 sent, waiting for result
+Writer: Frame 2 written successfully
+Writer: Waiting for frame 3
+Producer: Read frame 5 into slot 2
+Communication: Frame 3 result received
+Communication: Sending frame 4
+Writer: Writing frame 3
+Communication: Frame 4 sent, waiting for result
+Writer: Frame 3 written successfully
+Writer: Waiting for frame 4
+Producer: Read frame 6 into slot 0
+Communication: Frame 4 result received
+Communication: Sending frame 5
+Writer: Writing frame 4
+Communication: Frame 5 sent, waiting for result
+Writer: Frame 4 written successfully
+Writer: Waiting for frame 5
+Producer: Read frame 7 into slot 1
+Communication: Frame 5 result received
+Communication: Sending frame 6
+Writer: Writing frame 5
+Communication: Frame 6 sent, waiting for result
+Writer: Frame 5 written successfully
+Writer: Waiting for frame 6
+Producer: Read frame 8 into slot 2
+Communication: Frame 6 result received
+Communication: Sending frame 7
+Writer: Writing frame 6
+Communication: Frame 7 sent, waiting for result
+Writer: Frame 6 written successfully
+Writer: Waiting for frame 7
+Producer: Read frame 9 into slot 0
+Communication: Frame 7 result received
+Communication: Sending frame 8
+Writer: Writing frame 7
+Communication: Frame 8 sent, waiting for result
+Writer: Frame 7 written successfully
+Writer: Waiting for frame 8
+Producer: Read frame 10 into slot 1
+Communication: Frame 8 result received
+Communication: Sending frame 9
+Writer: Writing frame 8
+Communication: Frame 9 sent, waiting for result
+Writer: Frame 8 written successfully
+Writer: Waiting for frame 9
+Producer: Read frame 11 into slot 2
+Communication: Frame 9 result received
+Communication: Sending frame 10
+Writer: Writing frame 9
+Communication: Frame 10 sent, waiting for result
+Writer: Frame 9 written successfully
+Writer: Waiting for frame 10
+Producer: Read frame 12 into slot 0
+Communication: Frame 10 result received
+Communication: Sending frame 11
+Writer: Writing frame 10
+Communication: Frame 11 sent, waiting for result
+Writer: Frame 10 written successfully
+Writer: Waiting for frame 11
+Producer: Read frame 13 into slot 1
+Communication: Frame 11 result received
+Communication: Sending frame 12
+Writer: Writing frame 11
+Communication: Frame 12 sent, waiting for result
+Writer: Frame 11 written successfully
+Writer: Waiting for frame 12
+Producer: Read frame 14 into slot 2
+Communication: Frame 12 result received
+Communication: Sending frame 13
+Writer: Writing frame 12
+Communication: Frame 13 sent, waiting for result
+Writer: Frame 12 written successfully
+Writer: Waiting for frame 13
+Producer: Read frame 15 into slot 0
+Communication: Frame 13 result received
+Communication: Sending frame 14
+Writer: Writing frame 13
+Communication: Frame 14 sent, waiting for result
+Writer: Frame 13 written successfully
+Writer: Waiting for frame 14
+Producer: Read frame 16 into slot 1
+Communication: Frame 14 result received
+Communication: Sending frame 15
+Writer: Writing frame 14
+Communication: Frame 15 sent, waiting for result
+Writer: Frame 14 written successfully
+Writer: Waiting for frame 15
+Producer: Read frame 17 into slot 2
+Communication: Frame 15 result received
+Communication: Sending frame 16
+Writer: Writing frame 15
+Communication: Frame 16 sent, waiting for result
+Writer: Frame 15 written successfully
+Writer: Waiting for frame 16
+Producer: Read frame 18 into slot 0
+Communication: Frame 16 result received
+Communication: Sending frame 17
+Writer: Writing frame 16
+Communication: Frame 17 sent, waiting for result
+Writer: Frame 16 written successfully
+Writer: Waiting for frame 17
+Producer: Read frame 19 into slot 1
+Communication: Frame 17 result received
+Communication: Sending frame 18
+Writer: Writing frame 17
+Communication: Frame 18 sent, waiting for result
+Writer: Frame 17 written successfully
+Writer: Waiting for frame 18
+Producer: Read frame 20 into slot 2
+Communication: Frame 18 result received
+Communication: Sending frame 19
+Writer: Writing frame 18
+Communication: Frame 19 sent, waiting for result
+Writer: Frame 18 written successfully
+Writer: Waiting for frame 19
+Producer: Read frame 21 into slot 0
+Communication: Frame 19 result received
+Communication: Sending frame 20
+Writer: Writing frame 19
+Communication: Frame 20 sent, waiting for result
+Writer: Frame 19 written successfully
+Writer: Waiting for frame 20
+Producer: Read frame 22 into slot 1
+Communication: Frame 20 result received
+Communication: Sending frame 21
+Writer: Writing frame 20
+Communication: Frame 21 sent, waiting for result
+Writer: Frame 20 written successfully
+Writer: Waiting for frame 21
+Producer: Read frame 23 into slot 2
+Communication: Frame 21 result received
+Communication: Sending frame 22
+Writer: Writing frame 21
+Communication: Frame 22 sent, waiting for result
+Writer: Frame 21 written successfully
+Writer: Waiting for frame 22
+Producer: Read frame 24 into slot 0
+Communication: Frame 22 result received
+Communication: Sending frame 23
+Writer: Writing frame 22
+Communication: Frame 23 sent, waiting for result
+Writer: Frame 22 written successfully
+Writer: Waiting for frame 23
+Producer: Read frame 25 into slot 1
+Communication: Frame 23 result received
+Communication: Sending frame 24
+Writer: Writing frame 23
+Communication: Frame 24 sent, waiting for result
+Writer: Frame 23 written successfully
+Writer: Waiting for frame 24
+Producer: Read frame 26 into slot 2
+Communication: Frame 24 result received
+Communication: Sending frame 25
+Writer: Writing frame 24
+Communication: Frame 25 sent, waiting for result
+Writer: Frame 24 written successfully
+Writer: Waiting for frame 25
+Producer: Read frame 27 into slot 0
+Communication: Frame 25 result received
+Communication: Sending frame 26
+Writer: Writing frame 25
+Communication: Frame 26 sent, waiting for result
+Writer: Frame 25 written successfully
+Writer: Waiting for frame 26
+Producer: Read frame 28 into slot 1
+Communication: Frame 26 result received
+Communication: Sending frame 27
+Writer: Writing frame 26
+Communication: Frame 27 sent, waiting for result
+Writer: Frame 26 written successfully
+Writer: Waiting for frame 27
+Producer: Read frame 29 into slot 2
+Communication: Frame 27 result received
+Communication: Sending frame 28
+Writer: Writing frame 27
+Communication: Frame 28 sent, waiting for result
+Writer: Frame 27 written successfully
+Writer: Waiting for frame 28
+Producer: Read frame 30 into slot 0
+Communication: Frame 28 result received
+Communication: Sending frame 29
+Writer: Writing frame 28
+Communication: Frame 29 sent, waiting for result
+Writer: Frame 28 written successfully
+Writer: Waiting for frame 29
+Producer: Read frame 31 into slot 1
+Communication: Frame 29 result received
+Communication: Sending frame 30
+Writer: Writing frame 29
+Communication: Frame 30 sent, waiting for result
+Writer: Frame 29 written successfully
+Writer: Waiting for frame 30
+Producer: Read frame 32 into slot 2
+Communication: Frame 30 result received
+Communication: Sending frame 31
+Writer: Writing frame 30
+Communication: Frame 31 sent, waiting for result
+Writer: Frame 30 written successfully
+Writer: Waiting for frame 31
+Producer: Read frame 33 into slot 0
+Communication: Frame 31 result received
+Communication: Sending frame 32
+Writer: Writing frame 31
+Communication: Frame 32 sent, waiting for result
+Writer: Frame 31 written successfully
+Writer: Waiting for frame 32
+Producer: Read frame 34 into slot 1
+Communication: Frame 32 result received
+Communication: Sending frame 33
+Writer: Writing frame 32
+Communication: Frame 33 sent, waiting for result
+Writer: Frame 32 written successfully
+Writer: Waiting for frame 33
+Producer: Read frame 35 into slot 2
+Communication: Frame 33 result received
+Communication: Sending frame 34
+Writer: Writing frame 33
+Communication: Frame 34 sent, waiting for result
+Writer: Frame 33 written successfully
+Writer: Waiting for frame 34
+Producer: Read frame 36 into slot 0
+Communication: Frame 34 result received
+Communication: Sending frame 35
+Writer: Writing frame 34
+Communication: Frame 35 sent, waiting for result
+Writer: Frame 34 written successfully
+Writer: Waiting for frame 35
+Producer: Read frame 37 into slot 1
+Communication: Frame 35 result received
+Communication: Sending frame 36
+Writer: Writing frame 35
+Communication: Frame 36 sent, waiting for result
+Writer: Frame 35 written successfully
+Writer: Waiting for frame 36
+Producer: Read frame 38 into slot 2
+Communication: Frame 36 result received
+Communication: Sending frame 37
+Writer: Writing frame 36
+Communication: Frame 37 sent, waiting for result
+Writer: Frame 36 written successfully
+Writer: Waiting for frame 37
+Producer: Read frame 39 into slot 0
+Communication: Frame 37 result received
+Communication: Sending frame 38
+Writer: Writing frame 37
+Communication: Frame 38 sent, waiting for result
+Writer: Frame 37 written successfully
+Writer: Waiting for frame 38
+Producer: Read frame 40 into slot 1
+Communication: Frame 38 result received
+Communication: Sending frame 39
+Writer: Writing frame 38
+Communication: Frame 39 sent, waiting for result
+Writer: Frame 38 written successfully
+Writer: Waiting for frame 39
+Producer: Read frame 41 into slot 2
+Communication: Frame 39 result received
+Communication: Sending frame 40
+Writer: Writing frame 39
+Communication: Frame 40 sent, waiting for result
+Writer: Frame 39 written successfully
+Writer: Waiting for frame 40
+Producer: Read frame 42 into slot 0
+Communication: Frame 40 result received
+Communication: Sending frame 41
+Writer: Writing frame 40
+Communication: Frame 41 sent, waiting for result
+Writer: Frame 40 written successfully
+Writer: Waiting for frame 41
+Producer: Read frame 43 into slot 1
+Communication: Frame 41 result received
+Communication: Sending frame 42
+Writer: Writing frame 41
+Communication: Frame 42 sent, waiting for result
+Writer: Frame 41 written successfully
+Writer: Waiting for frame 42
+Producer: Read frame 44 into slot 2
+Communication: Frame 42 result received
+Communication: Sending frame 43
+Writer: Writing frame 42
+Communication: Frame 43 sent, waiting for result
+Writer: Frame 42 written successfully
+Writer: Waiting for frame 43
+Producer: Read frame 45 into slot 0
+Communication: Frame 43 result received
+Communication: Sending frame 44
+Writer: Writing frame 43
+Communication: Frame 44 sent, waiting for result
+Writer: Frame 43 written successfully
+Writer: Waiting for frame 44
+Producer: Read frame 46 into slot 1
+Communication: Frame 44 result received
+Communication: Sending frame 45
+Writer: Writing frame 44
+Communication: Frame 45 sent, waiting for result
+Writer: Frame 44 written successfully
+Writer: Waiting for frame 45
+Producer: Read frame 47 into slot 2
+Communication: Frame 45 result received
+Communication: Sending frame 46
+Writer: Writing frame 45
+Communication: Frame 46 sent, waiting for result
+Writer: Frame 45 written successfully
+Writer: Waiting for frame 46
+Producer: Read frame 48 into slot 0
+Communication: Frame 46 result received
+Communication: Sending frame 47
+Writer: Writing frame 46
+Communication: Frame 47 sent, waiting for result
+Writer: Frame 46 written successfully
+Writer: Waiting for frame 47
+Producer: Read frame 49 into slot 1
+Communication: Frame 47 result received
+Communication: Sending frame 48
+Writer: Writing frame 47
+Communication: Frame 48 sent, waiting for result
+Writer: Frame 47 written successfully
+Writer: Waiting for frame 48
+Producer: Read frame 50 into slot 2
+Communication: Frame 48 result received
+Communication: Sending frame 49
+Writer: Writing frame 48
+Communication: Frame 49 sent, waiting for result
+Writer: Frame 48 written successfully
+Writer: Waiting for frame 49
+Producer: Read frame 51 into slot 0
+Communication: Frame 49 result received
+Communication: Sending frame 50
+Writer: Writing frame 49
+Communication: Frame 50 sent, waiting for result
+Writer: Frame 49 written successfully
+Writer: Waiting for frame 50
+Producer: Read frame 52 into slot 1
+Communication: Frame 50 result received
+Communication: Sending frame 51
+Writer: Writing frame 50
+Communication: Frame 51 sent, waiting for result
+Writer: Frame 50 written successfully
+Writer: Waiting for frame 51
+Producer: Read frame 53 into slot 2
+Communication: Frame 51 result received
+Communication: Sending frame 52
+Writer: Writing frame 51
+Communication: Frame 52 sent, waiting for result
+Writer: Frame 51 written successfully
+Writer: Waiting for frame 52
+Producer: Read frame 54 into slot 0
+Communication: Frame 52 result received
+Communication: Sending frame 53
+Writer: Writing frame 52
+Communication: Frame 53 sent, waiting for result
+Writer: Frame 52 written successfully
+Writer: Waiting for frame 53
+Producer: Read frame 55 into slot 1
+Communication: Frame 53 result received
+Communication: Sending frame 54
+Writer: Writing frame 53
+Communication: Frame 54 sent, waiting for result
+Writer: Frame 53 written successfully
+Writer: Waiting for frame 54
+Producer: Read frame 56 into slot 2
+Communication: Frame 54 result received
+Communication: Sending frame 55
+Writer: Writing frame 54
+Communication: Frame 55 sent, waiting for result
+Writer: Frame 54 written successfully
+Writer: Waiting for frame 55
+Producer: Read frame 57 into slot 0
+Communication: Frame 55 result received
+Communication: Sending frame 56
+Writer: Writing frame 55
+Communication: Frame 56 sent, waiting for result
+Writer: Frame 55 written successfully
+Writer: Waiting for frame 56
+Producer: Read frame 58 into slot 1
+Communication: Frame 56 result received
+Communication: Sending frame 57
+Writer: Writing frame 56
+Communication: Frame 57 sent, waiting for result
+Writer: Frame 56 written successfully
+Writer: Waiting for frame 57
+Producer: Read frame 59 into slot 2
+Producer: Frame limit reached (60 frames)
+Producer: Finished reading 60 frames
+Writer: Waiting for frame 57
+Communication: Frame 57 result received
+Communication: Sending frame 58
+Writer: Writing frame 57
+Communication: Frame 58 sent, waiting for result
+Writer: Frame 57 written successfully
+Writer: Waiting for frame 58
+Communication: Frame 58 result received
+Writer: Writing frame 58
+Communication: Sending frame 59
+Communication: Frame 59 sent, waiting for result
+Writer: Frame 58 written successfully
+Writer: Waiting for frame 59
+Communication: Frame 59 result received
+Communication: All frames sent
+Communication: Finished
+Writer: Writing frame 59
+Writer: Frame 59 written successfully
+Writer: All frames written
+Writer: Finished
+Client finished:
+  Frames read: 60
+  Frames sent: 60
+  Frames received: 60
+  Frames written: 60
+Client finished successfully
+PC exit code: 0
+
+real	0m9,296s
+user	0m3,900s
+sys	0m0,210s

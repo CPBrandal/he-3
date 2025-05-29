@@ -1,0 +1,25 @@
+Server: Waiting for client connection...
+Server: Connected to client, ready for processing
+Server: Waiting for commands...
+Server: Received dimensions 1920x1080
+Thread pool initialized with 8 threads
+Task pool is initialized with 136 tasks
+Server: Simple queue memory initialized
+Server: Receiver thread started
+Server: Processor thread started
+Server: Ready for frames
+Server: Added frame 0 to queue slot 0
+Server: Processing frame 0
+Server: Added frame 1 to queue slot 1
+Server: Queue full, waiting...
+Server: Frame 0 sent (6658564 bytes, keyframe)
+Server: Frame processed, slot 0 now available
+Server: Processing frame 1
+Server: Added frame 2 to queue slot 0
+Server: Queue full, waiting...
+bash: line 1: 357172 Segmentation fault      (core dumped) stdbuf -oL -eL ./c63server -r 4
+
+real	0m1.129s
+user	0m0.582s
+sys	0m0.120s
+Tegra exit code: 139

@@ -20,7 +20,7 @@ fi
 
 PC_CMD="c63client"
 #PC_ARGS="/opt/Media/foreman.yuv -o output -w 352 -h 288"
-PC_ARGS="/opt/Media/tractor.yuv -f 60 -o tractor -w 1920 -h 1080"
+PC_ARGS="/opt/Media/tractor.yuv -f 60 -o tractorNew -w 1920 -h 1080"
 
 DATE=$(date -u +%Y%m%d-%H%M%S)
 RSYNC_ARGS="-rt --exclude=logs/ --exclude=.*"

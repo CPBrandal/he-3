@@ -18,22 +18,35 @@
 #include "common.h"
 #include "tables.h"
 
-// Simplified frame slot
+// Simplified frame buffer for better CPU utilization
 typedef struct {
-    yuv_t *image;
+    yuv_t *yuv_data;
+    char *encoded_data;
+    size_t encoded_size;
     int frame_number;
-    bool occupied;  // Single state flag instead of multiple
-} frame_slot_t;
+    bool ready_to_send;
+    bool result_received;
+    bool keyframe;
+} frame_buffer_t;
 
-// Simplified pipeline manager
+// Optimized pipeline with separate queues
 typedef struct {
-    frame_slot_t slots[MAX_FRAMES];
-    int head, tail;          // Just two pointers instead of three
-    int count;               // Number of frames currently in pipeline
-    int next_frame_number;   // Counter for frame numbering
-    bool finished;
+    frame_buffer_t frames[MAX_FRAMES];
+    
+    // Queue indices
+    int send_idx;           // Next frame to send
+    int result_idx;         // Next result to receive
+    int write_idx;          // Next frame to write
+    
+    int frames_read;        // Total frames read from file
+    int frames_sent;        // Total frames sent to server
+    int frames_received;    // Total results received
+    int frames_written;     // Total frames written to output
+    
+    bool finished_reading;
+    
     pthread_mutex_t mutex;
-    pthread_cond_t not_full, not_empty;
+    pthread_cond_t frames_available, results_available;
 } pipeline_t;
 
 // Global state
@@ -58,141 +71,34 @@ static struct {
 // Initialize pipeline
 void pipeline_init(pipeline_t *p) {
     memset(p, 0, sizeof(pipeline_t));
-    p->head = 0;
-    p->tail = 0;
-    p->count = 0;
-    p->next_frame_number = 0;
-    p->finished = false;
+    
+    for (int i = 0; i < MAX_FRAMES; i++) {
+        p->frames[i].encoded_data = (char*)malloc(MESSAGE_SIZE);
+        p->frames[i].yuv_data = NULL;
+        p->frames[i].ready_to_send = false;
+        p->frames[i].result_received = false;
+    }
     
     pthread_mutex_init(&p->mutex, NULL);
-    pthread_cond_init(&p->not_full, NULL);
-    pthread_cond_init(&p->not_empty, NULL);
+    pthread_cond_init(&p->frames_available, NULL);
+    pthread_cond_init(&p->results_available, NULL);
 }
 
 // Cleanup pipeline
 void pipeline_destroy(pipeline_t *p) {
-    pthread_mutex_lock(&p->mutex);
-    
-    // Free any remaining frames
     for (int i = 0; i < MAX_FRAMES; i++) {
-        if (p->slots[i].occupied && p->slots[i].image) {
-            free(p->slots[i].image->Y);
-            free(p->slots[i].image->U);
-            free(p->slots[i].image->V);
-            free(p->slots[i].image);
-            p->slots[i].image = NULL;
-            p->slots[i].occupied = false;
+        if (p->frames[i].yuv_data) {
+            free(p->frames[i].yuv_data->Y);
+            free(p->frames[i].yuv_data->U);
+            free(p->frames[i].yuv_data->V);
+            free(p->frames[i].yuv_data);
         }
+        free(p->frames[i].encoded_data);
     }
-    
-    pthread_mutex_unlock(&p->mutex);
     
     pthread_mutex_destroy(&p->mutex);
-    pthread_cond_destroy(&p->not_full);
-    pthread_cond_destroy(&p->not_empty);
-}
-
-// Add frame to pipeline (blocks if full)
-void pipeline_add_frame(pipeline_t *p, yuv_t *image) {
-    pthread_mutex_lock(&p->mutex);
-    
-    // Wait for space if pipeline is full
-    while (p->count == MAX_FRAMES && !p->finished) {
-        pthread_cond_wait(&p->not_full, &p->mutex);
-    }
-    
-    if (!p->finished) {
-        // Add frame to tail
-        frame_slot_t *slot = &p->slots[p->tail];
-        slot->image = image;
-        slot->frame_number = p->next_frame_number++;
-        slot->occupied = true;
-        
-        printf("Added frame %d to slot %d\n", slot->frame_number, p->tail);
-        
-        // Update tail and count
-        p->tail = (p->tail + 1) % MAX_FRAMES;
-        p->count++;
-        
-        pthread_cond_signal(&p->not_empty);
-    } else {
-        // Pipeline finished, free the image we can't use
-        free(image->Y);
-        free(image->U);
-        free(image->V);
-        free(image);
-    }
-    
-    pthread_mutex_unlock(&p->mutex);
-}
-
-// Get next frame to process
-frame_slot_t* pipeline_get_next_frame(pipeline_t *p) {
-    pthread_mutex_lock(&p->mutex);
-    
-    // Wait for frame if pipeline is empty
-    while (p->count == 0 && !p->finished) {
-        pthread_cond_wait(&p->not_empty, &p->mutex);
-    }
-    
-    if (p->count == 0) {
-        // No more frames
-        pthread_mutex_unlock(&p->mutex);
-        return NULL;
-    }
-    
-    // Return frame at head (don't remove yet)
-    frame_slot_t *slot = &p->slots[p->head];
-    pthread_mutex_unlock(&p->mutex);
-    return slot;
-}
-
-// Mark current frame as completed and remove it
-void pipeline_frame_done(pipeline_t *p) {
-    pthread_mutex_lock(&p->mutex);
-    
-    if (p->count > 0) {
-        frame_slot_t *slot = &p->slots[p->head];
-        
-        if (slot->occupied) {
-            // Free frame memory
-            if (slot->image) {
-                free(slot->image->Y);
-                free(slot->image->U);
-                free(slot->image->V);
-                free(slot->image);
-                slot->image = NULL;
-            }
-            
-            slot->occupied = false;
-            printf("Frame %d completed\n", slot->frame_number);
-            
-            // Update head and count
-            p->head = (p->head + 1) % MAX_FRAMES;
-            p->count--;
-            
-            pthread_cond_signal(&p->not_full);
-        }
-    }
-    
-    pthread_mutex_unlock(&p->mutex);
-}
-
-// Mark pipeline as finished
-void pipeline_finish(pipeline_t *p) {
-    pthread_mutex_lock(&p->mutex);
-    p->finished = true;
-    pthread_cond_broadcast(&p->not_full);
-    pthread_cond_broadcast(&p->not_empty);
-    pthread_mutex_unlock(&p->mutex);
-}
-
-// Get pipeline statistics (for debugging/monitoring)
-void pipeline_get_stats(pipeline_t *p, int *frames_in_pipeline, int *total_processed) {
-    pthread_mutex_lock(&p->mutex);
-    *frames_in_pipeline = p->count;
-    *total_processed = p->next_frame_number - p->count;
-    pthread_mutex_unlock(&p->mutex);
+    pthread_cond_destroy(&p->frames_available);
+    pthread_cond_destroy(&p->results_available);
 }
 
 // Read YUV frame
@@ -219,31 +125,65 @@ static yuv_t *read_yuv(FILE *file) {
     return image;
 }
 
-// Producer thread - reads frames
+// Producer thread - reads frames and buffers them
 void *producer_thread(void *arg) {
     FILE *infile = (FILE *)arg;
-    int frame_count = 0;
     
-    printf("Producer: Starting\n");
+    printf("Producer: Starting to read frames\n");
+    
+    pthread_mutex_lock(&g.pipeline.mutex);
     
     while (true) {
-        if (g.limit_frames && frame_count >= g.limit_frames) {
-            printf("Producer: Frame limit reached\n");
+        if (g.limit_frames && g.pipeline.frames_read >= g.limit_frames) {
+            printf("Producer: Frame limit reached (%d frames)\n", g.pipeline.frames_read);
             break;
         }
         
+        // Find next available slot
+        int slot_idx = -1;
+        for (int i = 0; i < MAX_FRAMES; i++) {
+            if (!g.pipeline.frames[i].ready_to_send && !g.pipeline.frames[i].yuv_data) {
+                slot_idx = i;
+                break;
+            }
+        }
+        
+        if (slot_idx == -1) {
+            // Wait for a slot to become available
+            pthread_cond_wait(&g.pipeline.frames_available, &g.pipeline.mutex);
+            continue;
+        }
+        
+        pthread_mutex_unlock(&g.pipeline.mutex);
+        
+        // Read frame outside of lock
         yuv_t *image = read_yuv(infile);
         if (!image) {
-            printf("Producer: End of file\n");
+            printf("Producer: End of file reached\n");
+            pthread_mutex_lock(&g.pipeline.mutex);
             break;
         }
         
-        pipeline_add_frame(&g.pipeline, image);
-        frame_count++;
+        pthread_mutex_lock(&g.pipeline.mutex);
+        
+        // Add frame to pipeline
+        frame_buffer_t *frame = &g.pipeline.frames[slot_idx];
+        frame->yuv_data = image;
+        frame->frame_number = g.pipeline.frames_read++;
+        frame->ready_to_send = true;
+        frame->result_received = false;
+        
+        printf("Producer: Read frame %d into slot %d\n", frame->frame_number, slot_idx);
+        
+        pthread_cond_signal(&g.pipeline.frames_available);
     }
     
-    pipeline_finish(&g.pipeline);
-    printf("Producer: Finished reading %d frames\n", frame_count);
+    g.pipeline.finished_reading = true;
+    pthread_cond_broadcast(&g.pipeline.frames_available);
+    pthread_cond_broadcast(&g.pipeline.results_available);
+    pthread_mutex_unlock(&g.pipeline.mutex);
+    
+    printf("Producer: Finished reading %d frames\n", g.pipeline.frames_read);
     return NULL;
 }
 
@@ -274,22 +214,47 @@ bool send_dma_data(void *data, size_t size, size_t offset) {
     return error == SCI_ERR_OK;
 }
 
-// Consumer thread - sends frames and receives results
-void *consumer_thread(void *arg) {
-    printf("Consumer: Starting\n");
+// Send/Receive thread - handles communication with server
+void *communication_thread(void *arg) {
+    printf("Communication: Starting\n");
     
     while (true) {
-        // Get next frame to process
-        frame_slot_t *slot = pipeline_get_next_frame(&g.pipeline);
-        if (!slot) {
-            printf("Consumer: No more frames\n");
-            break;
+        pthread_mutex_lock(&g.pipeline.mutex);
+        
+        // Look for frames ready to send
+        bool found_frame = false;
+        frame_buffer_t *frame_to_send = NULL;
+        
+        for (int i = 0; i < MAX_FRAMES; i++) {
+            if (g.pipeline.frames[i].ready_to_send && 
+                !g.pipeline.frames[i].result_received &&
+                g.pipeline.frames[i].frame_number == g.pipeline.frames_sent) {
+                frame_to_send = &g.pipeline.frames[i];
+                found_frame = true;
+                break;
+            }
         }
         
-        yuv_t *image = slot->image;
-        int frame_number = slot->frame_number;
+        if (!found_frame) {
+            if (g.pipeline.finished_reading && g.pipeline.frames_sent == g.pipeline.frames_read) {
+                pthread_mutex_unlock(&g.pipeline.mutex);
+                printf("Communication: All frames sent\n");
+                break;
+            }
+            
+            // Wait for frames to become available
+            pthread_cond_wait(&g.pipeline.frames_available, &g.pipeline.mutex);
+            pthread_mutex_unlock(&g.pipeline.mutex);
+            continue;
+        }
         
-        printf("Consumer: Processing frame %d\n", frame_number);
+        pthread_mutex_unlock(&g.pipeline.mutex);
+        
+        // Send frame
+        yuv_t *image = frame_to_send->yuv_data;
+        int frame_number = frame_to_send->frame_number;
+        
+        printf("Communication: Sending frame %d\n", frame_number);
         
         // Pack YUV data
         size_t y_size = g.width * g.height;
@@ -303,8 +268,7 @@ void *consumer_thread(void *arg) {
         
         // Send YUV data
         if (!send_dma_data((void*)g.send_seg->message_buffer, total_size, 0)) {
-            printf("Consumer: DMA transfer failed for frame %d\n", frame_number);
-            pipeline_frame_done(&g.pipeline);  // Mark as done even if failed
+            printf("Communication: DMA transfer failed for frame %d\n", frame_number);
             continue;
         }
         
@@ -316,16 +280,20 @@ void *consumer_thread(void *arg) {
         
         // Wait for YUV acknowledgment
         if (!wait_for_command(CMD_YUV_DATA_ACK, g.recv_seg, TIMEOUT_SECONDS)) {
-            printf("Consumer: Timeout waiting for YUV ACK for frame %d\n", frame_number);
-            pipeline_frame_done(&g.pipeline);
+            printf("Communication: Timeout waiting for YUV ACK for frame %d\n", frame_number);
             continue;
         }
         g.recv_seg->packet.cmd = CMD_INVALID;
         
-        // Wait for encoded data
+        pthread_mutex_lock(&g.pipeline.mutex);
+        g.pipeline.frames_sent++;
+        pthread_mutex_unlock(&g.pipeline.mutex);
+        
+        printf("Communication: Frame %d sent, waiting for result\n", frame_number);
+        
+        // Wait for encoded data (can take longer)
         if (!wait_for_command(CMD_ENCODED_DATA, g.recv_seg, TIMEOUT_SECONDS * 4)) {
-            printf("Consumer: Timeout waiting for encoded data for frame %d\n", frame_number);
-            pipeline_frame_done(&g.pipeline);
+            printf("Communication: Timeout waiting for encoded data for frame %d\n", frame_number);
             continue;
         }
         
@@ -334,39 +302,99 @@ void *consumer_thread(void *arg) {
         char *encoded_data = (char*)g.recv_seg->message_buffer;
         
         // Copy keyframe flag
-        g.cm->curframe->keyframe = *((int*)encoded_data);
+        frame_to_send->keyframe = *((int*)encoded_data);
         encoded_data += sizeof(int);
         
-        // Copy DCT data
-        size_t ydct_size = g.cm->ypw * g.cm->yph * sizeof(int16_t);
-        memcpy(g.cm->curframe->residuals->Ydct, encoded_data, ydct_size);
-        encoded_data += ydct_size;
-        
-        size_t udct_size = g.cm->upw * g.cm->uph * sizeof(int16_t);
-        memcpy(g.cm->curframe->residuals->Udct, encoded_data, udct_size);
-        encoded_data += udct_size;
-        
-        size_t vdct_size = g.cm->vpw * g.cm->vph * sizeof(int16_t);
-        memcpy(g.cm->curframe->residuals->Vdct, encoded_data, vdct_size);
-        encoded_data += vdct_size;
-        
-        // Copy macroblock data
-        size_t mby_size = g.cm->mb_rows * g.cm->mb_cols * sizeof(struct macroblock);
-        memcpy(g.cm->curframe->mbs[Y_COMPONENT], encoded_data, mby_size);
-        encoded_data += mby_size;
-        
-        size_t mbu_size = (g.cm->mb_rows/2) * (g.cm->mb_cols/2) * sizeof(struct macroblock);
-        memcpy(g.cm->curframe->mbs[U_COMPONENT], encoded_data, mbu_size);
-        encoded_data += mbu_size;
-        
-        size_t mbv_size = (g.cm->mb_rows/2) * (g.cm->mb_cols/2) * sizeof(struct macroblock);
-        memcpy(g.cm->curframe->mbs[V_COMPONENT], encoded_data, mbv_size);
+        // Copy encoded data
+        memcpy(frame_to_send->encoded_data, encoded_data, data_size - sizeof(int));
+        frame_to_send->encoded_size = data_size - sizeof(int);
         
         // Acknowledge encoded data
         g.recv_seg->packet.cmd = CMD_INVALID;
         SCIFlush(NULL, NO_FLAGS);
         g.server_send->packet.cmd = CMD_ENCODED_DATA_ACK;
         SCIFlush(NULL, NO_FLAGS);
+        
+        pthread_mutex_lock(&g.pipeline.mutex);
+        frame_to_send->result_received = true;
+        g.pipeline.frames_received++;
+        pthread_cond_signal(&g.pipeline.results_available);
+        pthread_mutex_unlock(&g.pipeline.mutex);
+        
+        printf("Communication: Frame %d result received\n", frame_number);
+    }
+    
+    printf("Communication: Finished\n");
+    return NULL;
+}
+
+// Writer thread - writes frames to output in correct order
+void *writer_thread(void *arg) {
+    printf("Writer: Starting\n");
+    
+    while (true) {
+        pthread_mutex_lock(&g.pipeline.mutex);
+        
+        // Look for the next frame to write
+        frame_buffer_t *frame_to_write = NULL;
+        int expected_frame = g.pipeline.frames_written;
+        
+        for (int i = 0; i < MAX_FRAMES; i++) {
+            if (g.pipeline.frames[i].result_received && 
+                g.pipeline.frames[i].frame_number == expected_frame) {
+                frame_to_write = &g.pipeline.frames[i];
+                break;
+            }
+        }
+        
+        if (!frame_to_write) {
+            if (g.pipeline.finished_reading && 
+                g.pipeline.frames_written == g.pipeline.frames_read) {
+                pthread_mutex_unlock(&g.pipeline.mutex);
+                printf("Writer: All frames written\n");
+                break;
+            }
+            
+            printf("Writer: Waiting for frame %d\n", expected_frame);
+            pthread_cond_wait(&g.pipeline.results_available, &g.pipeline.mutex);
+            pthread_mutex_unlock(&g.pipeline.mutex);
+            continue;
+        }
+        
+        pthread_mutex_unlock(&g.pipeline.mutex);
+        
+        printf("Writer: Writing frame %d\n", frame_to_write->frame_number);
+        
+        // Reconstruct frame data from encoded data
+        char *ptr = frame_to_write->encoded_data;
+        
+        // Copy DCT data
+        size_t ydct_size = g.cm->ypw * g.cm->yph * sizeof(int16_t);
+        memcpy(g.cm->curframe->residuals->Ydct, ptr, ydct_size);
+        ptr += ydct_size;
+        
+        size_t udct_size = g.cm->upw * g.cm->uph * sizeof(int16_t);
+        memcpy(g.cm->curframe->residuals->Udct, ptr, udct_size);
+        ptr += udct_size;
+        
+        size_t vdct_size = g.cm->vpw * g.cm->vph * sizeof(int16_t);
+        memcpy(g.cm->curframe->residuals->Vdct, ptr, vdct_size);
+        ptr += vdct_size;
+        
+        // Copy macroblock data
+        size_t mby_size = g.cm->mb_rows * g.cm->mb_cols * sizeof(struct macroblock);
+        memcpy(g.cm->curframe->mbs[Y_COMPONENT], ptr, mby_size);
+        ptr += mby_size;
+        
+        size_t mbu_size = (g.cm->mb_rows/2) * (g.cm->mb_cols/2) * sizeof(struct macroblock);
+        memcpy(g.cm->curframe->mbs[U_COMPONENT], ptr, mbu_size);
+        ptr += mbu_size;
+        
+        size_t mbv_size = (g.cm->mb_rows/2) * (g.cm->mb_cols/2) * sizeof(struct macroblock);
+        memcpy(g.cm->curframe->mbs[V_COMPONENT], ptr, mbv_size);
+        
+        // Set keyframe flag
+        g.cm->curframe->keyframe = frame_to_write->keyframe;
         
         // Write frame
         write_frame(g.cm);
@@ -376,12 +404,26 @@ void *consumer_thread(void *arg) {
             g.cm->frames_since_keyframe = 0;
         }
         
-        // Mark frame as completed (this will free the memory and update pipeline)
-        pipeline_frame_done(&g.pipeline);
-        printf("Consumer: Frame %d complete\n", frame_number);
+        printf("Writer: Frame %d written successfully\n", frame_to_write->frame_number);
+        
+        // Cleanup frame
+        pthread_mutex_lock(&g.pipeline.mutex);
+        if (frame_to_write->yuv_data) {
+            free(frame_to_write->yuv_data->Y);
+            free(frame_to_write->yuv_data->U);
+            free(frame_to_write->yuv_data->V);
+            free(frame_to_write->yuv_data);
+            frame_to_write->yuv_data = NULL;
+        }
+        frame_to_write->ready_to_send = false;
+        frame_to_write->result_received = false;
+        g.pipeline.frames_written++;
+        
+        pthread_cond_signal(&g.pipeline.frames_available);
+        pthread_mutex_unlock(&g.pipeline.mutex);
     }
     
-    printf("Consumer: Finished\n");
+    printf("Writer: Finished\n");
     return NULL;
 }
 
@@ -574,19 +616,29 @@ int main(int argc, char **argv) {
         exit(EXIT_FAILURE);
     }
     
-    // Start threads
-    pthread_t producer_tid, consumer_tid;
-    pthread_create(&producer_tid, NULL, producer_thread, infile);
-    pthread_create(&consumer_tid, NULL, consumer_thread, NULL);
+    // Start optimized threads
+    pthread_t producer_tid, communication_tid, writer_tid;
     
-    // Wait for threads
+    pthread_create(&producer_tid, NULL, producer_thread, infile);
+    pthread_create(&communication_tid, NULL, communication_thread, NULL);
+    pthread_create(&writer_tid, NULL, writer_thread, NULL);
+    
+    // Wait for all threads
     pthread_join(producer_tid, NULL);
-    pthread_join(consumer_tid, NULL);
+    pthread_join(communication_tid, NULL);
+    pthread_join(writer_tid, NULL);
     
     // Send quit command
     SCIFlush(NULL, NO_FLAGS);
     g.server_recv->packet.cmd = CMD_QUIT;
     SCIFlush(NULL, NO_FLAGS);
+    
+    // Print statistics
+    printf("Client finished:\n");
+    printf("  Frames read: %d\n", g.pipeline.frames_read);
+    printf("  Frames sent: %d\n", g.pipeline.frames_sent);
+    printf("  Frames received: %d\n", g.pipeline.frames_received);
+    printf("  Frames written: %d\n", g.pipeline.frames_written);
     
     // Cleanup
     pipeline_destroy(&g.pipeline);

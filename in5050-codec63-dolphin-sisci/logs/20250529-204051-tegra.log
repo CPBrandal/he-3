@@ -1,0 +1,1226 @@
+Server: Waiting for client connection...
+Server: Connected to client, ready for processing
+Server: Waiting for dimensions...
+Server: Received dimensions 1920x1080
+Thread pool initialized with 7 threads
+Task pool is initialized with 136 tasks
+Server: Receiver thread started
+Server: Encoder thread started
+Server: Sender thread started
+Server: Dimensions acknowledged, processing threads started
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 0 received in slot 0
+Server: Encoding frame 0
+Server: Frame 0 encoded (6658564 bytes, keyframe)
+Server: Frame 0 encoded
+Server: Sending frame 0 (6658564 bytes)
+Server: Frame 0 acknowledged
+Server: Frame 0 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 1 received in slot 0
+Server: Encoding frame 1
+Server: Frame 1 encoded (6658564 bytes, non-keyframe)
+Server: Frame 1 encoded
+Server: Sending frame 1 (6658564 bytes)
+Server: Frame 1 acknowledged
+Server: Frame 1 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 2 received in slot 0
+Server: Encoding frame 2
+Server: Frame 2 encoded (6658564 bytes, non-keyframe)
+Server: Frame 2 encoded
+Server: Sending frame 2 (6658564 bytes)
+Server: Frame 2 acknowledged
+Server: Frame 2 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 3 received in slot 0
+Server: Encoding frame 3
+Server: Frame 3 encoded (6658564 bytes, non-keyframe)
+Server: Frame 3 encoded
+Server: Sending frame 3 (6658564 bytes)
+Server: Frame 3 acknowledged
+Server: Frame 3 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 4 received in slot 0
+Server: Encoding frame 4
+Server: Frame 4 encoded (6658564 bytes, non-keyframe)
+Server: Frame 4 encoded
+Server: Sending frame 4 (6658564 bytes)
+Server: Frame 4 acknowledged
+Server: Frame 4 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 5 received in slot 0
+Server: Encoding frame 5
+Server: Frame 5 encoded (6658564 bytes, non-keyframe)
+Server: Frame 5 encoded
+Server: Sending frame 5 (6658564 bytes)
+Server: Frame 5 acknowledged
+Server: Frame 5 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 6 received in slot 0
+Server: Encoding frame 6
+Server: Frame 6 encoded (6658564 bytes, non-keyframe)
+Server: Frame 6 encoded
+Server: Sending frame 6 (6658564 bytes)
+Server: Frame 6 acknowledged
+Server: Frame 6 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 7 received in slot 0
+Server: Encoding frame 7
+Server: Frame 7 encoded (6658564 bytes, non-keyframe)
+Server: Frame 7 encoded
+Server: Sending frame 7 (6658564 bytes)
+Server: Frame 7 acknowledged
+Server: Frame 7 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 8 received in slot 0
+Server: Encoding frame 8
+Server: Frame 8 encoded (6658564 bytes, non-keyframe)
+Server: Frame 8 encoded
+Server: Sending frame 8 (6658564 bytes)
+Server: Frame 8 acknowledged
+Server: Frame 8 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 9 received in slot 0
+Server: Encoding frame 9
+Server: Frame 9 encoded (6658564 bytes, non-keyframe)
+Server: Frame 9 encoded
+Server: Sending frame 9 (6658564 bytes)
+Server: Frame 9 acknowledged
+Server: Frame 9 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 10 received in slot 0
+Server: Encoding frame 10
+Server: Frame 10 encoded (6658564 bytes, non-keyframe)
+Server: Frame 10 encoded
+Server: Sending frame 10 (6658564 bytes)
+Server: Frame 10 acknowledged
+Server: Frame 10 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 11 received in slot 0
+Server: Encoding frame 11
+Server: Frame 11 encoded (6658564 bytes, non-keyframe)
+Server: Frame 11 encoded
+Server: Sending frame 11 (6658564 bytes)
+Server: Frame 11 acknowledged
+Server: Frame 11 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 12 received in slot 0
+Server: Encoding frame 12
+Server: Frame 12 encoded (6658564 bytes, non-keyframe)
+Server: Frame 12 encoded
+Server: Sending frame 12 (6658564 bytes)
+Server: Frame 12 acknowledged
+Server: Frame 12 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 13 received in slot 0
+Server: Encoding frame 13
+Server: Frame 13 encoded (6658564 bytes, non-keyframe)
+Server: Frame 13 encoded
+Server: Sending frame 13 (6658564 bytes)
+Server: Frame 13 acknowledged
+Server: Frame 13 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 14 received in slot 0
+Server: Encoding frame 14
+Server: Frame 14 encoded (6658564 bytes, non-keyframe)
+Server: Frame 14 encoded
+Server: Sending frame 14 (6658564 bytes)
+Server: Frame 14 acknowledged
+Server: Frame 14 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 15 received in slot 0
+Server: Encoding frame 15
+Server: Frame 15 encoded (6658564 bytes, non-keyframe)
+Server: Frame 15 encoded
+Server: Sending frame 15 (6658564 bytes)
+Server: Frame 15 acknowledged
+Server: Frame 15 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 16 received in slot 0
+Server: Encoding frame 16
+Server: Frame 16 encoded (6658564 bytes, non-keyframe)
+Server: Frame 16 encoded
+Server: Sending frame 16 (6658564 bytes)
+Server: Frame 16 acknowledged
+Server: Frame 16 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 17 received in slot 0
+Server: Encoding frame 17
+Server: Frame 17 encoded (6658564 bytes, non-keyframe)
+Server: Frame 17 encoded
+Server: Sending frame 17 (6658564 bytes)
+Server: Frame 17 acknowledged
+Server: Frame 17 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 18 received in slot 0
+Server: Encoding frame 18
+Server: Frame 18 encoded (6658564 bytes, non-keyframe)
+Server: Frame 18 encoded
+Server: Sending frame 18 (6658564 bytes)
+Server: Frame 18 acknowledged
+Server: Frame 18 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 19 received in slot 0
+Server: Encoding frame 19
+Server: Frame 19 encoded (6658564 bytes, non-keyframe)
+Server: Frame 19 encoded
+Server: Sending frame 19 (6658564 bytes)
+Server: Frame 19 acknowledged
+Server: Frame 19 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 20 received in slot 0
+Server: Encoding frame 20
+Server: Frame 20 encoded (6658564 bytes, non-keyframe)
+Server: Frame 20 encoded
+Server: Sending frame 20 (6658564 bytes)
+Server: Frame 20 acknowledged
+Server: Frame 20 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 21 received in slot 0
+Server: Encoding frame 21
+Server: Frame 21 encoded (6658564 bytes, non-keyframe)
+Server: Frame 21 encoded
+Server: Sending frame 21 (6658564 bytes)
+Server: Frame 21 acknowledged
+Server: Frame 21 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 22 received in slot 0
+Server: Encoding frame 22
+Server: Frame 22 encoded (6658564 bytes, non-keyframe)
+Server: Frame 22 encoded
+Server: Sending frame 22 (6658564 bytes)
+Server: Frame 22 acknowledged
+Server: Frame 22 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 23 received in slot 0
+Server: Encoding frame 23
+Server: Frame 23 encoded (6658564 bytes, non-keyframe)
+Server: Frame 23 encoded
+Server: Sending frame 23 (6658564 bytes)
+Server: Frame 23 acknowledged
+Server: Frame 23 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 24 received in slot 0
+Server: Encoding frame 24
+Server: Frame 24 encoded (6658564 bytes, non-keyframe)
+Server: Frame 24 encoded
+Server: Sending frame 24 (6658564 bytes)
+Server: Frame 24 acknowledged
+Server: Frame 24 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 25 received in slot 0
+Server: Encoding frame 25
+Server: Frame 25 encoded (6658564 bytes, non-keyframe)
+Server: Frame 25 encoded
+Server: Sending frame 25 (6658564 bytes)
+Server: Frame 25 acknowledged
+Server: Frame 25 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 26 received in slot 0
+Server: Encoding frame 26
+Server: Frame 26 encoded (6658564 bytes, non-keyframe)
+Server: Frame 26 encoded
+Server: Sending frame 26 (6658564 bytes)
+Server: Frame 26 acknowledged
+Server: Frame 26 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 27 received in slot 0
+Server: Encoding frame 27
+Server: Frame 27 encoded (6658564 bytes, non-keyframe)
+Server: Frame 27 encoded
+Server: Sending frame 27 (6658564 bytes)
+Server: Frame 27 acknowledged
+Server: Frame 27 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 28 received in slot 0
+Server: Encoding frame 28
+Server: Frame 28 encoded (6658564 bytes, non-keyframe)
+Server: Frame 28 encoded
+Server: Sending frame 28 (6658564 bytes)
+Server: Frame 28 acknowledged
+Server: Frame 28 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 29 received in slot 0
+Server: Encoding frame 29
+Server: Frame 29 encoded (6658564 bytes, non-keyframe)
+Server: Frame 29 encoded
+Server: Sending frame 29 (6658564 bytes)
+Server: Frame 29 acknowledged
+Server: Frame 29 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 30 received in slot 0
+Server: Encoding frame 30
+Server: Frame 30 encoded (6658564 bytes, non-keyframe)
+Server: Frame 30 encoded
+Server: Sending frame 30 (6658564 bytes)
+Server: Frame 30 acknowledged
+Server: Frame 30 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 31 received in slot 0
+Server: Encoding frame 31
+Server: Frame 31 encoded (6658564 bytes, non-keyframe)
+Server: Frame 31 encoded
+Server: Sending frame 31 (6658564 bytes)
+Server: Frame 31 acknowledged
+Server: Frame 31 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 32 received in slot 0
+Server: Encoding frame 32
+Server: Frame 32 encoded (6658564 bytes, non-keyframe)
+Server: Frame 32 encoded
+Server: Sending frame 32 (6658564 bytes)
+Server: Frame 32 acknowledged
+Server: Frame 32 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 33 received in slot 0
+Server: Encoding frame 33
+Server: Frame 33 encoded (6658564 bytes, non-keyframe)
+Server: Frame 33 encoded
+Server: Sending frame 33 (6658564 bytes)
+Server: Frame 33 acknowledged
+Server: Frame 33 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 34 received in slot 0
+Server: Encoding frame 34
+Server: Frame 34 encoded (6658564 bytes, non-keyframe)
+Server: Frame 34 encoded
+Server: Sending frame 34 (6658564 bytes)
+Server: Frame 34 acknowledged
+Server: Frame 34 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 35 received in slot 0
+Server: Encoding frame 35
+Server: Frame 35 encoded (6658564 bytes, non-keyframe)
+Server: Frame 35 encoded
+Server: Sending frame 35 (6658564 bytes)
+Server: Frame 35 acknowledged
+Server: Frame 35 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 36 received in slot 0
+Server: Encoding frame 36
+Server: Frame 36 encoded (6658564 bytes, non-keyframe)
+Server: Frame 36 encoded
+Server: Sending frame 36 (6658564 bytes)
+Server: Frame 36 acknowledged
+Server: Frame 36 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 37 received in slot 0
+Server: Encoding frame 37
+Server: Frame 37 encoded (6658564 bytes, non-keyframe)
+Server: Frame 37 encoded
+Server: Sending frame 37 (6658564 bytes)
+Server: Frame 37 acknowledged
+Server: Frame 37 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 38 received in slot 0
+Server: Encoding frame 38
+Server: Frame 38 encoded (6658564 bytes, non-keyframe)
+Server: Frame 38 encoded
+Server: Sending frame 38 (6658564 bytes)
+Server: Frame 38 acknowledged
+Server: Frame 38 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 39 received in slot 0
+Server: Encoding frame 39
+Server: Frame 39 encoded (6658564 bytes, non-keyframe)
+Server: Frame 39 encoded
+Server: Sending frame 39 (6658564 bytes)
+Server: Frame 39 acknowledged
+Server: Frame 39 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 40 received in slot 0
+Server: Encoding frame 40
+Server: Frame 40 encoded (6658564 bytes, non-keyframe)
+Server: Frame 40 encoded
+Server: Sending frame 40 (6658564 bytes)
+Server: Frame 40 acknowledged
+Server: Frame 40 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 41 received in slot 0
+Server: Encoding frame 41
+Server: Frame 41 encoded (6658564 bytes, non-keyframe)
+Server: Frame 41 encoded
+Server: Sending frame 41 (6658564 bytes)
+Server: Frame 41 acknowledged
+Server: Frame 41 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 42 received in slot 0
+Server: Encoding frame 42
+Server: Frame 42 encoded (6658564 bytes, non-keyframe)
+Server: Frame 42 encoded
+Server: Sending frame 42 (6658564 bytes)
+Server: Frame 42 acknowledged
+Server: Frame 42 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 43 received in slot 0
+Server: Encoding frame 43
+Server: Frame 43 encoded (6658564 bytes, non-keyframe)
+Server: Frame 43 encoded
+Server: Sending frame 43 (6658564 bytes)
+Server: Frame 43 acknowledged
+Server: Frame 43 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 44 received in slot 0
+Server: Encoding frame 44
+Server: Frame 44 encoded (6658564 bytes, non-keyframe)
+Server: Frame 44 encoded
+Server: Sending frame 44 (6658564 bytes)
+Server: Frame 44 acknowledged
+Server: Frame 44 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 45 received in slot 0
+Server: Encoding frame 45
+Server: Frame 45 encoded (6658564 bytes, non-keyframe)
+Server: Frame 45 encoded
+Server: Sending frame 45 (6658564 bytes)
+Server: Frame 45 acknowledged
+Server: Frame 45 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 46 received in slot 0
+Server: Encoding frame 46
+Server: Frame 46 encoded (6658564 bytes, non-keyframe)
+Server: Frame 46 encoded
+Server: Sending frame 46 (6658564 bytes)
+Server: Frame 46 acknowledged
+Server: Frame 46 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 47 received in slot 0
+Server: Encoding frame 47
+Server: Frame 47 encoded (6658564 bytes, non-keyframe)
+Server: Frame 47 encoded
+Server: Sending frame 47 (6658564 bytes)
+Server: Frame 47 acknowledged
+Server: Frame 47 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 48 received in slot 0
+Server: Encoding frame 48
+Server: Frame 48 encoded (6658564 bytes, non-keyframe)
+Server: Frame 48 encoded
+Server: Sending frame 48 (6658564 bytes)
+Server: Frame 48 acknowledged
+Server: Frame 48 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 49 received in slot 0
+Server: Encoding frame 49
+Server: Frame 49 encoded (6658564 bytes, non-keyframe)
+Server: Frame 49 encoded
+Server: Sending frame 49 (6658564 bytes)
+Server: Frame 49 acknowledged
+Server: Frame 49 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 50 received in slot 0
+Server: Encoding frame 50
+Server: Frame 50 encoded (6658564 bytes, non-keyframe)
+Server: Frame 50 encoded
+Server: Sending frame 50 (6658564 bytes)
+Server: Frame 50 acknowledged
+Server: Frame 50 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 51 received in slot 0
+Server: Encoding frame 51
+Server: Frame 51 encoded (6658564 bytes, non-keyframe)
+Server: Frame 51 encoded
+Server: Sending frame 51 (6658564 bytes)
+Server: Frame 51 acknowledged
+Server: Frame 51 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 52 received in slot 0
+Server: Encoding frame 52
+Server: Frame 52 encoded (6658564 bytes, non-keyframe)
+Server: Frame 52 encoded
+Server: Sending frame 52 (6658564 bytes)
+Server: Frame 52 acknowledged
+Server: Frame 52 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 53 received in slot 0
+Server: Encoding frame 53
+Server: Frame 53 encoded (6658564 bytes, non-keyframe)
+Server: Frame 53 encoded
+Server: Sending frame 53 (6658564 bytes)
+Server: Frame 53 acknowledged
+Server: Frame 53 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 54 received in slot 0
+Server: Encoding frame 54
+Server: Frame 54 encoded (6658564 bytes, non-keyframe)
+Server: Frame 54 encoded
+Server: Sending frame 54 (6658564 bytes)
+Server: Frame 54 acknowledged
+Server: Frame 54 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 55 received in slot 0
+Server: Encoding frame 55
+Server: Frame 55 encoded (6658564 bytes, non-keyframe)
+Server: Frame 55 encoded
+Server: Sending frame 55 (6658564 bytes)
+Server: Frame 55 acknowledged
+Server: Frame 55 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 56 received in slot 0
+Server: Encoding frame 56
+Server: Frame 56 encoded (6658564 bytes, non-keyframe)
+Server: Frame 56 encoded
+Server: Sending frame 56 (6658564 bytes)
+Server: Frame 56 acknowledged
+Server: Frame 56 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 57 received in slot 0
+Server: Encoding frame 57
+Server: Frame 57 encoded (6658564 bytes, non-keyframe)
+Server: Frame 57 encoded
+Server: Sending frame 57 (6658564 bytes)
+Server: Frame 57 acknowledged
+Server: Frame 57 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 58 received in slot 0
+Server: Encoding frame 58
+Server: Frame 58 encoded (6658564 bytes, non-keyframe)
+Server: Frame 58 encoded
+Server: Sending frame 58 (6658564 bytes)
+Server: Frame 58 acknowledged
+Server: Frame 58 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 59 received in slot 0
+Server: Encoding frame 59
+Server: Frame 59 encoded (6658564 bytes, non-keyframe)
+Server: Frame 59 encoded
+Server: Sending frame 59 (6658564 bytes)
+Server: Frame 59 acknowledged
+Server: Frame 59 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 60 received in slot 0
+Server: Encoding frame 60
+Server: Frame 60 encoded (6658564 bytes, non-keyframe)
+Server: Frame 60 encoded
+Server: Sending frame 60 (6658564 bytes)
+Server: Frame 60 acknowledged
+Server: Frame 60 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 61 received in slot 0
+Server: Encoding frame 61
+Server: Frame 61 encoded (6658564 bytes, non-keyframe)
+Server: Frame 61 encoded
+Server: Sending frame 61 (6658564 bytes)
+Server: Frame 61 acknowledged
+Server: Frame 61 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 62 received in slot 0
+Server: Encoding frame 62
+Server: Frame 62 encoded (6658564 bytes, non-keyframe)
+Server: Frame 62 encoded
+Server: Sending frame 62 (6658564 bytes)
+Server: Frame 62 acknowledged
+Server: Frame 62 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 63 received in slot 0
+Server: Encoding frame 63
+Server: Frame 63 encoded (6658564 bytes, non-keyframe)
+Server: Frame 63 encoded
+Server: Sending frame 63 (6658564 bytes)
+Server: Frame 63 acknowledged
+Server: Frame 63 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 64 received in slot 0
+Server: Encoding frame 64
+Server: Frame 64 encoded (6658564 bytes, non-keyframe)
+Server: Frame 64 encoded
+Server: Sending frame 64 (6658564 bytes)
+Server: Frame 64 acknowledged
+Server: Frame 64 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 65 received in slot 0
+Server: Encoding frame 65
+Server: Frame 65 encoded (6658564 bytes, non-keyframe)
+Server: Frame 65 encoded
+Server: Sending frame 65 (6658564 bytes)
+Server: Frame 65 acknowledged
+Server: Frame 65 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 66 received in slot 0
+Server: Encoding frame 66
+Server: Frame 66 encoded (6658564 bytes, non-keyframe)
+Server: Frame 66 encoded
+Server: Sending frame 66 (6658564 bytes)
+Server: Frame 66 acknowledged
+Server: Frame 66 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 67 received in slot 0
+Server: Encoding frame 67
+Server: Frame 67 encoded (6658564 bytes, non-keyframe)
+Server: Frame 67 encoded
+Server: Sending frame 67 (6658564 bytes)
+Server: Frame 67 acknowledged
+Server: Frame 67 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 68 received in slot 0
+Server: Encoding frame 68
+Server: Frame 68 encoded (6658564 bytes, non-keyframe)
+Server: Frame 68 encoded
+Server: Sending frame 68 (6658564 bytes)
+Server: Frame 68 acknowledged
+Server: Frame 68 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 69 received in slot 0
+Server: Encoding frame 69
+Server: Frame 69 encoded (6658564 bytes, non-keyframe)
+Server: Frame 69 encoded
+Server: Sending frame 69 (6658564 bytes)
+Server: Frame 69 acknowledged
+Server: Frame 69 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 70 received in slot 0
+Server: Encoding frame 70
+Server: Frame 70 encoded (6658564 bytes, non-keyframe)
+Server: Frame 70 encoded
+Server: Sending frame 70 (6658564 bytes)
+Server: Frame 70 acknowledged
+Server: Frame 70 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 71 received in slot 0
+Server: Encoding frame 71
+Server: Frame 71 encoded (6658564 bytes, non-keyframe)
+Server: Frame 71 encoded
+Server: Sending frame 71 (6658564 bytes)
+Server: Frame 71 acknowledged
+Server: Frame 71 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 72 received in slot 0
+Server: Encoding frame 72
+Server: Frame 72 encoded (6658564 bytes, non-keyframe)
+Server: Frame 72 encoded
+Server: Sending frame 72 (6658564 bytes)
+Server: Frame 72 acknowledged
+Server: Frame 72 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 73 received in slot 0
+Server: Encoding frame 73
+Server: Frame 73 encoded (6658564 bytes, non-keyframe)
+Server: Frame 73 encoded
+Server: Sending frame 73 (6658564 bytes)
+Server: Frame 73 acknowledged
+Server: Frame 73 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 74 received in slot 0
+Server: Encoding frame 74
+Server: Frame 74 encoded (6658564 bytes, non-keyframe)
+Server: Frame 74 encoded
+Server: Sending frame 74 (6658564 bytes)
+Server: Frame 74 acknowledged
+Server: Frame 74 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 75 received in slot 0
+Server: Encoding frame 75
+Server: Frame 75 encoded (6658564 bytes, non-keyframe)
+Server: Frame 75 encoded
+Server: Sending frame 75 (6658564 bytes)
+Server: Frame 75 acknowledged
+Server: Frame 75 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 76 received in slot 0
+Server: Encoding frame 76
+Server: Frame 76 encoded (6658564 bytes, non-keyframe)
+Server: Frame 76 encoded
+Server: Sending frame 76 (6658564 bytes)
+Server: Frame 76 acknowledged
+Server: Frame 76 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 77 received in slot 0
+Server: Encoding frame 77
+Server: Frame 77 encoded (6658564 bytes, non-keyframe)
+Server: Frame 77 encoded
+Server: Sending frame 77 (6658564 bytes)
+Server: Frame 77 acknowledged
+Server: Frame 77 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 78 received in slot 0
+Server: Encoding frame 78
+Server: Frame 78 encoded (6658564 bytes, non-keyframe)
+Server: Frame 78 encoded
+Server: Sending frame 78 (6658564 bytes)
+Server: Frame 78 acknowledged
+Server: Frame 78 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 79 received in slot 0
+Server: Encoding frame 79
+Server: Frame 79 encoded (6658564 bytes, non-keyframe)
+Server: Frame 79 encoded
+Server: Sending frame 79 (6658564 bytes)
+Server: Frame 79 acknowledged
+Server: Frame 79 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 80 received in slot 0
+Server: Encoding frame 80
+Server: Frame 80 encoded (6658564 bytes, non-keyframe)
+Server: Frame 80 encoded
+Server: Sending frame 80 (6658564 bytes)
+Server: Frame 80 acknowledged
+Server: Frame 80 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 81 received in slot 0
+Server: Encoding frame 81
+Server: Frame 81 encoded (6658564 bytes, non-keyframe)
+Server: Frame 81 encoded
+Server: Sending frame 81 (6658564 bytes)
+Server: Frame 81 acknowledged
+Server: Frame 81 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 82 received in slot 0
+Server: Encoding frame 82
+Server: Frame 82 encoded (6658564 bytes, non-keyframe)
+Server: Frame 82 encoded
+Server: Sending frame 82 (6658564 bytes)
+Server: Frame 82 acknowledged
+Server: Frame 82 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 83 received in slot 0
+Server: Encoding frame 83
+Server: Frame 83 encoded (6658564 bytes, non-keyframe)
+Server: Frame 83 encoded
+Server: Sending frame 83 (6658564 bytes)
+Server: Frame 83 acknowledged
+Server: Frame 83 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 84 received in slot 0
+Server: Encoding frame 84
+Server: Frame 84 encoded (6658564 bytes, non-keyframe)
+Server: Frame 84 encoded
+Server: Sending frame 84 (6658564 bytes)
+Server: Frame 84 acknowledged
+Server: Frame 84 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 85 received in slot 0
+Server: Encoding frame 85
+Server: Frame 85 encoded (6658564 bytes, non-keyframe)
+Server: Frame 85 encoded
+Server: Sending frame 85 (6658564 bytes)
+Server: Frame 85 acknowledged
+Server: Frame 85 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 86 received in slot 0
+Server: Encoding frame 86
+Server: Frame 86 encoded (6658564 bytes, non-keyframe)
+Server: Frame 86 encoded
+Server: Sending frame 86 (6658564 bytes)
+Server: Frame 86 acknowledged
+Server: Frame 86 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 87 received in slot 0
+Server: Encoding frame 87
+Server: Frame 87 encoded (6658564 bytes, non-keyframe)
+Server: Frame 87 encoded
+Server: Sending frame 87 (6658564 bytes)
+Server: Frame 87 acknowledged
+Server: Frame 87 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 88 received in slot 0
+Server: Encoding frame 88
+Server: Frame 88 encoded (6658564 bytes, non-keyframe)
+Server: Frame 88 encoded
+Server: Sending frame 88 (6658564 bytes)
+Server: Frame 88 acknowledged
+Server: Frame 88 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 89 received in slot 0
+Server: Encoding frame 89
+Server: Frame 89 encoded (6658564 bytes, non-keyframe)
+Server: Frame 89 encoded
+Server: Sending frame 89 (6658564 bytes)
+Server: Frame 89 acknowledged
+Server: Frame 89 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 90 received in slot 0
+Server: Encoding frame 90
+Server: Frame 90 encoded (6658564 bytes, non-keyframe)
+Server: Frame 90 encoded
+Server: Sending frame 90 (6658564 bytes)
+Server: Frame 90 acknowledged
+Server: Frame 90 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 91 received in slot 0
+Server: Encoding frame 91
+Server: Frame 91 encoded (6658564 bytes, non-keyframe)
+Server: Frame 91 encoded
+Server: Sending frame 91 (6658564 bytes)
+Server: Frame 91 acknowledged
+Server: Frame 91 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 92 received in slot 0
+Server: Encoding frame 92
+Server: Frame 92 encoded (6658564 bytes, non-keyframe)
+Server: Frame 92 encoded
+Server: Sending frame 92 (6658564 bytes)
+Server: Frame 92 acknowledged
+Server: Frame 92 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 93 received in slot 0
+Server: Encoding frame 93
+Server: Frame 93 encoded (6658564 bytes, non-keyframe)
+Server: Frame 93 encoded
+Server: Sending frame 93 (6658564 bytes)
+Server: Frame 93 acknowledged
+Server: Frame 93 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 94 received in slot 0
+Server: Encoding frame 94
+Server: Frame 94 encoded (6658564 bytes, non-keyframe)
+Server: Frame 94 encoded
+Server: Sending frame 94 (6658564 bytes)
+Server: Frame 94 acknowledged
+Server: Frame 94 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 95 received in slot 0
+Server: Encoding frame 95
+Server: Frame 95 encoded (6658564 bytes, non-keyframe)
+Server: Frame 95 encoded
+Server: Sending frame 95 (6658564 bytes)
+Server: Frame 95 acknowledged
+Server: Frame 95 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 96 received in slot 0
+Server: Encoding frame 96
+Server: Frame 96 encoded (6658564 bytes, non-keyframe)
+Server: Frame 96 encoded
+Server: Sending frame 96 (6658564 bytes)
+Server: Frame 96 acknowledged
+Server: Frame 96 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 97 received in slot 0
+Server: Encoding frame 97
+Server: Frame 97 encoded (6658564 bytes, non-keyframe)
+Server: Frame 97 encoded
+Server: Sending frame 97 (6658564 bytes)
+Server: Frame 97 acknowledged
+Server: Frame 97 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 98 received in slot 0
+Server: Encoding frame 98
+Server: Frame 98 encoded (6658564 bytes, non-keyframe)
+Server: Frame 98 encoded
+Server: Sending frame 98 (6658564 bytes)
+Server: Frame 98 acknowledged
+Server: Frame 98 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 99 received in slot 0
+Server: Encoding frame 99
+Server: Frame 99 encoded (6658564 bytes, non-keyframe)
+Server: Frame 99 encoded
+Server: Sending frame 99 (6658564 bytes)
+Server: Frame 99 acknowledged
+Server: Frame 99 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 100 received in slot 0
+Server: Encoding frame 100
+Server: Frame 100 encoded (6658564 bytes, non-keyframe)
+Server: Frame 100 encoded
+Server: Sending frame 100 (6658564 bytes)
+Server: Frame 100 acknowledged
+Server: Frame 100 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 101 received in slot 0
+Server: Encoding frame 101
+Server: Frame 101 encoded (6658564 bytes, keyframe)
+Server: Frame 101 encoded
+Server: Sending frame 101 (6658564 bytes)
+Server: Frame 101 acknowledged
+Server: Frame 101 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 102 received in slot 0
+Server: Encoding frame 102
+Server: Frame 102 encoded (6658564 bytes, non-keyframe)
+Server: Frame 102 encoded
+Server: Sending frame 102 (6658564 bytes)
+Server: Frame 102 acknowledged
+Server: Frame 102 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 103 received in slot 0
+Server: Encoding frame 103
+Server: Frame 103 encoded (6658564 bytes, non-keyframe)
+Server: Frame 103 encoded
+Server: Sending frame 103 (6658564 bytes)
+Server: Frame 103 acknowledged
+Server: Frame 103 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 104 received in slot 0
+Server: Encoding frame 104
+Server: Frame 104 encoded (6658564 bytes, non-keyframe)
+Server: Frame 104 encoded
+Server: Sending frame 104 (6658564 bytes)
+Server: Frame 104 acknowledged
+Server: Frame 104 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 105 received in slot 0
+Server: Encoding frame 105
+Server: Frame 105 encoded (6658564 bytes, non-keyframe)
+Server: Frame 105 encoded
+Server: Sending frame 105 (6658564 bytes)
+Server: Frame 105 acknowledged
+Server: Frame 105 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 106 received in slot 0
+Server: Encoding frame 106
+Server: Frame 106 encoded (6658564 bytes, non-keyframe)
+Server: Frame 106 encoded
+Server: Sending frame 106 (6658564 bytes)
+Server: Frame 106 acknowledged
+Server: Frame 106 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 107 received in slot 0
+Server: Encoding frame 107
+Server: Frame 107 encoded (6658564 bytes, non-keyframe)
+Server: Frame 107 encoded
+Server: Sending frame 107 (6658564 bytes)
+Server: Frame 107 acknowledged
+Server: Frame 107 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 108 received in slot 0
+Server: Encoding frame 108
+Server: Frame 108 encoded (6658564 bytes, non-keyframe)
+Server: Frame 108 encoded
+Server: Sending frame 108 (6658564 bytes)
+Server: Frame 108 acknowledged
+Server: Frame 108 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 109 received in slot 0
+Server: Encoding frame 109
+Server: Frame 109 encoded (6658564 bytes, non-keyframe)
+Server: Frame 109 encoded
+Server: Sending frame 109 (6658564 bytes)
+Server: Frame 109 acknowledged
+Server: Frame 109 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 110 received in slot 0
+Server: Encoding frame 110
+Server: Frame 110 encoded (6658564 bytes, non-keyframe)
+Server: Frame 110 encoded
+Server: Sending frame 110 (6658564 bytes)
+Server: Frame 110 acknowledged
+Server: Frame 110 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 111 received in slot 0
+Server: Encoding frame 111
+Server: Frame 111 encoded (6658564 bytes, non-keyframe)
+Server: Frame 111 encoded
+Server: Sending frame 111 (6658564 bytes)
+Server: Frame 111 acknowledged
+Server: Frame 111 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 112 received in slot 0
+Server: Encoding frame 112
+Server: Frame 112 encoded (6658564 bytes, non-keyframe)
+Server: Frame 112 encoded
+Server: Sending frame 112 (6658564 bytes)
+Server: Frame 112 acknowledged
+Server: Frame 112 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 113 received in slot 0
+Server: Encoding frame 113
+Server: Frame 113 encoded (6658564 bytes, non-keyframe)
+Server: Frame 113 encoded
+Server: Sending frame 113 (6658564 bytes)
+Server: Frame 113 acknowledged
+Server: Frame 113 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 114 received in slot 0
+Server: Encoding frame 114
+Server: Frame 114 encoded (6658564 bytes, non-keyframe)
+Server: Frame 114 encoded
+Server: Sending frame 114 (6658564 bytes)
+Server: Frame 114 acknowledged
+Server: Frame 114 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 115 received in slot 0
+Server: Encoding frame 115
+Server: Frame 115 encoded (6658564 bytes, non-keyframe)
+Server: Frame 115 encoded
+Server: Sending frame 115 (6658564 bytes)
+Server: Frame 115 acknowledged
+Server: Frame 115 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 116 received in slot 0
+Server: Encoding frame 116
+Server: Frame 116 encoded (6658564 bytes, non-keyframe)
+Server: Frame 116 encoded
+Server: Sending frame 116 (6658564 bytes)
+Server: Frame 116 acknowledged
+Server: Frame 116 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 117 received in slot 0
+Server: Encoding frame 117
+Server: Frame 117 encoded (6658564 bytes, non-keyframe)
+Server: Frame 117 encoded
+Server: Sending frame 117 (6658564 bytes)
+Server: Frame 117 acknowledged
+Server: Frame 117 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 118 received in slot 0
+Server: Encoding frame 118
+Server: Frame 118 encoded (6658564 bytes, non-keyframe)
+Server: Frame 118 encoded
+Server: Sending frame 118 (6658564 bytes)
+Server: Frame 118 acknowledged
+Server: Frame 118 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 119 received in slot 0
+Server: Encoding frame 119
+Server: Frame 119 encoded (6658564 bytes, non-keyframe)
+Server: Frame 119 encoded
+Server: Sending frame 119 (6658564 bytes)
+Server: Frame 119 acknowledged
+Server: Frame 119 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 120 received in slot 0
+Server: Encoding frame 120
+Server: Frame 120 encoded (6658564 bytes, non-keyframe)
+Server: Frame 120 encoded
+Server: Sending frame 120 (6658564 bytes)
+Server: Frame 120 acknowledged
+Server: Frame 120 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 121 received in slot 0
+Server: Encoding frame 121
+Server: Frame 121 encoded (6658564 bytes, non-keyframe)
+Server: Frame 121 encoded
+Server: Sending frame 121 (6658564 bytes)
+Server: Frame 121 acknowledged
+Server: Frame 121 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 122 received in slot 0
+Server: Encoding frame 122
+Server: Frame 122 encoded (6658564 bytes, non-keyframe)
+Server: Frame 122 encoded
+Server: Sending frame 122 (6658564 bytes)
+Server: Frame 122 acknowledged
+Server: Frame 122 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 123 received in slot 0
+Server: Encoding frame 123
+Server: Frame 123 encoded (6658564 bytes, non-keyframe)
+Server: Frame 123 encoded
+Server: Sending frame 123 (6658564 bytes)
+Server: Frame 123 acknowledged
+Server: Frame 123 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 124 received in slot 0
+Server: Encoding frame 124
+Server: Frame 124 encoded (6658564 bytes, non-keyframe)
+Server: Frame 124 encoded
+Server: Sending frame 124 (6658564 bytes)
+Server: Frame 124 acknowledged
+Server: Frame 124 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 125 received in slot 0
+Server: Encoding frame 125
+Server: Frame 125 encoded (6658564 bytes, non-keyframe)
+Server: Frame 125 encoded
+Server: Sending frame 125 (6658564 bytes)
+Server: Frame 125 acknowledged
+Server: Frame 125 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 126 received in slot 0
+Server: Encoding frame 126
+Server: Frame 126 encoded (6658564 bytes, non-keyframe)
+Server: Frame 126 encoded
+Server: Sending frame 126 (6658564 bytes)
+Server: Frame 126 acknowledged
+Server: Frame 126 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 127 received in slot 0
+Server: Encoding frame 127
+Server: Frame 127 encoded (6658564 bytes, non-keyframe)
+Server: Frame 127 encoded
+Server: Sending frame 127 (6658564 bytes)
+Server: Frame 127 acknowledged
+Server: Frame 127 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 128 received in slot 0
+Server: Encoding frame 128
+Server: Frame 128 encoded (6658564 bytes, non-keyframe)
+Server: Frame 128 encoded
+Server: Sending frame 128 (6658564 bytes)
+Server: Frame 128 acknowledged
+Server: Frame 128 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 129 received in slot 0
+Server: Encoding frame 129
+Server: Frame 129 encoded (6658564 bytes, non-keyframe)
+Server: Frame 129 encoded
+Server: Sending frame 129 (6658564 bytes)
+Server: Frame 129 acknowledged
+Server: Frame 129 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 130 received in slot 0
+Server: Encoding frame 130
+Server: Frame 130 encoded (6658564 bytes, non-keyframe)
+Server: Frame 130 encoded
+Server: Sending frame 130 (6658564 bytes)
+Server: Frame 130 acknowledged
+Server: Frame 130 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 131 received in slot 0
+Server: Encoding frame 131
+Server: Frame 131 encoded (6658564 bytes, non-keyframe)
+Server: Frame 131 encoded
+Server: Sending frame 131 (6658564 bytes)
+Server: Frame 131 acknowledged
+Server: Frame 131 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 132 received in slot 0
+Server: Encoding frame 132
+Server: Frame 132 encoded (6658564 bytes, non-keyframe)
+Server: Frame 132 encoded
+Server: Sending frame 132 (6658564 bytes)
+Server: Frame 132 acknowledged
+Server: Frame 132 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 133 received in slot 0
+Server: Encoding frame 133
+Server: Frame 133 encoded (6658564 bytes, non-keyframe)
+Server: Frame 133 encoded
+Server: Sending frame 133 (6658564 bytes)
+Server: Frame 133 acknowledged
+Server: Frame 133 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 134 received in slot 0
+Server: Encoding frame 134
+Server: Frame 134 encoded (6658564 bytes, non-keyframe)
+Server: Frame 134 encoded
+Server: Sending frame 134 (6658564 bytes)
+Server: Frame 134 acknowledged
+Server: Frame 134 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 135 received in slot 0
+Server: Encoding frame 135
+Server: Frame 135 encoded (6658564 bytes, non-keyframe)
+Server: Frame 135 encoded
+Server: Sending frame 135 (6658564 bytes)
+Server: Frame 135 acknowledged
+Server: Frame 135 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 136 received in slot 0
+Server: Encoding frame 136
+Server: Frame 136 encoded (6658564 bytes, non-keyframe)
+Server: Frame 136 encoded
+Server: Sending frame 136 (6658564 bytes)
+Server: Frame 136 acknowledged
+Server: Frame 136 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 137 received in slot 0
+Server: Encoding frame 137
+Server: Frame 137 encoded (6658564 bytes, non-keyframe)
+Server: Frame 137 encoded
+Server: Sending frame 137 (6658564 bytes)
+Server: Frame 137 acknowledged
+Server: Frame 137 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 138 received in slot 0
+Server: Encoding frame 138
+Server: Frame 138 encoded (6658564 bytes, non-keyframe)
+Server: Frame 138 encoded
+Server: Sending frame 138 (6658564 bytes)
+Server: Frame 138 acknowledged
+Server: Frame 138 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 139 received in slot 0
+Server: Encoding frame 139
+Server: Frame 139 encoded (6658564 bytes, non-keyframe)
+Server: Frame 139 encoded
+Server: Sending frame 139 (6658564 bytes)
+Server: Frame 139 acknowledged
+Server: Frame 139 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 140 received in slot 0
+Server: Encoding frame 140
+Server: Frame 140 encoded (6658564 bytes, non-keyframe)
+Server: Frame 140 encoded
+Server: Sending frame 140 (6658564 bytes)
+Server: Frame 140 acknowledged
+Server: Frame 140 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 141 received in slot 0
+Server: Encoding frame 141
+Server: Frame 141 encoded (6658564 bytes, non-keyframe)
+Server: Frame 141 encoded
+Server: Sending frame 141 (6658564 bytes)
+Server: Frame 141 acknowledged
+Server: Frame 141 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 142 received in slot 0
+Server: Encoding frame 142
+Server: Frame 142 encoded (6658564 bytes, non-keyframe)
+Server: Frame 142 encoded
+Server: Sending frame 142 (6658564 bytes)
+Server: Frame 142 acknowledged
+Server: Frame 142 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 143 received in slot 0
+Server: Encoding frame 143
+Server: Frame 143 encoded (6658564 bytes, non-keyframe)
+Server: Frame 143 encoded
+Server: Sending frame 143 (6658564 bytes)
+Server: Frame 143 acknowledged
+Server: Frame 143 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 144 received in slot 0
+Server: Encoding frame 144
+Server: Frame 144 encoded (6658564 bytes, non-keyframe)
+Server: Frame 144 encoded
+Server: Sending frame 144 (6658564 bytes)
+Server: Frame 144 acknowledged
+Server: Frame 144 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 145 received in slot 0
+Server: Encoding frame 145
+Server: Frame 145 encoded (6658564 bytes, non-keyframe)
+Server: Frame 145 encoded
+Server: Sending frame 145 (6658564 bytes)
+Server: Frame 145 acknowledged
+Server: Frame 145 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 146 received in slot 0
+Server: Encoding frame 146
+Server: Frame 146 encoded (6658564 bytes, non-keyframe)
+Server: Frame 146 encoded
+Server: Sending frame 146 (6658564 bytes)
+Server: Frame 146 acknowledged
+Server: Frame 146 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 147 received in slot 0
+Server: Encoding frame 147
+Server: Frame 147 encoded (6658564 bytes, non-keyframe)
+Server: Frame 147 encoded
+Server: Sending frame 147 (6658564 bytes)
+Server: Frame 147 acknowledged
+Server: Frame 147 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 148 received in slot 0
+Server: Encoding frame 148
+Server: Frame 148 encoded (6658564 bytes, non-keyframe)
+Server: Frame 148 encoded
+Server: Sending frame 148 (6658564 bytes)
+Server: Frame 148 acknowledged
+Server: Frame 148 sent
+Server: Receiving YUV data (3110400 bytes)
+Server: Frame 149 received in slot 0
+Server: Encoding frame 149
+Server: Frame 149 encoded (6658564 bytes, non-keyframe)
+Server: Frame 149 encoded
+Server: Sending frame 149 (6658564 bytes)
+Server: Frame 149 acknowledged
+Server: Frame 149 sent
+Server: Quit command received
+Server: Sender thread finished
+Server: Encoder thread finished
+Server: Receiver thread finished
+Server: Final statistics:
+  Frames received: 150
+  Frames encoded: 150
+  Frames sent: 150
+Task pool destroyed
+Thread pool destroyed
+Server: Processed 150 frames, exiting
+Tegra exit code: 0
+
+real	0m21.855s
+user	0m58.104s
+sys	0m4.382s

@@ -1,0 +1,18 @@
+Server: Waiting for client connection...
+Server: Connected to client, ready for processing
+Server: Waiting for commands...
+Server: Received dimensions 1920x1080
+Thread pool initialized with 7 threads
+Task pool is initialized with 136 tasks
+Server: Receiver thread started
+Server: Encoder thread started
+Server: Sender thread started
+Server: Dimensions acknowledged, processing threads started
+Server: Receiving frame 0 (3110400 bytes)
+Server: Unknown command: 4
+Terminated
+Tegra exit code: 143
+
+real	0m3.701s
+user	0m0.039s
+sys	0m0.160s

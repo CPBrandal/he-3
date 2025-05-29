@@ -1,0 +1,22 @@
+SISCI initialized and connected
+Dimensions acknowledged
+Client: Sender thread starting
+Client: Receiver thread starting
+Client: Sending frame 0 to server
+Client: Frame 0 sent and acknowledged
+Client: Frame 0 in flight (sent: 1, received: 0)
+Client: Sending frame 1 to server
+Client: Frame 1 sent and acknowledged
+Client: Frame 1 in flight (sent: 2, received: 0)
+Client: Sending frame 2 to server
+Client: Received encoded frame (6658564 bytes)
+Client: Frame 2 sent and acknowledged
+Client: Frame 2 in flight (sent: 3, received: 0)
+Client: Frame written (sent: 3, received: 1)
+Client: Sending frame 3 to server
+Terminated
+
+real	0m7,389s
+user	0m0,174s
+sys	0m0,339s
+PC exit code: 143
