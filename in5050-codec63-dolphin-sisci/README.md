@@ -42,7 +42,7 @@ to `c63client`, use `--args "arg1 arg2"`.
 
 Example usage:
 ```
-./run.sh --tegra tegra-3 --args "/opt/Media/foreman.yuv -o output -w 352 -h 288"
+./run.sh --tegra tegra-2 --args "/opt/Media/foreman.yuv -o output -w 352 -h 288"
 ```
 
 We strongly recommend that clone the github repository in5050-codec63 twice.

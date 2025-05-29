@@ -23,17 +23,17 @@
 #define SEGMENT_SERVER_RECV GET_SEGMENTID(3)
 #define SEGMENT_SERVER_SEND GET_SEGMENTID(4)
 
+#define MAX_FRAMES 3
+#define TIMEOUT_SECONDS 10
+
 
 // Command definitions for signaling
 enum cmd
 {
     CMD_INVALID = 0,
-    CMD_HELLO,
-    CMD_HELLO_ACK,
     CMD_DIMENSIONS,
     CMD_DIMENSIONS_ACK,
     CMD_QUIT,
-    CMD_DATA_READY,
     CMD_YUV_DATA,
     CMD_YUV_DATA_ACK,
     CMD_ENCODED_DATA,
@@ -158,9 +158,6 @@ struct packet
         struct {
             uint32_t cmd;           // Command type
             uint32_t data_size;     // Size of data in buffer
-            uint32_t y_size;        // Y size
-            uint32_t u_size;        // U size
-            uint32_t v_size;        // V size
         };
         uint8_t padding[64];        // Align to cache line
     } __attribute__((aligned(64)));

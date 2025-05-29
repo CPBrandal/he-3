@@ -1,0 +1,3918 @@
+Client: Connecting to server segments...
+Client: Connected to server segments
+Client: Waiting for server to acknowledge dimensions
+Client: Dimensions acknowledged by server
+Client: Starting producer and consumer threads
+Producer: Starting to read frames
+Consumer: Starting to process frames
+Consumer: Waiting for frame in slot 0 (Read: 0, Sent: 0, Received: 0)
+Producer: Read frame 0 from disk
+Added frame 0 to pipeline slot 0 (pipeline: 1/3)
+Consumer: Processing frame 0 from slot 0
+Consumer: Processing frame 0
+Producer: Read frame 1 from disk
+Added frame 1 to pipeline slot 1 (pipeline: 2/3)
+Producer: Read frame 2 from disk
+Added frame 2 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 0 to server, waiting for acknowledgment
+Frame 0 sent to server (sent: 1, in pipeline: 3)
+Consumer: Frame 0 acknowledged by server
+Consumer: Waiting for encoded data for frame 0
+Consumer: Received encoded data for frame 0
+Consumer: Writing frame 0 to output file
+Consumer: Frame 0 complete!
+Frame 0 completed, removed from pipeline (received: 1, pipeline: 2/3)
+Consumer: Processing frame 1 from slot 1
+Consumer: Processing frame 1
+Producer: Read frame 3 from disk
+Added frame 3 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 1 to server, waiting for acknowledgment
+Frame 1 sent to server (sent: 2, in pipeline: 3)
+Consumer: Frame 1 acknowledged by server
+Consumer: Waiting for encoded data for frame 1
+Consumer: Received encoded data for frame 1
+Consumer: Writing frame 1 to output file
+Consumer: Frame 1 complete!
+Frame 1 completed, removed from pipeline (received: 2, pipeline: 2/3)
+Consumer: Processing frame 2 from slot 2
+Consumer: Processing frame 2
+Producer: Read frame 4 from disk
+Added frame 4 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 2 to server, waiting for acknowledgment
+Frame 2 sent to server (sent: 3, in pipeline: 3)
+Consumer: Frame 2 acknowledged by server
+Consumer: Waiting for encoded data for frame 2
+Consumer: Received encoded data for frame 2
+Consumer: Writing frame 2 to output file
+Consumer: Frame 2 complete!
+Frame 2 completed, removed from pipeline (received: 3, pipeline: 2/3)
+Consumer: Processing frame 3 from slot 0
+Consumer: Processing frame 3
+Producer: Read frame 5 from disk
+Added frame 5 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 3 to server, waiting for acknowledgment
+Frame 3 sent to server (sent: 4, in pipeline: 3)
+Consumer: Frame 3 acknowledged by server
+Consumer: Waiting for encoded data for frame 3
+Consumer: Received encoded data for frame 3
+Consumer: Writing frame 3 to output file
+Consumer: Frame 3 complete!
+Frame 3 completed, removed from pipeline (received: 4, pipeline: 2/3)
+Consumer: Processing frame 4 from slot 1
+Consumer: Processing frame 4
+Producer: Read frame 6 from disk
+Added frame 6 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 4 to server, waiting for acknowledgment
+Frame 4 sent to server (sent: 5, in pipeline: 3)
+Consumer: Frame 4 acknowledged by server
+Consumer: Waiting for encoded data for frame 4
+Consumer: Received encoded data for frame 4
+Consumer: Writing frame 4 to output file
+Consumer: Frame 4 complete!
+Frame 4 completed, removed from pipeline (received: 5, pipeline: 2/3)
+Consumer: Processing frame 5 from slot 2
+Consumer: Processing frame 5
+Producer: Read frame 7 from disk
+Added frame 7 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 5 to server, waiting for acknowledgment
+Frame 5 sent to server (sent: 6, in pipeline: 3)
+Consumer: Frame 5 acknowledged by server
+Consumer: Waiting for encoded data for frame 5
+Consumer: Received encoded data for frame 5
+Consumer: Writing frame 5 to output file
+Consumer: Frame 5 complete!
+Frame 5 completed, removed from pipeline (received: 6, pipeline: 2/3)
+Consumer: Processing frame 6 from slot 0
+Consumer: Processing frame 6
+Producer: Read frame 8 from disk
+Added frame 8 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 6 to server, waiting for acknowledgment
+Frame 6 sent to server (sent: 7, in pipeline: 3)
+Consumer: Frame 6 acknowledged by server
+Consumer: Waiting for encoded data for frame 6
+Consumer: Received encoded data for frame 6
+Consumer: Writing frame 6 to output file
+Consumer: Frame 6 complete!
+Frame 6 completed, removed from pipeline (received: 7, pipeline: 2/3)
+Consumer: Processing frame 7 from slot 1
+Consumer: Processing frame 7
+Producer: Read frame 9 from disk
+Added frame 9 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 7 to server, waiting for acknowledgment
+Frame 7 sent to server (sent: 8, in pipeline: 3)
+Consumer: Frame 7 acknowledged by server
+Consumer: Waiting for encoded data for frame 7
+Consumer: Received encoded data for frame 7
+Consumer: Writing frame 7 to output file
+Consumer: Frame 7 complete!
+Frame 7 completed, removed from pipeline (received: 8, pipeline: 2/3)
+Consumer: Processing frame 8 from slot 2
+Consumer: Processing frame 8
+Producer: Read frame 10 from disk
+Added frame 10 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 8 to server, waiting for acknowledgment
+Frame 8 sent to server (sent: 9, in pipeline: 3)
+Consumer: Frame 8 acknowledged by server
+Consumer: Waiting for encoded data for frame 8
+Consumer: Received encoded data for frame 8
+Consumer: Writing frame 8 to output file
+Consumer: Frame 8 complete!
+Frame 8 completed, removed from pipeline (received: 9, pipeline: 2/3)
+Consumer: Processing frame 9 from slot 0
+Consumer: Processing frame 9
+Producer: Read frame 11 from disk
+Added frame 11 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 9 to server, waiting for acknowledgment
+Frame 9 sent to server (sent: 10, in pipeline: 3)
+Consumer: Frame 9 acknowledged by server
+Consumer: Waiting for encoded data for frame 9
+Consumer: Received encoded data for frame 9
+Consumer: Writing frame 9 to output file
+Consumer: Frame 9 complete!
+Frame 9 completed, removed from pipeline (received: 10, pipeline: 2/3)
+Consumer: Processing frame 10 from slot 1
+Consumer: Processing frame 10
+Producer: Read frame 12 from disk
+Added frame 12 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 10 to server, waiting for acknowledgment
+Frame 10 sent to server (sent: 11, in pipeline: 3)
+Consumer: Frame 10 acknowledged by server
+Consumer: Waiting for encoded data for frame 10
+Consumer: Received encoded data for frame 10
+Consumer: Writing frame 10 to output file
+Consumer: Frame 10 complete!
+Frame 10 completed, removed from pipeline (received: 11, pipeline: 2/3)
+Consumer: Processing frame 11 from slot 2
+Consumer: Processing frame 11
+Producer: Read frame 13 from disk
+Added frame 13 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 11 to server, waiting for acknowledgment
+Frame 11 sent to server (sent: 12, in pipeline: 3)
+Consumer: Frame 11 acknowledged by server
+Consumer: Waiting for encoded data for frame 11
+Consumer: Received encoded data for frame 11
+Consumer: Writing frame 11 to output file
+Consumer: Frame 11 complete!
+Frame 11 completed, removed from pipeline (received: 12, pipeline: 2/3)
+Consumer: Processing frame 12 from slot 0
+Consumer: Processing frame 12
+Producer: Read frame 14 from disk
+Added frame 14 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 12 to server, waiting for acknowledgment
+Frame 12 sent to server (sent: 13, in pipeline: 3)
+Consumer: Frame 12 acknowledged by server
+Consumer: Waiting for encoded data for frame 12
+Consumer: Received encoded data for frame 12
+Consumer: Writing frame 12 to output file
+Consumer: Frame 12 complete!
+Frame 12 completed, removed from pipeline (received: 13, pipeline: 2/3)
+Consumer: Processing frame 13 from slot 1
+Consumer: Processing frame 13
+Producer: Read frame 15 from disk
+Added frame 15 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 13 to server, waiting for acknowledgment
+Frame 13 sent to server (sent: 14, in pipeline: 3)
+Consumer: Frame 13 acknowledged by server
+Consumer: Waiting for encoded data for frame 13
+Consumer: Received encoded data for frame 13
+Consumer: Writing frame 13 to output file
+Consumer: Frame 13 complete!
+Frame 13 completed, removed from pipeline (received: 14, pipeline: 2/3)
+Consumer: Processing frame 14 from slot 2
+Consumer: Processing frame 14
+Producer: Read frame 16 from disk
+Added frame 16 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 14 to server, waiting for acknowledgment
+Frame 14 sent to server (sent: 15, in pipeline: 3)
+Consumer: Frame 14 acknowledged by server
+Consumer: Waiting for encoded data for frame 14
+Consumer: Received encoded data for frame 14
+Consumer: Writing frame 14 to output file
+Consumer: Frame 14 complete!
+Frame 14 completed, removed from pipeline (received: 15, pipeline: 2/3)
+Consumer: Processing frame 15 from slot 0
+Consumer: Processing frame 15
+Producer: Read frame 17 from disk
+Added frame 17 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 15 to server, waiting for acknowledgment
+Frame 15 sent to server (sent: 16, in pipeline: 3)
+Consumer: Frame 15 acknowledged by server
+Consumer: Waiting for encoded data for frame 15
+Consumer: Received encoded data for frame 15
+Consumer: Writing frame 15 to output file
+Consumer: Frame 15 complete!
+Frame 15 completed, removed from pipeline (received: 16, pipeline: 2/3)
+Consumer: Processing frame 16 from slot 1
+Consumer: Processing frame 16
+Producer: Read frame 18 from disk
+Added frame 18 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 16 to server, waiting for acknowledgment
+Frame 16 sent to server (sent: 17, in pipeline: 3)
+Consumer: Frame 16 acknowledged by server
+Consumer: Waiting for encoded data for frame 16
+Consumer: Received encoded data for frame 16
+Consumer: Writing frame 16 to output file
+Consumer: Frame 16 complete!
+Frame 16 completed, removed from pipeline (received: 17, pipeline: 2/3)
+Consumer: Processing frame 17 from slot 2
+Consumer: Processing frame 17
+Producer: Read frame 19 from disk
+Added frame 19 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 17 to server, waiting for acknowledgment
+Frame 17 sent to server (sent: 18, in pipeline: 3)
+Consumer: Frame 17 acknowledged by server
+Consumer: Waiting for encoded data for frame 17
+Consumer: Received encoded data for frame 17
+Consumer: Writing frame 17 to output file
+Consumer: Frame 17 complete!
+Frame 17 completed, removed from pipeline (received: 18, pipeline: 2/3)
+Consumer: Processing frame 18 from slot 0
+Consumer: Processing frame 18
+Producer: Read frame 20 from disk
+Added frame 20 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 18 to server, waiting for acknowledgment
+Frame 18 sent to server (sent: 19, in pipeline: 3)
+Consumer: Frame 18 acknowledged by server
+Consumer: Waiting for encoded data for frame 18
+Consumer: Received encoded data for frame 18
+Consumer: Writing frame 18 to output file
+Consumer: Frame 18 complete!
+Frame 18 completed, removed from pipeline (received: 19, pipeline: 2/3)
+Consumer: Processing frame 19 from slot 1
+Consumer: Processing frame 19
+Producer: Read frame 21 from disk
+Added frame 21 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 19 to server, waiting for acknowledgment
+Frame 19 sent to server (sent: 20, in pipeline: 3)
+Consumer: Frame 19 acknowledged by server
+Consumer: Waiting for encoded data for frame 19
+Consumer: Received encoded data for frame 19
+Consumer: Writing frame 19 to output file
+Consumer: Frame 19 complete!
+Frame 19 completed, removed from pipeline (received: 20, pipeline: 2/3)
+Consumer: Processing frame 20 from slot 2
+Consumer: Processing frame 20
+Producer: Read frame 22 from disk
+Added frame 22 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 20 to server, waiting for acknowledgment
+Frame 20 sent to server (sent: 21, in pipeline: 3)
+Consumer: Frame 20 acknowledged by server
+Consumer: Waiting for encoded data for frame 20
+Consumer: Received encoded data for frame 20
+Consumer: Writing frame 20 to output file
+Consumer: Frame 20 complete!
+Frame 20 completed, removed from pipeline (received: 21, pipeline: 2/3)
+Consumer: Processing frame 21 from slot 0
+Consumer: Processing frame 21
+Producer: Read frame 23 from disk
+Added frame 23 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 21 to server, waiting for acknowledgment
+Frame 21 sent to server (sent: 22, in pipeline: 3)
+Consumer: Frame 21 acknowledged by server
+Consumer: Waiting for encoded data for frame 21
+Consumer: Received encoded data for frame 21
+Consumer: Writing frame 21 to output file
+Consumer: Frame 21 complete!
+Frame 21 completed, removed from pipeline (received: 22, pipeline: 2/3)
+Consumer: Processing frame 22 from slot 1
+Consumer: Processing frame 22
+Producer: Read frame 24 from disk
+Added frame 24 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 22 to server, waiting for acknowledgment
+Frame 22 sent to server (sent: 23, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 22 acknowledged by server
+Consumer: Waiting for encoded data for frame 22
+Consumer: Received encoded data for frame 22
+Consumer: Writing frame 22 to output file
+Consumer: Frame 22 complete!
+Frame 22 completed, removed from pipeline (received: 23, pipeline: 2/3)
+Consumer: Processing frame 23 from slot 2
+Consumer: Processing frame 23
+Producer: Read frame 25 from disk
+Added frame 25 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 23 to server, waiting for acknowledgment
+Frame 23 sent to server (sent: 24, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 23 acknowledged by server
+Consumer: Waiting for encoded data for frame 23
+Consumer: Received encoded data for frame 23
+Consumer: Writing frame 23 to output file
+Consumer: Frame 23 complete!
+Frame 23 completed, removed from pipeline (received: 24, pipeline: 2/3)
+Consumer: Processing frame 24 from slot 0
+Consumer: Processing frame 24
+Producer: Read frame 26 from disk
+Added frame 26 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 24 to server, waiting for acknowledgment
+Frame 24 sent to server (sent: 25, in pipeline: 3)
+Consumer: Frame 24 acknowledged by server
+Consumer: Waiting for encoded data for frame 24
+Consumer: Received encoded data for frame 24
+Consumer: Writing frame 24 to output file
+Consumer: Frame 24 complete!
+Frame 24 completed, removed from pipeline (received: 25, pipeline: 2/3)
+Consumer: Processing frame 25 from slot 1
+Consumer: Processing frame 25
+Producer: Read frame 27 from disk
+Added frame 27 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 25 to server, waiting for acknowledgment
+Frame 25 sent to server (sent: 26, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 25 acknowledged by server
+Consumer: Waiting for encoded data for frame 25
+Consumer: Received encoded data for frame 25
+Consumer: Writing frame 25 to output file
+Consumer: Frame 25 complete!
+Frame 25 completed, removed from pipeline (received: 26, pipeline: 2/3)
+Consumer: Processing frame 26 from slot 2
+Consumer: Processing frame 26
+Producer: Read frame 28 from disk
+Added frame 28 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 26 to server, waiting for acknowledgment
+Frame 26 sent to server (sent: 27, in pipeline: 3)
+Consumer: Frame 26 acknowledged by server
+Consumer: Waiting for encoded data for frame 26
+Consumer: Received encoded data for frame 26
+Consumer: Writing frame 26 to output file
+Consumer: Frame 26 complete!
+Frame 26 completed, removed from pipeline (received: 27, pipeline: 2/3)
+Consumer: Processing frame 27 from slot 0
+Consumer: Processing frame 27
+Producer: Read frame 29 from disk
+Added frame 29 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 27 to server, waiting for acknowledgment
+Frame 27 sent to server (sent: 28, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 27 acknowledged by server
+Consumer: Waiting for encoded data for frame 27
+Consumer: Received encoded data for frame 27
+Consumer: Writing frame 27 to output file
+Consumer: Frame 27 complete!
+Frame 27 completed, removed from pipeline (received: 28, pipeline: 2/3)
+Consumer: Processing frame 28 from slot 1
+Consumer: Processing frame 28
+Producer: Read frame 30 from disk
+Added frame 30 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 28 to server, waiting for acknowledgment
+Frame 28 sent to server (sent: 29, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 28 acknowledged by server
+Consumer: Waiting for encoded data for frame 28
+Consumer: Received encoded data for frame 28
+Consumer: Writing frame 28 to output file
+Consumer: Frame 28 complete!
+Frame 28 completed, removed from pipeline (received: 29, pipeline: 2/3)
+Consumer: Processing frame 29 from slot 2
+Consumer: Processing frame 29
+Producer: Read frame 31 from disk
+Added frame 31 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 29 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 29 sent to server (sent: 30, in pipeline: 3)
+Consumer: Frame 29 acknowledged by server
+Consumer: Waiting for encoded data for frame 29
+Consumer: Received encoded data for frame 29
+Consumer: Writing frame 29 to output file
+Consumer: Frame 29 complete!
+Frame 29 completed, removed from pipeline (received: 30, pipeline: 2/3)
+Consumer: Processing frame 30 from slot 0
+Consumer: Processing frame 30
+Producer: Read frame 32 from disk
+Added frame 32 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 30 to server, waiting for acknowledgment
+Frame 30 sent to server (sent: 31, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 30 acknowledged by server
+Consumer: Waiting for encoded data for frame 30
+Consumer: Received encoded data for frame 30
+Consumer: Writing frame 30 to output file
+Consumer: Frame 30 complete!
+Frame 30 completed, removed from pipeline (received: 31, pipeline: 2/3)
+Consumer: Processing frame 31 from slot 1
+Consumer: Processing frame 31
+Producer: Read frame 33 from disk
+Added frame 33 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 31 to server, waiting for acknowledgment
+Frame 31 sent to server (sent: 32, in pipeline: 3)
+Consumer: Frame 31 acknowledged by server
+Consumer: Waiting for encoded data for frame 31
+Consumer: Received encoded data for frame 31
+Consumer: Writing frame 31 to output file
+Consumer: Frame 31 complete!
+Frame 31 completed, removed from pipeline (received: 32, pipeline: 2/3)
+Consumer: Processing frame 32 from slot 2
+Consumer: Processing frame 32
+Producer: Read frame 34 from disk
+Added frame 34 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 32 to server, waiting for acknowledgment
+Frame 32 sent to server (sent: 33, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 32 acknowledged by server
+Consumer: Waiting for encoded data for frame 32
+Consumer: Received encoded data for frame 32
+Consumer: Writing frame 32 to output file
+Consumer: Frame 32 complete!
+Frame 32 completed, removed from pipeline (received: 33, pipeline: 2/3)
+Consumer: Processing frame 33 from slot 0
+Consumer: Processing frame 33
+Producer: Read frame 35 from disk
+Added frame 35 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 33 to server, waiting for acknowledgment
+Frame 33 sent to server (sent: 34, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 33 acknowledged by server
+Consumer: Waiting for encoded data for frame 33
+Consumer: Received encoded data for frame 33
+Consumer: Writing frame 33 to output file
+Consumer: Frame 33 complete!
+Frame 33 completed, removed from pipeline (received: 34, pipeline: 2/3)
+Consumer: Processing frame 34 from slot 1
+Consumer: Processing frame 34
+Producer: Read frame 36 from disk
+Added frame 36 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 34 to server, waiting for acknowledgment
+Frame 34 sent to server (sent: 35, in pipeline: 3)
+Consumer: Frame 34 acknowledged by server
+Consumer: Waiting for encoded data for frame 34
+Consumer: Received encoded data for frame 34
+Consumer: Writing frame 34 to output file
+Consumer: Frame 34 complete!
+Frame 34 completed, removed from pipeline (received: 35, pipeline: 2/3)
+Consumer: Processing frame 35 from slot 2
+Consumer: Processing frame 35
+Producer: Read frame 37 from disk
+Added frame 37 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 35 to server, waiting for acknowledgment
+Frame 35 sent to server (sent: 36, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 35 acknowledged by server
+Consumer: Waiting for encoded data for frame 35
+Consumer: Received encoded data for frame 35
+Consumer: Writing frame 35 to output file
+Consumer: Frame 35 complete!
+Frame 35 completed, removed from pipeline (received: 36, pipeline: 2/3)
+Consumer: Processing frame 36 from slot 0
+Consumer: Processing frame 36
+Producer: Read frame 38 from disk
+Added frame 38 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 36 to server, waiting for acknowledgment
+Frame 36 sent to server (sent: 37, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 36 acknowledged by server
+Consumer: Waiting for encoded data for frame 36
+Consumer: Received encoded data for frame 36
+Consumer: Writing frame 36 to output file
+Consumer: Frame 36 complete!
+Frame 36 completed, removed from pipeline (received: 37, pipeline: 2/3)
+Consumer: Processing frame 37 from slot 1
+Consumer: Processing frame 37
+Producer: Read frame 39 from disk
+Added frame 39 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 37 to server, waiting for acknowledgment
+Frame 37 sent to server (sent: 38, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 37 acknowledged by server
+Consumer: Waiting for encoded data for frame 37
+Consumer: Received encoded data for frame 37
+Consumer: Writing frame 37 to output file
+Consumer: Frame 37 complete!
+Frame 37 completed, removed from pipeline (received: 38, pipeline: 2/3)
+Consumer: Processing frame 38 from slot 2
+Consumer: Processing frame 38
+Producer: Read frame 40 from disk
+Added frame 40 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 38 to server, waiting for acknowledgment
+Frame 38 sent to server (sent: 39, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 38 acknowledged by server
+Consumer: Waiting for encoded data for frame 38
+Consumer: Received encoded data for frame 38
+Consumer: Writing frame 38 to output file
+Consumer: Frame 38 complete!
+Frame 38 completed, removed from pipeline (received: 39, pipeline: 2/3)
+Consumer: Processing frame 39 from slot 0
+Consumer: Processing frame 39
+Producer: Read frame 41 from disk
+Added frame 41 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 39 to server, waiting for acknowledgment
+Frame 39 sent to server (sent: 40, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 39 acknowledged by server
+Consumer: Waiting for encoded data for frame 39
+Consumer: Received encoded data for frame 39
+Consumer: Writing frame 39 to output file
+Consumer: Frame 39 complete!
+Frame 39 completed, removed from pipeline (received: 40, pipeline: 2/3)
+Consumer: Processing frame 40 from slot 1
+Consumer: Processing frame 40
+Producer: Read frame 42 from disk
+Added frame 42 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 40 to server, waiting for acknowledgment
+Frame 40 sent to server (sent: 41, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 40 acknowledged by server
+Consumer: Waiting for encoded data for frame 40
+Consumer: Received encoded data for frame 40
+Consumer: Writing frame 40 to output file
+Consumer: Frame 40 complete!
+Frame 40 completed, removed from pipeline (received: 41, pipeline: 2/3)
+Consumer: Processing frame 41 from slot 2
+Consumer: Processing frame 41
+Producer: Read frame 43 from disk
+Added frame 43 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 41 to server, waiting for acknowledgment
+Frame 41 sent to server (sent: 42, in pipeline: 3)
+Consumer: Frame 41 acknowledged by server
+Consumer: Waiting for encoded data for frame 41
+Consumer: Received encoded data for frame 41
+Consumer: Writing frame 41 to output file
+Consumer: Frame 41 complete!
+Frame 41 completed, removed from pipeline (received: 42, pipeline: 2/3)
+Consumer: Processing frame 42 from slot 0
+Consumer: Processing frame 42
+Producer: Read frame 44 from disk
+Added frame 44 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 42 to server, waiting for acknowledgment
+Frame 42 sent to server (sent: 43, in pipeline: 3)
+Consumer: Frame 42 acknowledged by server
+Consumer: Waiting for encoded data for frame 42
+Consumer: Received encoded data for frame 42
+Consumer: Writing frame 42 to output file
+Consumer: Frame 42 complete!
+Frame 42 completed, removed from pipeline (received: 43, pipeline: 2/3)
+Consumer: Processing frame 43 from slot 1
+Consumer: Processing frame 43
+Producer: Read frame 45 from disk
+Added frame 45 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 43 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 43 sent to server (sent: 44, in pipeline: 3)
+Consumer: Frame 43 acknowledged by server
+Consumer: Waiting for encoded data for frame 43
+Consumer: Received encoded data for frame 43
+Consumer: Writing frame 43 to output file
+Consumer: Frame 43 complete!
+Frame 43 completed, removed from pipeline (received: 44, pipeline: 2/3)
+Consumer: Processing frame 44 from slot 2
+Consumer: Processing frame 44
+Producer: Read frame 46 from disk
+Added frame 46 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 44 to server, waiting for acknowledgment
+Frame 44 sent to server (sent: 45, in pipeline: 3)
+Consumer: Frame 44 acknowledged by server
+Consumer: Waiting for encoded data for frame 44
+Consumer: Received encoded data for frame 44
+Consumer: Writing frame 44 to output file
+Consumer: Frame 44 complete!
+Frame 44 completed, removed from pipeline (received: 45, pipeline: 2/3)
+Consumer: Processing frame 45 from slot 0
+Consumer: Processing frame 45
+Producer: Read frame 47 from disk
+Added frame 47 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 45 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 45 sent to server (sent: 46, in pipeline: 3)
+Consumer: Frame 45 acknowledged by server
+Consumer: Waiting for encoded data for frame 45
+Consumer: Received encoded data for frame 45
+Consumer: Writing frame 45 to output file
+Consumer: Frame 45 complete!
+Frame 45 completed, removed from pipeline (received: 46, pipeline: 2/3)
+Consumer: Processing frame 46 from slot 1
+Consumer: Processing frame 46
+Producer: Read frame 48 from disk
+Added frame 48 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 46 to server, waiting for acknowledgment
+Frame 46 sent to server (sent: 47, in pipeline: 3)
+Consumer: Frame 46 acknowledged by server
+Consumer: Waiting for encoded data for frame 46
+Consumer: Received encoded data for frame 46
+Consumer: Writing frame 46 to output file
+Consumer: Frame 46 complete!
+Frame 46 completed, removed from pipeline (received: 47, pipeline: 2/3)
+Consumer: Processing frame 47 from slot 2
+Consumer: Processing frame 47
+Producer: Read frame 49 from disk
+Added frame 49 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 47 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 47 sent to server (sent: 48, in pipeline: 3)
+Consumer: Frame 47 acknowledged by server
+Consumer: Waiting for encoded data for frame 47
+Consumer: Received encoded data for frame 47
+Consumer: Writing frame 47 to output file
+Consumer: Frame 47 complete!
+Frame 47 completed, removed from pipeline (received: 48, pipeline: 2/3)
+Consumer: Processing frame 48 from slot 0
+Consumer: Processing frame 48
+Producer: Read frame 50 from disk
+Added frame 50 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 48 to server, waiting for acknowledgment
+Frame 48 sent to server (sent: 49, in pipeline: 3)
+Consumer: Frame 48 acknowledged by server
+Consumer: Waiting for encoded data for frame 48
+Consumer: Received encoded data for frame 48
+Consumer: Writing frame 48 to output file
+Consumer: Frame 48 complete!
+Frame 48 completed, removed from pipeline (received: 49, pipeline: 2/3)
+Consumer: Processing frame 49 from slot 1
+Consumer: Processing frame 49
+Producer: Read frame 51 from disk
+Added frame 51 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 49 to server, waiting for acknowledgment
+Frame 49 sent to server (sent: 50, in pipeline: 3)
+Consumer: Frame 49 acknowledged by server
+Consumer: Waiting for encoded data for frame 49
+Consumer: Received encoded data for frame 49
+Consumer: Writing frame 49 to output file
+Consumer: Frame 49 complete!
+Frame 49 completed, removed from pipeline (received: 50, pipeline: 2/3)
+Consumer: Processing frame 50 from slot 2
+Consumer: Processing frame 50
+Producer: Read frame 52 from disk
+Added frame 52 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 50 to server, waiting for acknowledgment
+Frame 50 sent to server (sent: 51, in pipeline: 3)
+Consumer: Frame 50 acknowledged by server
+Consumer: Waiting for encoded data for frame 50
+Consumer: Received encoded data for frame 50
+Consumer: Writing frame 50 to output file
+Consumer: Frame 50 complete!
+Frame 50 completed, removed from pipeline (received: 51, pipeline: 2/3)
+Consumer: Processing frame 51 from slot 0
+Consumer: Processing frame 51
+Producer: Read frame 53 from disk
+Added frame 53 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 51 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 51 sent to server (sent: 52, in pipeline: 3)
+Consumer: Frame 51 acknowledged by server
+Consumer: Waiting for encoded data for frame 51
+Consumer: Received encoded data for frame 51
+Consumer: Writing frame 51 to output file
+Consumer: Frame 51 complete!
+Frame 51 completed, removed from pipeline (received: 52, pipeline: 2/3)
+Consumer: Processing frame 52 from slot 1
+Consumer: Processing frame 52
+Producer: Read frame 54 from disk
+Added frame 54 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 52 to server, waiting for acknowledgment
+Frame 52 sent to server (sent: 53, in pipeline: 3)
+Consumer: Frame 52 acknowledged by server
+Consumer: Waiting for encoded data for frame 52
+Consumer: Received encoded data for frame 52
+Consumer: Writing frame 52 to output file
+Consumer: Frame 52 complete!
+Frame 52 completed, removed from pipeline (received: 53, pipeline: 2/3)
+Consumer: Processing frame 53 from slot 2
+Consumer: Processing frame 53
+Producer: Read frame 55 from disk
+Added frame 55 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 53 to server, waiting for acknowledgment
+Frame 53 sent to server (sent: 54, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 53 acknowledged by server
+Consumer: Waiting for encoded data for frame 53
+Consumer: Received encoded data for frame 53
+Consumer: Writing frame 53 to output file
+Consumer: Frame 53 complete!
+Frame 53 completed, removed from pipeline (received: 54, pipeline: 2/3)
+Consumer: Processing frame 54 from slot 0
+Consumer: Processing frame 54
+Producer: Read frame 56 from disk
+Added frame 56 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 54 to server, waiting for acknowledgment
+Frame 54 sent to server (sent: 55, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 54 acknowledged by server
+Consumer: Waiting for encoded data for frame 54
+Consumer: Received encoded data for frame 54
+Consumer: Writing frame 54 to output file
+Consumer: Frame 54 complete!
+Frame 54 completed, removed from pipeline (received: 55, pipeline: 2/3)
+Consumer: Processing frame 55 from slot 1
+Consumer: Processing frame 55
+Producer: Read frame 57 from disk
+Added frame 57 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 55 to server, waiting for acknowledgment
+Frame 55 sent to server (sent: 56, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 55 acknowledged by server
+Consumer: Waiting for encoded data for frame 55
+Consumer: Received encoded data for frame 55
+Consumer: Writing frame 55 to output file
+Consumer: Frame 55 complete!
+Frame 55 completed, removed from pipeline (received: 56, pipeline: 2/3)
+Consumer: Processing frame 56 from slot 2
+Consumer: Processing frame 56
+Producer: Read frame 58 from disk
+Added frame 58 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 56 to server, waiting for acknowledgment
+Frame 56 sent to server (sent: 57, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 56 acknowledged by server
+Consumer: Waiting for encoded data for frame 56
+Consumer: Received encoded data for frame 56
+Consumer: Writing frame 56 to output file
+Consumer: Frame 56 complete!
+Frame 56 completed, removed from pipeline (received: 57, pipeline: 2/3)
+Consumer: Processing frame 57 from slot 0
+Consumer: Processing frame 57
+Producer: Read frame 59 from disk
+Added frame 59 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 57 to server, waiting for acknowledgment
+Frame 57 sent to server (sent: 58, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 57 acknowledged by server
+Consumer: Waiting for encoded data for frame 57
+Consumer: Received encoded data for frame 57
+Consumer: Writing frame 57 to output file
+Consumer: Frame 57 complete!
+Frame 57 completed, removed from pipeline (received: 58, pipeline: 2/3)
+Consumer: Processing frame 58 from slot 1
+Consumer: Processing frame 58
+Producer: Read frame 60 from disk
+Added frame 60 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 58 to server, waiting for acknowledgment
+Frame 58 sent to server (sent: 59, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 58 acknowledged by server
+Consumer: Waiting for encoded data for frame 58
+Consumer: Received encoded data for frame 58
+Consumer: Writing frame 58 to output file
+Consumer: Frame 58 complete!
+Frame 58 completed, removed from pipeline (received: 59, pipeline: 2/3)
+Consumer: Processing frame 59 from slot 2
+Consumer: Processing frame 59
+Producer: Read frame 61 from disk
+Added frame 61 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 59 to server, waiting for acknowledgment
+Frame 59 sent to server (sent: 60, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 59 acknowledged by server
+Consumer: Waiting for encoded data for frame 59
+Consumer: Received encoded data for frame 59
+Consumer: Writing frame 59 to output file
+Consumer: Frame 59 complete!
+Frame 59 completed, removed from pipeline (received: 60, pipeline: 2/3)
+Consumer: Processing frame 60 from slot 0
+Consumer: Processing frame 60
+Producer: Read frame 62 from disk
+Added frame 62 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 60 to server, waiting for acknowledgment
+Frame 60 sent to server (sent: 61, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 60 acknowledged by server
+Consumer: Waiting for encoded data for frame 60
+Consumer: Received encoded data for frame 60
+Consumer: Writing frame 60 to output file
+Consumer: Frame 60 complete!
+Frame 60 completed, removed from pipeline (received: 61, pipeline: 2/3)
+Consumer: Processing frame 61 from slot 1
+Consumer: Processing frame 61
+Producer: Read frame 63 from disk
+Added frame 63 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 61 to server, waiting for acknowledgment
+Frame 61 sent to server (sent: 62, in pipeline: 3)
+Consumer: Frame 61 acknowledged by server
+Consumer: Waiting for encoded data for frame 61
+Consumer: Received encoded data for frame 61
+Consumer: Writing frame 61 to output file
+Consumer: Frame 61 complete!
+Frame 61 completed, removed from pipeline (received: 62, pipeline: 2/3)
+Consumer: Processing frame 62 from slot 2
+Consumer: Processing frame 62
+Producer: Read frame 64 from disk
+Added frame 64 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 62 to server, waiting for acknowledgment
+Frame 62 sent to server (sent: 63, in pipeline: 3)
+Consumer: Frame 62 acknowledged by server
+Consumer: Waiting for encoded data for frame 62
+Consumer: Received encoded data for frame 62
+Consumer: Writing frame 62 to output file
+Consumer: Frame 62 complete!
+Frame 62 completed, removed from pipeline (received: 63, pipeline: 2/3)
+Consumer: Processing frame 63 from slot 0
+Consumer: Processing frame 63
+Producer: Read frame 65 from disk
+Added frame 65 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 63 to server, waiting for acknowledgment
+Frame 63 sent to server (sent: 64, in pipeline: 3)
+Consumer: Frame 63 acknowledged by server
+Consumer: Waiting for encoded data for frame 63
+Consumer: Received encoded data for frame 63
+Consumer: Writing frame 63 to output file
+Consumer: Frame 63 complete!
+Frame 63 completed, removed from pipeline (received: 64, pipeline: 2/3)
+Consumer: Processing frame 64 from slot 1
+Consumer: Processing frame 64
+Producer: Read frame 66 from disk
+Added frame 66 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 64 to server, waiting for acknowledgment
+Frame 64 sent to server (sent: 65, in pipeline: 3)
+Consumer: Frame 64 acknowledged by server
+Consumer: Waiting for encoded data for frame 64
+Consumer: Received encoded data for frame 64
+Consumer: Writing frame 64 to output file
+Consumer: Frame 64 complete!
+Frame 64 completed, removed from pipeline (received: 65, pipeline: 2/3)
+Consumer: Processing frame 65 from slot 2
+Consumer: Processing frame 65
+Producer: Read frame 67 from disk
+Added frame 67 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 65 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 65 sent to server (sent: 66, in pipeline: 3)
+Consumer: Frame 65 acknowledged by server
+Consumer: Waiting for encoded data for frame 65
+Consumer: Received encoded data for frame 65
+Consumer: Writing frame 65 to output file
+Consumer: Frame 65 complete!
+Frame 65 completed, removed from pipeline (received: 66, pipeline: 2/3)
+Consumer: Processing frame 66 from slot 0
+Consumer: Processing frame 66
+Producer: Read frame 68 from disk
+Added frame 68 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 66 to server, waiting for acknowledgment
+Frame 66 sent to server (sent: 67, in pipeline: 3)
+Consumer: Frame 66 acknowledged by server
+Consumer: Waiting for encoded data for frame 66
+Consumer: Received encoded data for frame 66
+Consumer: Writing frame 66 to output file
+Consumer: Frame 66 complete!
+Frame 66 completed, removed from pipeline (received: 67, pipeline: 2/3)
+Consumer: Processing frame 67 from slot 1
+Consumer: Processing frame 67
+Producer: Read frame 69 from disk
+Added frame 69 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 67 to server, waiting for acknowledgment
+Frame 67 sent to server (sent: 68, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 67 acknowledged by server
+Consumer: Waiting for encoded data for frame 67
+Consumer: Received encoded data for frame 67
+Consumer: Writing frame 67 to output file
+Consumer: Frame 67 complete!
+Frame 67 completed, removed from pipeline (received: 68, pipeline: 2/3)
+Consumer: Processing frame 68 from slot 2
+Consumer: Processing frame 68
+Producer: Read frame 70 from disk
+Added frame 70 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 68 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 68 sent to server (sent: 69, in pipeline: 3)
+Consumer: Frame 68 acknowledged by server
+Consumer: Waiting for encoded data for frame 68
+Consumer: Received encoded data for frame 68
+Consumer: Writing frame 68 to output file
+Consumer: Frame 68 complete!
+Frame 68 completed, removed from pipeline (received: 69, pipeline: 2/3)
+Consumer: Processing frame 69 from slot 0
+Consumer: Processing frame 69
+Producer: Read frame 71 from disk
+Added frame 71 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 69 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 69 sent to server (sent: 70, in pipeline: 3)
+Consumer: Frame 69 acknowledged by server
+Consumer: Waiting for encoded data for frame 69
+Consumer: Received encoded data for frame 69
+Consumer: Writing frame 69 to output file
+Consumer: Frame 69 complete!
+Frame 69 completed, removed from pipeline (received: 70, pipeline: 2/3)
+Consumer: Processing frame 70 from slot 1
+Consumer: Processing frame 70
+Producer: Read frame 72 from disk
+Added frame 72 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 70 to server, waiting for acknowledgment
+Frame 70 sent to server (sent: 71, in pipeline: 3)
+Consumer: Frame 70 acknowledged by server
+Consumer: Waiting for encoded data for frame 70
+Consumer: Received encoded data for frame 70
+Consumer: Writing frame 70 to output file
+Consumer: Frame 70 complete!
+Frame 70 completed, removed from pipeline (received: 71, pipeline: 2/3)
+Consumer: Processing frame 71 from slot 2
+Consumer: Processing frame 71
+Producer: Read frame 73 from disk
+Added frame 73 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 71 to server, waiting for acknowledgment
+Frame 71 sent to server (sent: 72, in pipeline: 3)
+Consumer: Frame 71 acknowledged by server
+Consumer: Waiting for encoded data for frame 71
+Consumer: Received encoded data for frame 71
+Consumer: Writing frame 71 to output file
+Consumer: Frame 71 complete!
+Frame 71 completed, removed from pipeline (received: 72, pipeline: 2/3)
+Consumer: Processing frame 72 from slot 0
+Consumer: Processing frame 72
+Producer: Read frame 74 from disk
+Added frame 74 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 72 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 72 sent to server (sent: 73, in pipeline: 3)
+Consumer: Frame 72 acknowledged by server
+Consumer: Waiting for encoded data for frame 72
+Consumer: Received encoded data for frame 72
+Consumer: Writing frame 72 to output file
+Consumer: Frame 72 complete!
+Frame 72 completed, removed from pipeline (received: 73, pipeline: 2/3)
+Consumer: Processing frame 73 from slot 1
+Consumer: Processing frame 73
+Producer: Read frame 75 from disk
+Added frame 75 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 73 to server, waiting for acknowledgment
+Frame 73 sent to server (sent: 74, in pipeline: 3)
+Consumer: Frame 73 acknowledged by server
+Consumer: Waiting for encoded data for frame 73
+Consumer: Received encoded data for frame 73
+Consumer: Writing frame 73 to output file
+Consumer: Frame 73 complete!
+Frame 73 completed, removed from pipeline (received: 74, pipeline: 2/3)
+Consumer: Processing frame 74 from slot 2
+Consumer: Processing frame 74
+Producer: Read frame 76 from disk
+Added frame 76 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 74 to server, waiting for acknowledgment
+Frame 74 sent to server (sent: 75, in pipeline: 3)
+Consumer: Frame 74 acknowledged by server
+Consumer: Waiting for encoded data for frame 74
+Consumer: Received encoded data for frame 74
+Consumer: Writing frame 74 to output file
+Consumer: Frame 74 complete!
+Frame 74 completed, removed from pipeline (received: 75, pipeline: 2/3)
+Consumer: Processing frame 75 from slot 0
+Consumer: Processing frame 75
+Producer: Read frame 77 from disk
+Added frame 77 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 75 to server, waiting for acknowledgment
+Frame 75 sent to server (sent: 76, in pipeline: 3)
+Consumer: Frame 75 acknowledged by server
+Consumer: Waiting for encoded data for frame 75
+Consumer: Received encoded data for frame 75
+Consumer: Writing frame 75 to output file
+Consumer: Frame 75 complete!
+Frame 75 completed, removed from pipeline (received: 76, pipeline: 2/3)
+Consumer: Processing frame 76 from slot 1
+Consumer: Processing frame 76
+Producer: Read frame 78 from disk
+Added frame 78 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 76 to server, waiting for acknowledgment
+Frame 76 sent to server (sent: 77, in pipeline: 3)
+Consumer: Frame 76 acknowledged by server
+Consumer: Waiting for encoded data for frame 76
+Consumer: Received encoded data for frame 76
+Consumer: Writing frame 76 to output file
+Consumer: Frame 76 complete!
+Frame 76 completed, removed from pipeline (received: 77, pipeline: 2/3)
+Consumer: Processing frame 77 from slot 2
+Consumer: Processing frame 77
+Producer: Read frame 79 from disk
+Added frame 79 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 77 to server, waiting for acknowledgment
+Frame 77 sent to server (sent: 78, in pipeline: 3)
+Consumer: Frame 77 acknowledged by server
+Consumer: Waiting for encoded data for frame 77
+Consumer: Received encoded data for frame 77
+Consumer: Writing frame 77 to output file
+Consumer: Frame 77 complete!
+Frame 77 completed, removed from pipeline (received: 78, pipeline: 2/3)
+Consumer: Processing frame 78 from slot 0
+Consumer: Processing frame 78
+Producer: Read frame 80 from disk
+Added frame 80 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 78 to server, waiting for acknowledgment
+Frame 78 sent to server (sent: 79, in pipeline: 3)
+Consumer: Frame 78 acknowledged by server
+Consumer: Waiting for encoded data for frame 78
+Consumer: Received encoded data for frame 78
+Consumer: Writing frame 78 to output file
+Consumer: Frame 78 complete!
+Frame 78 completed, removed from pipeline (received: 79, pipeline: 2/3)
+Consumer: Processing frame 79 from slot 1
+Consumer: Processing frame 79
+Producer: Read frame 81 from disk
+Added frame 81 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 79 to server, waiting for acknowledgment
+Frame 79 sent to server (sent: 80, in pipeline: 3)
+Consumer: Frame 79 acknowledged by server
+Consumer: Waiting for encoded data for frame 79
+Consumer: Received encoded data for frame 79
+Consumer: Writing frame 79 to output file
+Consumer: Frame 79 complete!
+Frame 79 completed, removed from pipeline (received: 80, pipeline: 2/3)
+Consumer: Processing frame 80 from slot 2
+Consumer: Processing frame 80
+Producer: Read frame 82 from disk
+Added frame 82 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 80 to server, waiting for acknowledgment
+Frame 80 sent to server (sent: 81, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 80 acknowledged by server
+Consumer: Waiting for encoded data for frame 80
+Consumer: Received encoded data for frame 80
+Consumer: Writing frame 80 to output file
+Consumer: Frame 80 complete!
+Frame 80 completed, removed from pipeline (received: 81, pipeline: 2/3)
+Consumer: Processing frame 81 from slot 0
+Consumer: Processing frame 81
+Producer: Read frame 83 from disk
+Added frame 83 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 81 to server, waiting for acknowledgment
+Frame 81 sent to server (sent: 82, in pipeline: 3)
+Consumer: Frame 81 acknowledged by server
+Consumer: Waiting for encoded data for frame 81
+Consumer: Received encoded data for frame 81
+Consumer: Writing frame 81 to output file
+Consumer: Frame 81 complete!
+Frame 81 completed, removed from pipeline (received: 82, pipeline: 2/3)
+Consumer: Processing frame 82 from slot 1
+Consumer: Processing frame 82
+Producer: Read frame 84 from disk
+Added frame 84 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 82 to server, waiting for acknowledgment
+Frame 82 sent to server (sent: 83, in pipeline: 3)
+Consumer: Frame 82 acknowledged by server
+Consumer: Waiting for encoded data for frame 82
+Consumer: Received encoded data for frame 82
+Consumer: Writing frame 82 to output file
+Consumer: Frame 82 complete!
+Frame 82 completed, removed from pipeline (received: 83, pipeline: 2/3)
+Consumer: Processing frame 83 from slot 2
+Consumer: Processing frame 83
+Producer: Read frame 85 from disk
+Added frame 85 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 83 to server, waiting for acknowledgment
+Frame 83 sent to server (sent: 84, in pipeline: 3)
+Consumer: Frame 83 acknowledged by server
+Consumer: Waiting for encoded data for frame 83
+Consumer: Received encoded data for frame 83
+Consumer: Writing frame 83 to output file
+Consumer: Frame 83 complete!
+Frame 83 completed, removed from pipeline (received: 84, pipeline: 2/3)
+Consumer: Processing frame 84 from slot 0
+Consumer: Processing frame 84
+Producer: Read frame 86 from disk
+Added frame 86 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 84 to server, waiting for acknowledgment
+Frame 84 sent to server (sent: 85, in pipeline: 3)
+Consumer: Frame 84 acknowledged by server
+Consumer: Waiting for encoded data for frame 84
+Consumer: Received encoded data for frame 84
+Consumer: Writing frame 84 to output file
+Consumer: Frame 84 complete!
+Frame 84 completed, removed from pipeline (received: 85, pipeline: 2/3)
+Consumer: Processing frame 85 from slot 1
+Consumer: Processing frame 85
+Producer: Read frame 87 from disk
+Added frame 87 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 85 to server, waiting for acknowledgment
+Frame 85 sent to server (sent: 86, in pipeline: 3)
+Consumer: Frame 85 acknowledged by server
+Consumer: Waiting for encoded data for frame 85
+Consumer: Received encoded data for frame 85
+Consumer: Writing frame 85 to output file
+Consumer: Frame 85 complete!
+Frame 85 completed, removed from pipeline (received: 86, pipeline: 2/3)
+Consumer: Processing frame 86 from slot 2
+Consumer: Processing frame 86
+Producer: Read frame 88 from disk
+Added frame 88 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 86 to server, waiting for acknowledgment
+Frame 86 sent to server (sent: 87, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 86 acknowledged by server
+Consumer: Waiting for encoded data for frame 86
+Consumer: Received encoded data for frame 86
+Consumer: Writing frame 86 to output file
+Consumer: Frame 86 complete!
+Frame 86 completed, removed from pipeline (received: 87, pipeline: 2/3)
+Consumer: Processing frame 87 from slot 0
+Consumer: Processing frame 87
+Producer: Read frame 89 from disk
+Added frame 89 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 87 to server, waiting for acknowledgment
+Frame 87 sent to server (sent: 88, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 87 acknowledged by server
+Consumer: Waiting for encoded data for frame 87
+Consumer: Received encoded data for frame 87
+Consumer: Writing frame 87 to output file
+Consumer: Frame 87 complete!
+Frame 87 completed, removed from pipeline (received: 88, pipeline: 2/3)
+Consumer: Processing frame 88 from slot 1
+Consumer: Processing frame 88
+Producer: Read frame 90 from disk
+Added frame 90 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 88 to server, waiting for acknowledgment
+Frame 88 sent to server (sent: 89, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 88 acknowledged by server
+Consumer: Waiting for encoded data for frame 88
+Consumer: Received encoded data for frame 88
+Consumer: Writing frame 88 to output file
+Consumer: Frame 88 complete!
+Frame 88 completed, removed from pipeline (received: 89, pipeline: 2/3)
+Consumer: Processing frame 89 from slot 2
+Consumer: Processing frame 89
+Producer: Read frame 91 from disk
+Added frame 91 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 89 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 89 sent to server (sent: 90, in pipeline: 3)
+Consumer: Frame 89 acknowledged by server
+Consumer: Waiting for encoded data for frame 89
+Consumer: Received encoded data for frame 89
+Consumer: Writing frame 89 to output file
+Consumer: Frame 89 complete!
+Frame 89 completed, removed from pipeline (received: 90, pipeline: 2/3)
+Consumer: Processing frame 90 from slot 0
+Consumer: Processing frame 90
+Producer: Read frame 92 from disk
+Added frame 92 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 90 to server, waiting for acknowledgment
+Frame 90 sent to server (sent: 91, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 90 acknowledged by server
+Consumer: Waiting for encoded data for frame 90
+Consumer: Received encoded data for frame 90
+Consumer: Writing frame 90 to output file
+Consumer: Frame 90 complete!
+Frame 90 completed, removed from pipeline (received: 91, pipeline: 2/3)
+Consumer: Processing frame 91 from slot 1
+Consumer: Processing frame 91
+Producer: Read frame 93 from disk
+Added frame 93 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 91 to server, waiting for acknowledgment
+Frame 91 sent to server (sent: 92, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 91 acknowledged by server
+Consumer: Waiting for encoded data for frame 91
+Consumer: Received encoded data for frame 91
+Consumer: Writing frame 91 to output file
+Consumer: Frame 91 complete!
+Frame 91 completed, removed from pipeline (received: 92, pipeline: 2/3)
+Consumer: Processing frame 92 from slot 2
+Consumer: Processing frame 92
+Producer: Read frame 94 from disk
+Added frame 94 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 92 to server, waiting for acknowledgment
+Frame 92 sent to server (sent: 93, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 92 acknowledged by server
+Consumer: Waiting for encoded data for frame 92
+Consumer: Received encoded data for frame 92
+Consumer: Writing frame 92 to output file
+Consumer: Frame 92 complete!
+Frame 92 completed, removed from pipeline (received: 93, pipeline: 2/3)
+Consumer: Processing frame 93 from slot 0
+Consumer: Processing frame 93
+Producer: Read frame 95 from disk
+Added frame 95 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 93 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 93 sent to server (sent: 94, in pipeline: 3)
+Consumer: Frame 93 acknowledged by server
+Consumer: Waiting for encoded data for frame 93
+Consumer: Received encoded data for frame 93
+Consumer: Writing frame 93 to output file
+Consumer: Frame 93 complete!
+Frame 93 completed, removed from pipeline (received: 94, pipeline: 2/3)
+Consumer: Processing frame 94 from slot 1
+Consumer: Processing frame 94
+Producer: Read frame 96 from disk
+Added frame 96 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 94 to server, waiting for acknowledgment
+Frame 94 sent to server (sent: 95, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 94 acknowledged by server
+Consumer: Waiting for encoded data for frame 94
+Consumer: Received encoded data for frame 94
+Consumer: Writing frame 94 to output file
+Consumer: Frame 94 complete!
+Frame 94 completed, removed from pipeline (received: 95, pipeline: 2/3)
+Consumer: Processing frame 95 from slot 2
+Consumer: Processing frame 95
+Producer: Read frame 97 from disk
+Added frame 97 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 95 to server, waiting for acknowledgment
+Frame 95 sent to server (sent: 96, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 95 acknowledged by server
+Consumer: Waiting for encoded data for frame 95
+Consumer: Received encoded data for frame 95
+Consumer: Writing frame 95 to output file
+Consumer: Frame 95 complete!
+Frame 95 completed, removed from pipeline (received: 96, pipeline: 2/3)
+Consumer: Processing frame 96 from slot 0
+Consumer: Processing frame 96
+Producer: Read frame 98 from disk
+Added frame 98 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 96 to server, waiting for acknowledgment
+Frame 96 sent to server (sent: 97, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 96 acknowledged by server
+Consumer: Waiting for encoded data for frame 96
+Consumer: Received encoded data for frame 96
+Consumer: Writing frame 96 to output file
+Consumer: Frame 96 complete!
+Frame 96 completed, removed from pipeline (received: 97, pipeline: 2/3)
+Consumer: Processing frame 97 from slot 1
+Consumer: Processing frame 97
+Producer: Read frame 99 from disk
+Added frame 99 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 97 to server, waiting for acknowledgment
+Frame 97 sent to server (sent: 98, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 97 acknowledged by server
+Consumer: Waiting for encoded data for frame 97
+Consumer: Received encoded data for frame 97
+Consumer: Writing frame 97 to output file
+Consumer: Frame 97 complete!
+Frame 97 completed, removed from pipeline (received: 98, pipeline: 2/3)
+Consumer: Processing frame 98 from slot 2
+Consumer: Processing frame 98
+Producer: Read frame 100 from disk
+Added frame 100 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 98 to server, waiting for acknowledgment
+Frame 98 sent to server (sent: 99, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 98 acknowledged by server
+Consumer: Waiting for encoded data for frame 98
+Consumer: Received encoded data for frame 98
+Consumer: Writing frame 98 to output file
+Consumer: Frame 98 complete!
+Frame 98 completed, removed from pipeline (received: 99, pipeline: 2/3)
+Consumer: Processing frame 99 from slot 0
+Consumer: Processing frame 99
+Producer: Read frame 101 from disk
+Added frame 101 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 99 to server, waiting for acknowledgment
+Frame 99 sent to server (sent: 100, in pipeline: 3)
+Consumer: Frame 99 acknowledged by server
+Consumer: Waiting for encoded data for frame 99
+Consumer: Received encoded data for frame 99
+Consumer: Writing frame 99 to output file
+Consumer: Frame 99 complete!
+Frame 99 completed, removed from pipeline (received: 100, pipeline: 2/3)
+Consumer: Processing frame 100 from slot 1
+Consumer: Processing frame 100
+Producer: Read frame 102 from disk
+Added frame 102 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 100 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 100 sent to server (sent: 101, in pipeline: 3)
+Consumer: Frame 100 acknowledged by server
+Consumer: Waiting for encoded data for frame 100
+Consumer: Received encoded data for frame 100
+Consumer: Writing frame 100 to output file
+Consumer: Frame 100 complete!
+Frame 100 completed, removed from pipeline (received: 101, pipeline: 2/3)
+Consumer: Processing frame 101 from slot 2
+Consumer: Processing frame 101
+Producer: Read frame 103 from disk
+Added frame 103 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 101 to server, waiting for acknowledgment
+Frame 101 sent to server (sent: 102, in pipeline: 3)
+Consumer: Frame 101 acknowledged by server
+Consumer: Waiting for encoded data for frame 101
+Consumer: Received encoded data for frame 101
+Consumer: Writing frame 101 to output file
+Consumer: Frame 101 complete!
+Frame 101 completed, removed from pipeline (received: 102, pipeline: 2/3)
+Consumer: Processing frame 102 from slot 0
+Consumer: Processing frame 102
+Producer: Read frame 104 from disk
+Added frame 104 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 102 to server, waiting for acknowledgment
+Frame 102 sent to server (sent: 103, in pipeline: 3)
+Consumer: Frame 102 acknowledged by server
+Consumer: Waiting for encoded data for frame 102
+Consumer: Received encoded data for frame 102
+Consumer: Writing frame 102 to output file
+Consumer: Frame 102 complete!
+Frame 102 completed, removed from pipeline (received: 103, pipeline: 2/3)
+Consumer: Processing frame 103 from slot 1
+Consumer: Processing frame 103
+Producer: Read frame 105 from disk
+Added frame 105 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 103 to server, waiting for acknowledgment
+Frame 103 sent to server (sent: 104, in pipeline: 3)
+Consumer: Frame 103 acknowledged by server
+Consumer: Waiting for encoded data for frame 103
+Consumer: Received encoded data for frame 103
+Consumer: Writing frame 103 to output file
+Consumer: Frame 103 complete!
+Frame 103 completed, removed from pipeline (received: 104, pipeline: 2/3)
+Consumer: Processing frame 104 from slot 2
+Consumer: Processing frame 104
+Producer: Read frame 106 from disk
+Added frame 106 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 104 to server, waiting for acknowledgment
+Frame 104 sent to server (sent: 105, in pipeline: 3)
+Consumer: Frame 104 acknowledged by server
+Consumer: Waiting for encoded data for frame 104
+Consumer: Received encoded data for frame 104
+Consumer: Writing frame 104 to output file
+Consumer: Frame 104 complete!
+Frame 104 completed, removed from pipeline (received: 105, pipeline: 2/3)
+Consumer: Processing frame 105 from slot 0
+Consumer: Processing frame 105
+Producer: Read frame 107 from disk
+Added frame 107 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 105 to server, waiting for acknowledgment
+Frame 105 sent to server (sent: 106, in pipeline: 3)
+Consumer: Frame 105 acknowledged by server
+Consumer: Waiting for encoded data for frame 105
+Consumer: Received encoded data for frame 105
+Consumer: Writing frame 105 to output file
+Consumer: Frame 105 complete!
+Frame 105 completed, removed from pipeline (received: 106, pipeline: 2/3)
+Consumer: Processing frame 106 from slot 1
+Consumer: Processing frame 106
+Producer: Read frame 108 from disk
+Added frame 108 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 106 to server, waiting for acknowledgment
+Frame 106 sent to server (sent: 107, in pipeline: 3)
+Consumer: Frame 106 acknowledged by server
+Consumer: Waiting for encoded data for frame 106
+Consumer: Received encoded data for frame 106
+Consumer: Writing frame 106 to output file
+Consumer: Frame 106 complete!
+Frame 106 completed, removed from pipeline (received: 107, pipeline: 2/3)
+Consumer: Processing frame 107 from slot 2
+Consumer: Processing frame 107
+Producer: Read frame 109 from disk
+Added frame 109 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 107 to server, waiting for acknowledgment
+Frame 107 sent to server (sent: 108, in pipeline: 3)
+Consumer: Frame 107 acknowledged by server
+Consumer: Waiting for encoded data for frame 107
+Consumer: Received encoded data for frame 107
+Consumer: Writing frame 107 to output file
+Consumer: Frame 107 complete!
+Frame 107 completed, removed from pipeline (received: 108, pipeline: 2/3)
+Consumer: Processing frame 108 from slot 0
+Consumer: Processing frame 108
+Producer: Read frame 110 from disk
+Added frame 110 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 108 to server, waiting for acknowledgment
+Frame 108 sent to server (sent: 109, in pipeline: 3)
+Consumer: Frame 108 acknowledged by server
+Consumer: Waiting for encoded data for frame 108
+Consumer: Received encoded data for frame 108
+Consumer: Writing frame 108 to output file
+Consumer: Frame 108 complete!
+Frame 108 completed, removed from pipeline (received: 109, pipeline: 2/3)
+Consumer: Processing frame 109 from slot 1
+Consumer: Processing frame 109
+Producer: Read frame 111 from disk
+Added frame 111 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 109 to server, waiting for acknowledgment
+Frame 109 sent to server (sent: 110, in pipeline: 3)
+Consumer: Frame 109 acknowledged by server
+Consumer: Waiting for encoded data for frame 109
+Consumer: Received encoded data for frame 109
+Consumer: Writing frame 109 to output file
+Consumer: Frame 109 complete!
+Frame 109 completed, removed from pipeline (received: 110, pipeline: 2/3)
+Consumer: Processing frame 110 from slot 2
+Consumer: Processing frame 110
+Producer: Read frame 112 from disk
+Added frame 112 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 110 to server, waiting for acknowledgment
+Frame 110 sent to server (sent: 111, in pipeline: 3)
+Consumer: Frame 110 acknowledged by server
+Consumer: Waiting for encoded data for frame 110
+Consumer: Received encoded data for frame 110
+Consumer: Writing frame 110 to output file
+Consumer: Frame 110 complete!
+Frame 110 completed, removed from pipeline (received: 111, pipeline: 2/3)
+Consumer: Processing frame 111 from slot 0
+Consumer: Processing frame 111
+Producer: Read frame 113 from disk
+Added frame 113 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 111 to server, waiting for acknowledgment
+Frame 111 sent to server (sent: 112, in pipeline: 3)
+Consumer: Frame 111 acknowledged by server
+Consumer: Waiting for encoded data for frame 111
+Consumer: Received encoded data for frame 111
+Consumer: Writing frame 111 to output file
+Consumer: Frame 111 complete!
+Frame 111 completed, removed from pipeline (received: 112, pipeline: 2/3)
+Consumer: Processing frame 112 from slot 1
+Consumer: Processing frame 112
+Producer: Read frame 114 from disk
+Added frame 114 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 112 to server, waiting for acknowledgment
+Frame 112 sent to server (sent: 113, in pipeline: 3)
+Consumer: Frame 112 acknowledged by server
+Consumer: Waiting for encoded data for frame 112
+Consumer: Received encoded data for frame 112
+Consumer: Writing frame 112 to output file
+Consumer: Frame 112 complete!
+Frame 112 completed, removed from pipeline (received: 113, pipeline: 2/3)
+Consumer: Processing frame 113 from slot 2
+Consumer: Processing frame 113
+Producer: Read frame 115 from disk
+Added frame 115 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 113 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 113 sent to server (sent: 114, in pipeline: 3)
+Consumer: Frame 113 acknowledged by server
+Consumer: Waiting for encoded data for frame 113
+Consumer: Received encoded data for frame 113
+Consumer: Writing frame 113 to output file
+Consumer: Frame 113 complete!
+Frame 113 completed, removed from pipeline (received: 114, pipeline: 2/3)
+Consumer: Processing frame 114 from slot 0
+Consumer: Processing frame 114
+Producer: Read frame 116 from disk
+Added frame 116 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 114 to server, waiting for acknowledgment
+Frame 114 sent to server (sent: 115, in pipeline: 3)
+Consumer: Frame 114 acknowledged by server
+Consumer: Waiting for encoded data for frame 114
+Consumer: Received encoded data for frame 114
+Consumer: Writing frame 114 to output file
+Consumer: Frame 114 complete!
+Frame 114 completed, removed from pipeline (received: 115, pipeline: 2/3)
+Consumer: Processing frame 115 from slot 1
+Consumer: Processing frame 115
+Producer: Read frame 117 from disk
+Added frame 117 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 115 to server, waiting for acknowledgment
+Frame 115 sent to server (sent: 116, in pipeline: 3)
+Consumer: Frame 115 acknowledged by server
+Consumer: Waiting for encoded data for frame 115
+Consumer: Received encoded data for frame 115
+Consumer: Writing frame 115 to output file
+Consumer: Frame 115 complete!
+Frame 115 completed, removed from pipeline (received: 116, pipeline: 2/3)
+Consumer: Processing frame 116 from slot 2
+Consumer: Processing frame 116
+Producer: Read frame 118 from disk
+Added frame 118 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 116 to server, waiting for acknowledgment
+Frame 116 sent to server (sent: 117, in pipeline: 3)
+Consumer: Frame 116 acknowledged by server
+Consumer: Waiting for encoded data for frame 116
+Consumer: Received encoded data for frame 116
+Consumer: Writing frame 116 to output file
+Consumer: Frame 116 complete!
+Frame 116 completed, removed from pipeline (received: 117, pipeline: 2/3)
+Consumer: Processing frame 117 from slot 0
+Consumer: Processing frame 117
+Producer: Read frame 119 from disk
+Added frame 119 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 117 to server, waiting for acknowledgment
+Frame 117 sent to server (sent: 118, in pipeline: 3)
+Consumer: Frame 117 acknowledged by server
+Consumer: Waiting for encoded data for frame 117
+Consumer: Received encoded data for frame 117
+Consumer: Writing frame 117 to output file
+Consumer: Frame 117 complete!
+Frame 117 completed, removed from pipeline (received: 118, pipeline: 2/3)
+Consumer: Processing frame 118 from slot 1
+Consumer: Processing frame 118
+Producer: Read frame 120 from disk
+Added frame 120 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 118 to server, waiting for acknowledgment
+Frame 118 sent to server (sent: 119, in pipeline: 3)
+Consumer: Frame 118 acknowledged by server
+Consumer: Waiting for encoded data for frame 118
+Consumer: Received encoded data for frame 118
+Consumer: Writing frame 118 to output file
+Consumer: Frame 118 complete!
+Frame 118 completed, removed from pipeline (received: 119, pipeline: 2/3)
+Consumer: Processing frame 119 from slot 2
+Consumer: Processing frame 119
+Producer: Read frame 121 from disk
+Added frame 121 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 119 to server, waiting for acknowledgment
+Frame 119 sent to server (sent: 120, in pipeline: 3)
+Consumer: Frame 119 acknowledged by server
+Consumer: Waiting for encoded data for frame 119
+Consumer: Received encoded data for frame 119
+Consumer: Writing frame 119 to output file
+Consumer: Frame 119 complete!
+Frame 119 completed, removed from pipeline (received: 120, pipeline: 2/3)
+Consumer: Processing frame 120 from slot 0
+Consumer: Processing frame 120
+Producer: Read frame 122 from disk
+Added frame 122 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 120 to server, waiting for acknowledgment
+Frame 120 sent to server (sent: 121, in pipeline: 3)
+Consumer: Frame 120 acknowledged by server
+Consumer: Waiting for encoded data for frame 120
+Consumer: Received encoded data for frame 120
+Consumer: Writing frame 120 to output file
+Consumer: Frame 120 complete!
+Frame 120 completed, removed from pipeline (received: 121, pipeline: 2/3)
+Consumer: Processing frame 121 from slot 1
+Consumer: Processing frame 121
+Producer: Read frame 123 from disk
+Added frame 123 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 121 to server, waiting for acknowledgment
+Frame 121 sent to server (sent: 122, in pipeline: 3)
+Consumer: Frame 121 acknowledged by server
+Consumer: Waiting for encoded data for frame 121
+Consumer: Received encoded data for frame 121
+Consumer: Writing frame 121 to output file
+Consumer: Frame 121 complete!
+Frame 121 completed, removed from pipeline (received: 122, pipeline: 2/3)
+Consumer: Processing frame 122 from slot 2
+Consumer: Processing frame 122
+Producer: Read frame 124 from disk
+Added frame 124 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 122 to server, waiting for acknowledgment
+Frame 122 sent to server (sent: 123, in pipeline: 3)
+Consumer: Frame 122 acknowledged by server
+Consumer: Waiting for encoded data for frame 122
+Consumer: Received encoded data for frame 122
+Consumer: Writing frame 122 to output file
+Consumer: Frame 122 complete!
+Frame 122 completed, removed from pipeline (received: 123, pipeline: 2/3)
+Consumer: Processing frame 123 from slot 0
+Consumer: Processing frame 123
+Producer: Read frame 125 from disk
+Added frame 125 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 123 to server, waiting for acknowledgment
+Frame 123 sent to server (sent: 124, in pipeline: 3)
+Consumer: Frame 123 acknowledged by server
+Consumer: Waiting for encoded data for frame 123
+Consumer: Received encoded data for frame 123
+Consumer: Writing frame 123 to output file
+Consumer: Frame 123 complete!
+Frame 123 completed, removed from pipeline (received: 124, pipeline: 2/3)
+Consumer: Processing frame 124 from slot 1
+Consumer: Processing frame 124
+Producer: Read frame 126 from disk
+Added frame 126 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 124 to server, waiting for acknowledgment
+Frame 124 sent to server (sent: 125, in pipeline: 3)
+Consumer: Frame 124 acknowledged by server
+Consumer: Waiting for encoded data for frame 124
+Consumer: Received encoded data for frame 124
+Consumer: Writing frame 124 to output file
+Consumer: Frame 124 complete!
+Frame 124 completed, removed from pipeline (received: 125, pipeline: 2/3)
+Consumer: Processing frame 125 from slot 2
+Consumer: Processing frame 125
+Producer: Read frame 127 from disk
+Added frame 127 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 125 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 125 sent to server (sent: 126, in pipeline: 3)
+Consumer: Frame 125 acknowledged by server
+Consumer: Waiting for encoded data for frame 125
+Consumer: Received encoded data for frame 125
+Consumer: Writing frame 125 to output file
+Consumer: Frame 125 complete!
+Frame 125 completed, removed from pipeline (received: 126, pipeline: 2/3)
+Consumer: Processing frame 126 from slot 0
+Consumer: Processing frame 126
+Producer: Read frame 128 from disk
+Added frame 128 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 126 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 126 sent to server (sent: 127, in pipeline: 3)
+Consumer: Frame 126 acknowledged by server
+Consumer: Waiting for encoded data for frame 126
+Consumer: Received encoded data for frame 126
+Consumer: Writing frame 126 to output file
+Consumer: Frame 126 complete!
+Frame 126 completed, removed from pipeline (received: 127, pipeline: 2/3)
+Consumer: Processing frame 127 from slot 1
+Consumer: Processing frame 127
+Producer: Read frame 129 from disk
+Added frame 129 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 127 to server, waiting for acknowledgment
+Frame 127 sent to server (sent: 128, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 127 acknowledged by server
+Consumer: Waiting for encoded data for frame 127
+Consumer: Received encoded data for frame 127
+Consumer: Writing frame 127 to output file
+Consumer: Frame 127 complete!
+Frame 127 completed, removed from pipeline (received: 128, pipeline: 2/3)
+Consumer: Processing frame 128 from slot 2
+Consumer: Processing frame 128
+Producer: Read frame 130 from disk
+Added frame 130 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 128 to server, waiting for acknowledgment
+Frame 128 sent to server (sent: 129, in pipeline: 3)
+Consumer: Frame 128 acknowledged by server
+Consumer: Waiting for encoded data for frame 128
+Consumer: Received encoded data for frame 128
+Consumer: Writing frame 128 to output file
+Consumer: Frame 128 complete!
+Frame 128 completed, removed from pipeline (received: 129, pipeline: 2/3)
+Consumer: Processing frame 129 from slot 0
+Consumer: Processing frame 129
+Producer: Read frame 131 from disk
+Added frame 131 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 129 to server, waiting for acknowledgment
+Frame 129 sent to server (sent: 130, in pipeline: 3)
+Consumer: Frame 129 acknowledged by server
+Consumer: Waiting for encoded data for frame 129
+Consumer: Received encoded data for frame 129
+Consumer: Writing frame 129 to output file
+Consumer: Frame 129 complete!
+Frame 129 completed, removed from pipeline (received: 130, pipeline: 2/3)
+Consumer: Processing frame 130 from slot 1
+Consumer: Processing frame 130
+Producer: Read frame 132 from disk
+Added frame 132 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 130 to server, waiting for acknowledgment
+Frame 130 sent to server (sent: 131, in pipeline: 3)
+Consumer: Frame 130 acknowledged by server
+Consumer: Waiting for encoded data for frame 130
+Consumer: Received encoded data for frame 130
+Consumer: Writing frame 130 to output file
+Consumer: Frame 130 complete!
+Frame 130 completed, removed from pipeline (received: 131, pipeline: 2/3)
+Consumer: Processing frame 131 from slot 2
+Consumer: Processing frame 131
+Producer: Read frame 133 from disk
+Added frame 133 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 131 to server, waiting for acknowledgment
+Frame 131 sent to server (sent: 132, in pipeline: 3)
+Consumer: Frame 131 acknowledged by server
+Consumer: Waiting for encoded data for frame 131
+Consumer: Received encoded data for frame 131
+Consumer: Writing frame 131 to output file
+Consumer: Frame 131 complete!
+Frame 131 completed, removed from pipeline (received: 132, pipeline: 2/3)
+Consumer: Processing frame 132 from slot 0
+Consumer: Processing frame 132
+Producer: Read frame 134 from disk
+Added frame 134 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 132 to server, waiting for acknowledgment
+Frame 132 sent to server (sent: 133, in pipeline: 3)
+Consumer: Frame 132 acknowledged by server
+Consumer: Waiting for encoded data for frame 132
+Consumer: Received encoded data for frame 132
+Consumer: Writing frame 132 to output file
+Consumer: Frame 132 complete!
+Frame 132 completed, removed from pipeline (received: 133, pipeline: 2/3)
+Consumer: Processing frame 133 from slot 1
+Consumer: Processing frame 133
+Producer: Read frame 135 from disk
+Added frame 135 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 133 to server, waiting for acknowledgment
+Frame 133 sent to server (sent: 134, in pipeline: 3)
+Consumer: Frame 133 acknowledged by server
+Consumer: Waiting for encoded data for frame 133
+Consumer: Received encoded data for frame 133
+Consumer: Writing frame 133 to output file
+Consumer: Frame 133 complete!
+Frame 133 completed, removed from pipeline (received: 134, pipeline: 2/3)
+Consumer: Processing frame 134 from slot 2
+Consumer: Processing frame 134
+Producer: Read frame 136 from disk
+Added frame 136 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 134 to server, waiting for acknowledgment
+Frame 134 sent to server (sent: 135, in pipeline: 3)
+Consumer: Frame 134 acknowledged by server
+Consumer: Waiting for encoded data for frame 134
+Consumer: Received encoded data for frame 134
+Consumer: Writing frame 134 to output file
+Consumer: Frame 134 complete!
+Frame 134 completed, removed from pipeline (received: 135, pipeline: 2/3)
+Consumer: Processing frame 135 from slot 0
+Consumer: Processing frame 135
+Producer: Read frame 137 from disk
+Added frame 137 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 135 to server, waiting for acknowledgment
+Frame 135 sent to server (sent: 136, in pipeline: 3)
+Consumer: Frame 135 acknowledged by server
+Consumer: Waiting for encoded data for frame 135
+Consumer: Received encoded data for frame 135
+Consumer: Writing frame 135 to output file
+Consumer: Frame 135 complete!
+Frame 135 completed, removed from pipeline (received: 136, pipeline: 2/3)
+Consumer: Processing frame 136 from slot 1
+Consumer: Processing frame 136
+Producer: Read frame 138 from disk
+Added frame 138 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 136 to server, waiting for acknowledgment
+Frame 136 sent to server (sent: 137, in pipeline: 3)
+Consumer: Frame 136 acknowledged by server
+Consumer: Waiting for encoded data for frame 136
+Consumer: Received encoded data for frame 136
+Consumer: Writing frame 136 to output file
+Consumer: Frame 136 complete!
+Frame 136 completed, removed from pipeline (received: 137, pipeline: 2/3)
+Consumer: Processing frame 137 from slot 2
+Consumer: Processing frame 137
+Producer: Read frame 139 from disk
+Added frame 139 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 137 to server, waiting for acknowledgment
+Frame 137 sent to server (sent: 138, in pipeline: 3)
+Consumer: Frame 137 acknowledged by server
+Consumer: Waiting for encoded data for frame 137
+Consumer: Received encoded data for frame 137
+Consumer: Writing frame 137 to output file
+Consumer: Frame 137 complete!
+Frame 137 completed, removed from pipeline (received: 138, pipeline: 2/3)
+Consumer: Processing frame 138 from slot 0
+Consumer: Processing frame 138
+Producer: Read frame 140 from disk
+Added frame 140 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 138 to server, waiting for acknowledgment
+Frame 138 sent to server (sent: 139, in pipeline: 3)
+Consumer: Frame 138 acknowledged by server
+Consumer: Waiting for encoded data for frame 138
+Consumer: Received encoded data for frame 138
+Consumer: Writing frame 138 to output file
+Consumer: Frame 138 complete!
+Frame 138 completed, removed from pipeline (received: 139, pipeline: 2/3)
+Consumer: Processing frame 139 from slot 1
+Consumer: Processing frame 139
+Producer: Read frame 141 from disk
+Added frame 141 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 139 to server, waiting for acknowledgment
+Frame 139 sent to server (sent: 140, in pipeline: 3)
+Consumer: Frame 139 acknowledged by server
+Consumer: Waiting for encoded data for frame 139
+Consumer: Received encoded data for frame 139
+Consumer: Writing frame 139 to output file
+Consumer: Frame 139 complete!
+Frame 139 completed, removed from pipeline (received: 140, pipeline: 2/3)
+Consumer: Processing frame 140 from slot 2
+Consumer: Processing frame 140
+Producer: Read frame 142 from disk
+Added frame 142 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 140 to server, waiting for acknowledgment
+Frame 140 sent to server (sent: 141, in pipeline: 3)
+Consumer: Frame 140 acknowledged by server
+Consumer: Waiting for encoded data for frame 140
+Consumer: Received encoded data for frame 140
+Consumer: Writing frame 140 to output file
+Consumer: Frame 140 complete!
+Frame 140 completed, removed from pipeline (received: 141, pipeline: 2/3)
+Consumer: Processing frame 141 from slot 0
+Consumer: Processing frame 141
+Producer: Read frame 143 from disk
+Added frame 143 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 141 to server, waiting for acknowledgment
+Frame 141 sent to server (sent: 142, in pipeline: 3)
+Consumer: Frame 141 acknowledged by server
+Consumer: Waiting for encoded data for frame 141
+Consumer: Received encoded data for frame 141
+Consumer: Writing frame 141 to output file
+Consumer: Frame 141 complete!
+Frame 141 completed, removed from pipeline (received: 142, pipeline: 2/3)
+Consumer: Processing frame 142 from slot 1
+Consumer: Processing frame 142
+Producer: Read frame 144 from disk
+Added frame 144 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 142 to server, waiting for acknowledgment
+Frame 142 sent to server (sent: 143, in pipeline: 3)
+Consumer: Frame 142 acknowledged by server
+Consumer: Waiting for encoded data for frame 142
+Consumer: Received encoded data for frame 142
+Consumer: Writing frame 142 to output file
+Consumer: Frame 142 complete!
+Frame 142 completed, removed from pipeline (received: 143, pipeline: 2/3)
+Consumer: Processing frame 143 from slot 2
+Consumer: Processing frame 143
+Producer: Read frame 145 from disk
+Added frame 145 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 143 to server, waiting for acknowledgment
+Frame 143 sent to server (sent: 144, in pipeline: 3)
+Consumer: Frame 143 acknowledged by server
+Consumer: Waiting for encoded data for frame 143
+Consumer: Received encoded data for frame 143
+Consumer: Writing frame 143 to output file
+Consumer: Frame 143 complete!
+Frame 143 completed, removed from pipeline (received: 144, pipeline: 2/3)
+Consumer: Processing frame 144 from slot 0
+Consumer: Processing frame 144
+Producer: Read frame 146 from disk
+Added frame 146 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 144 to server, waiting for acknowledgment
+Frame 144 sent to server (sent: 145, in pipeline: 3)
+Consumer: Frame 144 acknowledged by server
+Consumer: Waiting for encoded data for frame 144
+Consumer: Received encoded data for frame 144
+Consumer: Writing frame 144 to output file
+Consumer: Frame 144 complete!
+Frame 144 completed, removed from pipeline (received: 145, pipeline: 2/3)
+Consumer: Processing frame 145 from slot 1
+Consumer: Processing frame 145
+Producer: Read frame 147 from disk
+Added frame 147 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 145 to server, waiting for acknowledgment
+Frame 145 sent to server (sent: 146, in pipeline: 3)
+Consumer: Frame 145 acknowledged by server
+Consumer: Waiting for encoded data for frame 145
+Consumer: Received encoded data for frame 145
+Consumer: Writing frame 145 to output file
+Consumer: Frame 145 complete!
+Frame 145 completed, removed from pipeline (received: 146, pipeline: 2/3)
+Consumer: Processing frame 146 from slot 2
+Consumer: Processing frame 146
+Producer: Read frame 148 from disk
+Added frame 148 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 146 to server, waiting for acknowledgment
+Frame 146 sent to server (sent: 147, in pipeline: 3)
+Consumer: Frame 146 acknowledged by server
+Consumer: Waiting for encoded data for frame 146
+Consumer: Received encoded data for frame 146
+Consumer: Writing frame 146 to output file
+Consumer: Frame 146 complete!
+Frame 146 completed, removed from pipeline (received: 147, pipeline: 2/3)
+Consumer: Processing frame 147 from slot 0
+Consumer: Processing frame 147
+Producer: Read frame 149 from disk
+Added frame 149 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 147 to server, waiting for acknowledgment
+Frame 147 sent to server (sent: 148, in pipeline: 3)
+Consumer: Frame 147 acknowledged by server
+Consumer: Waiting for encoded data for frame 147
+Consumer: Received encoded data for frame 147
+Consumer: Writing frame 147 to output file
+Consumer: Frame 147 complete!
+Frame 147 completed, removed from pipeline (received: 148, pipeline: 2/3)
+Consumer: Processing frame 148 from slot 1
+Consumer: Processing frame 148
+Producer: Read frame 150 from disk
+Added frame 150 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 148 to server, waiting for acknowledgment
+Frame 148 sent to server (sent: 149, in pipeline: 3)
+Consumer: Frame 148 acknowledged by server
+Consumer: Waiting for encoded data for frame 148
+Consumer: Received encoded data for frame 148
+Consumer: Writing frame 148 to output file
+Consumer: Frame 148 complete!
+Frame 148 completed, removed from pipeline (received: 149, pipeline: 2/3)
+Consumer: Processing frame 149 from slot 2
+Consumer: Processing frame 149
+Producer: Read frame 151 from disk
+Added frame 151 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 149 to server, waiting for acknowledgment
+Frame 149 sent to server (sent: 150, in pipeline: 3)
+Consumer: Frame 149 acknowledged by server
+Consumer: Waiting for encoded data for frame 149
+Consumer: Received encoded data for frame 149
+Consumer: Writing frame 149 to output file
+Consumer: Frame 149 complete!
+Frame 149 completed, removed from pipeline (received: 150, pipeline: 2/3)
+Consumer: Processing frame 150 from slot 0
+Consumer: Processing frame 150
+Producer: Read frame 152 from disk
+Added frame 152 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 150 to server, waiting for acknowledgment
+Frame 150 sent to server (sent: 151, in pipeline: 3)
+Consumer: Frame 150 acknowledged by server
+Consumer: Waiting for encoded data for frame 150
+Consumer: Received encoded data for frame 150
+Consumer: Writing frame 150 to output file
+Consumer: Frame 150 complete!
+Frame 150 completed, removed from pipeline (received: 151, pipeline: 2/3)
+Consumer: Processing frame 151 from slot 1
+Consumer: Processing frame 151
+Producer: Read frame 153 from disk
+Added frame 153 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 151 to server, waiting for acknowledgment
+Frame 151 sent to server (sent: 152, in pipeline: 3)
+Consumer: Frame 151 acknowledged by server
+Consumer: Waiting for encoded data for frame 151
+Consumer: Received encoded data for frame 151
+Consumer: Writing frame 151 to output file
+Consumer: Frame 151 complete!
+Frame 151 completed, removed from pipeline (received: 152, pipeline: 2/3)
+Consumer: Processing frame 152 from slot 2
+Consumer: Processing frame 152
+Producer: Read frame 154 from disk
+Added frame 154 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 152 to server, waiting for acknowledgment
+Frame 152 sent to server (sent: 153, in pipeline: 3)
+Consumer: Frame 152 acknowledged by server
+Consumer: Waiting for encoded data for frame 152
+Consumer: Received encoded data for frame 152
+Consumer: Writing frame 152 to output file
+Consumer: Frame 152 complete!
+Frame 152 completed, removed from pipeline (received: 153, pipeline: 2/3)
+Consumer: Processing frame 153 from slot 0
+Consumer: Processing frame 153
+Producer: Read frame 155 from disk
+Added frame 155 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 153 to server, waiting for acknowledgment
+Frame 153 sent to server (sent: 154, in pipeline: 3)
+Consumer: Frame 153 acknowledged by server
+Consumer: Waiting for encoded data for frame 153
+Consumer: Received encoded data for frame 153
+Consumer: Writing frame 153 to output file
+Consumer: Frame 153 complete!
+Frame 153 completed, removed from pipeline (received: 154, pipeline: 2/3)
+Consumer: Processing frame 154 from slot 1
+Consumer: Processing frame 154
+Producer: Read frame 156 from disk
+Added frame 156 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 154 to server, waiting for acknowledgment
+Frame 154 sent to server (sent: 155, in pipeline: 3)
+Consumer: Frame 154 acknowledged by server
+Consumer: Waiting for encoded data for frame 154
+Consumer: Received encoded data for frame 154
+Consumer: Writing frame 154 to output file
+Consumer: Frame 154 complete!
+Frame 154 completed, removed from pipeline (received: 155, pipeline: 2/3)
+Consumer: Processing frame 155 from slot 2
+Consumer: Processing frame 155
+Producer: Read frame 157 from disk
+Added frame 157 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 155 to server, waiting for acknowledgment
+Frame 155 sent to server (sent: 156, in pipeline: 3)
+Consumer: Frame 155 acknowledged by server
+Consumer: Waiting for encoded data for frame 155
+Consumer: Received encoded data for frame 155
+Consumer: Writing frame 155 to output file
+Consumer: Frame 155 complete!
+Frame 155 completed, removed from pipeline (received: 156, pipeline: 2/3)
+Consumer: Processing frame 156 from slot 0
+Consumer: Processing frame 156
+Producer: Read frame 158 from disk
+Added frame 158 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 156 to server, waiting for acknowledgment
+Frame 156 sent to server (sent: 157, in pipeline: 3)
+Consumer: Frame 156 acknowledged by server
+Consumer: Waiting for encoded data for frame 156
+Consumer: Received encoded data for frame 156
+Consumer: Writing frame 156 to output file
+Consumer: Frame 156 complete!
+Frame 156 completed, removed from pipeline (received: 157, pipeline: 2/3)
+Consumer: Processing frame 157 from slot 1
+Consumer: Processing frame 157
+Producer: Read frame 159 from disk
+Added frame 159 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 157 to server, waiting for acknowledgment
+Frame 157 sent to server (sent: 158, in pipeline: 3)
+Consumer: Frame 157 acknowledged by server
+Consumer: Waiting for encoded data for frame 157
+Consumer: Received encoded data for frame 157
+Consumer: Writing frame 157 to output file
+Consumer: Frame 157 complete!
+Frame 157 completed, removed from pipeline (received: 158, pipeline: 2/3)
+Consumer: Processing frame 158 from slot 2
+Consumer: Processing frame 158
+Producer: Read frame 160 from disk
+Added frame 160 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 158 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 158 sent to server (sent: 159, in pipeline: 3)
+Consumer: Frame 158 acknowledged by server
+Consumer: Waiting for encoded data for frame 158
+Consumer: Received encoded data for frame 158
+Consumer: Writing frame 158 to output file
+Consumer: Frame 158 complete!
+Frame 158 completed, removed from pipeline (received: 159, pipeline: 2/3)
+Consumer: Processing frame 159 from slot 0
+Consumer: Processing frame 159
+Producer: Read frame 161 from disk
+Added frame 161 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 159 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 159 sent to server (sent: 160, in pipeline: 3)
+Consumer: Frame 159 acknowledged by server
+Consumer: Waiting for encoded data for frame 159
+Consumer: Received encoded data for frame 159
+Consumer: Writing frame 159 to output file
+Consumer: Frame 159 complete!
+Frame 159 completed, removed from pipeline (received: 160, pipeline: 2/3)
+Consumer: Processing frame 160 from slot 1
+Consumer: Processing frame 160
+Producer: Read frame 162 from disk
+Added frame 162 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 160 to server, waiting for acknowledgment
+Frame 160 sent to server (sent: 161, in pipeline: 3)
+Consumer: Frame 160 acknowledged by server
+Consumer: Waiting for encoded data for frame 160
+Consumer: Received encoded data for frame 160
+Consumer: Writing frame 160 to output file
+Consumer: Frame 160 complete!
+Frame 160 completed, removed from pipeline (received: 161, pipeline: 2/3)
+Consumer: Processing frame 161 from slot 2
+Consumer: Processing frame 161
+Producer: Read frame 163 from disk
+Added frame 163 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 161 to server, waiting for acknowledgment
+Frame 161 sent to server (sent: 162, in pipeline: 3)
+Consumer: Frame 161 acknowledged by server
+Consumer: Waiting for encoded data for frame 161
+Consumer: Received encoded data for frame 161
+Consumer: Writing frame 161 to output file
+Consumer: Frame 161 complete!
+Frame 161 completed, removed from pipeline (received: 162, pipeline: 2/3)
+Consumer: Processing frame 162 from slot 0
+Consumer: Processing frame 162
+Producer: Read frame 164 from disk
+Added frame 164 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 162 to server, waiting for acknowledgment
+Frame 162 sent to server (sent: 163, in pipeline: 3)
+Consumer: Frame 162 acknowledged by server
+Consumer: Waiting for encoded data for frame 162
+Consumer: Received encoded data for frame 162
+Consumer: Writing frame 162 to output file
+Consumer: Frame 162 complete!
+Frame 162 completed, removed from pipeline (received: 163, pipeline: 2/3)
+Consumer: Processing frame 163 from slot 1
+Consumer: Processing frame 163
+Producer: Read frame 165 from disk
+Added frame 165 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 163 to server, waiting for acknowledgment
+Frame 163 sent to server (sent: 164, in pipeline: 3)
+Consumer: Frame 163 acknowledged by server
+Consumer: Waiting for encoded data for frame 163
+Consumer: Received encoded data for frame 163
+Consumer: Writing frame 163 to output file
+Consumer: Frame 163 complete!
+Frame 163 completed, removed from pipeline (received: 164, pipeline: 2/3)
+Consumer: Processing frame 164 from slot 2
+Consumer: Processing frame 164
+Producer: Read frame 166 from disk
+Added frame 166 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 164 to server, waiting for acknowledgment
+Frame 164 sent to server (sent: 165, in pipeline: 3)
+Consumer: Frame 164 acknowledged by server
+Consumer: Waiting for encoded data for frame 164
+Consumer: Received encoded data for frame 164
+Consumer: Writing frame 164 to output file
+Consumer: Frame 164 complete!
+Frame 164 completed, removed from pipeline (received: 165, pipeline: 2/3)
+Consumer: Processing frame 165 from slot 0
+Consumer: Processing frame 165
+Producer: Read frame 167 from disk
+Added frame 167 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 165 to server, waiting for acknowledgment
+Frame 165 sent to server (sent: 166, in pipeline: 3)
+Consumer: Frame 165 acknowledged by server
+Consumer: Waiting for encoded data for frame 165
+Consumer: Received encoded data for frame 165
+Consumer: Writing frame 165 to output file
+Consumer: Frame 165 complete!
+Frame 165 completed, removed from pipeline (received: 166, pipeline: 2/3)
+Consumer: Processing frame 166 from slot 1
+Consumer: Processing frame 166
+Producer: Read frame 168 from disk
+Added frame 168 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 166 to server, waiting for acknowledgment
+Frame 166 sent to server (sent: 167, in pipeline: 3)
+Consumer: Frame 166 acknowledged by server
+Consumer: Waiting for encoded data for frame 166
+Consumer: Received encoded data for frame 166
+Consumer: Writing frame 166 to output file
+Consumer: Frame 166 complete!
+Frame 166 completed, removed from pipeline (received: 167, pipeline: 2/3)
+Consumer: Processing frame 167 from slot 2
+Consumer: Processing frame 167
+Producer: Read frame 169 from disk
+Added frame 169 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 167 to server, waiting for acknowledgment
+Frame 167 sent to server (sent: 168, in pipeline: 3)
+Consumer: Frame 167 acknowledged by server
+Consumer: Waiting for encoded data for frame 167
+Consumer: Received encoded data for frame 167
+Consumer: Writing frame 167 to output file
+Consumer: Frame 167 complete!
+Frame 167 completed, removed from pipeline (received: 168, pipeline: 2/3)
+Consumer: Processing frame 168 from slot 0
+Consumer: Processing frame 168
+Producer: Read frame 170 from disk
+Added frame 170 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 168 to server, waiting for acknowledgment
+Frame 168 sent to server (sent: 169, in pipeline: 3)
+Consumer: Frame 168 acknowledged by server
+Consumer: Waiting for encoded data for frame 168
+Consumer: Received encoded data for frame 168
+Consumer: Writing frame 168 to output file
+Consumer: Frame 168 complete!
+Frame 168 completed, removed from pipeline (received: 169, pipeline: 2/3)
+Consumer: Processing frame 169 from slot 1
+Consumer: Processing frame 169
+Producer: Read frame 171 from disk
+Added frame 171 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 169 to server, waiting for acknowledgment
+Frame 169 sent to server (sent: 170, in pipeline: 3)
+Consumer: Frame 169 acknowledged by server
+Consumer: Waiting for encoded data for frame 169
+Consumer: Received encoded data for frame 169
+Consumer: Writing frame 169 to output file
+Consumer: Frame 169 complete!
+Frame 169 completed, removed from pipeline (received: 170, pipeline: 2/3)
+Consumer: Processing frame 170 from slot 2
+Consumer: Processing frame 170
+Producer: Read frame 172 from disk
+Added frame 172 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 170 to server, waiting for acknowledgment
+Frame 170 sent to server (sent: 171, in pipeline: 3)
+Consumer: Frame 170 acknowledged by server
+Consumer: Waiting for encoded data for frame 170
+Consumer: Received encoded data for frame 170
+Consumer: Writing frame 170 to output file
+Consumer: Frame 170 complete!
+Frame 170 completed, removed from pipeline (received: 171, pipeline: 2/3)
+Consumer: Processing frame 171 from slot 0
+Consumer: Processing frame 171
+Producer: Read frame 173 from disk
+Added frame 173 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 171 to server, waiting for acknowledgment
+Frame 171 sent to server (sent: 172, in pipeline: 3)
+Consumer: Frame 171 acknowledged by server
+Consumer: Waiting for encoded data for frame 171
+Consumer: Received encoded data for frame 171
+Consumer: Writing frame 171 to output file
+Consumer: Frame 171 complete!
+Frame 171 completed, removed from pipeline (received: 172, pipeline: 2/3)
+Consumer: Processing frame 172 from slot 1
+Consumer: Processing frame 172
+Producer: Read frame 174 from disk
+Added frame 174 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 172 to server, waiting for acknowledgment
+Frame 172 sent to server (sent: 173, in pipeline: 3)
+Consumer: Frame 172 acknowledged by server
+Consumer: Waiting for encoded data for frame 172
+Consumer: Received encoded data for frame 172
+Consumer: Writing frame 172 to output file
+Consumer: Frame 172 complete!
+Frame 172 completed, removed from pipeline (received: 173, pipeline: 2/3)
+Consumer: Processing frame 173 from slot 2
+Consumer: Processing frame 173
+Producer: Read frame 175 from disk
+Added frame 175 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 173 to server, waiting for acknowledgment
+Frame 173 sent to server (sent: 174, in pipeline: 3)
+Consumer: Frame 173 acknowledged by server
+Consumer: Waiting for encoded data for frame 173
+Consumer: Received encoded data for frame 173
+Consumer: Writing frame 173 to output file
+Consumer: Frame 173 complete!
+Frame 173 completed, removed from pipeline (received: 174, pipeline: 2/3)
+Consumer: Processing frame 174 from slot 0
+Consumer: Processing frame 174
+Producer: Read frame 176 from disk
+Added frame 176 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 174 to server, waiting for acknowledgment
+Frame 174 sent to server (sent: 175, in pipeline: 3)
+Consumer: Frame 174 acknowledged by server
+Consumer: Waiting for encoded data for frame 174
+Consumer: Received encoded data for frame 174
+Consumer: Writing frame 174 to output file
+Consumer: Frame 174 complete!
+Frame 174 completed, removed from pipeline (received: 175, pipeline: 2/3)
+Consumer: Processing frame 175 from slot 1
+Consumer: Processing frame 175
+Producer: Read frame 177 from disk
+Added frame 177 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 175 to server, waiting for acknowledgment
+Frame 175 sent to server (sent: 176, in pipeline: 3)
+Consumer: Frame 175 acknowledged by server
+Consumer: Waiting for encoded data for frame 175
+Consumer: Received encoded data for frame 175
+Consumer: Writing frame 175 to output file
+Consumer: Frame 175 complete!
+Frame 175 completed, removed from pipeline (received: 176, pipeline: 2/3)
+Consumer: Processing frame 176 from slot 2
+Consumer: Processing frame 176
+Producer: Read frame 178 from disk
+Added frame 178 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 176 to server, waiting for acknowledgment
+Frame 176 sent to server (sent: 177, in pipeline: 3)
+Consumer: Frame 176 acknowledged by server
+Consumer: Waiting for encoded data for frame 176
+Consumer: Received encoded data for frame 176
+Consumer: Writing frame 176 to output file
+Consumer: Frame 176 complete!
+Frame 176 completed, removed from pipeline (received: 177, pipeline: 2/3)
+Consumer: Processing frame 177 from slot 0
+Consumer: Processing frame 177
+Producer: Read frame 179 from disk
+Added frame 179 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 177 to server, waiting for acknowledgment
+Frame 177 sent to server (sent: 178, in pipeline: 3)
+Consumer: Frame 177 acknowledged by server
+Consumer: Waiting for encoded data for frame 177
+Consumer: Received encoded data for frame 177
+Consumer: Writing frame 177 to output file
+Consumer: Frame 177 complete!
+Frame 177 completed, removed from pipeline (received: 178, pipeline: 2/3)
+Consumer: Processing frame 178 from slot 1
+Consumer: Processing frame 178
+Producer: Read frame 180 from disk
+Added frame 180 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 178 to server, waiting for acknowledgment
+Frame 178 sent to server (sent: 179, in pipeline: 3)
+Consumer: Frame 178 acknowledged by server
+Consumer: Waiting for encoded data for frame 178
+Consumer: Received encoded data for frame 178
+Consumer: Writing frame 178 to output file
+Consumer: Frame 178 complete!
+Frame 178 completed, removed from pipeline (received: 179, pipeline: 2/3)
+Consumer: Processing frame 179 from slot 2
+Consumer: Processing frame 179
+Producer: Read frame 181 from disk
+Added frame 181 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 179 to server, waiting for acknowledgment
+Frame 179 sent to server (sent: 180, in pipeline: 3)
+Consumer: Frame 179 acknowledged by server
+Consumer: Waiting for encoded data for frame 179
+Consumer: Received encoded data for frame 179
+Consumer: Writing frame 179 to output file
+Consumer: Frame 179 complete!
+Frame 179 completed, removed from pipeline (received: 180, pipeline: 2/3)
+Consumer: Processing frame 180 from slot 0
+Consumer: Processing frame 180
+Producer: Read frame 182 from disk
+Added frame 182 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 180 to server, waiting for acknowledgment
+Frame 180 sent to server (sent: 181, in pipeline: 3)
+Consumer: Frame 180 acknowledged by server
+Consumer: Waiting for encoded data for frame 180
+Consumer: Received encoded data for frame 180
+Consumer: Writing frame 180 to output file
+Consumer: Frame 180 complete!
+Frame 180 completed, removed from pipeline (received: 181, pipeline: 2/3)
+Consumer: Processing frame 181 from slot 1
+Consumer: Processing frame 181
+Producer: Read frame 183 from disk
+Added frame 183 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 181 to server, waiting for acknowledgment
+Frame 181 sent to server (sent: 182, in pipeline: 3)
+Consumer: Frame 181 acknowledged by server
+Consumer: Waiting for encoded data for frame 181
+Consumer: Received encoded data for frame 181
+Consumer: Writing frame 181 to output file
+Consumer: Frame 181 complete!
+Frame 181 completed, removed from pipeline (received: 182, pipeline: 2/3)
+Consumer: Processing frame 182 from slot 2
+Consumer: Processing frame 182
+Producer: Read frame 184 from disk
+Added frame 184 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 182 to server, waiting for acknowledgment
+Frame 182 sent to server (sent: 183, in pipeline: 3)
+Consumer: Frame 182 acknowledged by server
+Consumer: Waiting for encoded data for frame 182
+Consumer: Received encoded data for frame 182
+Consumer: Writing frame 182 to output file
+Consumer: Frame 182 complete!
+Frame 182 completed, removed from pipeline (received: 183, pipeline: 2/3)
+Consumer: Processing frame 183 from slot 0
+Consumer: Processing frame 183
+Producer: Read frame 185 from disk
+Added frame 185 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 183 to server, waiting for acknowledgment
+Frame 183 sent to server (sent: 184, in pipeline: 3)
+Consumer: Frame 183 acknowledged by server
+Consumer: Waiting for encoded data for frame 183
+Consumer: Received encoded data for frame 183
+Consumer: Writing frame 183 to output file
+Consumer: Frame 183 complete!
+Frame 183 completed, removed from pipeline (received: 184, pipeline: 2/3)
+Consumer: Processing frame 184 from slot 1
+Consumer: Processing frame 184
+Producer: Read frame 186 from disk
+Added frame 186 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 184 to server, waiting for acknowledgment
+Frame 184 sent to server (sent: 185, in pipeline: 3)
+Consumer: Frame 184 acknowledged by server
+Consumer: Waiting for encoded data for frame 184
+Consumer: Received encoded data for frame 184
+Consumer: Writing frame 184 to output file
+Consumer: Frame 184 complete!
+Frame 184 completed, removed from pipeline (received: 185, pipeline: 2/3)
+Consumer: Processing frame 185 from slot 2
+Consumer: Processing frame 185
+Producer: Read frame 187 from disk
+Added frame 187 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 185 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 185 sent to server (sent: 186, in pipeline: 3)
+Consumer: Frame 185 acknowledged by server
+Consumer: Waiting for encoded data for frame 185
+Consumer: Received encoded data for frame 185
+Consumer: Writing frame 185 to output file
+Consumer: Frame 185 complete!
+Frame 185 completed, removed from pipeline (received: 186, pipeline: 2/3)
+Consumer: Processing frame 186 from slot 0
+Consumer: Processing frame 186
+Producer: Read frame 188 from disk
+Added frame 188 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 186 to server, waiting for acknowledgment
+Frame 186 sent to server (sent: 187, in pipeline: 3)
+Consumer: Frame 186 acknowledged by server
+Consumer: Waiting for encoded data for frame 186
+Consumer: Received encoded data for frame 186
+Consumer: Writing frame 186 to output file
+Consumer: Frame 186 complete!
+Frame 186 completed, removed from pipeline (received: 187, pipeline: 2/3)
+Consumer: Processing frame 187 from slot 1
+Consumer: Processing frame 187
+Producer: Read frame 189 from disk
+Added frame 189 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 187 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 187 sent to server (sent: 188, in pipeline: 3)
+Consumer: Frame 187 acknowledged by server
+Consumer: Waiting for encoded data for frame 187
+Consumer: Received encoded data for frame 187
+Consumer: Writing frame 187 to output file
+Consumer: Frame 187 complete!
+Frame 187 completed, removed from pipeline (received: 188, pipeline: 2/3)
+Consumer: Processing frame 188 from slot 2
+Consumer: Processing frame 188
+Producer: Read frame 190 from disk
+Added frame 190 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 188 to server, waiting for acknowledgment
+Frame 188 sent to server (sent: 189, in pipeline: 3)
+Consumer: Frame 188 acknowledged by server
+Consumer: Waiting for encoded data for frame 188
+Consumer: Received encoded data for frame 188
+Consumer: Writing frame 188 to output file
+Consumer: Frame 188 complete!
+Frame 188 completed, removed from pipeline (received: 189, pipeline: 2/3)
+Consumer: Processing frame 189 from slot 0
+Consumer: Processing frame 189
+Producer: Read frame 191 from disk
+Added frame 191 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 189 to server, waiting for acknowledgment
+Frame 189 sent to server (sent: 190, in pipeline: 3)
+Consumer: Frame 189 acknowledged by server
+Consumer: Waiting for encoded data for frame 189
+Consumer: Received encoded data for frame 189
+Consumer: Writing frame 189 to output file
+Consumer: Frame 189 complete!
+Frame 189 completed, removed from pipeline (received: 190, pipeline: 2/3)
+Consumer: Processing frame 190 from slot 1
+Consumer: Processing frame 190
+Producer: Read frame 192 from disk
+Added frame 192 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 190 to server, waiting for acknowledgment
+Frame 190 sent to server (sent: 191, in pipeline: 3)
+Consumer: Frame 190 acknowledged by server
+Consumer: Waiting for encoded data for frame 190
+Consumer: Received encoded data for frame 190
+Consumer: Writing frame 190 to output file
+Consumer: Frame 190 complete!
+Frame 190 completed, removed from pipeline (received: 191, pipeline: 2/3)
+Consumer: Processing frame 191 from slot 2
+Consumer: Processing frame 191
+Producer: Read frame 193 from disk
+Added frame 193 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 191 to server, waiting for acknowledgment
+Frame 191 sent to server (sent: 192, in pipeline: 3)
+Consumer: Frame 191 acknowledged by server
+Consumer: Waiting for encoded data for frame 191
+Consumer: Received encoded data for frame 191
+Consumer: Writing frame 191 to output file
+Consumer: Frame 191 complete!
+Frame 191 completed, removed from pipeline (received: 192, pipeline: 2/3)
+Consumer: Processing frame 192 from slot 0
+Consumer: Processing frame 192
+Producer: Read frame 194 from disk
+Added frame 194 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 192 to server, waiting for acknowledgment
+Frame 192 sent to server (sent: 193, in pipeline: 3)
+Consumer: Frame 192 acknowledged by server
+Consumer: Waiting for encoded data for frame 192
+Consumer: Received encoded data for frame 192
+Consumer: Writing frame 192 to output file
+Consumer: Frame 192 complete!
+Frame 192 completed, removed from pipeline (received: 193, pipeline: 2/3)
+Consumer: Processing frame 193 from slot 1
+Consumer: Processing frame 193
+Producer: Read frame 195 from disk
+Added frame 195 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 193 to server, waiting for acknowledgment
+Frame 193 sent to server (sent: 194, in pipeline: 3)
+Consumer: Frame 193 acknowledged by server
+Consumer: Waiting for encoded data for frame 193
+Consumer: Received encoded data for frame 193
+Consumer: Writing frame 193 to output file
+Consumer: Frame 193 complete!
+Frame 193 completed, removed from pipeline (received: 194, pipeline: 2/3)
+Consumer: Processing frame 194 from slot 2
+Consumer: Processing frame 194
+Producer: Read frame 196 from disk
+Added frame 196 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 194 to server, waiting for acknowledgment
+Frame 194 sent to server (sent: 195, in pipeline: 3)
+Consumer: Frame 194 acknowledged by server
+Consumer: Waiting for encoded data for frame 194
+Consumer: Received encoded data for frame 194
+Consumer: Writing frame 194 to output file
+Consumer: Frame 194 complete!
+Frame 194 completed, removed from pipeline (received: 195, pipeline: 2/3)
+Consumer: Processing frame 195 from slot 0
+Consumer: Processing frame 195
+Producer: Read frame 197 from disk
+Added frame 197 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 195 to server, waiting for acknowledgment
+Frame 195 sent to server (sent: 196, in pipeline: 3)
+Consumer: Frame 195 acknowledged by server
+Consumer: Waiting for encoded data for frame 195
+Consumer: Received encoded data for frame 195
+Consumer: Writing frame 195 to output file
+Consumer: Frame 195 complete!
+Frame 195 completed, removed from pipeline (received: 196, pipeline: 2/3)
+Consumer: Processing frame 196 from slot 1
+Consumer: Processing frame 196
+Producer: Read frame 198 from disk
+Added frame 198 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 196 to server, waiting for acknowledgment
+Frame 196 sent to server (sent: 197, in pipeline: 3)
+Consumer: Frame 196 acknowledged by server
+Consumer: Waiting for encoded data for frame 196
+Consumer: Received encoded data for frame 196
+Consumer: Writing frame 196 to output file
+Consumer: Frame 196 complete!
+Frame 196 completed, removed from pipeline (received: 197, pipeline: 2/3)
+Consumer: Processing frame 197 from slot 2
+Consumer: Processing frame 197
+Producer: Read frame 199 from disk
+Added frame 199 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 197 to server, waiting for acknowledgment
+Frame 197 sent to server (sent: 198, in pipeline: 3)
+Consumer: Frame 197 acknowledged by server
+Consumer: Waiting for encoded data for frame 197
+Consumer: Received encoded data for frame 197
+Consumer: Writing frame 197 to output file
+Consumer: Frame 197 complete!
+Frame 197 completed, removed from pipeline (received: 198, pipeline: 2/3)
+Consumer: Processing frame 198 from slot 0
+Consumer: Processing frame 198
+Producer: Read frame 200 from disk
+Added frame 200 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 198 to server, waiting for acknowledgment
+Frame 198 sent to server (sent: 199, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 198 acknowledged by server
+Consumer: Waiting for encoded data for frame 198
+Consumer: Received encoded data for frame 198
+Consumer: Writing frame 198 to output file
+Consumer: Frame 198 complete!
+Frame 198 completed, removed from pipeline (received: 199, pipeline: 2/3)
+Consumer: Processing frame 199 from slot 1
+Consumer: Processing frame 199
+Producer: Read frame 201 from disk
+Added frame 201 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 199 to server, waiting for acknowledgment
+Frame 199 sent to server (sent: 200, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 199 acknowledged by server
+Consumer: Waiting for encoded data for frame 199
+Consumer: Received encoded data for frame 199
+Consumer: Writing frame 199 to output file
+Consumer: Frame 199 complete!
+Frame 199 completed, removed from pipeline (received: 200, pipeline: 2/3)
+Consumer: Processing frame 200 from slot 2
+Consumer: Processing frame 200
+Producer: Read frame 202 from disk
+Added frame 202 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 200 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 200 sent to server (sent: 201, in pipeline: 3)
+Consumer: Frame 200 acknowledged by server
+Consumer: Waiting for encoded data for frame 200
+Consumer: Received encoded data for frame 200
+Consumer: Writing frame 200 to output file
+Consumer: Frame 200 complete!
+Frame 200 completed, removed from pipeline (received: 201, pipeline: 2/3)
+Consumer: Processing frame 201 from slot 0
+Consumer: Processing frame 201
+Producer: Read frame 203 from disk
+Added frame 203 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 201 to server, waiting for acknowledgment
+Frame 201 sent to server (sent: 202, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 201 acknowledged by server
+Consumer: Waiting for encoded data for frame 201
+Consumer: Received encoded data for frame 201
+Consumer: Writing frame 201 to output file
+Consumer: Frame 201 complete!
+Frame 201 completed, removed from pipeline (received: 202, pipeline: 2/3)
+Consumer: Processing frame 202 from slot 1
+Consumer: Processing frame 202
+Producer: Read frame 204 from disk
+Added frame 204 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 202 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 202 sent to server (sent: 203, in pipeline: 3)
+Consumer: Frame 202 acknowledged by server
+Consumer: Waiting for encoded data for frame 202
+Consumer: Received encoded data for frame 202
+Consumer: Writing frame 202 to output file
+Consumer: Frame 202 complete!
+Frame 202 completed, removed from pipeline (received: 203, pipeline: 2/3)
+Consumer: Processing frame 203 from slot 2
+Consumer: Processing frame 203
+Producer: Read frame 205 from disk
+Added frame 205 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 203 to server, waiting for acknowledgment
+Frame 203 sent to server (sent: 204, in pipeline: 3)
+Consumer: Frame 203 acknowledged by server
+Consumer: Waiting for encoded data for frame 203
+Consumer: Received encoded data for frame 203
+Consumer: Writing frame 203 to output file
+Consumer: Frame 203 complete!
+Frame 203 completed, removed from pipeline (received: 204, pipeline: 2/3)
+Consumer: Processing frame 204 from slot 0
+Consumer: Processing frame 204
+Producer: Read frame 206 from disk
+Added frame 206 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 204 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 204 sent to server (sent: 205, in pipeline: 3)
+Consumer: Frame 204 acknowledged by server
+Consumer: Waiting for encoded data for frame 204
+Consumer: Received encoded data for frame 204
+Consumer: Writing frame 204 to output file
+Consumer: Frame 204 complete!
+Frame 204 completed, removed from pipeline (received: 205, pipeline: 2/3)
+Consumer: Processing frame 205 from slot 1
+Consumer: Processing frame 205
+Producer: Read frame 207 from disk
+Added frame 207 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 205 to server, waiting for acknowledgment
+Frame 205 sent to server (sent: 206, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 205 acknowledged by server
+Consumer: Waiting for encoded data for frame 205
+Consumer: Received encoded data for frame 205
+Consumer: Writing frame 205 to output file
+Consumer: Frame 205 complete!
+Frame 205 completed, removed from pipeline (received: 206, pipeline: 2/3)
+Consumer: Processing frame 206 from slot 2
+Consumer: Processing frame 206
+Producer: Read frame 208 from disk
+Added frame 208 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 206 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 206 sent to server (sent: 207, in pipeline: 3)
+Consumer: Frame 206 acknowledged by server
+Consumer: Waiting for encoded data for frame 206
+Consumer: Received encoded data for frame 206
+Consumer: Writing frame 206 to output file
+Consumer: Frame 206 complete!
+Frame 206 completed, removed from pipeline (received: 207, pipeline: 2/3)
+Consumer: Processing frame 207 from slot 0
+Consumer: Processing frame 207
+Producer: Read frame 209 from disk
+Added frame 209 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 207 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 207 sent to server (sent: 208, in pipeline: 3)
+Consumer: Frame 207 acknowledged by server
+Consumer: Waiting for encoded data for frame 207
+Consumer: Received encoded data for frame 207
+Consumer: Writing frame 207 to output file
+Consumer: Frame 207 complete!
+Frame 207 completed, removed from pipeline (received: 208, pipeline: 2/3)
+Consumer: Processing frame 208 from slot 1
+Consumer: Processing frame 208
+Producer: Read frame 210 from disk
+Added frame 210 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 208 to server, waiting for acknowledgment
+Frame 208 sent to server (sent: 209, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 208 acknowledged by server
+Consumer: Waiting for encoded data for frame 208
+Consumer: Received encoded data for frame 208
+Consumer: Writing frame 208 to output file
+Consumer: Frame 208 complete!
+Frame 208 completed, removed from pipeline (received: 209, pipeline: 2/3)
+Consumer: Processing frame 209 from slot 2
+Consumer: Processing frame 209
+Producer: Read frame 211 from disk
+Added frame 211 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 209 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 209 sent to server (sent: 210, in pipeline: 3)
+Consumer: Frame 209 acknowledged by server
+Consumer: Waiting for encoded data for frame 209
+Consumer: Received encoded data for frame 209
+Consumer: Writing frame 209 to output file
+Consumer: Frame 209 complete!
+Frame 209 completed, removed from pipeline (received: 210, pipeline: 2/3)
+Consumer: Processing frame 210 from slot 0
+Consumer: Processing frame 210
+Producer: Read frame 212 from disk
+Added frame 212 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 210 to server, waiting for acknowledgment
+Frame 210 sent to server (sent: 211, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 210 acknowledged by server
+Consumer: Waiting for encoded data for frame 210
+Consumer: Received encoded data for frame 210
+Consumer: Writing frame 210 to output file
+Consumer: Frame 210 complete!
+Frame 210 completed, removed from pipeline (received: 211, pipeline: 2/3)
+Consumer: Processing frame 211 from slot 1
+Consumer: Processing frame 211
+Producer: Read frame 213 from disk
+Added frame 213 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 211 to server, waiting for acknowledgment
+Frame 211 sent to server (sent: 212, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 211 acknowledged by server
+Consumer: Waiting for encoded data for frame 211
+Consumer: Received encoded data for frame 211
+Consumer: Writing frame 211 to output file
+Consumer: Frame 211 complete!
+Frame 211 completed, removed from pipeline (received: 212, pipeline: 2/3)
+Consumer: Processing frame 212 from slot 2
+Consumer: Processing frame 212
+Producer: Read frame 214 from disk
+Added frame 214 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 212 to server, waiting for acknowledgment
+Frame 212 sent to server (sent: 213, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 212 acknowledged by server
+Consumer: Waiting for encoded data for frame 212
+Consumer: Received encoded data for frame 212
+Consumer: Writing frame 212 to output file
+Consumer: Frame 212 complete!
+Frame 212 completed, removed from pipeline (received: 213, pipeline: 2/3)
+Consumer: Processing frame 213 from slot 0
+Consumer: Processing frame 213
+Producer: Read frame 215 from disk
+Added frame 215 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 213 to server, waiting for acknowledgment
+Frame 213 sent to server (sent: 214, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 213 acknowledged by server
+Consumer: Waiting for encoded data for frame 213
+Consumer: Received encoded data for frame 213
+Consumer: Writing frame 213 to output file
+Consumer: Frame 213 complete!
+Frame 213 completed, removed from pipeline (received: 214, pipeline: 2/3)
+Consumer: Processing frame 214 from slot 1
+Consumer: Processing frame 214
+Producer: Read frame 216 from disk
+Added frame 216 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 214 to server, waiting for acknowledgment
+Frame 214 sent to server (sent: 215, in pipeline: 3)
+Consumer: Frame 214 acknowledged by server
+Consumer: Waiting for encoded data for frame 214
+Consumer: Received encoded data for frame 214
+Consumer: Writing frame 214 to output file
+Consumer: Frame 214 complete!
+Frame 214 completed, removed from pipeline (received: 215, pipeline: 2/3)
+Consumer: Processing frame 215 from slot 2
+Consumer: Processing frame 215
+Producer: Read frame 217 from disk
+Added frame 217 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 215 to server, waiting for acknowledgment
+Frame 215 sent to server (sent: 216, in pipeline: 3)
+Consumer: Frame 215 acknowledged by server
+Consumer: Waiting for encoded data for frame 215
+Consumer: Received encoded data for frame 215
+Consumer: Writing frame 215 to output file
+Consumer: Frame 215 complete!
+Frame 215 completed, removed from pipeline (received: 216, pipeline: 2/3)
+Consumer: Processing frame 216 from slot 0
+Consumer: Processing frame 216
+Producer: Read frame 218 from disk
+Added frame 218 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 216 to server, waiting for acknowledgment
+Frame 216 sent to server (sent: 217, in pipeline: 3)
+Consumer: Frame 216 acknowledged by server
+Consumer: Waiting for encoded data for frame 216
+Consumer: Received encoded data for frame 216
+Consumer: Writing frame 216 to output file
+Consumer: Frame 216 complete!
+Frame 216 completed, removed from pipeline (received: 217, pipeline: 2/3)
+Consumer: Processing frame 217 from slot 1
+Consumer: Processing frame 217
+Consumer: Sent frame 217 to server, waiting for acknowledgment
+Frame 217 sent to server (sent: 218, in pipeline: 2)
+Producer: Read frame 219 from disk
+Added frame 219 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Frame 217 acknowledged by server
+Consumer: Waiting for encoded data for frame 217
+Consumer: Received encoded data for frame 217
+Consumer: Writing frame 217 to output file
+Consumer: Frame 217 complete!
+Frame 217 completed, removed from pipeline (received: 218, pipeline: 2/3)
+Consumer: Processing frame 218 from slot 2
+Consumer: Processing frame 218
+Producer: Read frame 220 from disk
+Added frame 220 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 218 to server, waiting for acknowledgment
+Frame 218 sent to server (sent: 219, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 218 acknowledged by server
+Consumer: Waiting for encoded data for frame 218
+Consumer: Received encoded data for frame 218
+Consumer: Writing frame 218 to output file
+Consumer: Frame 218 complete!
+Frame 218 completed, removed from pipeline (received: 219, pipeline: 2/3)
+Consumer: Processing frame 219 from slot 0
+Consumer: Processing frame 219
+Producer: Read frame 221 from disk
+Added frame 221 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 219 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 219 sent to server (sent: 220, in pipeline: 3)
+Consumer: Frame 219 acknowledged by server
+Consumer: Waiting for encoded data for frame 219
+Consumer: Received encoded data for frame 219
+Consumer: Writing frame 219 to output file
+Consumer: Frame 219 complete!
+Frame 219 completed, removed from pipeline (received: 220, pipeline: 2/3)
+Consumer: Processing frame 220 from slot 1
+Consumer: Processing frame 220
+Producer: Read frame 222 from disk
+Added frame 222 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 220 to server, waiting for acknowledgment
+Frame 220 sent to server (sent: 221, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 220 acknowledged by server
+Consumer: Waiting for encoded data for frame 220
+Consumer: Received encoded data for frame 220
+Consumer: Writing frame 220 to output file
+Consumer: Frame 220 complete!
+Frame 220 completed, removed from pipeline (received: 221, pipeline: 2/3)
+Consumer: Processing frame 221 from slot 2
+Consumer: Processing frame 221
+Producer: Read frame 223 from disk
+Added frame 223 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 221 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 221 sent to server (sent: 222, in pipeline: 3)
+Consumer: Frame 221 acknowledged by server
+Consumer: Waiting for encoded data for frame 221
+Consumer: Received encoded data for frame 221
+Consumer: Writing frame 221 to output file
+Consumer: Frame 221 complete!
+Frame 221 completed, removed from pipeline (received: 222, pipeline: 2/3)
+Consumer: Processing frame 222 from slot 0
+Consumer: Processing frame 222
+Producer: Read frame 224 from disk
+Added frame 224 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 222 to server, waiting for acknowledgment
+Frame 222 sent to server (sent: 223, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 222 acknowledged by server
+Consumer: Waiting for encoded data for frame 222
+Consumer: Received encoded data for frame 222
+Consumer: Writing frame 222 to output file
+Consumer: Frame 222 complete!
+Frame 222 completed, removed from pipeline (received: 223, pipeline: 2/3)
+Consumer: Processing frame 223 from slot 1
+Consumer: Processing frame 223
+Producer: Read frame 225 from disk
+Added frame 225 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 223 to server, waiting for acknowledgment
+Frame 223 sent to server (sent: 224, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 223 acknowledged by server
+Consumer: Waiting for encoded data for frame 223
+Consumer: Received encoded data for frame 223
+Consumer: Writing frame 223 to output file
+Consumer: Frame 223 complete!
+Frame 223 completed, removed from pipeline (received: 224, pipeline: 2/3)
+Consumer: Processing frame 224 from slot 2
+Consumer: Processing frame 224
+Producer: Read frame 226 from disk
+Added frame 226 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 224 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 224 sent to server (sent: 225, in pipeline: 3)
+Consumer: Frame 224 acknowledged by server
+Consumer: Waiting for encoded data for frame 224
+Consumer: Received encoded data for frame 224
+Consumer: Writing frame 224 to output file
+Consumer: Frame 224 complete!
+Frame 224 completed, removed from pipeline (received: 225, pipeline: 2/3)
+Consumer: Processing frame 225 from slot 0
+Consumer: Processing frame 225
+Producer: Read frame 227 from disk
+Added frame 227 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 225 to server, waiting for acknowledgment
+Frame 225 sent to server (sent: 226, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 225 acknowledged by server
+Consumer: Waiting for encoded data for frame 225
+Consumer: Received encoded data for frame 225
+Consumer: Writing frame 225 to output file
+Consumer: Frame 225 complete!
+Frame 225 completed, removed from pipeline (received: 226, pipeline: 2/3)
+Consumer: Processing frame 226 from slot 1
+Consumer: Processing frame 226
+Producer: Read frame 228 from disk
+Added frame 228 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 226 to server, waiting for acknowledgment
+Frame 226 sent to server (sent: 227, in pipeline: 3)
+Consumer: Frame 226 acknowledged by server
+Consumer: Waiting for encoded data for frame 226
+Consumer: Received encoded data for frame 226
+Consumer: Writing frame 226 to output file
+Consumer: Frame 226 complete!
+Frame 226 completed, removed from pipeline (received: 227, pipeline: 2/3)
+Consumer: Processing frame 227 from slot 2
+Consumer: Processing frame 227
+Producer: Read frame 229 from disk
+Added frame 229 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 227 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 227 sent to server (sent: 228, in pipeline: 3)
+Consumer: Frame 227 acknowledged by server
+Consumer: Waiting for encoded data for frame 227
+Consumer: Received encoded data for frame 227
+Consumer: Writing frame 227 to output file
+Consumer: Frame 227 complete!
+Frame 227 completed, removed from pipeline (received: 228, pipeline: 2/3)
+Consumer: Processing frame 228 from slot 0
+Consumer: Processing frame 228
+Producer: Read frame 230 from disk
+Added frame 230 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 228 to server, waiting for acknowledgment
+Frame 228 sent to server (sent: 229, in pipeline: 3)
+Consumer: Frame 228 acknowledged by server
+Consumer: Waiting for encoded data for frame 228
+Consumer: Received encoded data for frame 228
+Consumer: Writing frame 228 to output file
+Consumer: Frame 228 complete!
+Frame 228 completed, removed from pipeline (received: 229, pipeline: 2/3)
+Consumer: Processing frame 229 from slot 1
+Consumer: Processing frame 229
+Producer: Read frame 231 from disk
+Added frame 231 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 229 to server, waiting for acknowledgment
+Frame 229 sent to server (sent: 230, in pipeline: 3)
+Consumer: Frame 229 acknowledged by server
+Consumer: Waiting for encoded data for frame 229
+Consumer: Received encoded data for frame 229
+Consumer: Writing frame 229 to output file
+Consumer: Frame 229 complete!
+Frame 229 completed, removed from pipeline (received: 230, pipeline: 2/3)
+Consumer: Processing frame 230 from slot 2
+Consumer: Processing frame 230
+Producer: Read frame 232 from disk
+Added frame 232 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 230 to server, waiting for acknowledgment
+Frame 230 sent to server (sent: 231, in pipeline: 3)
+Consumer: Frame 230 acknowledged by server
+Consumer: Waiting for encoded data for frame 230
+Consumer: Received encoded data for frame 230
+Consumer: Writing frame 230 to output file
+Consumer: Frame 230 complete!
+Frame 230 completed, removed from pipeline (received: 231, pipeline: 2/3)
+Consumer: Processing frame 231 from slot 0
+Consumer: Processing frame 231
+Producer: Read frame 233 from disk
+Added frame 233 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 231 to server, waiting for acknowledgment
+Frame 231 sent to server (sent: 232, in pipeline: 3)
+Consumer: Frame 231 acknowledged by server
+Consumer: Waiting for encoded data for frame 231
+Consumer: Received encoded data for frame 231
+Consumer: Writing frame 231 to output file
+Consumer: Frame 231 complete!
+Frame 231 completed, removed from pipeline (received: 232, pipeline: 2/3)
+Consumer: Processing frame 232 from slot 1
+Consumer: Processing frame 232
+Producer: Read frame 234 from disk
+Added frame 234 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 232 to server, waiting for acknowledgment
+Frame 232 sent to server (sent: 233, in pipeline: 3)
+Consumer: Frame 232 acknowledged by server
+Consumer: Waiting for encoded data for frame 232
+Consumer: Received encoded data for frame 232
+Consumer: Writing frame 232 to output file
+Consumer: Frame 232 complete!
+Frame 232 completed, removed from pipeline (received: 233, pipeline: 2/3)
+Consumer: Processing frame 233 from slot 2
+Consumer: Processing frame 233
+Producer: Read frame 235 from disk
+Added frame 235 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 233 to server, waiting for acknowledgment
+Frame 233 sent to server (sent: 234, in pipeline: 3)
+Consumer: Frame 233 acknowledged by server
+Consumer: Waiting for encoded data for frame 233
+Consumer: Received encoded data for frame 233
+Consumer: Writing frame 233 to output file
+Consumer: Frame 233 complete!
+Frame 233 completed, removed from pipeline (received: 234, pipeline: 2/3)
+Consumer: Processing frame 234 from slot 0
+Consumer: Processing frame 234
+Producer: Read frame 236 from disk
+Added frame 236 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 234 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 234 sent to server (sent: 235, in pipeline: 3)
+Consumer: Frame 234 acknowledged by server
+Consumer: Waiting for encoded data for frame 234
+Consumer: Received encoded data for frame 234
+Consumer: Writing frame 234 to output file
+Consumer: Frame 234 complete!
+Frame 234 completed, removed from pipeline (received: 235, pipeline: 2/3)
+Consumer: Processing frame 235 from slot 1
+Consumer: Processing frame 235
+Producer: Read frame 237 from disk
+Added frame 237 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 235 to server, waiting for acknowledgment
+Frame 235 sent to server (sent: 236, in pipeline: 3)
+Consumer: Frame 235 acknowledged by server
+Consumer: Waiting for encoded data for frame 235
+Consumer: Received encoded data for frame 235
+Consumer: Writing frame 235 to output file
+Consumer: Frame 235 complete!
+Frame 235 completed, removed from pipeline (received: 236, pipeline: 2/3)
+Consumer: Processing frame 236 from slot 2
+Consumer: Processing frame 236
+Producer: Read frame 238 from disk
+Added frame 238 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 236 to server, waiting for acknowledgment
+Frame 236 sent to server (sent: 237, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 236 acknowledged by server
+Consumer: Waiting for encoded data for frame 236
+Consumer: Received encoded data for frame 236
+Consumer: Writing frame 236 to output file
+Consumer: Frame 236 complete!
+Frame 236 completed, removed from pipeline (received: 237, pipeline: 2/3)
+Consumer: Processing frame 237 from slot 0
+Consumer: Processing frame 237
+Producer: Read frame 239 from disk
+Added frame 239 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 237 to server, waiting for acknowledgment
+Frame 237 sent to server (sent: 238, in pipeline: 3)
+Consumer: Frame 237 acknowledged by server
+Consumer: Waiting for encoded data for frame 237
+Consumer: Received encoded data for frame 237
+Consumer: Writing frame 237 to output file
+Consumer: Frame 237 complete!
+Frame 237 completed, removed from pipeline (received: 238, pipeline: 2/3)
+Consumer: Processing frame 238 from slot 1
+Consumer: Processing frame 238
+Producer: Read frame 240 from disk
+Added frame 240 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 238 to server, waiting for acknowledgment
+Frame 238 sent to server (sent: 239, in pipeline: 3)
+Consumer: Frame 238 acknowledged by server
+Consumer: Waiting for encoded data for frame 238
+Consumer: Received encoded data for frame 238
+Consumer: Writing frame 238 to output file
+Consumer: Frame 238 complete!
+Frame 238 completed, removed from pipeline (received: 239, pipeline: 2/3)
+Consumer: Processing frame 239 from slot 2
+Consumer: Processing frame 239
+Producer: Read frame 241 from disk
+Added frame 241 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 239 to server, waiting for acknowledgment
+Frame 239 sent to server (sent: 240, in pipeline: 3)
+Consumer: Frame 239 acknowledged by server
+Consumer: Waiting for encoded data for frame 239
+Consumer: Received encoded data for frame 239
+Consumer: Writing frame 239 to output file
+Consumer: Frame 239 complete!
+Frame 239 completed, removed from pipeline (received: 240, pipeline: 2/3)
+Consumer: Processing frame 240 from slot 0
+Consumer: Processing frame 240
+Producer: Read frame 242 from disk
+Added frame 242 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 240 to server, waiting for acknowledgment
+Frame 240 sent to server (sent: 241, in pipeline: 3)
+Consumer: Frame 240 acknowledged by server
+Consumer: Waiting for encoded data for frame 240
+Consumer: Received encoded data for frame 240
+Consumer: Writing frame 240 to output file
+Consumer: Frame 240 complete!
+Frame 240 completed, removed from pipeline (received: 241, pipeline: 2/3)
+Consumer: Processing frame 241 from slot 1
+Consumer: Processing frame 241
+Producer: Read frame 243 from disk
+Added frame 243 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 241 to server, waiting for acknowledgment
+Frame 241 sent to server (sent: 242, in pipeline: 3)
+Consumer: Frame 241 acknowledged by server
+Consumer: Waiting for encoded data for frame 241
+Consumer: Received encoded data for frame 241
+Consumer: Writing frame 241 to output file
+Consumer: Frame 241 complete!
+Frame 241 completed, removed from pipeline (received: 242, pipeline: 2/3)
+Consumer: Processing frame 242 from slot 2
+Consumer: Processing frame 242
+Producer: Read frame 244 from disk
+Added frame 244 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 242 to server, waiting for acknowledgment
+Frame 242 sent to server (sent: 243, in pipeline: 3)
+Consumer: Frame 242 acknowledged by server
+Consumer: Waiting for encoded data for frame 242
+Consumer: Received encoded data for frame 242
+Consumer: Writing frame 242 to output file
+Consumer: Frame 242 complete!
+Frame 242 completed, removed from pipeline (received: 243, pipeline: 2/3)
+Consumer: Processing frame 243 from slot 0
+Consumer: Processing frame 243
+Producer: Read frame 245 from disk
+Added frame 245 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 243 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 243 sent to server (sent: 244, in pipeline: 3)
+Consumer: Frame 243 acknowledged by server
+Consumer: Waiting for encoded data for frame 243
+Consumer: Received encoded data for frame 243
+Consumer: Writing frame 243 to output file
+Consumer: Frame 243 complete!
+Frame 243 completed, removed from pipeline (received: 244, pipeline: 2/3)
+Consumer: Processing frame 244 from slot 1
+Consumer: Processing frame 244
+Producer: Read frame 246 from disk
+Added frame 246 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 244 to server, waiting for acknowledgment
+Frame 244 sent to server (sent: 245, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 244 acknowledged by server
+Consumer: Waiting for encoded data for frame 244
+Consumer: Received encoded data for frame 244
+Consumer: Writing frame 244 to output file
+Consumer: Frame 244 complete!
+Frame 244 completed, removed from pipeline (received: 245, pipeline: 2/3)
+Consumer: Processing frame 245 from slot 2
+Consumer: Processing frame 245
+Producer: Read frame 247 from disk
+Added frame 247 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 245 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 245 sent to server (sent: 246, in pipeline: 3)
+Consumer: Frame 245 acknowledged by server
+Consumer: Waiting for encoded data for frame 245
+Consumer: Received encoded data for frame 245
+Consumer: Writing frame 245 to output file
+Consumer: Frame 245 complete!
+Frame 245 completed, removed from pipeline (received: 246, pipeline: 2/3)
+Consumer: Processing frame 246 from slot 0
+Consumer: Processing frame 246
+Producer: Read frame 248 from disk
+Added frame 248 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 246 to server, waiting for acknowledgment
+Frame 246 sent to server (sent: 247, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 246 acknowledged by server
+Consumer: Waiting for encoded data for frame 246
+Consumer: Received encoded data for frame 246
+Consumer: Writing frame 246 to output file
+Consumer: Frame 246 complete!
+Frame 246 completed, removed from pipeline (received: 247, pipeline: 2/3)
+Consumer: Processing frame 247 from slot 1
+Consumer: Processing frame 247
+Producer: Read frame 249 from disk
+Added frame 249 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 247 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 247 sent to server (sent: 248, in pipeline: 3)
+Consumer: Frame 247 acknowledged by server
+Consumer: Waiting for encoded data for frame 247
+Consumer: Received encoded data for frame 247
+Consumer: Writing frame 247 to output file
+Consumer: Frame 247 complete!
+Frame 247 completed, removed from pipeline (received: 248, pipeline: 2/3)
+Consumer: Processing frame 248 from slot 2
+Consumer: Processing frame 248
+Producer: Read frame 250 from disk
+Added frame 250 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 248 to server, waiting for acknowledgment
+Frame 248 sent to server (sent: 249, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 248 acknowledged by server
+Consumer: Waiting for encoded data for frame 248
+Consumer: Received encoded data for frame 248
+Consumer: Writing frame 248 to output file
+Consumer: Frame 248 complete!
+Frame 248 completed, removed from pipeline (received: 249, pipeline: 2/3)
+Consumer: Processing frame 249 from slot 0
+Consumer: Processing frame 249
+Producer: Read frame 251 from disk
+Added frame 251 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 249 to server, waiting for acknowledgment
+Frame 249 sent to server (sent: 250, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 249 acknowledged by server
+Consumer: Waiting for encoded data for frame 249
+Consumer: Received encoded data for frame 249
+Consumer: Writing frame 249 to output file
+Consumer: Frame 249 complete!
+Frame 249 completed, removed from pipeline (received: 250, pipeline: 2/3)
+Consumer: Processing frame 250 from slot 1
+Consumer: Processing frame 250
+Producer: Read frame 252 from disk
+Added frame 252 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 250 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 250 sent to server (sent: 251, in pipeline: 3)
+Consumer: Frame 250 acknowledged by server
+Consumer: Waiting for encoded data for frame 250
+Consumer: Received encoded data for frame 250
+Consumer: Writing frame 250 to output file
+Consumer: Frame 250 complete!
+Frame 250 completed, removed from pipeline (received: 251, pipeline: 2/3)
+Consumer: Processing frame 251 from slot 2
+Consumer: Processing frame 251
+Producer: Read frame 253 from disk
+Added frame 253 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 251 to server, waiting for acknowledgment
+Frame 251 sent to server (sent: 252, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 251 acknowledged by server
+Consumer: Waiting for encoded data for frame 251
+Consumer: Received encoded data for frame 251
+Consumer: Writing frame 251 to output file
+Consumer: Frame 251 complete!
+Frame 251 completed, removed from pipeline (received: 252, pipeline: 2/3)
+Consumer: Processing frame 252 from slot 0
+Consumer: Processing frame 252
+Producer: Read frame 254 from disk
+Added frame 254 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 252 to server, waiting for acknowledgment
+Frame 252 sent to server (sent: 253, in pipeline: 3)
+Consumer: Frame 252 acknowledged by server
+Consumer: Waiting for encoded data for frame 252
+Consumer: Received encoded data for frame 252
+Consumer: Writing frame 252 to output file
+Consumer: Frame 252 complete!
+Frame 252 completed, removed from pipeline (received: 253, pipeline: 2/3)
+Consumer: Processing frame 253 from slot 1
+Consumer: Processing frame 253
+Producer: Read frame 255 from disk
+Added frame 255 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 253 to server, waiting for acknowledgment
+Frame 253 sent to server (sent: 254, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 253 acknowledged by server
+Consumer: Waiting for encoded data for frame 253
+Consumer: Received encoded data for frame 253
+Consumer: Writing frame 253 to output file
+Consumer: Frame 253 complete!
+Frame 253 completed, removed from pipeline (received: 254, pipeline: 2/3)
+Consumer: Processing frame 254 from slot 2
+Consumer: Processing frame 254
+Producer: Read frame 256 from disk
+Added frame 256 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 254 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 254 sent to server (sent: 255, in pipeline: 3)
+Consumer: Frame 254 acknowledged by server
+Consumer: Waiting for encoded data for frame 254
+Consumer: Received encoded data for frame 254
+Consumer: Writing frame 254 to output file
+Consumer: Frame 254 complete!
+Frame 254 completed, removed from pipeline (received: 255, pipeline: 2/3)
+Consumer: Processing frame 255 from slot 0
+Consumer: Processing frame 255
+Producer: Read frame 257 from disk
+Added frame 257 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 255 to server, waiting for acknowledgment
+Frame 255 sent to server (sent: 256, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 255 acknowledged by server
+Consumer: Waiting for encoded data for frame 255
+Consumer: Received encoded data for frame 255
+Consumer: Writing frame 255 to output file
+Consumer: Frame 255 complete!
+Frame 255 completed, removed from pipeline (received: 256, pipeline: 2/3)
+Consumer: Processing frame 256 from slot 1
+Consumer: Processing frame 256
+Producer: Read frame 258 from disk
+Added frame 258 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 256 to server, waiting for acknowledgment
+Frame 256 sent to server (sent: 257, in pipeline: 3)
+Consumer: Frame 256 acknowledged by server
+Consumer: Waiting for encoded data for frame 256
+Consumer: Received encoded data for frame 256
+Consumer: Writing frame 256 to output file
+Consumer: Frame 256 complete!
+Frame 256 completed, removed from pipeline (received: 257, pipeline: 2/3)
+Consumer: Processing frame 257 from slot 2
+Consumer: Processing frame 257
+Producer: Read frame 259 from disk
+Added frame 259 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 257 to server, waiting for acknowledgment
+Frame 257 sent to server (sent: 258, in pipeline: 3)
+Consumer: Frame 257 acknowledged by server
+Consumer: Waiting for encoded data for frame 257
+Consumer: Received encoded data for frame 257
+Consumer: Writing frame 257 to output file
+Consumer: Frame 257 complete!
+Frame 257 completed, removed from pipeline (received: 258, pipeline: 2/3)
+Consumer: Processing frame 258 from slot 0
+Consumer: Processing frame 258
+Producer: Read frame 260 from disk
+Added frame 260 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 258 to server, waiting for acknowledgment
+Frame 258 sent to server (sent: 259, in pipeline: 3)
+Consumer: Frame 258 acknowledged by server
+Consumer: Waiting for encoded data for frame 258
+Consumer: Received encoded data for frame 258
+Consumer: Writing frame 258 to output file
+Consumer: Frame 258 complete!
+Frame 258 completed, removed from pipeline (received: 259, pipeline: 2/3)
+Consumer: Processing frame 259 from slot 1
+Consumer: Processing frame 259
+Producer: Read frame 261 from disk
+Added frame 261 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 259 to server, waiting for acknowledgment
+Frame 259 sent to server (sent: 260, in pipeline: 3)
+Consumer: Frame 259 acknowledged by server
+Consumer: Waiting for encoded data for frame 259
+Consumer: Received encoded data for frame 259
+Consumer: Writing frame 259 to output file
+Consumer: Frame 259 complete!
+Frame 259 completed, removed from pipeline (received: 260, pipeline: 2/3)
+Consumer: Processing frame 260 from slot 2
+Consumer: Processing frame 260
+Producer: Read frame 262 from disk
+Added frame 262 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 260 to server, waiting for acknowledgment
+Frame 260 sent to server (sent: 261, in pipeline: 3)
+Consumer: Frame 260 acknowledged by server
+Consumer: Waiting for encoded data for frame 260
+Consumer: Received encoded data for frame 260
+Consumer: Writing frame 260 to output file
+Consumer: Frame 260 complete!
+Frame 260 completed, removed from pipeline (received: 261, pipeline: 2/3)
+Consumer: Processing frame 261 from slot 0
+Consumer: Processing frame 261
+Producer: Read frame 263 from disk
+Added frame 263 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 261 to server, waiting for acknowledgment
+Frame 261 sent to server (sent: 262, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 261 acknowledged by server
+Consumer: Waiting for encoded data for frame 261
+Consumer: Received encoded data for frame 261
+Consumer: Writing frame 261 to output file
+Consumer: Frame 261 complete!
+Frame 261 completed, removed from pipeline (received: 262, pipeline: 2/3)
+Consumer: Processing frame 262 from slot 1
+Consumer: Processing frame 262
+Producer: Read frame 264 from disk
+Added frame 264 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 262 to server, waiting for acknowledgment
+Frame 262 sent to server (sent: 263, in pipeline: 3)
+Consumer: Frame 262 acknowledged by server
+Consumer: Waiting for encoded data for frame 262
+Consumer: Received encoded data for frame 262
+Consumer: Writing frame 262 to output file
+Consumer: Frame 262 complete!
+Frame 262 completed, removed from pipeline (received: 263, pipeline: 2/3)
+Consumer: Processing frame 263 from slot 2
+Consumer: Processing frame 263
+Producer: Read frame 265 from disk
+Added frame 265 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 263 to server, waiting for acknowledgment
+Frame 263 sent to server (sent: 264, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 263 acknowledged by server
+Consumer: Waiting for encoded data for frame 263
+Consumer: Received encoded data for frame 263
+Consumer: Writing frame 263 to output file
+Consumer: Frame 263 complete!
+Frame 263 completed, removed from pipeline (received: 264, pipeline: 2/3)
+Consumer: Processing frame 264 from slot 0
+Consumer: Processing frame 264
+Producer: Read frame 266 from disk
+Added frame 266 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 264 to server, waiting for acknowledgment
+Frame 264 sent to server (sent: 265, in pipeline: 3)
+Consumer: Frame 264 acknowledged by server
+Consumer: Waiting for encoded data for frame 264
+Consumer: Received encoded data for frame 264
+Consumer: Writing frame 264 to output file
+Consumer: Frame 264 complete!
+Frame 264 completed, removed from pipeline (received: 265, pipeline: 2/3)
+Consumer: Processing frame 265 from slot 1
+Consumer: Processing frame 265
+Producer: Read frame 267 from disk
+Added frame 267 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 265 to server, waiting for acknowledgment
+Frame 265 sent to server (sent: 266, in pipeline: 3)
+Consumer: Frame 265 acknowledged by server
+Consumer: Waiting for encoded data for frame 265
+Consumer: Received encoded data for frame 265
+Consumer: Writing frame 265 to output file
+Consumer: Frame 265 complete!
+Frame 265 completed, removed from pipeline (received: 266, pipeline: 2/3)
+Consumer: Processing frame 266 from slot 2
+Consumer: Processing frame 266
+Producer: Read frame 268 from disk
+Added frame 268 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 266 to server, waiting for acknowledgment
+Frame 266 sent to server (sent: 267, in pipeline: 3)
+Consumer: Frame 266 acknowledged by server
+Consumer: Waiting for encoded data for frame 266
+Consumer: Received encoded data for frame 266
+Consumer: Writing frame 266 to output file
+Consumer: Frame 266 complete!
+Frame 266 completed, removed from pipeline (received: 267, pipeline: 2/3)
+Consumer: Processing frame 267 from slot 0
+Consumer: Processing frame 267
+Producer: Read frame 269 from disk
+Added frame 269 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 267 to server, waiting for acknowledgment
+Frame 267 sent to server (sent: 268, in pipeline: 3)
+Consumer: Frame 267 acknowledged by server
+Consumer: Waiting for encoded data for frame 267
+Consumer: Received encoded data for frame 267
+Consumer: Writing frame 267 to output file
+Consumer: Frame 267 complete!
+Frame 267 completed, removed from pipeline (received: 268, pipeline: 2/3)
+Consumer: Processing frame 268 from slot 1
+Consumer: Processing frame 268
+Producer: Read frame 270 from disk
+Added frame 270 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 268 to server, waiting for acknowledgment
+Frame 268 sent to server (sent: 269, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 268 acknowledged by server
+Consumer: Waiting for encoded data for frame 268
+Consumer: Received encoded data for frame 268
+Consumer: Writing frame 268 to output file
+Consumer: Frame 268 complete!
+Frame 268 completed, removed from pipeline (received: 269, pipeline: 2/3)
+Consumer: Processing frame 269 from slot 2
+Consumer: Processing frame 269
+Producer: Read frame 271 from disk
+Added frame 271 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 269 to server, waiting for acknowledgment
+Frame 269 sent to server (sent: 270, in pipeline: 3)
+Consumer: Frame 269 acknowledged by server
+Consumer: Waiting for encoded data for frame 269
+Consumer: Received encoded data for frame 269
+Consumer: Writing frame 269 to output file
+Consumer: Frame 269 complete!
+Frame 269 completed, removed from pipeline (received: 270, pipeline: 2/3)
+Consumer: Processing frame 270 from slot 0
+Consumer: Processing frame 270
+Producer: Read frame 272 from disk
+Added frame 272 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 270 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 270 sent to server (sent: 271, in pipeline: 3)
+Consumer: Frame 270 acknowledged by server
+Consumer: Waiting for encoded data for frame 270
+Consumer: Received encoded data for frame 270
+Consumer: Writing frame 270 to output file
+Consumer: Frame 270 complete!
+Frame 270 completed, removed from pipeline (received: 271, pipeline: 2/3)
+Consumer: Processing frame 271 from slot 1
+Consumer: Processing frame 271
+Producer: Read frame 273 from disk
+Added frame 273 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 271 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 271 sent to server (sent: 272, in pipeline: 3)
+Consumer: Frame 271 acknowledged by server
+Consumer: Waiting for encoded data for frame 271
+Consumer: Received encoded data for frame 271
+Consumer: Writing frame 271 to output file
+Consumer: Frame 271 complete!
+Frame 271 completed, removed from pipeline (received: 272, pipeline: 2/3)
+Consumer: Processing frame 272 from slot 2
+Consumer: Processing frame 272
+Producer: Read frame 274 from disk
+Added frame 274 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 272 to server, waiting for acknowledgment
+Frame 272 sent to server (sent: 273, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 272 acknowledged by server
+Consumer: Waiting for encoded data for frame 272
+Consumer: Received encoded data for frame 272
+Consumer: Writing frame 272 to output file
+Consumer: Frame 272 complete!
+Frame 272 completed, removed from pipeline (received: 273, pipeline: 2/3)
+Consumer: Processing frame 273 from slot 0
+Consumer: Processing frame 273
+Producer: Read frame 275 from disk
+Added frame 275 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 273 to server, waiting for acknowledgment
+Frame 273 sent to server (sent: 274, in pipeline: 3)
+Consumer: Frame 273 acknowledged by server
+Consumer: Waiting for encoded data for frame 273
+Consumer: Received encoded data for frame 273
+Consumer: Writing frame 273 to output file
+Consumer: Frame 273 complete!
+Frame 273 completed, removed from pipeline (received: 274, pipeline: 2/3)
+Consumer: Processing frame 274 from slot 1
+Consumer: Processing frame 274
+Producer: Read frame 276 from disk
+Added frame 276 to pipeline slot 0 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 274 to server, waiting for acknowledgment
+Frame 274 sent to server (sent: 275, in pipeline: 3)
+Consumer: Frame 274 acknowledged by server
+Consumer: Waiting for encoded data for frame 274
+Consumer: Received encoded data for frame 274
+Consumer: Writing frame 274 to output file
+Consumer: Frame 274 complete!
+Frame 274 completed, removed from pipeline (received: 275, pipeline: 2/3)
+Consumer: Processing frame 275 from slot 2
+Consumer: Processing frame 275
+Producer: Read frame 277 from disk
+Added frame 277 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 275 to server, waiting for acknowledgment
+Frame 275 sent to server (sent: 276, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 275 acknowledged by server
+Consumer: Waiting for encoded data for frame 275
+Consumer: Received encoded data for frame 275
+Consumer: Writing frame 275 to output file
+Consumer: Frame 275 complete!
+Frame 275 completed, removed from pipeline (received: 276, pipeline: 2/3)
+Consumer: Processing frame 276 from slot 0
+Consumer: Processing frame 276
+Producer: Read frame 278 from disk
+Added frame 278 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 276 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 276 sent to server (sent: 277, in pipeline: 3)
+Consumer: Frame 276 acknowledged by server
+Consumer: Waiting for encoded data for frame 276
+Consumer: Received encoded data for frame 276
+Consumer: Writing frame 276 to output file
+Consumer: Frame 276 complete!
+Frame 276 completed, removed from pipeline (received: 277, pipeline: 2/3)
+Consumer: Processing frame 277 from slot 1
+Consumer: Processing frame 277
+Producer: Read frame 279 from disk
+Added frame 279 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 277 to server, waiting for acknowledgment
+Frame 277 sent to server (sent: 278, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 277 acknowledged by server
+Consumer: Waiting for encoded data for frame 277
+Consumer: Received encoded data for frame 277
+Consumer: Writing frame 277 to output file
+Consumer: Frame 277 complete!
+Frame 277 completed, removed from pipeline (received: 278, pipeline: 2/3)
+Consumer: Processing frame 278 from slot 2
+Consumer: Processing frame 278
+Producer: Read frame 280 from disk
+Added frame 280 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 278 to server, waiting for acknowledgment
+Frame 278 sent to server (sent: 279, in pipeline: 3)
+Consumer: Frame 278 acknowledged by server
+Consumer: Waiting for encoded data for frame 278
+Consumer: Received encoded data for frame 278
+Consumer: Writing frame 278 to output file
+Consumer: Frame 278 complete!
+Frame 278 completed, removed from pipeline (received: 279, pipeline: 2/3)
+Consumer: Processing frame 279 from slot 0
+Consumer: Processing frame 279
+Producer: Read frame 281 from disk
+Added frame 281 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 279 to server, waiting for acknowledgment
+Frame 279 sent to server (sent: 280, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 279 acknowledged by server
+Consumer: Waiting for encoded data for frame 279
+Consumer: Received encoded data for frame 279
+Consumer: Writing frame 279 to output file
+Consumer: Frame 279 complete!
+Frame 279 completed, removed from pipeline (received: 280, pipeline: 2/3)
+Consumer: Processing frame 280 from slot 1
+Consumer: Processing frame 280
+Producer: Read frame 282 from disk
+Added frame 282 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 280 to server, waiting for acknowledgment
+Frame 280 sent to server (sent: 281, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 280 acknowledged by server
+Consumer: Waiting for encoded data for frame 280
+Consumer: Received encoded data for frame 280
+Consumer: Writing frame 280 to output file
+Consumer: Frame 280 complete!
+Frame 280 completed, removed from pipeline (received: 281, pipeline: 2/3)
+Consumer: Processing frame 281 from slot 2
+Consumer: Processing frame 281
+Producer: Read frame 283 from disk
+Added frame 283 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 281 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 281 sent to server (sent: 282, in pipeline: 3)
+Consumer: Frame 281 acknowledged by server
+Consumer: Waiting for encoded data for frame 281
+Consumer: Received encoded data for frame 281
+Consumer: Writing frame 281 to output file
+Consumer: Frame 281 complete!
+Frame 281 completed, removed from pipeline (received: 282, pipeline: 2/3)
+Consumer: Processing frame 282 from slot 0
+Consumer: Processing frame 282
+Producer: Read frame 284 from disk
+Added frame 284 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 282 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 282 sent to server (sent: 283, in pipeline: 3)
+Consumer: Frame 282 acknowledged by server
+Consumer: Waiting for encoded data for frame 282
+Consumer: Received encoded data for frame 282
+Consumer: Writing frame 282 to output file
+Consumer: Frame 282 complete!
+Frame 282 completed, removed from pipeline (received: 283, pipeline: 2/3)
+Consumer: Processing frame 283 from slot 1
+Consumer: Processing frame 283
+Producer: Read frame 285 from disk
+Added frame 285 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 283 to server, waiting for acknowledgment
+Frame 283 sent to server (sent: 284, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 283 acknowledged by server
+Consumer: Waiting for encoded data for frame 283
+Consumer: Received encoded data for frame 283
+Consumer: Writing frame 283 to output file
+Consumer: Frame 283 complete!
+Frame 283 completed, removed from pipeline (received: 284, pipeline: 2/3)
+Consumer: Processing frame 284 from slot 2
+Consumer: Processing frame 284
+Producer: Read frame 286 from disk
+Added frame 286 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 284 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 284 sent to server (sent: 285, in pipeline: 3)
+Consumer: Frame 284 acknowledged by server
+Consumer: Waiting for encoded data for frame 284
+Consumer: Received encoded data for frame 284
+Consumer: Writing frame 284 to output file
+Consumer: Frame 284 complete!
+Frame 284 completed, removed from pipeline (received: 285, pipeline: 2/3)
+Consumer: Processing frame 285 from slot 0
+Consumer: Processing frame 285
+Producer: Read frame 287 from disk
+Added frame 287 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 285 to server, waiting for acknowledgment
+Frame 285 sent to server (sent: 286, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 285 acknowledged by server
+Consumer: Waiting for encoded data for frame 285
+Consumer: Received encoded data for frame 285
+Consumer: Writing frame 285 to output file
+Consumer: Frame 285 complete!
+Frame 285 completed, removed from pipeline (received: 286, pipeline: 2/3)
+Consumer: Processing frame 286 from slot 1
+Consumer: Processing frame 286
+Producer: Read frame 288 from disk
+Added frame 288 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 286 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 286 sent to server (sent: 287, in pipeline: 3)
+Consumer: Frame 286 acknowledged by server
+Consumer: Waiting for encoded data for frame 286
+Consumer: Received encoded data for frame 286
+Consumer: Writing frame 286 to output file
+Consumer: Frame 286 complete!
+Frame 286 completed, removed from pipeline (received: 287, pipeline: 2/3)
+Consumer: Processing frame 287 from slot 2
+Consumer: Processing frame 287
+Producer: Read frame 289 from disk
+Added frame 289 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 287 to server, waiting for acknowledgment
+Frame 287 sent to server (sent: 288, in pipeline: 3)
+Consumer: Frame 287 acknowledged by server
+Consumer: Waiting for encoded data for frame 287
+Consumer: Received encoded data for frame 287
+Consumer: Writing frame 287 to output file
+Consumer: Frame 287 complete!
+Frame 287 completed, removed from pipeline (received: 288, pipeline: 2/3)
+Consumer: Processing frame 288 from slot 0
+Consumer: Processing frame 288
+Producer: Read frame 290 from disk
+Added frame 290 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 288 to server, waiting for acknowledgment
+Frame 288 sent to server (sent: 289, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 288 acknowledged by server
+Consumer: Waiting for encoded data for frame 288
+Consumer: Received encoded data for frame 288
+Consumer: Writing frame 288 to output file
+Consumer: Frame 288 complete!
+Frame 288 completed, removed from pipeline (received: 289, pipeline: 2/3)
+Consumer: Processing frame 289 from slot 1
+Consumer: Processing frame 289
+Producer: Read frame 291 from disk
+Added frame 291 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 289 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 289 sent to server (sent: 290, in pipeline: 3)
+Consumer: Frame 289 acknowledged by server
+Consumer: Waiting for encoded data for frame 289
+Consumer: Received encoded data for frame 289
+Consumer: Writing frame 289 to output file
+Consumer: Frame 289 complete!
+Frame 289 completed, removed from pipeline (received: 290, pipeline: 2/3)
+Consumer: Processing frame 290 from slot 2
+Consumer: Processing frame 290
+Producer: Read frame 292 from disk
+Added frame 292 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 290 to server, waiting for acknowledgment
+Frame 290 sent to server (sent: 291, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 290 acknowledged by server
+Consumer: Waiting for encoded data for frame 290
+Consumer: Received encoded data for frame 290
+Consumer: Writing frame 290 to output file
+Consumer: Frame 290 complete!
+Frame 290 completed, removed from pipeline (received: 291, pipeline: 2/3)
+Consumer: Processing frame 291 from slot 0
+Consumer: Processing frame 291
+Producer: Read frame 293 from disk
+Added frame 293 to pipeline slot 2 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 291 to server, waiting for acknowledgment
+Frame 291 sent to server (sent: 292, in pipeline: 3)
+Consumer: Frame 291 acknowledged by server
+Consumer: Waiting for encoded data for frame 291
+Consumer: Received encoded data for frame 291
+Consumer: Writing frame 291 to output file
+Consumer: Frame 291 complete!
+Frame 291 completed, removed from pipeline (received: 292, pipeline: 2/3)
+Consumer: Processing frame 292 from slot 1
+Consumer: Processing frame 292
+Producer: Read frame 294 from disk
+Added frame 294 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 292 to server, waiting for acknowledgment
+Frame 292 sent to server (sent: 293, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 292 acknowledged by server
+Consumer: Waiting for encoded data for frame 292
+Consumer: Received encoded data for frame 292
+Consumer: Writing frame 292 to output file
+Consumer: Frame 292 complete!
+Frame 292 completed, removed from pipeline (received: 293, pipeline: 2/3)
+Consumer: Processing frame 293 from slot 2
+Consumer: Processing frame 293
+Producer: Read frame 295 from disk
+Added frame 295 to pipeline slot 1 (pipeline: 3/3)
+Pipeline full, waiting for slot...
+Consumer: Sent frame 293 to server, waiting for acknowledgment
+Frame 293 sent to server (sent: 294, in pipeline: 3)
+Consumer: Frame 293 acknowledged by server
+Consumer: Waiting for encoded data for frame 293
+Consumer: Received encoded data for frame 293
+Consumer: Writing frame 293 to output file
+Consumer: Frame 293 complete!
+Frame 293 completed, removed from pipeline (received: 294, pipeline: 2/3)
+Consumer: Processing frame 294 from slot 0
+Consumer: Processing frame 294
+Producer: Read frame 296 from disk
+Added frame 296 to pipeline slot 2 (pipeline: 3/3)
+Consumer: Sent frame 294 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 294 sent to server (sent: 295, in pipeline: 3)
+Consumer: Frame 294 acknowledged by server
+Consumer: Waiting for encoded data for frame 294
+Consumer: Received encoded data for frame 294
+Consumer: Writing frame 294 to output file
+Consumer: Frame 294 complete!
+Frame 294 completed, removed from pipeline (received: 295, pipeline: 2/3)
+Consumer: Processing frame 295 from slot 1
+Consumer: Processing frame 295
+Producer: Read frame 297 from disk
+Added frame 297 to pipeline slot 0 (pipeline: 3/3)
+Consumer: Sent frame 295 to server, waiting for acknowledgment
+Pipeline full, waiting for slot...
+Frame 295 sent to server (sent: 296, in pipeline: 3)
+Consumer: Frame 295 acknowledged by server
+Consumer: Waiting for encoded data for frame 295
+Consumer: Received encoded data for frame 295
+Consumer: Writing frame 295 to output file
+Consumer: Frame 295 complete!
+Frame 295 completed, removed from pipeline (received: 296, pipeline: 2/3)
+Consumer: Processing frame 296 from slot 2
+Consumer: Processing frame 296
+Producer: Read frame 298 from disk
+Added frame 298 to pipeline slot 1 (pipeline: 3/3)
+Consumer: Sent frame 296 to server, waiting for acknowledgment
+Frame 296 sent to server (sent: 297, in pipeline: 3)
+Pipeline full, waiting for slot...
+Consumer: Frame 296 acknowledged by server
+Consumer: Waiting for encoded data for frame 296
+Consumer: Received encoded data for frame 296
+Consumer: Writing frame 296 to output file
+Consumer: Frame 296 complete!
+Frame 296 completed, removed from pipeline (received: 297, pipeline: 2/3)
+Consumer: Processing frame 297 from slot 0
+Consumer: Processing frame 297
+Producer: Read frame 299 from disk
+Added frame 299 to pipeline slot 2 (pipeline: 3/3)
+Producer: End of input file reached
+Producer: Finished reading 300 frames
+Consumer: Sent frame 297 to server, waiting for acknowledgment
+Frame 297 sent to server (sent: 298, in pipeline: 3)
+Client: Producer finished, waiting for consumer to process all frames
+Consumer: Frame 297 acknowledged by server
+Consumer: Waiting for encoded data for frame 297
+Consumer: Received encoded data for frame 297
+Consumer: Writing frame 297 to output file
+Consumer: Frame 297 complete!
+Frame 297 completed, removed from pipeline (received: 298, pipeline: 2/3)
+Consumer: Processing frame 298 from slot 1
+Consumer: Processing frame 298
+Consumer: Sent frame 298 to server, waiting for acknowledgment
+Frame 298 sent to server (sent: 299, in pipeline: 2)
+Consumer: Frame 298 acknowledged by server
+Consumer: Waiting for encoded data for frame 298
+Consumer: Received encoded data for frame 298
+Consumer: Writing frame 298 to output file
+Consumer: Frame 298 complete!
+Frame 298 completed, removed from pipeline (received: 299, pipeline: 1/3)
+Consumer: Processing frame 299 from slot 2
+Consumer: Processing frame 299
+Consumer: Sent frame 299 to server, waiting for acknowledgment
+Frame 299 sent to server (sent: 300, in pipeline: 1)
+Consumer: Frame 299 acknowledged by server
+Consumer: Waiting for encoded data for frame 299
+Consumer: Received encoded data for frame 299
+Consumer: Writing frame 299 to output file
+Consumer: Frame 299 complete!
+Frame 299 completed, removed from pipeline (received: 300, pipeline: 0/3)
+Pipeline empty and finished - signaling consumer to exit
+Consumer: All frames processed (read: 300, sent: 300, received: 300)
+Consumer: No more frames to process
+Consumer: Finished processing frames
+Client: Sending quit command to server
+PC exit code: 0
+
+real	0m12,092s
+user	0m1,938s
+sys	0m0,157s

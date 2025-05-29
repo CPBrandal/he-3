@@ -1,0 +1,614 @@
+SISCI initialized and connected
+Dimensions acknowledged
+Producer: Starting
+Consumer: Starting
+Added frame 0 to slot 0
+Consumer: Processing frame 0
+Added frame 1 to slot 1
+Added frame 2 to slot 2
+Frame 0 completed
+Consumer: Frame 0 complete
+Consumer: Processing frame 1
+Added frame 3 to slot 0
+Frame 1 completed
+Consumer: Frame 1 complete
+Consumer: Processing frame 2
+Added frame 4 to slot 1
+Frame 2 completed
+Consumer: Frame 2 complete
+Consumer: Processing frame 3
+Added frame 5 to slot 2
+Frame 3 completed
+Consumer: Frame 3 complete
+Consumer: Processing frame 4
+Added frame 6 to slot 0
+Frame 4 completed
+Consumer: Frame 4 complete
+Consumer: Processing frame 5
+Added frame 7 to slot 1
+Frame 5 completed
+Consumer: Frame 5 complete
+Consumer: Processing frame 6
+Added frame 8 to slot 2
+Frame 6 completed
+Consumer: Frame 6 complete
+Consumer: Processing frame 7
+Added frame 9 to slot 0
+Frame 7 completed
+Consumer: Frame 7 complete
+Consumer: Processing frame 8
+Added frame 10 to slot 1
+Frame 8 completed
+Consumer: Frame 8 complete
+Consumer: Processing frame 9
+Added frame 11 to slot 2
+Frame 9 completed
+Consumer: Frame 9 complete
+Consumer: Processing frame 10
+Added frame 12 to slot 0
+Frame 10 completed
+Consumer: Frame 10 complete
+Consumer: Processing frame 11
+Added frame 13 to slot 1
+Frame 11 completed
+Consumer: Frame 11 complete
+Consumer: Processing frame 12
+Added frame 14 to slot 2
+Frame 12 completed
+Consumer: Frame 12 complete
+Consumer: Processing frame 13
+Added frame 15 to slot 0
+Frame 13 completed
+Consumer: Frame 13 complete
+Consumer: Processing frame 14
+Added frame 16 to slot 1
+Frame 14 completed
+Consumer: Frame 14 complete
+Consumer: Processing frame 15
+Added frame 17 to slot 2
+Frame 15 completed
+Consumer: Frame 15 complete
+Consumer: Processing frame 16
+Added frame 18 to slot 0
+Frame 16 completed
+Consumer: Frame 16 complete
+Consumer: Processing frame 17
+Added frame 19 to slot 1
+Frame 17 completed
+Consumer: Frame 17 complete
+Consumer: Processing frame 18
+Added frame 20 to slot 2
+Frame 18 completed
+Consumer: Frame 18 complete
+Consumer: Processing frame 19
+Added frame 21 to slot 0
+Frame 19 completed
+Consumer: Frame 19 complete
+Consumer: Processing frame 20
+Added frame 22 to slot 1
+Frame 20 completed
+Consumer: Frame 20 complete
+Consumer: Processing frame 21
+Added frame 23 to slot 2
+Frame 21 completed
+Consumer: Frame 21 complete
+Consumer: Processing frame 22
+Added frame 24 to slot 0
+Frame 22 completed
+Consumer: Frame 22 complete
+Consumer: Processing frame 23
+Added frame 25 to slot 1
+Frame 23 completed
+Consumer: Frame 23 complete
+Consumer: Processing frame 24
+Added frame 26 to slot 2
+Frame 24 completed
+Consumer: Frame 24 complete
+Consumer: Processing frame 25
+Added frame 27 to slot 0
+Frame 25 completed
+Consumer: Frame 25 complete
+Consumer: Processing frame 26
+Added frame 28 to slot 1
+Frame 26 completed
+Consumer: Frame 26 complete
+Consumer: Processing frame 27
+Added frame 29 to slot 2
+Frame 27 completed
+Added frame 30 to slot 0
+Consumer: Frame 27 complete
+Consumer: Processing frame 28
+Frame 28 completed
+Added frame 31 to slot 1
+Consumer: Frame 28 complete
+Consumer: Processing frame 29
+Frame 29 completed
+Consumer: Frame 29 complete
+Consumer: Processing frame 30
+Added frame 32 to slot 2
+Frame 30 completed
+Consumer: Frame 30 complete
+Consumer: Processing frame 31
+Added frame 33 to slot 0
+Frame 31 completed
+Consumer: Frame 31 complete
+Consumer: Processing frame 32
+Added frame 34 to slot 1
+Frame 32 completed
+Consumer: Frame 32 complete
+Consumer: Processing frame 33
+Added frame 35 to slot 2
+Frame 33 completed
+Consumer: Frame 33 complete
+Consumer: Processing frame 34
+Added frame 36 to slot 0
+Frame 34 completed
+Consumer: Frame 34 complete
+Consumer: Processing frame 35
+Added frame 37 to slot 1
+Frame 35 completed
+Consumer: Frame 35 complete
+Consumer: Processing frame 36
+Added frame 38 to slot 2
+Frame 36 completed
+Added frame 39 to slot 0
+Consumer: Frame 36 complete
+Consumer: Processing frame 37
+Frame 37 completed
+Consumer: Frame 37 complete
+Consumer: Processing frame 38
+Added frame 40 to slot 1
+Frame 38 completed
+Consumer: Frame 38 complete
+Consumer: Processing frame 39
+Added frame 41 to slot 2
+Frame 39 completed
+Added frame 42 to slot 0
+Consumer: Frame 39 complete
+Consumer: Processing frame 40
+Frame 40 completed
+Consumer: Frame 40 complete
+Consumer: Processing frame 41
+Added frame 43 to slot 1
+Frame 41 completed
+Consumer: Frame 41 complete
+Consumer: Processing frame 42
+Added frame 44 to slot 2
+Frame 42 completed
+Consumer: Frame 42 complete
+Consumer: Processing frame 43
+Added frame 45 to slot 0
+Frame 43 completed
+Consumer: Frame 43 complete
+Consumer: Processing frame 44
+Added frame 46 to slot 1
+Frame 44 completed
+Consumer: Frame 44 complete
+Consumer: Processing frame 45
+Added frame 47 to slot 2
+Frame 45 completed
+Consumer: Frame 45 complete
+Consumer: Processing frame 46
+Added frame 48 to slot 0
+Frame 46 completed
+Consumer: Frame 46 complete
+Consumer: Processing frame 47
+Added frame 49 to slot 1
+Frame 47 completed
+Consumer: Frame 47 complete
+Consumer: Processing frame 48
+Added frame 50 to slot 2
+Frame 48 completed
+Consumer: Frame 48 complete
+Consumer: Processing frame 49
+Added frame 51 to slot 0
+Frame 49 completed
+Consumer: Frame 49 complete
+Consumer: Processing frame 50
+Added frame 52 to slot 1
+Frame 50 completed
+Consumer: Frame 50 complete
+Consumer: Processing frame 51
+Added frame 53 to slot 2
+Frame 51 completed
+Consumer: Frame 51 complete
+Consumer: Processing frame 52
+Added frame 54 to slot 0
+Frame 52 completed
+Consumer: Frame 52 complete
+Consumer: Processing frame 53
+Added frame 55 to slot 1
+Frame 53 completed
+Consumer: Frame 53 complete
+Consumer: Processing frame 54
+Added frame 56 to slot 2
+Frame 54 completed
+Consumer: Frame 54 complete
+Consumer: Processing frame 55
+Added frame 57 to slot 0
+Frame 55 completed
+Consumer: Frame 55 complete
+Consumer: Processing frame 56
+Added frame 58 to slot 1
+Frame 56 completed
+Consumer: Frame 56 complete
+Consumer: Processing frame 57
+Added frame 59 to slot 2
+Frame 57 completed
+Consumer: Frame 57 complete
+Added frame 60 to slot 0
+Consumer: Processing frame 58
+Frame 58 completed
+Consumer: Frame 58 complete
+Consumer: Processing frame 59
+Added frame 61 to slot 1
+Frame 59 completed
+Consumer: Frame 59 complete
+Consumer: Processing frame 60
+Added frame 62 to slot 2
+Frame 60 completed
+Consumer: Frame 60 complete
+Consumer: Processing frame 61
+Added frame 63 to slot 0
+Frame 61 completed
+Consumer: Frame 61 complete
+Consumer: Processing frame 62
+Added frame 64 to slot 1
+Frame 62 completed
+Consumer: Frame 62 complete
+Consumer: Processing frame 63
+Added frame 65 to slot 2
+Frame 63 completed
+Consumer: Frame 63 complete
+Consumer: Processing frame 64
+Added frame 66 to slot 0
+Frame 64 completed
+Consumer: Frame 64 complete
+Consumer: Processing frame 65
+Added frame 67 to slot 1
+Frame 65 completed
+Consumer: Frame 65 complete
+Consumer: Processing frame 66
+Added frame 68 to slot 2
+Frame 66 completed
+Consumer: Frame 66 complete
+Consumer: Processing frame 67
+Added frame 69 to slot 0
+Frame 67 completed
+Consumer: Frame 67 complete
+Consumer: Processing frame 68
+Added frame 70 to slot 1
+Frame 68 completed
+Consumer: Frame 68 complete
+Consumer: Processing frame 69
+Added frame 71 to slot 2
+Frame 69 completed
+Consumer: Frame 69 complete
+Consumer: Processing frame 70
+Added frame 72 to slot 0
+Frame 70 completed
+Consumer: Frame 70 complete
+Consumer: Processing frame 71
+Added frame 73 to slot 1
+Frame 71 completed
+Consumer: Frame 71 complete
+Consumer: Processing frame 72
+Added frame 74 to slot 2
+Frame 72 completed
+Consumer: Frame 72 complete
+Consumer: Processing frame 73
+Added frame 75 to slot 0
+Frame 73 completed
+Consumer: Frame 73 complete
+Consumer: Processing frame 74
+Added frame 76 to slot 1
+Frame 74 completed
+Consumer: Frame 74 complete
+Consumer: Processing frame 75
+Added frame 77 to slot 2
+Frame 75 completed
+Consumer: Frame 75 complete
+Consumer: Processing frame 76
+Added frame 78 to slot 0
+Frame 76 completed
+Consumer: Frame 76 complete
+Consumer: Processing frame 77
+Added frame 79 to slot 1
+Frame 77 completed
+Consumer: Frame 77 complete
+Consumer: Processing frame 78
+Added frame 80 to slot 2
+Frame 78 completed
+Consumer: Frame 78 complete
+Consumer: Processing frame 79
+Added frame 81 to slot 0
+Frame 79 completed
+Consumer: Frame 79 complete
+Consumer: Processing frame 80
+Added frame 82 to slot 1
+Frame 80 completed
+Consumer: Frame 80 complete
+Consumer: Processing frame 81
+Added frame 83 to slot 2
+Frame 81 completed
+Consumer: Frame 81 complete
+Consumer: Processing frame 82
+Added frame 84 to slot 0
+Frame 82 completed
+Consumer: Frame 82 complete
+Consumer: Processing frame 83
+Added frame 85 to slot 1
+Frame 83 completed
+Consumer: Frame 83 complete
+Consumer: Processing frame 84
+Added frame 86 to slot 2
+Frame 84 completed
+Consumer: Frame 84 complete
+Consumer: Processing frame 85
+Added frame 87 to slot 0
+Frame 85 completed
+Consumer: Frame 85 complete
+Consumer: Processing frame 86
+Added frame 88 to slot 1
+Frame 86 completed
+Consumer: Frame 86 complete
+Consumer: Processing frame 87
+Added frame 89 to slot 2
+Frame 87 completed
+Consumer: Frame 87 complete
+Consumer: Processing frame 88
+Added frame 90 to slot 0
+Frame 88 completed
+Consumer: Frame 88 complete
+Consumer: Processing frame 89
+Added frame 91 to slot 1
+Frame 89 completed
+Consumer: Frame 89 complete
+Consumer: Processing frame 90
+Added frame 92 to slot 2
+Frame 90 completed
+Consumer: Frame 90 complete
+Consumer: Processing frame 91
+Added frame 93 to slot 0
+Frame 91 completed
+Consumer: Frame 91 complete
+Consumer: Processing frame 92
+Added frame 94 to slot 1
+Frame 92 completed
+Consumer: Frame 92 complete
+Consumer: Processing frame 93
+Added frame 95 to slot 2
+Frame 93 completed
+Consumer: Frame 93 complete
+Consumer: Processing frame 94
+Added frame 96 to slot 0
+Frame 94 completed
+Consumer: Frame 94 complete
+Consumer: Processing frame 95
+Added frame 97 to slot 1
+Frame 95 completed
+Consumer: Frame 95 complete
+Consumer: Processing frame 96
+Added frame 98 to slot 2
+Frame 96 completed
+Consumer: Frame 96 complete
+Consumer: Processing frame 97
+Added frame 99 to slot 0
+Frame 97 completed
+Consumer: Frame 97 complete
+Consumer: Processing frame 98
+Added frame 100 to slot 1
+Frame 98 completed
+Consumer: Frame 98 complete
+Consumer: Processing frame 99
+Added frame 101 to slot 2
+Frame 99 completed
+Consumer: Frame 99 complete
+Consumer: Processing frame 100
+Added frame 102 to slot 0
+Frame 100 completed
+Consumer: Frame 100 complete
+Consumer: Processing frame 101
+Added frame 103 to slot 1
+Frame 101 completed
+Consumer: Frame 101 complete
+Consumer: Processing frame 102
+Added frame 104 to slot 2
+Frame 102 completed
+Consumer: Frame 102 complete
+Consumer: Processing frame 103
+Added frame 105 to slot 0
+Frame 103 completed
+Consumer: Frame 103 complete
+Consumer: Processing frame 104
+Added frame 106 to slot 1
+Frame 104 completed
+Consumer: Frame 104 complete
+Consumer: Processing frame 105
+Added frame 107 to slot 2
+Frame 105 completed
+Consumer: Frame 105 complete
+Consumer: Processing frame 106
+Added frame 108 to slot 0
+Frame 106 completed
+Consumer: Frame 106 complete
+Consumer: Processing frame 107
+Added frame 109 to slot 1
+Frame 107 completed
+Consumer: Frame 107 complete
+Consumer: Processing frame 108
+Added frame 110 to slot 2
+Frame 108 completed
+Consumer: Frame 108 complete
+Consumer: Processing frame 109
+Added frame 111 to slot 0
+Frame 109 completed
+Consumer: Frame 109 complete
+Consumer: Processing frame 110
+Added frame 112 to slot 1
+Frame 110 completed
+Consumer: Frame 110 complete
+Consumer: Processing frame 111
+Added frame 113 to slot 2
+Frame 111 completed
+Consumer: Frame 111 complete
+Consumer: Processing frame 112
+Added frame 114 to slot 0
+Frame 112 completed
+Consumer: Frame 112 complete
+Consumer: Processing frame 113
+Added frame 115 to slot 1
+Frame 113 completed
+Consumer: Frame 113 complete
+Consumer: Processing frame 114
+Added frame 116 to slot 2
+Frame 114 completed
+Consumer: Frame 114 complete
+Consumer: Processing frame 115
+Added frame 117 to slot 0
+Frame 115 completed
+Consumer: Frame 115 complete
+Consumer: Processing frame 116
+Added frame 118 to slot 1
+Frame 116 completed
+Consumer: Frame 116 complete
+Consumer: Processing frame 117
+Added frame 119 to slot 2
+Frame 117 completed
+Consumer: Frame 117 complete
+Consumer: Processing frame 118
+Added frame 120 to slot 0
+Frame 118 completed
+Consumer: Frame 118 complete
+Consumer: Processing frame 119
+Added frame 121 to slot 1
+Frame 119 completed
+Consumer: Frame 119 complete
+Consumer: Processing frame 120
+Added frame 122 to slot 2
+Frame 120 completed
+Consumer: Frame 120 complete
+Consumer: Processing frame 121
+Added frame 123 to slot 0
+Frame 121 completed
+Consumer: Frame 121 complete
+Consumer: Processing frame 122
+Added frame 124 to slot 1
+Frame 122 completed
+Consumer: Frame 122 complete
+Consumer: Processing frame 123
+Added frame 125 to slot 2
+Frame 123 completed
+Consumer: Frame 123 complete
+Consumer: Processing frame 124
+Added frame 126 to slot 0
+Frame 124 completed
+Added frame 127 to slot 1
+Consumer: Frame 124 complete
+Consumer: Processing frame 125
+Frame 125 completed
+Consumer: Frame 125 complete
+Consumer: Processing frame 126
+Added frame 128 to slot 2
+Frame 126 completed
+Consumer: Frame 126 complete
+Added frame 129 to slot 0
+Consumer: Processing frame 127
+Frame 127 completed
+Consumer: Frame 127 complete
+Consumer: Processing frame 128
+Added frame 130 to slot 1
+Frame 128 completed
+Consumer: Frame 128 complete
+Consumer: Processing frame 129
+Added frame 131 to slot 2
+Frame 129 completed
+Consumer: Frame 129 complete
+Consumer: Processing frame 130
+Added frame 132 to slot 0
+Frame 130 completed
+Consumer: Frame 130 complete
+Consumer: Processing frame 131
+Added frame 133 to slot 1
+Frame 131 completed
+Consumer: Frame 131 complete
+Consumer: Processing frame 132
+Added frame 134 to slot 2
+Frame 132 completed
+Consumer: Frame 132 complete
+Consumer: Processing frame 133
+Added frame 135 to slot 0
+Frame 133 completed
+Consumer: Frame 133 complete
+Consumer: Processing frame 134
+Added frame 136 to slot 1
+Frame 134 completed
+Consumer: Frame 134 complete
+Consumer: Processing frame 135
+Added frame 137 to slot 2
+Frame 135 completed
+Consumer: Frame 135 complete
+Consumer: Processing frame 136
+Added frame 138 to slot 0
+Frame 136 completed
+Consumer: Frame 136 complete
+Consumer: Processing frame 137
+Added frame 139 to slot 1
+Frame 137 completed
+Consumer: Frame 137 complete
+Consumer: Processing frame 138
+Added frame 140 to slot 2
+Frame 138 completed
+Consumer: Frame 138 complete
+Consumer: Processing frame 139
+Added frame 141 to slot 0
+Frame 139 completed
+Consumer: Frame 139 complete
+Consumer: Processing frame 140
+Added frame 142 to slot 1
+Frame 140 completed
+Consumer: Frame 140 complete
+Consumer: Processing frame 141
+Added frame 143 to slot 2
+Frame 141 completed
+Consumer: Frame 141 complete
+Consumer: Processing frame 142
+Added frame 144 to slot 0
+Frame 142 completed
+Consumer: Frame 142 complete
+Consumer: Processing frame 143
+Added frame 145 to slot 1
+Frame 143 completed
+Consumer: Frame 143 complete
+Consumer: Processing frame 144
+Added frame 146 to slot 2
+Frame 144 completed
+Consumer: Frame 144 complete
+Consumer: Processing frame 145
+Added frame 147 to slot 0
+Frame 145 completed
+Consumer: Frame 145 complete
+Consumer: Processing frame 146
+Added frame 148 to slot 1
+Frame 146 completed
+Consumer: Frame 146 complete
+Consumer: Processing frame 147
+Added frame 149 to slot 2
+Producer: Frame limit reached
+Producer: Finished reading 150 frames
+Frame 147 completed
+Consumer: Frame 147 complete
+Consumer: Processing frame 148
+Frame 148 completed
+Consumer: Frame 148 complete
+Consumer: Processing frame 149
+Frame 149 completed
+Consumer: Frame 149 complete
+Consumer: No more frames
+Consumer: Finished
+Client finished successfully
+PC exit code: 0
+
+real	0m33,372s
+user	0m7,185s
+sys	0m0,486s

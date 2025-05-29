@@ -1,0 +1,920 @@
+Server: Waiting for client connection...
+Server: Connected to client, ready for processing
+Server: Waiting for commands...
+Server: Received dimensions 1920x1080
+Thread pool initialized with 7 threads
+Task pool is initialized with 136 tasks
+Server: Worker thread started
+Server: Dimensions acknowledged, ready for frames
+Server: Received frame 0 in slot 0
+Server: Encoding frame 0
+Server: Frame 0 encoded (6658564 bytes, keyframe)
+Server: Sending frame 0 (6658564 bytes)
+Server: Frame 0 acknowledged
+Server: Frame 0 completed
+Server: Received frame 1 in slot 1
+Server: Encoding frame 1
+Server: Frame 1 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 1 (6658564 bytes)
+Server: Frame 1 acknowledged
+Server: Frame 1 completed
+Server: Received frame 2 in slot 2
+Server: Encoding frame 2
+Server: Frame 2 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 2 (6658564 bytes)
+Server: Frame 2 acknowledged
+Server: Frame 2 completed
+Server: Received frame 3 in slot 0
+Server: Encoding frame 3
+Server: Frame 3 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 3 (6658564 bytes)
+Server: Frame 3 acknowledged
+Server: Frame 3 completed
+Server: Received frame 4 in slot 1
+Server: Encoding frame 4
+Server: Frame 4 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 4 (6658564 bytes)
+Server: Frame 4 acknowledged
+Server: Frame 4 completed
+Server: Received frame 5 in slot 2
+Server: Encoding frame 5
+Server: Frame 5 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 5 (6658564 bytes)
+Server: Frame 5 acknowledged
+Server: Frame 5 completed
+Server: Received frame 6 in slot 0
+Server: Encoding frame 6
+Server: Frame 6 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 6 (6658564 bytes)
+Server: Frame 6 acknowledged
+Server: Frame 6 completed
+Server: Received frame 7 in slot 1
+Server: Encoding frame 7
+Server: Frame 7 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 7 (6658564 bytes)
+Server: Frame 7 acknowledged
+Server: Frame 7 completed
+Server: Received frame 8 in slot 2
+Server: Encoding frame 8
+Server: Frame 8 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 8 (6658564 bytes)
+Server: Frame 8 acknowledged
+Server: Frame 8 completed
+Server: Received frame 9 in slot 0
+Server: Encoding frame 9
+Server: Frame 9 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 9 (6658564 bytes)
+Server: Frame 9 acknowledged
+Server: Frame 9 completed
+Server: Received frame 10 in slot 1
+Server: Encoding frame 10
+Server: Frame 10 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 10 (6658564 bytes)
+Server: Frame 10 acknowledged
+Server: Frame 10 completed
+Server: Received frame 11 in slot 2
+Server: Encoding frame 11
+Server: Frame 11 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 11 (6658564 bytes)
+Server: Frame 11 acknowledged
+Server: Frame 11 completed
+Server: Received frame 12 in slot 0
+Server: Encoding frame 12
+Server: Frame 12 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 12 (6658564 bytes)
+Server: Frame 12 acknowledged
+Server: Frame 12 completed
+Server: Received frame 13 in slot 1
+Server: Encoding frame 13
+Server: Frame 13 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 13 (6658564 bytes)
+Server: Frame 13 acknowledged
+Server: Frame 13 completed
+Server: Received frame 14 in slot 2
+Server: Encoding frame 14
+Server: Frame 14 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 14 (6658564 bytes)
+Server: Frame 14 acknowledged
+Server: Frame 14 completed
+Server: Received frame 15 in slot 0
+Server: Encoding frame 15
+Server: Frame 15 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 15 (6658564 bytes)
+Server: Frame 15 acknowledged
+Server: Frame 15 completed
+Server: Received frame 16 in slot 1
+Server: Encoding frame 16
+Server: Frame 16 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 16 (6658564 bytes)
+Server: Frame 16 acknowledged
+Server: Frame 16 completed
+Server: Received frame 17 in slot 2
+Server: Encoding frame 17
+Server: Frame 17 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 17 (6658564 bytes)
+Server: Frame 17 acknowledged
+Server: Frame 17 completed
+Server: Received frame 18 in slot 0
+Server: Encoding frame 18
+Server: Frame 18 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 18 (6658564 bytes)
+Server: Frame 18 acknowledged
+Server: Frame 18 completed
+Server: Received frame 19 in slot 1
+Server: Encoding frame 19
+Server: Frame 19 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 19 (6658564 bytes)
+Server: Frame 19 acknowledged
+Server: Frame 19 completed
+Server: Received frame 20 in slot 2
+Server: Encoding frame 20
+Server: Frame 20 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 20 (6658564 bytes)
+Server: Frame 20 acknowledged
+Server: Frame 20 completed
+Server: Received frame 21 in slot 0
+Server: Encoding frame 21
+Server: Frame 21 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 21 (6658564 bytes)
+Server: Frame 21 acknowledged
+Server: Frame 21 completed
+Server: Received frame 22 in slot 1
+Server: Encoding frame 22
+Server: Frame 22 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 22 (6658564 bytes)
+Server: Frame 22 acknowledged
+Server: Frame 22 completed
+Server: Received frame 23 in slot 2
+Server: Encoding frame 23
+Server: Frame 23 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 23 (6658564 bytes)
+Server: Frame 23 acknowledged
+Server: Frame 23 completed
+Server: Received frame 24 in slot 0
+Server: Encoding frame 24
+Server: Frame 24 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 24 (6658564 bytes)
+Server: Frame 24 acknowledged
+Server: Frame 24 completed
+Server: Received frame 25 in slot 1
+Server: Encoding frame 25
+Server: Frame 25 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 25 (6658564 bytes)
+Server: Frame 25 acknowledged
+Server: Frame 25 completed
+Server: Received frame 26 in slot 2
+Server: Encoding frame 26
+Server: Frame 26 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 26 (6658564 bytes)
+Server: Frame 26 acknowledged
+Server: Frame 26 completed
+Server: Received frame 27 in slot 0
+Server: Encoding frame 27
+Server: Frame 27 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 27 (6658564 bytes)
+Server: Frame 27 acknowledged
+Server: Frame 27 completed
+Server: Received frame 28 in slot 1
+Server: Encoding frame 28
+Server: Frame 28 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 28 (6658564 bytes)
+Server: Frame 28 acknowledged
+Server: Frame 28 completed
+Server: Received frame 29 in slot 2
+Server: Encoding frame 29
+Server: Frame 29 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 29 (6658564 bytes)
+Server: Frame 29 acknowledged
+Server: Frame 29 completed
+Server: Received frame 30 in slot 0
+Server: Encoding frame 30
+Server: Frame 30 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 30 (6658564 bytes)
+Server: Frame 30 acknowledged
+Server: Frame 30 completed
+Server: Received frame 31 in slot 1
+Server: Encoding frame 31
+Server: Frame 31 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 31 (6658564 bytes)
+Server: Frame 31 acknowledged
+Server: Frame 31 completed
+Server: Received frame 32 in slot 2
+Server: Encoding frame 32
+Server: Frame 32 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 32 (6658564 bytes)
+Server: Frame 32 acknowledged
+Server: Frame 32 completed
+Server: Received frame 33 in slot 0
+Server: Encoding frame 33
+Server: Frame 33 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 33 (6658564 bytes)
+Server: Frame 33 acknowledged
+Server: Frame 33 completed
+Server: Received frame 34 in slot 1
+Server: Encoding frame 34
+Server: Frame 34 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 34 (6658564 bytes)
+Server: Frame 34 acknowledged
+Server: Frame 34 completed
+Server: Received frame 35 in slot 2
+Server: Encoding frame 35
+Server: Frame 35 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 35 (6658564 bytes)
+Server: Frame 35 acknowledged
+Server: Frame 35 completed
+Server: Received frame 36 in slot 0
+Server: Encoding frame 36
+Server: Frame 36 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 36 (6658564 bytes)
+Server: Frame 36 acknowledged
+Server: Frame 36 completed
+Server: Received frame 37 in slot 1
+Server: Encoding frame 37
+Server: Frame 37 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 37 (6658564 bytes)
+Server: Frame 37 acknowledged
+Server: Frame 37 completed
+Server: Received frame 38 in slot 2
+Server: Encoding frame 38
+Server: Frame 38 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 38 (6658564 bytes)
+Server: Frame 38 acknowledged
+Server: Frame 38 completed
+Server: Received frame 39 in slot 0
+Server: Encoding frame 39
+Server: Frame 39 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 39 (6658564 bytes)
+Server: Frame 39 acknowledged
+Server: Frame 39 completed
+Server: Received frame 40 in slot 1
+Server: Encoding frame 40
+Server: Frame 40 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 40 (6658564 bytes)
+Server: Frame 40 acknowledged
+Server: Frame 40 completed
+Server: Received frame 41 in slot 2
+Server: Encoding frame 41
+Server: Frame 41 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 41 (6658564 bytes)
+Server: Frame 41 acknowledged
+Server: Frame 41 completed
+Server: Received frame 42 in slot 0
+Server: Encoding frame 42
+Server: Frame 42 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 42 (6658564 bytes)
+Server: Frame 42 acknowledged
+Server: Frame 42 completed
+Server: Received frame 43 in slot 1
+Server: Encoding frame 43
+Server: Frame 43 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 43 (6658564 bytes)
+Server: Frame 43 acknowledged
+Server: Frame 43 completed
+Server: Received frame 44 in slot 2
+Server: Encoding frame 44
+Server: Frame 44 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 44 (6658564 bytes)
+Server: Frame 44 acknowledged
+Server: Frame 44 completed
+Server: Received frame 45 in slot 0
+Server: Encoding frame 45
+Server: Frame 45 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 45 (6658564 bytes)
+Server: Frame 45 acknowledged
+Server: Frame 45 completed
+Server: Received frame 46 in slot 1
+Server: Encoding frame 46
+Server: Frame 46 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 46 (6658564 bytes)
+Server: Frame 46 acknowledged
+Server: Frame 46 completed
+Server: Received frame 47 in slot 2
+Server: Encoding frame 47
+Server: Frame 47 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 47 (6658564 bytes)
+Server: Frame 47 acknowledged
+Server: Frame 47 completed
+Server: Received frame 48 in slot 0
+Server: Encoding frame 48
+Server: Frame 48 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 48 (6658564 bytes)
+Server: Frame 48 acknowledged
+Server: Frame 48 completed
+Server: Received frame 49 in slot 1
+Server: Encoding frame 49
+Server: Frame 49 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 49 (6658564 bytes)
+Server: Frame 49 acknowledged
+Server: Frame 49 completed
+Server: Received frame 50 in slot 2
+Server: Encoding frame 50
+Server: Frame 50 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 50 (6658564 bytes)
+Server: Frame 50 acknowledged
+Server: Frame 50 completed
+Server: Received frame 51 in slot 0
+Server: Encoding frame 51
+Server: Frame 51 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 51 (6658564 bytes)
+Server: Frame 51 acknowledged
+Server: Frame 51 completed
+Server: Received frame 52 in slot 1
+Server: Encoding frame 52
+Server: Frame 52 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 52 (6658564 bytes)
+Server: Frame 52 acknowledged
+Server: Frame 52 completed
+Server: Received frame 53 in slot 2
+Server: Encoding frame 53
+Server: Frame 53 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 53 (6658564 bytes)
+Server: Frame 53 acknowledged
+Server: Frame 53 completed
+Server: Received frame 54 in slot 0
+Server: Encoding frame 54
+Server: Frame 54 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 54 (6658564 bytes)
+Server: Frame 54 acknowledged
+Server: Frame 54 completed
+Server: Received frame 55 in slot 1
+Server: Encoding frame 55
+Server: Frame 55 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 55 (6658564 bytes)
+Server: Frame 55 acknowledged
+Server: Frame 55 completed
+Server: Received frame 56 in slot 2
+Server: Encoding frame 56
+Server: Frame 56 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 56 (6658564 bytes)
+Server: Frame 56 acknowledged
+Server: Frame 56 completed
+Server: Received frame 57 in slot 0
+Server: Encoding frame 57
+Server: Frame 57 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 57 (6658564 bytes)
+Server: Frame 57 acknowledged
+Server: Frame 57 completed
+Server: Received frame 58 in slot 1
+Server: Encoding frame 58
+Server: Frame 58 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 58 (6658564 bytes)
+Server: Frame 58 acknowledged
+Server: Frame 58 completed
+Server: Received frame 59 in slot 2
+Server: Encoding frame 59
+Server: Frame 59 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 59 (6658564 bytes)
+Server: Frame 59 acknowledged
+Server: Frame 59 completed
+Server: Received frame 60 in slot 0
+Server: Encoding frame 60
+Server: Frame 60 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 60 (6658564 bytes)
+Server: Frame 60 acknowledged
+Server: Frame 60 completed
+Server: Received frame 61 in slot 1
+Server: Encoding frame 61
+Server: Frame 61 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 61 (6658564 bytes)
+Server: Frame 61 acknowledged
+Server: Frame 61 completed
+Server: Received frame 62 in slot 2
+Server: Encoding frame 62
+Server: Frame 62 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 62 (6658564 bytes)
+Server: Frame 62 acknowledged
+Server: Frame 62 completed
+Server: Received frame 63 in slot 0
+Server: Encoding frame 63
+Server: Frame 63 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 63 (6658564 bytes)
+Server: Frame 63 acknowledged
+Server: Frame 63 completed
+Server: Received frame 64 in slot 1
+Server: Encoding frame 64
+Server: Frame 64 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 64 (6658564 bytes)
+Server: Frame 64 acknowledged
+Server: Frame 64 completed
+Server: Received frame 65 in slot 2
+Server: Encoding frame 65
+Server: Frame 65 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 65 (6658564 bytes)
+Server: Frame 65 acknowledged
+Server: Frame 65 completed
+Server: Received frame 66 in slot 0
+Server: Encoding frame 66
+Server: Frame 66 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 66 (6658564 bytes)
+Server: Frame 66 acknowledged
+Server: Frame 66 completed
+Server: Received frame 67 in slot 1
+Server: Encoding frame 67
+Server: Frame 67 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 67 (6658564 bytes)
+Server: Frame 67 acknowledged
+Server: Frame 67 completed
+Server: Received frame 68 in slot 2
+Server: Encoding frame 68
+Server: Frame 68 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 68 (6658564 bytes)
+Server: Frame 68 acknowledged
+Server: Frame 68 completed
+Server: Received frame 69 in slot 0
+Server: Encoding frame 69
+Server: Frame 69 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 69 (6658564 bytes)
+Server: Frame 69 acknowledged
+Server: Frame 69 completed
+Server: Received frame 70 in slot 1
+Server: Encoding frame 70
+Server: Frame 70 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 70 (6658564 bytes)
+Server: Frame 70 acknowledged
+Server: Frame 70 completed
+Server: Received frame 71 in slot 2
+Server: Encoding frame 71
+Server: Frame 71 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 71 (6658564 bytes)
+Server: Frame 71 acknowledged
+Server: Frame 71 completed
+Server: Received frame 72 in slot 0
+Server: Encoding frame 72
+Server: Frame 72 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 72 (6658564 bytes)
+Server: Frame 72 acknowledged
+Server: Frame 72 completed
+Server: Received frame 73 in slot 1
+Server: Encoding frame 73
+Server: Frame 73 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 73 (6658564 bytes)
+Server: Frame 73 acknowledged
+Server: Frame 73 completed
+Server: Received frame 74 in slot 2
+Server: Encoding frame 74
+Server: Frame 74 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 74 (6658564 bytes)
+Server: Frame 74 acknowledged
+Server: Frame 74 completed
+Server: Received frame 75 in slot 0
+Server: Encoding frame 75
+Server: Frame 75 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 75 (6658564 bytes)
+Server: Frame 75 acknowledged
+Server: Frame 75 completed
+Server: Received frame 76 in slot 1
+Server: Encoding frame 76
+Server: Frame 76 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 76 (6658564 bytes)
+Server: Frame 76 acknowledged
+Server: Frame 76 completed
+Server: Received frame 77 in slot 2
+Server: Encoding frame 77
+Server: Frame 77 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 77 (6658564 bytes)
+Server: Frame 77 acknowledged
+Server: Frame 77 completed
+Server: Received frame 78 in slot 0
+Server: Encoding frame 78
+Server: Frame 78 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 78 (6658564 bytes)
+Server: Frame 78 acknowledged
+Server: Frame 78 completed
+Server: Received frame 79 in slot 1
+Server: Encoding frame 79
+Server: Frame 79 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 79 (6658564 bytes)
+Server: Frame 79 acknowledged
+Server: Frame 79 completed
+Server: Received frame 80 in slot 2
+Server: Encoding frame 80
+Server: Frame 80 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 80 (6658564 bytes)
+Server: Frame 80 acknowledged
+Server: Frame 80 completed
+Server: Received frame 81 in slot 0
+Server: Encoding frame 81
+Server: Frame 81 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 81 (6658564 bytes)
+Server: Frame 81 acknowledged
+Server: Frame 81 completed
+Server: Received frame 82 in slot 1
+Server: Encoding frame 82
+Server: Frame 82 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 82 (6658564 bytes)
+Server: Frame 82 acknowledged
+Server: Frame 82 completed
+Server: Received frame 83 in slot 2
+Server: Encoding frame 83
+Server: Frame 83 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 83 (6658564 bytes)
+Server: Frame 83 acknowledged
+Server: Frame 83 completed
+Server: Received frame 84 in slot 0
+Server: Encoding frame 84
+Server: Frame 84 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 84 (6658564 bytes)
+Server: Frame 84 acknowledged
+Server: Frame 84 completed
+Server: Received frame 85 in slot 1
+Server: Encoding frame 85
+Server: Frame 85 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 85 (6658564 bytes)
+Server: Frame 85 acknowledged
+Server: Frame 85 completed
+Server: Received frame 86 in slot 2
+Server: Encoding frame 86
+Server: Frame 86 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 86 (6658564 bytes)
+Server: Frame 86 acknowledged
+Server: Frame 86 completed
+Server: Received frame 87 in slot 0
+Server: Encoding frame 87
+Server: Frame 87 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 87 (6658564 bytes)
+Server: Frame 87 acknowledged
+Server: Frame 87 completed
+Server: Received frame 88 in slot 1
+Server: Encoding frame 88
+Server: Frame 88 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 88 (6658564 bytes)
+Server: Frame 88 acknowledged
+Server: Frame 88 completed
+Server: Received frame 89 in slot 2
+Server: Encoding frame 89
+Server: Frame 89 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 89 (6658564 bytes)
+Server: Frame 89 acknowledged
+Server: Frame 89 completed
+Server: Received frame 90 in slot 0
+Server: Encoding frame 90
+Server: Frame 90 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 90 (6658564 bytes)
+Server: Frame 90 acknowledged
+Server: Frame 90 completed
+Server: Received frame 91 in slot 1
+Server: Encoding frame 91
+Server: Frame 91 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 91 (6658564 bytes)
+Server: Frame 91 acknowledged
+Server: Frame 91 completed
+Server: Received frame 92 in slot 2
+Server: Encoding frame 92
+Server: Frame 92 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 92 (6658564 bytes)
+Server: Frame 92 acknowledged
+Server: Frame 92 completed
+Server: Received frame 93 in slot 0
+Server: Encoding frame 93
+Server: Frame 93 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 93 (6658564 bytes)
+Server: Frame 93 acknowledged
+Server: Frame 93 completed
+Server: Received frame 94 in slot 1
+Server: Encoding frame 94
+Server: Frame 94 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 94 (6658564 bytes)
+Server: Frame 94 acknowledged
+Server: Frame 94 completed
+Server: Received frame 95 in slot 2
+Server: Encoding frame 95
+Server: Frame 95 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 95 (6658564 bytes)
+Server: Frame 95 acknowledged
+Server: Frame 95 completed
+Server: Received frame 96 in slot 0
+Server: Encoding frame 96
+Server: Frame 96 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 96 (6658564 bytes)
+Server: Frame 96 acknowledged
+Server: Frame 96 completed
+Server: Received frame 97 in slot 1
+Server: Encoding frame 97
+Server: Frame 97 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 97 (6658564 bytes)
+Server: Frame 97 acknowledged
+Server: Frame 97 completed
+Server: Received frame 98 in slot 2
+Server: Encoding frame 98
+Server: Frame 98 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 98 (6658564 bytes)
+Server: Frame 98 acknowledged
+Server: Frame 98 completed
+Server: Received frame 99 in slot 0
+Server: Encoding frame 99
+Server: Frame 99 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 99 (6658564 bytes)
+Server: Frame 99 acknowledged
+Server: Frame 99 completed
+Server: Received frame 100 in slot 1
+Server: Encoding frame 100
+Server: Frame 100 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 100 (6658564 bytes)
+Server: Frame 100 acknowledged
+Server: Frame 100 completed
+Server: Received frame 101 in slot 2
+Server: Encoding frame 101
+Server: Frame 101 encoded (6658564 bytes, keyframe)
+Server: Sending frame 101 (6658564 bytes)
+Server: Frame 101 acknowledged
+Server: Frame 101 completed
+Server: Received frame 102 in slot 0
+Server: Encoding frame 102
+Server: Frame 102 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 102 (6658564 bytes)
+Server: Frame 102 acknowledged
+Server: Frame 102 completed
+Server: Received frame 103 in slot 1
+Server: Encoding frame 103
+Server: Frame 103 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 103 (6658564 bytes)
+Server: Frame 103 acknowledged
+Server: Frame 103 completed
+Server: Received frame 104 in slot 2
+Server: Encoding frame 104
+Server: Frame 104 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 104 (6658564 bytes)
+Server: Frame 104 acknowledged
+Server: Frame 104 completed
+Server: Received frame 105 in slot 0
+Server: Encoding frame 105
+Server: Frame 105 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 105 (6658564 bytes)
+Server: Frame 105 acknowledged
+Server: Frame 105 completed
+Server: Received frame 106 in slot 1
+Server: Encoding frame 106
+Server: Frame 106 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 106 (6658564 bytes)
+Server: Frame 106 acknowledged
+Server: Frame 106 completed
+Server: Received frame 107 in slot 2
+Server: Encoding frame 107
+Server: Frame 107 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 107 (6658564 bytes)
+Server: Frame 107 acknowledged
+Server: Frame 107 completed
+Server: Received frame 108 in slot 0
+Server: Encoding frame 108
+Server: Frame 108 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 108 (6658564 bytes)
+Server: Frame 108 acknowledged
+Server: Frame 108 completed
+Server: Received frame 109 in slot 1
+Server: Encoding frame 109
+Server: Frame 109 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 109 (6658564 bytes)
+Server: Frame 109 acknowledged
+Server: Frame 109 completed
+Server: Received frame 110 in slot 2
+Server: Encoding frame 110
+Server: Frame 110 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 110 (6658564 bytes)
+Server: Frame 110 acknowledged
+Server: Frame 110 completed
+Server: Received frame 111 in slot 0
+Server: Encoding frame 111
+Server: Frame 111 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 111 (6658564 bytes)
+Server: Frame 111 acknowledged
+Server: Frame 111 completed
+Server: Received frame 112 in slot 1
+Server: Encoding frame 112
+Server: Frame 112 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 112 (6658564 bytes)
+Server: Frame 112 acknowledged
+Server: Frame 112 completed
+Server: Received frame 113 in slot 2
+Server: Encoding frame 113
+Server: Frame 113 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 113 (6658564 bytes)
+Server: Frame 113 acknowledged
+Server: Frame 113 completed
+Server: Received frame 114 in slot 0
+Server: Encoding frame 114
+Server: Frame 114 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 114 (6658564 bytes)
+Server: Frame 114 acknowledged
+Server: Frame 114 completed
+Server: Received frame 115 in slot 1
+Server: Encoding frame 115
+Server: Frame 115 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 115 (6658564 bytes)
+Server: Frame 115 acknowledged
+Server: Frame 115 completed
+Server: Received frame 116 in slot 2
+Server: Encoding frame 116
+Server: Frame 116 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 116 (6658564 bytes)
+Server: Frame 116 acknowledged
+Server: Frame 116 completed
+Server: Received frame 117 in slot 0
+Server: Encoding frame 117
+Server: Frame 117 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 117 (6658564 bytes)
+Server: Frame 117 acknowledged
+Server: Frame 117 completed
+Server: Received frame 118 in slot 1
+Server: Encoding frame 118
+Server: Frame 118 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 118 (6658564 bytes)
+Server: Frame 118 acknowledged
+Server: Frame 118 completed
+Server: Received frame 119 in slot 2
+Server: Encoding frame 119
+Server: Frame 119 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 119 (6658564 bytes)
+Server: Frame 119 acknowledged
+Server: Frame 119 completed
+Server: Received frame 120 in slot 0
+Server: Encoding frame 120
+Server: Frame 120 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 120 (6658564 bytes)
+Server: Frame 120 acknowledged
+Server: Frame 120 completed
+Server: Received frame 121 in slot 1
+Server: Encoding frame 121
+Server: Frame 121 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 121 (6658564 bytes)
+Server: Frame 121 acknowledged
+Server: Frame 121 completed
+Server: Received frame 122 in slot 2
+Server: Encoding frame 122
+Server: Frame 122 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 122 (6658564 bytes)
+Server: Frame 122 acknowledged
+Server: Frame 122 completed
+Server: Received frame 123 in slot 0
+Server: Encoding frame 123
+Server: Frame 123 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 123 (6658564 bytes)
+Server: Frame 123 acknowledged
+Server: Frame 123 completed
+Server: Received frame 124 in slot 1
+Server: Encoding frame 124
+Server: Frame 124 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 124 (6658564 bytes)
+Server: Frame 124 acknowledged
+Server: Frame 124 completed
+Server: Received frame 125 in slot 2
+Server: Encoding frame 125
+Server: Frame 125 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 125 (6658564 bytes)
+Server: Frame 125 acknowledged
+Server: Frame 125 completed
+Server: Received frame 126 in slot 0
+Server: Encoding frame 126
+Server: Frame 126 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 126 (6658564 bytes)
+Server: Frame 126 acknowledged
+Server: Frame 126 completed
+Server: Received frame 127 in slot 1
+Server: Encoding frame 127
+Server: Frame 127 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 127 (6658564 bytes)
+Server: Frame 127 acknowledged
+Server: Frame 127 completed
+Server: Received frame 128 in slot 2
+Server: Encoding frame 128
+Server: Frame 128 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 128 (6658564 bytes)
+Server: Frame 128 acknowledged
+Server: Frame 128 completed
+Server: Received frame 129 in slot 0
+Server: Encoding frame 129
+Server: Frame 129 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 129 (6658564 bytes)
+Server: Frame 129 acknowledged
+Server: Frame 129 completed
+Server: Received frame 130 in slot 1
+Server: Encoding frame 130
+Server: Frame 130 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 130 (6658564 bytes)
+Server: Frame 130 acknowledged
+Server: Frame 130 completed
+Server: Received frame 131 in slot 2
+Server: Encoding frame 131
+Server: Frame 131 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 131 (6658564 bytes)
+Server: Frame 131 acknowledged
+Server: Frame 131 completed
+Server: Received frame 132 in slot 0
+Server: Encoding frame 132
+Server: Frame 132 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 132 (6658564 bytes)
+Server: Frame 132 acknowledged
+Server: Frame 132 completed
+Server: Received frame 133 in slot 1
+Server: Encoding frame 133
+Server: Frame 133 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 133 (6658564 bytes)
+Server: Frame 133 acknowledged
+Server: Frame 133 completed
+Server: Received frame 134 in slot 2
+Server: Encoding frame 134
+Server: Frame 134 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 134 (6658564 bytes)
+Server: Frame 134 acknowledged
+Server: Frame 134 completed
+Server: Received frame 135 in slot 0
+Server: Encoding frame 135
+Server: Frame 135 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 135 (6658564 bytes)
+Server: Frame 135 acknowledged
+Server: Frame 135 completed
+Server: Received frame 136 in slot 1
+Server: Encoding frame 136
+Server: Frame 136 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 136 (6658564 bytes)
+Server: Frame 136 acknowledged
+Server: Frame 136 completed
+Server: Received frame 137 in slot 2
+Server: Encoding frame 137
+Server: Frame 137 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 137 (6658564 bytes)
+Server: Frame 137 acknowledged
+Server: Frame 137 completed
+Server: Received frame 138 in slot 0
+Server: Encoding frame 138
+Server: Frame 138 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 138 (6658564 bytes)
+Server: Frame 138 acknowledged
+Server: Frame 138 completed
+Server: Received frame 139 in slot 1
+Server: Encoding frame 139
+Server: Frame 139 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 139 (6658564 bytes)
+Server: Frame 139 acknowledged
+Server: Frame 139 completed
+Server: Received frame 140 in slot 2
+Server: Encoding frame 140
+Server: Frame 140 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 140 (6658564 bytes)
+Server: Frame 140 acknowledged
+Server: Frame 140 completed
+Server: Received frame 141 in slot 0
+Server: Encoding frame 141
+Server: Frame 141 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 141 (6658564 bytes)
+Server: Frame 141 acknowledged
+Server: Frame 141 completed
+Server: Received frame 142 in slot 1
+Server: Encoding frame 142
+Server: Frame 142 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 142 (6658564 bytes)
+Server: Frame 142 acknowledged
+Server: Frame 142 completed
+Server: Received frame 143 in slot 2
+Server: Encoding frame 143
+Server: Frame 143 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 143 (6658564 bytes)
+Server: Frame 143 acknowledged
+Server: Frame 143 completed
+Server: Received frame 144 in slot 0
+Server: Encoding frame 144
+Server: Frame 144 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 144 (6658564 bytes)
+Server: Frame 144 acknowledged
+Server: Frame 144 completed
+Server: Received frame 145 in slot 1
+Server: Encoding frame 145
+Server: Frame 145 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 145 (6658564 bytes)
+Server: Frame 145 acknowledged
+Server: Frame 145 completed
+Server: Received frame 146 in slot 2
+Server: Encoding frame 146
+Server: Frame 146 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 146 (6658564 bytes)
+Server: Frame 146 acknowledged
+Server: Frame 146 completed
+Server: Received frame 147 in slot 0
+Server: Encoding frame 147
+Server: Frame 147 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 147 (6658564 bytes)
+Server: Frame 147 acknowledged
+Server: Frame 147 completed
+Server: Received frame 148 in slot 1
+Server: Encoding frame 148
+Server: Frame 148 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 148 (6658564 bytes)
+Server: Frame 148 acknowledged
+Server: Frame 148 completed
+Server: Received frame 149 in slot 2
+Server: Encoding frame 149
+Server: Frame 149 encoded (6658564 bytes, non-keyframe)
+Server: Sending frame 149 (6658564 bytes)
+Server: Frame 149 acknowledged
+Server: Frame 149 completed
+Server: Quit command received
+Server: Worker thread finished
+Server: Final statistics:
+  Frames processed: 150
+Task pool destroyed
+Thread pool destroyed
+Server: Processed 150 frames, exiting
+Tegra exit code: 0
+
+real	0m31.809s
+user	0m59.748s
+sys	0m6.720s
